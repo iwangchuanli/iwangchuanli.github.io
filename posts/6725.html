@@ -1,0 +1,458 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>Git的使用 | 传礼</title><meta name="keywords" content="博客,blog,王传礼,java,python,大数据"><meta name="author" content="传礼,978252321@qq.com"><meta name="copyright" content="传礼"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="常见操作全局配置用户信息git config --global user.name &quot;smyhvae&quot;git config --global user.email &quot;smyhvae@163.com&quot;   分支的合并场景：基于master分支的代码，开发一个新的特性如果你直接在master分支上开发这个新特性，是不好的，万一你在开发特性1的时候，领导突然又要叫">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Git的使用">
+<meta property="og:url" content="https://iwangchuanli.github.io/posts/6725.html">
+<meta property="og:site_name" content="传礼">
+<meta property="og:description" content="常见操作全局配置用户信息git config --global user.name &quot;smyhvae&quot;git config --global user.email &quot;smyhvae@163.com&quot;   分支的合并场景：基于master分支的代码，开发一个新的特性如果你直接在master分支上开发这个新特性，是不好的，万一你在开发特性1的时候，领导突然又要叫">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img1_znhZsi.jpg">
+<meta property="article:published_time" content="2022-11-28T07:04:49.753Z">
+<meta property="article:modified_time" content="2022-04-18T01:45:16.000Z">
+<meta property="article:author" content="传礼">
+<meta property="article:tag" content="博客,blog,王传礼,java,python,大数据">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img1_znhZsi.jpg"><link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/03/favicons_uH14Fb.gif"><link rel="canonical" href="https://iwangchuanli.github.io/posts/6725"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin=""/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta name="baidu-site-verification" content="qKvGNFZPF9"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?39bd6e37a6e70dc030e6a043a642784e";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: 传礼","link":"链接: ","source":"来源: 传礼","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#121212","position":"bottom-left"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: true,
+  islazyload: true,
+  isAnchor: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Git的使用',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-04-18 01:45:16'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/custom.css"  media="defer" onload="this.media='all'"><!-- hexo injector head_end start --><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiperstyle.css" media="print" onload="this.media='all'"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.1"><link rel="alternate" href="/atom.xml" title="传礼" type="application/atom+xml">
+</head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/03/photo_NZBQPu.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><div class="data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">511</div></a></div><div class="data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">50</div></a></div><div class="data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">22</div></a></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 归档</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-calendar"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 开发</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/Java"><i class="fa-fw fa fa-music"></i><span> Java</span></a></li><li><a class="site-page child" href="/categories/Python"><i class="fa-fw fa fa-music"></i><span> Python</span></a></li><li><a class="site-page child" href="/categories/VUE"><i class="fa-fw fa fa-music"></i><span> VUE</span></a></li><li><a class="site-page child" href="/categories/MySQL"><i class="fa-fw fa fa-music"></i><span> MySQL</span></a></li><li><a class="site-page child" href="/categories/Redis"><i class="fa-fw fa fa-music"></i><span> Redis</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 架构</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/Spring"><i class="fa-fw fa fa-music"></i><span> Spring</span></a></li><li><a class="site-page child" href="/categories/microServeices"><i class="fa-fw fa fa-music"></i><span> 微服务</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 运维</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/Docker"><i class="fa-fw fa fa-music"></i><span> Docker</span></a></li><li><a class="site-page child" href="/categories/Linux"><i class="fa-fw fa fa-music"></i><span> Linux</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 分享</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/tags/Tools"><i class="fa-fw fa fa-music"></i><span> 工具</span></a></li><li><a class="site-page child" href="/tags/guide"><i class="fa-fw fa fa-music"></i><span> 教程</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 项目</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/tags/Tools"><i class="fa-fw fa fa-music"></i><span> 工具</span></a></li><li><a class="site-page child" href="/tags/guide"><i class="fa-fw fa fa-music"></i><span> 教程</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-heartbeat"></i><span> 娱乐</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/gallery/"><i class="fa-fw fa fa-images"></i><span> 图库</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fa fa-film"></i><span> 电影</span></a></li><li><a class="site-page child" href="/books/"><i class="fa-fw fa fa-book"></i><span> 图书</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 我的</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/artitalk/"><i class="fa-fw fa fa-commenting"></i><span> 说说</span></a></li><li><a class="site-page child" href="/todo/"><i class="fa-fw fa fa-flag"></i><span> TODO</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img1_znhZsi.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">传礼</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 归档</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-calendar"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 开发</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/Java"><i class="fa-fw fa fa-music"></i><span> Java</span></a></li><li><a class="site-page child" href="/categories/Python"><i class="fa-fw fa fa-music"></i><span> Python</span></a></li><li><a class="site-page child" href="/categories/VUE"><i class="fa-fw fa fa-music"></i><span> VUE</span></a></li><li><a class="site-page child" href="/categories/MySQL"><i class="fa-fw fa fa-music"></i><span> MySQL</span></a></li><li><a class="site-page child" href="/categories/Redis"><i class="fa-fw fa fa-music"></i><span> Redis</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 架构</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/Spring"><i class="fa-fw fa fa-music"></i><span> Spring</span></a></li><li><a class="site-page child" href="/categories/microServeices"><i class="fa-fw fa fa-music"></i><span> 微服务</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 运维</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/Docker"><i class="fa-fw fa fa-music"></i><span> Docker</span></a></li><li><a class="site-page child" href="/categories/Linux"><i class="fa-fw fa fa-music"></i><span> Linux</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 分享</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/tags/Tools"><i class="fa-fw fa fa-music"></i><span> 工具</span></a></li><li><a class="site-page child" href="/tags/guide"><i class="fa-fw fa fa-music"></i><span> 教程</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 项目</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/tags/Tools"><i class="fa-fw fa fa-music"></i><span> 工具</span></a></li><li><a class="site-page child" href="/tags/guide"><i class="fa-fw fa fa-music"></i><span> 教程</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-heartbeat"></i><span> 娱乐</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/gallery/"><i class="fa-fw fa fa-images"></i><span> 图库</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fa fa-film"></i><span> 电影</span></a></li><li><a class="site-page child" href="/books/"><i class="fa-fw fa fa-book"></i><span> 图书</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 我的</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/artitalk/"><i class="fa-fw fa fa-commenting"></i><span> 说说</span></a></li><li><a class="site-page child" href="/todo/"><i class="fa-fw fa fa-flag"></i><span> TODO</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Git的使用</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-11-28T07:04:49.753Z" title="发表于 2022-11-28 07:04:49">2022-11-28</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-04-18T01:45:16.000Z" title="更新于 2022-04-18 01:45:16">2022-04-18</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.7k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>5分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Git的使用"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="常见操作"><a href="#常见操作" class="headerlink" title="常见操作"></a>常见操作</h2><h3 id="全局配置用户信息"><a href="#全局配置用户信息" class="headerlink" title="全局配置用户信息"></a>全局配置用户信息</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git config --global user.name &quot;smyhvae&quot;</span><br><span class="line"></span><br><span class="line">git config --global user.email &quot;smyhvae@163.com&quot;</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="分支的合并"><a href="#分支的合并" class="headerlink" title="分支的合并"></a>分支的合并</h2><h3 id="场景：基于master分支的代码，开发一个新的特性"><a href="#场景：基于master分支的代码，开发一个新的特性" class="headerlink" title="场景：基于master分支的代码，开发一个新的特性"></a>场景：基于master分支的代码，开发一个新的特性</h3><p>如果你直接在master分支上开发这个新特性，是不好的，万一你在开发<code>特性1</code>的时候，领导突然又要叫你去开发<code>特性2</code>，就不好处理了。难道开发的两个特性都提交到master？一会儿提交特性1的commit，一会儿提交特性2的commit？这会导致commit记录很混乱。</p>
+<p>所以，我给你的建议做法是：给每个特性都单独建一个的新的分支。</p>
+<p>比如说，我专门给<code>特性1</code>建一个分支<code>feature_item_recommend</code>。具体做法如下：</p>
+<p>（1）基于master分支，创建一个新的分支，起名为<code>feature_item_recommend</code>：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ git checkout -b feature_item_recommend</span><br><span class="line"></span><br><span class="line">Switched to a new branch &#x27;feature_item_recommend&#x27;</span><br></pre></td></tr></table></figure>
+
+<p>上面这行命令，相当于：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git branch feature_item_recommend    // 创建新的分支</span><br><span class="line"></span><br><span class="line">$ git checkout feature_item_recommend  //切换到新的分支</span><br></pre></td></tr></table></figure>
+
+
+<p>（2）在新的分支<code>feature_item_recommend</code>上，完成开发工作，并 commit 、push。</p>
+<p>（3）将分支<code>feature_item_recommend</code>上的开发进度<strong>合并</strong>到master分支：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git checkout master  //切换到master分支</span><br><span class="line"></span><br><span class="line">$ git merge feature_item_recommend    //将分支 feature_item_recommend 的开发进度合并到 master 分支</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<p>合并之后，<code>master</code>分支和<code>feature_item_recommend</code>分支会指向同一个位置。</p>
+<p>（3）删除分支<code>feature_item_recommend</code>：</p>
+<blockquote>
+<p>既然 特性1 开发完了，也放心地提交到master了，那我们就可以将这个分支删除了。</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git branch -d feature_item_recommend</span><br></pre></td></tr></table></figure>
+
+<p>注意，我们当前是处于<code>master</code>分支的位置，来删除<code>feature_item_recommend</code>分支。如果当前是处于<code>feature_item_recommend</code>分支，是没办法删除它自己的。</p>
+<p>同理，当我转身去开发<code>特性2</code>的时候，也是采用同样的步骤。</p>
+<h3 id="合并分支时，如果存在分叉"><a href="#合并分支时，如果存在分叉" class="headerlink" title="合并分支时，如果存在分叉"></a>合并分支时，如果存在分叉</h3><p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://img.smyhvae.com/20180610_1650.png"></p>
+<p>比如说上面这张图中，最早的时候，master分支是位于<code>C2</code>节点。我基于<code>C2</code>节点，new出一个新的分支<code>iss53</code>，我在<code>iss53</code>上提交了好几个commit。</p>
+<p>现在，我准备把<code>iss53</code>上的几个commit合并到master上，此时发现，master分支已经前进到C4了。那该怎么合并呢？</p>
+<p>合并的命令仍然是：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git checkout master</span><br><span class="line"></span><br><span class="line">$ git merge iss53</span><br></pre></td></tr></table></figure>
+
+<p><strong>解释</strong>：</p>
+<p>这次合并的实现，并不同于简单的并入方式。这一次，我的开发历史是从更早的地方开始分叉的。</p>
+<p>由于当前 master 分支所指向的commit (C4)并非想要并入分支（iss53）的直接祖先，Git 不得不进行一些处理。就此例而言，Git 会用两个分支的末端（C4 和C5）和它们的共同祖先（C2）进行一次简单的三方合并计算。</p>
+<p>Git 没有简单地把分支指针右移，而是对三方合并的结果作一新的快照，并自动创建一个指向它的commit（C6）（如下图所示）。我们把这个特殊的commit 称作合并提交（mergecommit），因为它的祖先不止一个。</p>
+<p>值得一提的是Git 可以自己裁决哪个共同祖先才是最佳合并基础；这和CVS 或Subversion（1.5 以后的版本）不同，它们需要开发者手工指定合并基础。所以此特性让Git 的合并操作比其他系统都要简单不少。</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://img.smyhvae.com/20180610_1710.png"></p>
+<h3 id="解决合并时发生的冲突"><a href="#解决合并时发生的冲突" class="headerlink" title="解决合并时发生的冲突"></a>解决合并时发生的冲突</h3><p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://img.smyhvae.com/20180610_1740.png"></p>
+<p>如果 feature1和feature2修改的是同一个文件中<strong>代码的同一个位置</strong>，那么，把feature1合并到feature2时，就会产生冲突。这个冲突需要人工解决。步骤如下：</p>
+<p>（1）手动修改文件：手动修改冲突的那个文件，决定到底要用哪个分支的代码。</p>
+<p>（2）git add：解决好冲突后，输入<code>git status</code>，会提示<code>Unmerged paths</code>。这个时候，输入<code>git add</code>即可，表示：<strong>修改冲突成功，加入暂存区</strong>。</p>
+<p>（3）git commit 提交。</p>
+<p>然后，我们可以继续把 feature1 分支合并到 master分支，最后删除feature1、feature2。</p>
+<p><strong>注意</strong>：两个分支的同一个文件的不同地方合并时，git会自动合并，不会产生冲突。</p>
+<p>比如分支feture1对index.html原来的第二行之前加入了一段代码。<br>分支feature2对index.html在原来的最后一行的后面加入了一段代码。<br>这个时候在对两个分支合并，git不会产生冲突，因为两个分支是修改同一文件的不同位置。<br>git自动合并成功。不管是git自动合并成功，还是在人工解决冲突下合并成功，提交之前，都要对代码进行测试。</p>
+<h2 id="日常操作积累"><a href="#日常操作积累" class="headerlink" title="日常操作积累"></a>日常操作积累</h2><h3 id="修改密码（曲线救国）"><a href="#修改密码（曲线救国）" class="headerlink" title="修改密码（曲线救国）"></a>修改密码（曲线救国）</h3><blockquote>
+<p>网上查了很久，没找到答案。最终，在cld童鞋的提示下，采取如下方式进行曲线救国。</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 设置当前仓库的用户名为空</span></span><br><span class="line">git config  user.name <span class="string">&quot;&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>然后，当我们再输入<code>git pull</code>等命令行时，就会被要求重新输入<em>新的</em>账号密码。此时，密码就可以修改成功了。最后，我们还要输入如下命令，还原当前仓库的用户名：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git config user.name &quot;smyhvae&quot;</span><br></pre></td></tr></table></figure>
+
+<h3 id="修改已经push的某次commit的作者信息"><a href="#修改已经push的某次commit的作者信息" class="headerlink" title="修改已经push的某次commit的作者信息"></a>修改已经push的某次commit的作者信息</h3><p>已经push的记录，如果要修改作者信息的话，只能 通过–force命令。我反正是查了很久，但最终还是不敢用公司的仓库尝试。</p>
+<p>参考链接：</p>
+<ul>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://segmentfault.com/q/1010000006999861">git 修改已提交的某一次的邮箱和用户信息</a></li>
+</ul>
+<p>看最后一条答案。</p>
+<ul>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="http://baurine.github.io/2015/08/22/git_update_author.html">修改 git repo 历史提交的 author</a></li>
+</ul>
+<h3 id="将-branch1的某个commit1合并到branch2当中"><a href="#将-branch1的某个commit1合并到branch2当中" class="headerlink" title="将 branch1的某个commit1合并到branch2当中"></a>将 <code>branch1</code>的某个<code>commit1</code>合并到<code>branch2</code>当中</h3><p>切换到branch2中，然后执行如下命令：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git cherry-pick commit1</span><br></pre></td></tr></table></figure>
+
+<h3 id="20190118-修改GitHub已提交的用户名和邮箱"><a href="#20190118-修改GitHub已提交的用户名和邮箱" class="headerlink" title="20190118-修改GitHub已提交的用户名和邮箱"></a>20190118-修改GitHub已提交的用户名和邮箱</h3><p>参考链接：（亲测有效）</p>
+<ul>
+<li><p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://cloud.tencent.com/developer/article/1352623">修改Git全部Commit提交记录的用户名Name和邮箱Email</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/yusufolu9/article/details/53706269">Mac 运行sh文件，也就是传说中的shell脚本</a></p>
+</li>
+</ul>
+<p>在执行<code>./email.sh</code>后，如果出现<code>permission denied</code>的错误，可以先执行<code>chmod 777 email.sh</code>，修改文件的权限。</p>
+<h3 id="20200520-将Git-项目迁移到另一个仓库"><a href="#20200520-将Git-项目迁移到另一个仓库" class="headerlink" title="20200520-将Git 项目迁移到另一个仓库"></a>20200520-将Git 项目迁移到另一个仓库</h3><p>我们假设旧仓库的项目名称叫<code>old-repository</code>，新仓库的项目名称叫<code>new-repository</code>。操作如下：</p>
+<p>（1）创建旧仓库的裸克隆：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> --bare https://github.com/exampleuser/old-repository.git</span><br></pre></td></tr></table></figure>
+<p>执行上述命令后，会在本地生成一个名叫 <code>old-repository.git</code>的文件夹。</p>
+<p>（2）迁移到新仓库：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> old-repository.git</span><br><span class="line"></span><br><span class="line">git push --mirror https://github.com/exampleuser/new-repository.git</span><br></pre></td></tr></table></figure>
+
+<p>这样的话，项目就已经迁移到新仓库了。</p>
+<p>注意，我们<strong>不需要</strong>手动新建一个空的新仓库，当我们执行上述命令之后，新仓库就已经自动创建好了。</p>
+<p>参考链接：</p>
+<ul>
+<li><p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://help.github.com/cn/github/creating-cloning-and-archiving-repositories/duplicating-a-repository">复制仓库</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://moelove.info/2016/12/04/Git-%E6%9C%AC%E5%9C%B0%E4%BB%93%E5%BA%93%E5%92%8C%E8%A3%B8%E4%BB%93%E5%BA%93/">Git 本地仓库和裸仓库</a></p>
+</li>
+</ul>
+<h2 id="git客户端推荐"><a href="#git客户端推荐" class="headerlink" title="git客户端推荐"></a>git客户端推荐</h2><p>市面上的Git客户端我基本都用过了，我最推荐的一款Git客户端是：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.git-tower.com/">Tower</a> 或者 <a target="_blank" rel="noopener external nofollow noreferrer" href="https://git-fork.com/">Fork</a>。</p>
+<ul>
+<li>GitUp：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://gitup.co/">https://gitup.co/</a></li>
+</ul>
+<p>20180623时，网上看了下Git客户端的推荐排名：</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://img.smyhvae.com/20180623_1210.png"></p>
+<p><strong>SmartGit</strong>：</p>
+<p>商业用途收费， 个人用户免费：</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://img.smyhvae.com/20180623_1305.png"></p>
+<h2 id="推荐书籍"><a href="#推荐书籍" class="headerlink" title="推荐书籍"></a>推荐书籍</h2><ul>
+<li>《pro.git中文版》</li>
+</ul>
+<h2 id="推荐连接"><a href="#推荐连接" class="headerlink" title="推荐连接"></a>推荐连接</h2><h3 id="2018-06"><a href="#2018-06" class="headerlink" title="2018-06"></a>2018-06</h3><ul>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/wangiqngpei557/p/6056624.html">聊下git pull –rebase</a></li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:978252321@qq.com" rel="external nofollow noreferrer">传礼</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://iwangchuanli.github.io/posts/6725.html">https://iwangchuanli.github.io/posts/6725.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow noreferrer" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://iwangchuanli.github.io" target="_blank">传礼</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img1_znhZsi.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/posts/64782.html"><img class="prev-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img1_znhZsi.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">PG源码编译安装</div></div></a></div><div class="next-post pull-right"><a href="/posts/55411.html"><img class="next-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img13_CspVvh.jpeg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Gradle打jar包，包含所有依赖</div></div></a></div></nav><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div><div id="comment-switch"><span class="first-comment">Valine</span><span class="switch-btn"></span><span class="second-comment">Gitalk</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div><div><div id="gitalk-container"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">Nice to meet you ~</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E6%93%8D%E4%BD%9C"><span class="toc-number">1.</span> <span class="toc-text">常见操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%A8%E5%B1%80%E9%85%8D%E7%BD%AE%E7%94%A8%E6%88%B7%E4%BF%A1%E6%81%AF"><span class="toc-number">1.1.</span> <span class="toc-text">全局配置用户信息</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E6%94%AF%E7%9A%84%E5%90%88%E5%B9%B6"><span class="toc-number">2.</span> <span class="toc-text">分支的合并</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9C%BA%E6%99%AF%EF%BC%9A%E5%9F%BA%E4%BA%8Emaster%E5%88%86%E6%94%AF%E7%9A%84%E4%BB%A3%E7%A0%81%EF%BC%8C%E5%BC%80%E5%8F%91%E4%B8%80%E4%B8%AA%E6%96%B0%E7%9A%84%E7%89%B9%E6%80%A7"><span class="toc-number">2.1.</span> <span class="toc-text">场景：基于master分支的代码，开发一个新的特性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%88%E5%B9%B6%E5%88%86%E6%94%AF%E6%97%B6%EF%BC%8C%E5%A6%82%E6%9E%9C%E5%AD%98%E5%9C%A8%E5%88%86%E5%8F%89"><span class="toc-number">2.2.</span> <span class="toc-text">合并分支时，如果存在分叉</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3%E5%90%88%E5%B9%B6%E6%97%B6%E5%8F%91%E7%94%9F%E7%9A%84%E5%86%B2%E7%AA%81"><span class="toc-number">2.3.</span> <span class="toc-text">解决合并时发生的冲突</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%97%A5%E5%B8%B8%E6%93%8D%E4%BD%9C%E7%A7%AF%E7%B4%AF"><span class="toc-number">3.</span> <span class="toc-text">日常操作积累</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E5%AF%86%E7%A0%81%EF%BC%88%E6%9B%B2%E7%BA%BF%E6%95%91%E5%9B%BD%EF%BC%89"><span class="toc-number">3.1.</span> <span class="toc-text">修改密码（曲线救国）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E5%B7%B2%E7%BB%8Fpush%E7%9A%84%E6%9F%90%E6%AC%A1commit%E7%9A%84%E4%BD%9C%E8%80%85%E4%BF%A1%E6%81%AF"><span class="toc-number">3.2.</span> <span class="toc-text">修改已经push的某次commit的作者信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B0%86-branch1%E7%9A%84%E6%9F%90%E4%B8%AAcommit1%E5%90%88%E5%B9%B6%E5%88%B0branch2%E5%BD%93%E4%B8%AD"><span class="toc-number">3.3.</span> <span class="toc-text">将 branch1的某个commit1合并到branch2当中</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#20190118-%E4%BF%AE%E6%94%B9GitHub%E5%B7%B2%E6%8F%90%E4%BA%A4%E7%9A%84%E7%94%A8%E6%88%B7%E5%90%8D%E5%92%8C%E9%82%AE%E7%AE%B1"><span class="toc-number">3.4.</span> <span class="toc-text">20190118-修改GitHub已提交的用户名和邮箱</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#20200520-%E5%B0%86Git-%E9%A1%B9%E7%9B%AE%E8%BF%81%E7%A7%BB%E5%88%B0%E5%8F%A6%E4%B8%80%E4%B8%AA%E4%BB%93%E5%BA%93"><span class="toc-number">3.5.</span> <span class="toc-text">20200520-将Git 项目迁移到另一个仓库</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#git%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%8E%A8%E8%8D%90"><span class="toc-number">4.</span> <span class="toc-text">git客户端推荐</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%A8%E8%8D%90%E4%B9%A6%E7%B1%8D"><span class="toc-number">5.</span> <span class="toc-text">推荐书籍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%A8%E8%8D%90%E8%BF%9E%E6%8E%A5"><span class="toc-number">6.</span> <span class="toc-text">推荐连接</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2018-06"><span class="toc-number">6.1.</span> <span class="toc-text">2018-06</span></a></li></ol></li></ol></div></div><div class="card-widget ads-wrap"><a target="_blank" href="https://www.aliyun.com/activity?userCode=dpj8p3hl" rel="external nofollow noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/aliyun_whuCuE.jpg" style="width:100%;height:100%;object-fit:cover;"></a></div></div></div></main><footer id="footer" style="background-image: url('https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img1_znhZsi.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2018 - 2022 By 传礼</div><div class="footer_custom_text"><p style="display:inline-flex">本网站由<a href="https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral" rel="external nofollow noreferrer" target="_blank"><img style="width:60px;height:35px;" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/11/又拍云_logo5_O9kNul.png" title="又拍云"/></a>提供CDN加速/云存储服务</p><p><a style="margin-inline:5px" target="_blank" href="https://hexo.io/" rel="external nofollow noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Frame-Hexo-blue?style=flat&logo=hexo" title="博客框架为Hexo"></a><a style="margin-inline:5px" target="_blank" href="https://butterfly.js.org/" rel="external nofollow noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Theme-Butterfly-6513df?style=flat&logo=bitdefender" title="主题采用butterfly"></a><a style="margin-inline:5px" target="_blank" href="https://www.jsdelivr.com/" rel="external nofollow noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/CDN-jsDelivr-orange?style=flat&logo=jsDelivr" title="本站使用JsDelivr为静态资源提供CDN加速"></a><a style="margin-inline:5px" target="_blank" href="https://github.com/" rel="external nofollow noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Source-Github-d021d6?style=flat&logo=GitHub" title="本站项目由Github托管"></a><a style="margin-inline:5px" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Copyright-BY--NC--SA%204.0-d42328?style=flat&logo=Claris" title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可"></a></p></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="chat_btn" type="button" title="聊天"><i class="fas fa-sms"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">本地搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script src="/js/search/local-search.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"><script>function loadValine () {
+  function initValine () {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: 'zHUfFgUbITfMSQGuSPgS2e3C-gzGzoHsz',
+      appKey: 'yPXpeKX8VJxdFRPEsDaqNgEY',
+      avatar: 'wavatar',
+      serverURLs: 'https://zhuffgub.lc-cn-n1-shared.com',
+      emojiMaps: "",
+      path: window.location.pathname,
+      visitor: true,
+      master: '447d56ab3606de5490a2109d3e441219,135d837ea1033c9787dd307e59884d36'.split(','),
+      friends: '5c?????bfe6rfc72a????e268ad3819c'.split(','),
+      tagMeta: '博主,小伙伴,访客'.split(',')
+        
+    }, {"placeholder":"请输入内容～"}))
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/gh/HCLonely/Valine@latest/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !true) {
+  if (true) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script><script>function addGitalkSource () {
+  const ele = document.createElement('link')
+  ele.rel = 'stylesheet'
+  ele.href= 'https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css'
+  document.getElementsByTagName('head')[0].appendChild(ele)
+}
+
+function loadGitalk () {
+  function initGitalk () {
+    var gitalk = new Gitalk(Object.assign({
+      clientID: '052d9d6486112e93fa50',
+      clientSecret: '6fea35bfb7a17521694a95f705683622976d2f53',
+      repo: 'gitalk',
+      owner: 'iwangchuanli',
+      admin: ['iwangchuanli'],
+      id: 'b0bd0984ab3008998245bbf8a087ee95',
+      updateCountCallback: commentCount
+    },null))
+
+    gitalk.render('gitalk-container')
+  }
+
+  if (typeof Gitalk === 'function') initGitalk()
+  else {
+    addGitalkSource()
+    getScript('https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.js').then(initGitalk)
+  }
+}
+
+function commentCount(n){
+  let isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+  if (isCommentCount) {
+    isCommentCount.innerHTML= n
+  }
+}
+
+if ('Valine' === 'Gitalk' || !true) {
+  if (true) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+  else loadGitalk()
+} else {
+  function loadOtherComment () {
+    loadGitalk()
+  }
+}</script></div><div class="aplayer no-destroy" data-id="7355841544" data-server="netease" data-type="playlist" data-fixed="true" data-autoplay="false"> </div><script async src="/js/grayscale.js"></script><script async src="//at.alicdn.com/t/font_1885008_srfhrsykmk.js"></script><script>((window.gitter = {}).chat = {}).options = {
+  disableDefaultChat: true,
+};
+document.addEventListener('gitter-sidecar-ready', (e) => {
+  const GitterChat = e.detail.Chat
+  let chat
+
+  function initGitter () {
+    chat = new GitterChat({
+      room: 'wangchuangli-/community',
+      activationElement: '#chat_btn'
+    });
+  }
+
+  initGitter()
+
+  if (true) {
+    document.addEventListener('pjax:complete', () => {
+      chat.destroy()
+      initGitter()
+    })
+  }
+
+})</script><script src="https://sidecar.gitter.im/dist/sidecar.v1.js" async="async" defer="defer"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/meting@1.2.0/dist/Meting.min.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = ["title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"]):not([href="/music/"]):not([href="/no-pjax/"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.tocScrollFn && window.removeEventListener('scroll', window.tocScrollFn)
+  window.scrollCollect && window.removeEventListener('scroll', scrollCollect)
+
+  typeof preloader === 'object' && preloader.initLoading()
+  document.getElementById('rightside').style.cssText = "opacity: ''; transform: ''"
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+
+  typeof preloader === 'object' && preloader.endLoading()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><!-- hexo injector body_end start --><script data-pjax>
+  function butterfly_swiper_injector_config(){
+    var parent_div_git = document.getElementById('recent-posts');
+    var item_html = '<div class="recent-post-item" style="height: auto;width: 100%"><div class="blog-slider swiper-container-fade swiper-container-horizontal" id="swiper_container"><div class="blog-slider__wrp swiper-wrapper" style="transition-duration: 0ms;"><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" onclick="pjax.loadUrl(&quot;posts/4496.html&quot;);" href="javascript:void(0);" rel="external nofollow noreferrer" alt=""><img width="48" height="48" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img6_L358Nt.jpeg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2018-09-05</span><a class="blog-slider__title" onclick="pjax.loadUrl(&quot;posts/4496.html&quot;);" href="javascript:void(0);" rel="external nofollow noreferrer" alt="">编程系列书单推荐</a><div class="blog-slider__text">再怎么看我也不知道怎么描述它的啦！</div><a class="blog-slider__button" onclick="pjax.loadUrl(&quot;posts/4496.html&quot;);" href="javascript:void(0);" rel="external nofollow noreferrer" alt="">详情       </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" onclick="pjax.loadUrl(&quot;posts/35693.html&quot;);" href="javascript:void(0);" rel="external nofollow noreferrer" alt=""><img width="48" height="48" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img33_fnRUqR.jpeg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2018-11-26</span><a class="blog-slider__title" onclick="pjax.loadUrl(&quot;posts/35693.html&quot;);" href="javascript:void(0);" rel="external nofollow noreferrer" alt="">优秀科技博客订阅</a><div class="blog-slider__text">再怎么看我也不知道怎么描述它的啦！</div><a class="blog-slider__button" onclick="pjax.loadUrl(&quot;posts/35693.html&quot;);" href="javascript:void(0);" rel="external nofollow noreferrer" alt="">详情       </a></div></div></div><div class="blog-slider__pagination swiper-pagination-clickable swiper-pagination-bullets"></div></div></div>';
+    console.log('已挂载butterfly_swiper')
+    parent_div_git.insertAdjacentHTML("afterbegin",item_html)
+    }
+  var elist = 'undefined'.split(',');
+  var cpage = location.pathname;
+  var epage = 'all';
+  var flag = 0;
+
+  for (var i=0;i<elist.length;i++){
+    if (cpage.includes(elist[i])){
+      flag++;
+    }
+  }
+
+  if ((epage ==='all')&&(flag == 0)){
+    butterfly_swiper_injector_config();
+  }
+  else if (epage === cpage){
+    butterfly_swiper_injector_config();
+  }
+  </script><script defer src="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper.min.js"></script><script defer data-pjax src="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper_init.js"></script><!-- hexo injector body_end end --></body></html>

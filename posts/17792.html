@@ -1,0 +1,616 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>后端程序员必备的Linux基础知识 | 传礼</title><meta name="keywords" content="博客,blog,王传礼,java,python,大数据"><meta name="author" content="传礼,978252321@qq.com"><meta name="copyright" content="传礼"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="学习Linux之前，我们先来简单的认识一下操作系统。  一 从认识操作系统开始1.1  操作系统简介我通过以下四点介绍什么操作系统：  操作系统（Operation System，简称OS）是管理计算机硬件与软件资源的程序，是计算机系统的内核与基石； 操作系统本质上是运行在计算机上的软件程序 ； 为用户提供一个与系统交互的操作界面 ； 操作系统分内核与外壳（我们可以把外壳理解成围绕着内核的应用程">
+<meta property="og:type" content="article">
+<meta property="og:title" content="后端程序员必备的Linux基础知识">
+<meta property="og:url" content="https://iwangchuanli.github.io/posts/17792.html">
+<meta property="og:site_name" content="传礼">
+<meta property="og:description" content="学习Linux之前，我们先来简单的认识一下操作系统。  一 从认识操作系统开始1.1  操作系统简介我通过以下四点介绍什么操作系统：  操作系统（Operation System，简称OS）是管理计算机硬件与软件资源的程序，是计算机系统的内核与基石； 操作系统本质上是运行在计算机上的软件程序 ； 为用户提供一个与系统交互的操作界面 ； 操作系统分内核与外壳（我们可以把外壳理解成围绕着内核的应用程">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img8_1MHlve.jpeg">
+<meta property="article:published_time" content="2022-11-28T07:04:49.757Z">
+<meta property="article:modified_time" content="2022-04-18T09:01:30.000Z">
+<meta property="article:author" content="传礼">
+<meta property="article:tag" content="博客,blog,王传礼,java,python,大数据">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img8_1MHlve.jpeg"><link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/03/favicons_uH14Fb.gif"><link rel="canonical" href="https://iwangchuanli.github.io/posts/17792"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin=""/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta name="baidu-site-verification" content="qKvGNFZPF9"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?39bd6e37a6e70dc030e6a043a642784e";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: 传礼","link":"链接: ","source":"来源: 传礼","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#121212","position":"bottom-left"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: true,
+  islazyload: true,
+  isAnchor: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '后端程序员必备的Linux基础知识',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-04-18 09:01:30'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/custom.css"  media="defer" onload="this.media='all'"><!-- hexo injector head_end start --><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiperstyle.css" media="print" onload="this.media='all'"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.1"><link rel="alternate" href="/atom.xml" title="传礼" type="application/atom+xml">
+</head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/03/photo_NZBQPu.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><div class="data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">511</div></a></div><div class="data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">50</div></a></div><div class="data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">22</div></a></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 归档</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-calendar"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 开发</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/Java"><i class="fa-fw fa fa-music"></i><span> Java</span></a></li><li><a class="site-page child" href="/categories/Python"><i class="fa-fw fa fa-music"></i><span> Python</span></a></li><li><a class="site-page child" href="/categories/VUE"><i class="fa-fw fa fa-music"></i><span> VUE</span></a></li><li><a class="site-page child" href="/categories/MySQL"><i class="fa-fw fa fa-music"></i><span> MySQL</span></a></li><li><a class="site-page child" href="/categories/Redis"><i class="fa-fw fa fa-music"></i><span> Redis</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 架构</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/Spring"><i class="fa-fw fa fa-music"></i><span> Spring</span></a></li><li><a class="site-page child" href="/categories/microServeices"><i class="fa-fw fa fa-music"></i><span> 微服务</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 运维</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/Docker"><i class="fa-fw fa fa-music"></i><span> Docker</span></a></li><li><a class="site-page child" href="/categories/Linux"><i class="fa-fw fa fa-music"></i><span> Linux</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 分享</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/tags/Tools"><i class="fa-fw fa fa-music"></i><span> 工具</span></a></li><li><a class="site-page child" href="/tags/guide"><i class="fa-fw fa fa-music"></i><span> 教程</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 项目</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/tags/Tools"><i class="fa-fw fa fa-music"></i><span> 工具</span></a></li><li><a class="site-page child" href="/tags/guide"><i class="fa-fw fa fa-music"></i><span> 教程</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-heartbeat"></i><span> 娱乐</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/gallery/"><i class="fa-fw fa fa-images"></i><span> 图库</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fa fa-film"></i><span> 电影</span></a></li><li><a class="site-page child" href="/books/"><i class="fa-fw fa fa-book"></i><span> 图书</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 我的</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/artitalk/"><i class="fa-fw fa fa-commenting"></i><span> 说说</span></a></li><li><a class="site-page child" href="/todo/"><i class="fa-fw fa fa-flag"></i><span> TODO</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img8_1MHlve.jpeg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">传礼</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 归档</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-calendar"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 开发</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/Java"><i class="fa-fw fa fa-music"></i><span> Java</span></a></li><li><a class="site-page child" href="/categories/Python"><i class="fa-fw fa fa-music"></i><span> Python</span></a></li><li><a class="site-page child" href="/categories/VUE"><i class="fa-fw fa fa-music"></i><span> VUE</span></a></li><li><a class="site-page child" href="/categories/MySQL"><i class="fa-fw fa fa-music"></i><span> MySQL</span></a></li><li><a class="site-page child" href="/categories/Redis"><i class="fa-fw fa fa-music"></i><span> Redis</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 架构</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/Spring"><i class="fa-fw fa fa-music"></i><span> Spring</span></a></li><li><a class="site-page child" href="/categories/microServeices"><i class="fa-fw fa fa-music"></i><span> 微服务</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 运维</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/Docker"><i class="fa-fw fa fa-music"></i><span> Docker</span></a></li><li><a class="site-page child" href="/categories/Linux"><i class="fa-fw fa fa-music"></i><span> Linux</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 分享</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/tags/Tools"><i class="fa-fw fa fa-music"></i><span> 工具</span></a></li><li><a class="site-page child" href="/tags/guide"><i class="fa-fw fa fa-music"></i><span> 教程</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 项目</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/tags/Tools"><i class="fa-fw fa fa-music"></i><span> 工具</span></a></li><li><a class="site-page child" href="/tags/guide"><i class="fa-fw fa fa-music"></i><span> 教程</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-heartbeat"></i><span> 娱乐</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/gallery/"><i class="fa-fw fa fa-images"></i><span> 图库</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fa fa-film"></i><span> 电影</span></a></li><li><a class="site-page child" href="/books/"><i class="fa-fw fa fa-book"></i><span> 图书</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 我的</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/artitalk/"><i class="fa-fw fa fa-commenting"></i><span> 说说</span></a></li><li><a class="site-page child" href="/todo/"><i class="fa-fw fa fa-flag"></i><span> TODO</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">后端程序员必备的Linux基础知识</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-11-28T07:04:49.757Z" title="发表于 2022-11-28 07:04:49">2022-11-28</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-04-18T09:01:30.000Z" title="更新于 2022-04-18 09:01:30">2022-04-18</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">4.5k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>14分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="后端程序员必备的Linux基础知识"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><blockquote>
+<p>学习Linux之前，我们先来简单的认识一下操作系统。</p>
+</blockquote>
+<h2 id="一-从认识操作系统开始"><a href="#一-从认识操作系统开始" class="headerlink" title="一 从认识操作系统开始"></a>一 从认识操作系统开始</h2><h3 id="1-1-操作系统简介"><a href="#1-1-操作系统简介" class="headerlink" title="1.1  操作系统简介"></a>1.1  操作系统简介</h3><p>我通过以下四点介绍什么操作系统：</p>
+<ul>
+<li><strong>操作系统（Operation System，简称OS）是管理计算机硬件与软件资源的程序，是计算机系统的内核与基石；</strong></li>
+<li><strong>操作系统本质上是运行在计算机上的软件程序 ；</strong></li>
+<li><strong>为用户提供一个与系统交互的操作界面 ；</strong></li>
+<li><strong>操作系统分内核与外壳（我们可以把外壳理解成围绕着内核的应用程序，而内核就是能操作硬件的程序）。</strong></li>
+</ul>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://user-gold-cdn.xitu.io/2018/7/3/1645ee3dc5cf626e?w=862&h=637&f=png&s=23899" alt="操作系统分内核与外壳"></p>
+<h3 id="1-2-操作系统简单分类"><a href="#1-2-操作系统简单分类" class="headerlink" title="1.2  操作系统简单分类"></a>1.2  操作系统简单分类</h3><ol>
+<li><strong>Windows:</strong> 目前最流行的个人桌面操作系统 ，不做多的介绍，大家都清楚。</li>
+<li><strong>Unix：</strong> 最早的多用户、多任务操作系统 .按照操作系统的分类，属于分时操作系统。Unix 大多被用在服务器、工作站，现在也有用在个人计算机上。它在创建互联网、计算机网络或客户端/服务器模型方面发挥着非常重要的作用。<br><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://user-gold-cdn.xitu.io/2018/7/3/1645ee83f036846d?w=1075&h=475&f=png&s=914462" alt="Unix"></li>
+<li><strong>Linux:</strong> Linux是一套免费使用和自由传播的类Unix操作系统.Linux存在着许多不同的Linux版本，但它们都使用了 <strong>Linux内核</strong> 。Linux可安装在各种计算机硬件设备中，比如手机、平板电脑、路由器、视频游戏控制台、台式计算机、大型机和超级计算机。严格来讲，Linux这个词本身只表示Linux内核，但实际上人们已经习惯了用Linux来形容整个基于Linux内核，并且使用GNU 工程各种工具和数据库的操作系统。</li>
+</ol>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://user-gold-cdn.xitu.io/2018/7/3/1645eeb8e843f29d?w=426&h=240&f=png&s=32650" alt="Linux"></p>
+<h2 id="二-初探Linux"><a href="#二-初探Linux" class="headerlink" title="二  初探Linux"></a>二  初探Linux</h2><h3 id="2-1-Linux简介"><a href="#2-1-Linux简介" class="headerlink" title="2.1 Linux简介"></a>2.1 Linux简介</h3><p>我们上面已经介绍到了Linux，我们这里只强调三点。</p>
+<ul>
+<li><strong>类Unix系统：</strong> Linux是一种自由、开放源码的类似Unix的操作系统 </li>
+<li><strong>Linux内核：</strong> 严格来说，Linux这个词本身只表示Linux内核 </li>
+<li><strong>Linux之父：</strong> 一个编程领域的传奇式人物。他是Linux内核的最早作者，随后发起了这个开源项目，担任Linux内核的首要架构师与项目协调者，是当今世界最著名的电脑程序员、黑客之一。他还发起了Git这个开源项目，并为主要的开发者。</li>
+</ul>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://user-gold-cdn.xitu.io/2018/7/3/1645ef0a5a4f137f?w=270&h=376&f=png&s=193487" alt="Linux"></p>
+<h3 id="2-2-Linux诞生简介"><a href="#2-2-Linux诞生简介" class="headerlink" title="2.2  Linux诞生简介"></a>2.2  Linux诞生简介</h3><ul>
+<li>1991年，芬兰的业余计算机爱好者Linus Torvalds编写了一款类似Minix的系统（基于微内核架构的类Unix操作系统）被ftp管理员命名为Linux 加入到自由软件基金的GNU计划中; </li>
+<li>Linux以一只可爱的企鹅作为标志，象征着敢作敢为、热爱生活。 </li>
+</ul>
+<h3 id="2-3-Linux的分类"><a href="#2-3-Linux的分类" class="headerlink" title="2.3 Linux的分类"></a>2.3 Linux的分类</h3><p><strong>Linux根据原生程度，分为两种：</strong></p>
+<ol>
+<li><strong>内核版本：</strong> Linux不是一个操作系统，严格来讲，Linux只是一个操作系统中的内核。内核是什么？内核建立了计算机软件与硬件之间通讯的平台，内核提供系统服务，比如文件管理、虚拟内存、设备I/O等；</li>
+<li><strong>发行版本：</strong> 一些组织或公司在内核版基础上进行二次开发而重新发行的版本。Linux发行版本有很多种（ubuntu和CentOS用的都很多，初学建议选择CentOS），如下图所示：<br><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://user-gold-cdn.xitu.io/2018/7/3/1645efa7048fd018?w=548&h=274&f=png&s=99213" alt="Linux发行版本"></li>
+</ol>
+<h2 id="三-Linux文件系统概览"><a href="#三-Linux文件系统概览" class="headerlink" title="三  Linux文件系统概览"></a>三  Linux文件系统概览</h2><h3 id="3-1-Linux文件系统简介"><a href="#3-1-Linux文件系统简介" class="headerlink" title="3.1 Linux文件系统简介"></a>3.1 Linux文件系统简介</h3><p><strong>在Linux操作系统中，所有被操作系统管理的资源，例如网络接口卡、磁盘驱动器、打印机、输入输出设备、普通文件或是目录都被看作是一个文件。</strong></p>
+<p>也就是说在LINUX系统中有一个重要的概念：<strong>一切都是文件</strong>。其实这是UNIX哲学的一个体现，而Linux是重写UNIX而来，所以这个概念也就传承了下来。在UNIX系统中，把一切资源都看作是文件，包括硬件设备。UNIX系统把每个硬件都看成是一个文件，通常称为设备文件，这样用户就可以用读写文件的方式实现对硬件的访问。</p>
+<h3 id="3-2-文件类型与目录结构"><a href="#3-2-文件类型与目录结构" class="headerlink" title="3.2 文件类型与目录结构"></a>3.2 文件类型与目录结构</h3><p><strong>Linux支持5种文件类型 ：</strong><br><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://user-gold-cdn.xitu.io/2018/7/3/1645f1a7d64def1a?w=901&h=547&f=png&s=72692" alt="文件类型"></p>
+<p><strong>Linux的目录结构如下：</strong></p>
+<p>Linux文件系统的结构层次鲜明，就像一棵倒立的树，最顶层是其根目录：<br><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://user-gold-cdn.xitu.io/2018/7/3/1645f1c65676caf6?w=823&h=315&f=png&s=15226" alt="Linux的目录结构"></p>
+<p><strong>常见目录说明：</strong></p>
+<ul>
+<li><strong>/bin：</strong> 存放二进制可执行文件(ls,cat,mkdir等)，常用命令一般都在这里；</li>
+<li><strong>/etc：</strong>  存放系统管理和配置文件；</li>
+<li><strong>/home：</strong>  存放所有用户文件的根目录，是用户主目录的基点，比如用户user的主目录就是/home/user，可以用~user表示；</li>
+<li><strong>/usr ：</strong> 用于存放系统应用程序；</li>
+<li><strong>/opt：</strong> 额外安装的可选应用程序包所放置的位置。一般情况下，我们可以把tomcat等都安装到这里；</li>
+<li><strong>/proc：</strong>  虚拟文件系统目录，是系统内存的映射。可直接访问这个目录来获取系统信息；</li>
+<li><strong>/root：</strong>    超级用户（系统管理员）的主目录（特权阶级^o^）；</li>
+<li><strong>/sbin:</strong>    存放二进制可执行文件，只有root才能访问。这里存放的是系统管理员使用的系统级别的管理命令和程序。如ifconfig等；</li>
+<li><strong>/dev：</strong>    用于存放设备文件；</li>
+<li><strong>/mnt：</strong>    系统管理员安装临时文件系统的安装点，系统提供这个目录是让用户临时挂载其他的文件系统；</li>
+<li><strong>/boot：</strong>    存放用于系统引导时使用的各种文件；</li>
+<li><strong>/lib ：</strong>      存放着和系统运行相关的库文件 ；</li>
+<li><strong>/tmp：</strong>    用于存放各种临时文件，是公用的临时文件存储点；</li>
+<li><strong>/var：</strong>    用于存放运行时需要改变数据的文件，也是某些大文件的溢出区，比方说各种服务的日志文件（系统启动日志等。）等；</li>
+<li><strong>/lost+found：</strong>    这个目录平时是空的，系统非正常关机而留下“无家可归”的文件（windows下叫什么.chk）就在这里。</li>
+</ul>
+<h2 id="四-Linux基本命令"><a href="#四-Linux基本命令" class="headerlink" title="四  Linux基本命令"></a>四  Linux基本命令</h2><p>下面只是给出了一些比较常用的命令。推荐一个Linux命令快查网站，非常不错，大家如果遗忘某些命令或者对某些命令不理解都可以在这里得到解决。</p>
+<p>Linux命令大全：<a target="_blank" rel="noopener external nofollow noreferrer" href="http://man.linuxde.net/">http://man.linuxde.net/</a></p>
+<h3 id="4-1-目录切换命令"><a href="#4-1-目录切换命令" class="headerlink" title="4.1 目录切换命令"></a>4.1 目录切换命令</h3><ul>
+<li><strong><code>cd usr</code>：</strong>        切换到该目录下usr目录     </li>
+<li><strong><code>cd ..（或cd../）</code>：</strong>    切换到上一层目录 </li>
+<li><strong><code>cd /</code>：</strong>        切换到系统根目录     </li>
+<li><strong><code>cd ~</code>：</strong>        切换到用户主目录 </li>
+<li><strong><code>cd -</code>：</strong>        切换到上一个所在目录</li>
+</ul>
+<h3 id="4-2-目录的操作命令（增删改查）"><a href="#4-2-目录的操作命令（增删改查）" class="headerlink" title="4.2 目录的操作命令（增删改查）"></a>4.2 目录的操作命令（增删改查）</h3><ol>
+<li><p><strong><code>mkdir 目录名称</code>：</strong> 增加目录</p>
+</li>
+<li><p>**<code>ls或者ll</code>**（ll是ls -l的缩写，ll命令以看到该目录下的所有目录和文件的详细信息）：查看目录信息</p>
+</li>
+<li><p><strong><code>find 目录 参数</code>：</strong> 寻找目录（查）</p>
+<p> 示例：</p>
+<ul>
+<li>列出当前目录及子目录下所有文件和文件夹: <code>find .</code></li>
+<li>在<code>/home</code>目录下查找以.txt结尾的文件名:<code>find /home -name &quot;*.txt&quot;</code></li>
+<li>同上，但忽略大小写: <code>find /home -iname &quot;*.txt&quot;</code></li>
+<li>当前目录及子目录下查找所有以.txt和.pdf结尾的文件:<code>find . \( -name &quot;*.txt&quot; -o -name &quot;*.pdf&quot; \)</code>或<code>find . -name &quot;*.txt&quot; -o -name &quot;*.pdf&quot; </code></li>
+</ul>
+</li>
+<li><p><strong><code>mv 目录名称 新目录名称</code>：</strong> 修改目录的名称（改）</p>
+<p>注意：mv的语法不仅可以对目录进行重命名而且也可以对各种文件，压缩包等进行    重命名的操作。mv命令用来对文件或目录重新命名，或者将文件从一个目录移到另一个目录中。后面会介绍到mv命令的另一个用法。</p>
+</li>
+<li><p><strong><code>mv 目录名称 目录的新位置</code>：</strong>  移动目录的位置—剪切（改）</p>
+<p> 注意：mv语法不仅可以对目录进行剪切操作，对文件和压缩包等都可执行剪切操作。另外mv与cp的结果不同，mv好像文件“搬家”，文件个数并未增加。而cp对文件进行复制，文件个数增加了。</p>
+</li>
+<li><p><strong><code>cp -r 目录名称 目录拷贝的目标位置</code>：</strong> 拷贝目录（改），-r代表递归拷贝 </p>
+<p> 注意：cp命令不仅可以拷贝目录还可以拷贝文件，压缩包等，拷贝文件和压缩包时不    用写-r递归</p>
+</li>
+<li><p><strong><code>rm [-rf] 目录</code>:</strong> 删除目录（删）</p>
+<p> 注意：rm不仅可以删除目录，也可以删除其他文件或压缩包，为了增强大家的记忆，    无论删除任何目录或文件，都直接使用<code>rm -rf</code> 目录/文件/压缩包</p>
+</li>
+</ol>
+<h3 id="4-3-文件的操作命令（增删改查）"><a href="#4-3-文件的操作命令（增删改查）" class="headerlink" title="4.3 文件的操作命令（增删改查）"></a>4.3 文件的操作命令（增删改查）</h3><ol>
+<li><p><strong><code>touch 文件名称</code>:</strong>  文件的创建（增）</p>
+</li>
+<li><p><strong><code>cat/more/less/tail 文件名称</code></strong> 文件的查看（查）</p>
+<ul>
+<li><strong><code>cat</code>：</strong> 只能显示最后一屏内容</li>
+<li><strong><code>more</code>：</strong> 可以显示百分比，回车可以向下一行，    空格可以向下一页，q可以退出查看</li>
+<li><strong><code>less</code>：</strong> 可以使用键盘上的PgUp和PgDn向上    和向下翻页，q结束查看</li>
+<li><strong><code>tail-10</code> ：</strong> 查看文件的后10行，Ctrl+C结束</li>
+</ul>
+<p>注意：命令 tail -f 文件 可以对某个文件进行动态监控，例如tomcat的日志文件，    会随着程序的运行，日志会变化，可以使用tail -f catalina-2016-11-11.log 监控    文    件的变化 </p>
+</li>
+<li><p><strong><code>vim 文件</code>：</strong>  修改文件的内容（改）</p>
+<p>vim编辑器是Linux中的强大组件，是vi编辑器的加强版，vim编辑器的命令和快捷方式有很多，但此处不一一阐述，大家也无需研究的很透彻，使用vim编辑修改文件的方式基本会使用就可以了。</p>
+<p><strong>在实际开发中，使用vim编辑器主要作用就是修改配置文件，下面是一般步骤：</strong></p>
+<p> vim 文件——&gt;进入文件—–&gt;命令模式——&gt;按i进入编辑模式—–&gt;编辑文件    ——-&gt;按Esc进入底行模式—–&gt;输入:wq/q! （输入wq代表写入内容并退出，即保存；输入q!代表强制退出不保存。）</p>
+</li>
+<li><p><strong><code>rm -rf 文件</code>：</strong> 删除文件（删）</p>
+<p> 同目录删除：熟记 <code>rm -rf</code> 文件 即可</p>
+</li>
+</ol>
+<h3 id="4-4-压缩文件的操作命令"><a href="#4-4-压缩文件的操作命令" class="headerlink" title="4.4 压缩文件的操作命令"></a>4.4 压缩文件的操作命令</h3><p><strong>1）打包并压缩文件：</strong></p>
+<p>Linux中的打包文件一般是以.tar结尾的，压缩的命令一般是以.gz结尾的。</p>
+<p>而一般情况下打包和压缩是一起进行的，打包并压缩后的文件的后缀名一般.tar.gz。<br>命令：**<code>tar -zcvf 打包压缩后的文件名 要打包压缩的文件</code>**<br>其中：</p>
+<p>  z：调用gzip压缩命令进行压缩</p>
+<p>  c：打包文件</p>
+<p>  v：显示运行过程</p>
+<p>  f：指定文件名</p>
+<p>比如：加入test目录下有三个文件分别是 :aaa.txt bbb.txt ccc.txt,如果我们要打包test目录并指定压缩后的压缩包名称为test.tar.gz可以使用命令：**<code>tar -zcvf test.tar.gz aaa.txt bbb.txt ccc.txt</code>或：<code>tar -zcvf test.tar.gz       /test/</code>**</p>
+<p><strong>2）解压压缩包：</strong></p>
+<p>命令：tar [-xvf] 压缩文件</p>
+<p>其中：x：代表解压</p>
+<p>示例：</p>
+<p>1 将/test下的test.tar.gz解压到当前目录下可以使用命令：**<code>tar -xvf test.tar.gz</code>**</p>
+<p>2 将/test下的test.tar.gz解压到根目录/usr下:**<code>tar -xvf xxx.tar.gz -C /usr</code>**（- C代表指定解压的位置）</p>
+<h3 id="4-5-Linux的权限命令"><a href="#4-5-Linux的权限命令" class="headerlink" title="4.5 Linux的权限命令"></a>4.5 Linux的权限命令</h3><p> 操作系统中每个文件都拥有特定的权限、所属用户和所属组。权限是操作系统用来限制资源访问的机制，在Linux中权限一般分为读(readable)、写(writable)和执行(excutable)，分为三组。分别对应文件的属主(owner)，属组(group)和其他用户(other)，通过这样的机制来限制哪些用户、哪些组可以对特定的文件进行什么样的操作。通过 <strong><code>ls -l</code></strong> 命令我们可以    查看某个目录下的文件或目录的权限</p>
+<p>示例：在随意某个目录下<code>ls -l</code></p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://user-gold-cdn.xitu.io/2018/7/5/1646955be781daaa?w=589&h=228&f=png&s=16360"></p>
+<p>第一列的内容的信息解释如下：</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://user-gold-cdn.xitu.io/2018/7/5/16469565b6951791?w=489&h=209&f=png&s=39791"></p>
+<blockquote>
+<p>下面将详细讲解文件的类型、Linux中权限以及文件有所有者、所在组、其它组具体是什么？</p>
+</blockquote>
+<p><strong>文件的类型：</strong></p>
+<ul>
+<li>d： 代表目录</li>
+<li>-： 代表文件</li>
+<li>l： 代表链接（可以认为是window中的快捷方式）</li>
+</ul>
+<p><strong>Linux中权限分为以下几种：</strong></p>
+<ul>
+<li>r：代表权限是可读，r也可以用数字4表示</li>
+<li>w：代表权限是可写，w也可以用数字2表示</li>
+<li>x：代表权限是可执行，x也可以用数字1表示</li>
+</ul>
+<p><strong>文件和目录权限的区别：</strong></p>
+<p> 对文件和目录而言，读写执行表示不同的意义。</p>
+<p> 对于文件：</p>
+<table>
+<thead>
+<tr>
+<th align="left">权限名称</th>
+<th align="right">可执行操作</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">r</td>
+<td align="right">可以使用cat查看文件的内容</td>
+</tr>
+<tr>
+<td align="left">w</td>
+<td align="right">可以修改文件的内容</td>
+</tr>
+<tr>
+<td align="left">x</td>
+<td align="right">可以将其运行为二进制文件</td>
+</tr>
+</tbody></table>
+<p> 对于目录：</p>
+<table>
+<thead>
+<tr>
+<th align="left">权限名称</th>
+<th align="right">可执行操作</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">r</td>
+<td align="right">可以查看目录下列表</td>
+</tr>
+<tr>
+<td align="left">w</td>
+<td align="right">可以创建和删除目录下文件</td>
+</tr>
+<tr>
+<td align="left">x</td>
+<td align="right">可以使用cd进入目录</td>
+</tr>
+</tbody></table>
+<p><strong>在linux中的每个用户必须属于一个组，不能独立于组外。在linux中每个文件有所有者、所在组、其它组的概念。</strong></p>
+<ul>
+<li><p><strong>所有者</strong></p>
+<p>一般为文件的创建者，谁创建了该文件，就天然的成为该文件的所有者，用ls ‐ahl命令可以看到文件的所有者 也可以使用chown 用户名  文件名来修改文件的所有者 。</p>
+</li>
+<li><p><strong>文件所在组</strong></p>
+<p>当某个用户创建了一个文件后，这个文件的所在组就是该用户所在的组 用ls ‐ahl命令可以看到文件的所有组 也可以使用chgrp  组名  文件名来修改文件所在的组。 </p>
+</li>
+<li><p><strong>其它组</strong></p>
+<p>除开文件的所有者和所在组的用户外，系统的其它用户都是文件的其它组 </p>
+</li>
+</ul>
+<blockquote>
+<p>我们再来看看如何修改文件/目录的权限。</p>
+</blockquote>
+<p><strong>修改文件/目录的权限的命令：<code>chmod</code></strong></p>
+<p>示例：修改/test下的aaa.txt的权限为属主有全部权限，属主所在的组有读写权限，<br>其他用户只有读的权限</p>
+<p><strong><code>chmod u=rwx,g=rw,o=r aaa.txt</code></strong></p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://user-gold-cdn.xitu.io/2018/7/5/164697447dc6ecac?w=525&h=246&f=png&s=12362"></p>
+<p>上述示例还可以使用数字表示：</p>
+<p>chmod 764 aaa.txt</p>
+<p><strong>补充一个比较常用的东西:</strong></p>
+<p>假如我们装了一个zookeeper，我们每次开机到要求其自动启动该怎么办？</p>
+<ol>
+<li>新建一个脚本zookeeper</li>
+<li>为新建的脚本zookeeper添加可执行权限，命令是:<code>chmod +x zookeeper</code></li>
+<li>把zookeeper这个脚本添加到开机启动项里面，命令是：<code> chkconfig --add  zookeeper</code></li>
+<li>如果想看看是否添加成功，命令是：<code>chkconfig --list</code></li>
+</ol>
+<h3 id="4-6-Linux-用户管理"><a href="#4-6-Linux-用户管理" class="headerlink" title="4.6 Linux 用户管理"></a>4.6 Linux 用户管理</h3><p>Linux系统是一个多用户多任务的分时操作系统，任何一个要使用系统资源的用户，都必须首先向系统管理员申请一个账号，然后以这个账号的身份进入系统。</p>
+<p>用户的账号一方面可以帮助系统管理员对使用系统的用户进行跟踪，并控制他们对系统资源的访问；另一方面也可以帮助用户组织文件，并为用户提供安全性保护。</p>
+<p><strong>Linux用户管理相关命令:</strong></p>
+<ul>
+<li><code>useradd 选项 用户名</code>:添加用户账号</li>
+<li><code>userdel 选项 用户名</code>:删除用户帐号</li>
+<li><code>usermod 选项 用户名</code>:修改帐号</li>
+<li><code>passwd 用户名</code>:更改或创建用户的密码</li>
+<li><code>passwd -S 用户名</code> :显示用户账号密码信息</li>
+<li><code>passwd -d 用户名</code>:  清除用户密码</li>
+</ul>
+<p>useradd命令用于Linux中创建的新的系统用户。useradd可用来建立用户帐号。帐号建好之后，再用passwd设定帐号的密码．而可用userdel删除帐号。使用useradd指令所建立的帐号，实际上是保存在/etc/passwd文本文件中。</p>
+<p>passwd命令用于设置用户的认证信息，包括用户密码、密码过期时间等。系统管理者则能用它管理系统用户的密码。只有管理者可以指定用户名称，一般用户只能变更自己的密码。</p>
+<h3 id="4-7-Linux系统用户组的管理"><a href="#4-7-Linux系统用户组的管理" class="headerlink" title="4.7 Linux系统用户组的管理"></a>4.7 Linux系统用户组的管理</h3><p>每个用户都有一个用户组，系统可以对一个用户组中的所有用户进行集中管理。不同Linux 系统对用户组的规定有所不同，如Linux下的用户属于与它同名的用户组，这个用户组在创建用户时同时创建。</p>
+<p>用户组的管理涉及用户组的添加、删除和修改。组的增加、删除和修改实际上就是对/etc/group文件的更新。</p>
+<p><strong>Linux系统用户组的管理相关命令:</strong></p>
+<ul>
+<li><code>groupadd 选项 用户组</code> :增加一个新的用户组</li>
+<li><code>groupdel 用户组</code>:要删除一个已有的用户组</li>
+<li><code>groupmod 选项 用户组</code> : 修改用户组的属性</li>
+</ul>
+<h3 id="4-8-其他常用命令"><a href="#4-8-其他常用命令" class="headerlink" title="4.8 其他常用命令"></a>4.8 其他常用命令</h3><ul>
+<li><p><strong><code>pwd</code>：</strong> 显示当前所在位置</p>
+</li>
+<li><p><strong><code>grep 要搜索的字符串 要搜索的文件 --color</code>：</strong> 搜索命令，–color代表高亮显示</p>
+</li>
+<li><p><strong><code>ps -ef</code>/<code>ps aux</code>：</strong> 这两个命令都是查看当前系统正在运行进程，两者的区别是展示格式不同。如果想要查看特定的进程可以使用这样的格式：**<code>ps aux|grep redis</code>** （查看包括redis字符串的进程）</p>
+<p>注意：如果直接用ps（（Process Status））命令，会显示所有进程的状态，通常结合grep命令查看某进程的状态。</p>
+</li>
+<li><p><strong><code>kill -9 进程的pid</code>：</strong> 杀死进程（-9 表示强制终止。）</p>
+<p>先用ps查找进程，然后用kill杀掉</p>
+</li>
+<li><p><strong>网络通信命令：</strong></p>
+<ul>
+<li>查看当前系统的网卡信息：ifconfig</li>
+<li>查看与某台机器的连接情况：ping </li>
+<li>查看当前系统的端口使用：netstat -an</li>
+</ul>
+</li>
+<li><p><strong><code>shutdown</code>：</strong>  <code>shutdown -h now</code>： 指定现在立即关机；<code>shutdown +5 &quot;System will shutdown after 5 minutes&quot;</code>:指定5分钟后关机，同时送出警告信息给登入用户。</p>
+</li>
+<li><p><strong><code>reboot</code>：</strong>  <strong><code>reboot</code>：</strong>  重开机。**<code>reboot -w</code>：** 做个重开机的模拟（只有纪录并不会真的重开机）。</p>
+</li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:978252321@qq.com" rel="external nofollow noreferrer">传礼</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://iwangchuanli.github.io/posts/17792.html">https://iwangchuanli.github.io/posts/17792.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow noreferrer" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://iwangchuanli.github.io" target="_blank">传礼</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img8_1MHlve.jpeg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/posts/57725.html"><img class="prev-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img39_3NMH7S.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">去除Linux文件扩展信息</div></div></a></div><div class="next-post pull-right"><a href="/posts/3293.html"><img class="next-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img1_znhZsi.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">如何安装 screen 命令</div></div></a></div></nav><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div><div id="comment-switch"><span class="first-comment">Valine</span><span class="switch-btn"></span><span class="second-comment">Gitalk</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div><div><div id="gitalk-container"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">Nice to meet you ~</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80-%E4%BB%8E%E8%AE%A4%E8%AF%86%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%BC%80%E5%A7%8B"><span class="toc-number">1.</span> <span class="toc-text">一 从认识操作系统开始</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%AE%80%E4%BB%8B"><span class="toc-number">1.1.</span> <span class="toc-text">1.1  操作系统简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%AE%80%E5%8D%95%E5%88%86%E7%B1%BB"><span class="toc-number">1.2.</span> <span class="toc-text">1.2  操作系统简单分类</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C-%E5%88%9D%E6%8E%A2Linux"><span class="toc-number">2.</span> <span class="toc-text">二  初探Linux</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-Linux%E7%AE%80%E4%BB%8B"><span class="toc-number">2.1.</span> <span class="toc-text">2.1 Linux简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-Linux%E8%AF%9E%E7%94%9F%E7%AE%80%E4%BB%8B"><span class="toc-number">2.2.</span> <span class="toc-text">2.2  Linux诞生简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-Linux%E7%9A%84%E5%88%86%E7%B1%BB"><span class="toc-number">2.3.</span> <span class="toc-text">2.3 Linux的分类</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89-Linux%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%A7%88"><span class="toc-number">3.</span> <span class="toc-text">三  Linux文件系统概览</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-Linux%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%AE%80%E4%BB%8B"><span class="toc-number">3.1.</span> <span class="toc-text">3.1 Linux文件系统简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-%E6%96%87%E4%BB%B6%E7%B1%BB%E5%9E%8B%E4%B8%8E%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84"><span class="toc-number">3.2.</span> <span class="toc-text">3.2 文件类型与目录结构</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B-Linux%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4"><span class="toc-number">4.</span> <span class="toc-text">四  Linux基本命令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-%E7%9B%AE%E5%BD%95%E5%88%87%E6%8D%A2%E5%91%BD%E4%BB%A4"><span class="toc-number">4.1.</span> <span class="toc-text">4.1 目录切换命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-%E7%9B%AE%E5%BD%95%E7%9A%84%E6%93%8D%E4%BD%9C%E5%91%BD%E4%BB%A4%EF%BC%88%E5%A2%9E%E5%88%A0%E6%94%B9%E6%9F%A5%EF%BC%89"><span class="toc-number">4.2.</span> <span class="toc-text">4.2 目录的操作命令（增删改查）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-%E6%96%87%E4%BB%B6%E7%9A%84%E6%93%8D%E4%BD%9C%E5%91%BD%E4%BB%A4%EF%BC%88%E5%A2%9E%E5%88%A0%E6%94%B9%E6%9F%A5%EF%BC%89"><span class="toc-number">4.3.</span> <span class="toc-text">4.3 文件的操作命令（增删改查）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-4-%E5%8E%8B%E7%BC%A9%E6%96%87%E4%BB%B6%E7%9A%84%E6%93%8D%E4%BD%9C%E5%91%BD%E4%BB%A4"><span class="toc-number">4.4.</span> <span class="toc-text">4.4 压缩文件的操作命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-5-Linux%E7%9A%84%E6%9D%83%E9%99%90%E5%91%BD%E4%BB%A4"><span class="toc-number">4.5.</span> <span class="toc-text">4.5 Linux的权限命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-6-Linux-%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86"><span class="toc-number">4.6.</span> <span class="toc-text">4.6 Linux 用户管理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-7-Linux%E7%B3%BB%E7%BB%9F%E7%94%A8%E6%88%B7%E7%BB%84%E7%9A%84%E7%AE%A1%E7%90%86"><span class="toc-number">4.7.</span> <span class="toc-text">4.7 Linux系统用户组的管理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-8-%E5%85%B6%E4%BB%96%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="toc-number">4.8.</span> <span class="toc-text">4.8 其他常用命令</span></a></li></ol></li></ol></div></div><div class="card-widget ads-wrap"><a target="_blank" href="https://www.aliyun.com/activity?userCode=dpj8p3hl" rel="external nofollow noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/aliyun_whuCuE.jpg" style="width:100%;height:100%;object-fit:cover;"></a></div></div></div></main><footer id="footer" style="background-image: url('https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img8_1MHlve.jpeg')"><div id="footer-wrap"><div class="copyright">&copy;2018 - 2022 By 传礼</div><div class="footer_custom_text"><p style="display:inline-flex">本网站由<a href="https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral" rel="external nofollow noreferrer" target="_blank"><img style="width:60px;height:35px;" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/11/又拍云_logo5_O9kNul.png" title="又拍云"/></a>提供CDN加速/云存储服务</p><p><a style="margin-inline:5px" target="_blank" href="https://hexo.io/" rel="external nofollow noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Frame-Hexo-blue?style=flat&logo=hexo" title="博客框架为Hexo"></a><a style="margin-inline:5px" target="_blank" href="https://butterfly.js.org/" rel="external nofollow noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Theme-Butterfly-6513df?style=flat&logo=bitdefender" title="主题采用butterfly"></a><a style="margin-inline:5px" target="_blank" href="https://www.jsdelivr.com/" rel="external nofollow noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/CDN-jsDelivr-orange?style=flat&logo=jsDelivr" title="本站使用JsDelivr为静态资源提供CDN加速"></a><a style="margin-inline:5px" target="_blank" href="https://github.com/" rel="external nofollow noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Source-Github-d021d6?style=flat&logo=GitHub" title="本站项目由Github托管"></a><a style="margin-inline:5px" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Copyright-BY--NC--SA%204.0-d42328?style=flat&logo=Claris" title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可"></a></p></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="chat_btn" type="button" title="聊天"><i class="fas fa-sms"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">本地搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script src="/js/search/local-search.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"><script>function loadValine () {
+  function initValine () {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: 'zHUfFgUbITfMSQGuSPgS2e3C-gzGzoHsz',
+      appKey: 'yPXpeKX8VJxdFRPEsDaqNgEY',
+      avatar: 'wavatar',
+      serverURLs: 'https://zhuffgub.lc-cn-n1-shared.com',
+      emojiMaps: "",
+      path: window.location.pathname,
+      visitor: true,
+      master: '447d56ab3606de5490a2109d3e441219,135d837ea1033c9787dd307e59884d36'.split(','),
+      friends: '5c?????bfe6rfc72a????e268ad3819c'.split(','),
+      tagMeta: '博主,小伙伴,访客'.split(',')
+        
+    }, {"placeholder":"请输入内容～"}))
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/gh/HCLonely/Valine@latest/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !true) {
+  if (true) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script><script>function addGitalkSource () {
+  const ele = document.createElement('link')
+  ele.rel = 'stylesheet'
+  ele.href= 'https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css'
+  document.getElementsByTagName('head')[0].appendChild(ele)
+}
+
+function loadGitalk () {
+  function initGitalk () {
+    var gitalk = new Gitalk(Object.assign({
+      clientID: '052d9d6486112e93fa50',
+      clientSecret: '6fea35bfb7a17521694a95f705683622976d2f53',
+      repo: 'gitalk',
+      owner: 'iwangchuanli',
+      admin: ['iwangchuanli'],
+      id: '9ab0bdc02ba35748e016df9c349069d7',
+      updateCountCallback: commentCount
+    },null))
+
+    gitalk.render('gitalk-container')
+  }
+
+  if (typeof Gitalk === 'function') initGitalk()
+  else {
+    addGitalkSource()
+    getScript('https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.js').then(initGitalk)
+  }
+}
+
+function commentCount(n){
+  let isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+  if (isCommentCount) {
+    isCommentCount.innerHTML= n
+  }
+}
+
+if ('Valine' === 'Gitalk' || !true) {
+  if (true) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+  else loadGitalk()
+} else {
+  function loadOtherComment () {
+    loadGitalk()
+  }
+}</script></div><div class="aplayer no-destroy" data-id="7355841544" data-server="netease" data-type="playlist" data-fixed="true" data-autoplay="false"> </div><script async src="/js/grayscale.js"></script><script async src="//at.alicdn.com/t/font_1885008_srfhrsykmk.js"></script><script>((window.gitter = {}).chat = {}).options = {
+  disableDefaultChat: true,
+};
+document.addEventListener('gitter-sidecar-ready', (e) => {
+  const GitterChat = e.detail.Chat
+  let chat
+
+  function initGitter () {
+    chat = new GitterChat({
+      room: 'wangchuangli-/community',
+      activationElement: '#chat_btn'
+    });
+  }
+
+  initGitter()
+
+  if (true) {
+    document.addEventListener('pjax:complete', () => {
+      chat.destroy()
+      initGitter()
+    })
+  }
+
+})</script><script src="https://sidecar.gitter.im/dist/sidecar.v1.js" async="async" defer="defer"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/meting@1.2.0/dist/Meting.min.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = ["title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"]):not([href="/music/"]):not([href="/no-pjax/"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.tocScrollFn && window.removeEventListener('scroll', window.tocScrollFn)
+  window.scrollCollect && window.removeEventListener('scroll', scrollCollect)
+
+  typeof preloader === 'object' && preloader.initLoading()
+  document.getElementById('rightside').style.cssText = "opacity: ''; transform: ''"
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+
+  typeof preloader === 'object' && preloader.endLoading()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><!-- hexo injector body_end start --><script data-pjax>
+  function butterfly_swiper_injector_config(){
+    var parent_div_git = document.getElementById('recent-posts');
+    var item_html = '<div class="recent-post-item" style="height: auto;width: 100%"><div class="blog-slider swiper-container-fade swiper-container-horizontal" id="swiper_container"><div class="blog-slider__wrp swiper-wrapper" style="transition-duration: 0ms;"><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" onclick="pjax.loadUrl(&quot;posts/4496.html&quot;);" href="javascript:void(0);" rel="external nofollow noreferrer" alt=""><img width="48" height="48" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img6_L358Nt.jpeg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2018-09-05</span><a class="blog-slider__title" onclick="pjax.loadUrl(&quot;posts/4496.html&quot;);" href="javascript:void(0);" rel="external nofollow noreferrer" alt="">编程系列书单推荐</a><div class="blog-slider__text">再怎么看我也不知道怎么描述它的啦！</div><a class="blog-slider__button" onclick="pjax.loadUrl(&quot;posts/4496.html&quot;);" href="javascript:void(0);" rel="external nofollow noreferrer" alt="">详情       </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" onclick="pjax.loadUrl(&quot;posts/35693.html&quot;);" href="javascript:void(0);" rel="external nofollow noreferrer" alt=""><img width="48" height="48" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img33_fnRUqR.jpeg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2018-11-26</span><a class="blog-slider__title" onclick="pjax.loadUrl(&quot;posts/35693.html&quot;);" href="javascript:void(0);" rel="external nofollow noreferrer" alt="">优秀科技博客订阅</a><div class="blog-slider__text">再怎么看我也不知道怎么描述它的啦！</div><a class="blog-slider__button" onclick="pjax.loadUrl(&quot;posts/35693.html&quot;);" href="javascript:void(0);" rel="external nofollow noreferrer" alt="">详情       </a></div></div></div><div class="blog-slider__pagination swiper-pagination-clickable swiper-pagination-bullets"></div></div></div>';
+    console.log('已挂载butterfly_swiper')
+    parent_div_git.insertAdjacentHTML("afterbegin",item_html)
+    }
+  var elist = 'undefined'.split(',');
+  var cpage = location.pathname;
+  var epage = 'all';
+  var flag = 0;
+
+  for (var i=0;i<elist.length;i++){
+    if (cpage.includes(elist[i])){
+      flag++;
+    }
+  }
+
+  if ((epage ==='all')&&(flag == 0)){
+    butterfly_swiper_injector_config();
+  }
+  else if (epage === cpage){
+    butterfly_swiper_injector_config();
+  }
+  </script><script defer src="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper.min.js"></script><script defer data-pjax src="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper_init.js"></script><!-- hexo injector body_end end --></body></html>

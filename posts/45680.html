@@ -1,0 +1,507 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>BOM的常见内置方法和内置对象 | 传礼</title><meta name="keywords" content="博客,blog,王传礼,java,python,大数据"><meta name="author" content="传礼,978252321@qq.com"><meta name="copyright" content="传礼"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="publish: false 本文最初发表于博客园，并在GitHub上持续更新前端的系列文章。欢迎在GitHub上关注我，一起入门和进阶前端。   以下是正文。  BOM的介绍JavaScript的组成JavaScript基础分为三个部分：  ECMAScript：JavaScript的语法标准。包括变量、表达式、运算符、函数、if语句、for语句等。  DOM：文档对象模型，操作网页上的元素的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="BOM的常见内置方法和内置对象">
+<meta property="og:url" content="https://iwangchuanli.github.io/posts/45680.html">
+<meta property="og:site_name" content="传礼">
+<meta property="og:description" content="publish: false 本文最初发表于博客园，并在GitHub上持续更新前端的系列文章。欢迎在GitHub上关注我，一起入门和进阶前端。   以下是正文。  BOM的介绍JavaScript的组成JavaScript基础分为三个部分：  ECMAScript：JavaScript的语法标准。包括变量、表达式、运算符、函数、if语句、for语句等。  DOM：文档对象模型，操作网页上的元素的">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img15_wiXTy2.jpeg">
+<meta property="article:published_time" content="2022-11-28T07:04:49.777Z">
+<meta property="article:modified_time" content="2022-04-18T09:19:56.000Z">
+<meta property="article:author" content="传礼">
+<meta property="article:tag" content="博客,blog,王传礼,java,python,大数据">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img15_wiXTy2.jpeg"><link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/03/favicons_uH14Fb.gif"><link rel="canonical" href="https://iwangchuanli.github.io/posts/45680"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin=""/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta name="baidu-site-verification" content="qKvGNFZPF9"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?39bd6e37a6e70dc030e6a043a642784e";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: 传礼","link":"链接: ","source":"来源: 传礼","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#121212","position":"bottom-left"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: true,
+  islazyload: true,
+  isAnchor: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'BOM的常见内置方法和内置对象',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-04-18 09:19:56'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/custom.css"  media="defer" onload="this.media='all'"><!-- hexo injector head_end start --><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiperstyle.css" media="print" onload="this.media='all'"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.1"><link rel="alternate" href="/atom.xml" title="传礼" type="application/atom+xml">
+</head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/03/photo_NZBQPu.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><div class="data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">511</div></a></div><div class="data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">50</div></a></div><div class="data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">22</div></a></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 归档</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-calendar"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 开发</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/Java"><i class="fa-fw fa fa-music"></i><span> Java</span></a></li><li><a class="site-page child" href="/categories/Python"><i class="fa-fw fa fa-music"></i><span> Python</span></a></li><li><a class="site-page child" href="/categories/VUE"><i class="fa-fw fa fa-music"></i><span> VUE</span></a></li><li><a class="site-page child" href="/categories/MySQL"><i class="fa-fw fa fa-music"></i><span> MySQL</span></a></li><li><a class="site-page child" href="/categories/Redis"><i class="fa-fw fa fa-music"></i><span> Redis</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 架构</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/Spring"><i class="fa-fw fa fa-music"></i><span> Spring</span></a></li><li><a class="site-page child" href="/categories/microServeices"><i class="fa-fw fa fa-music"></i><span> 微服务</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 运维</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/Docker"><i class="fa-fw fa fa-music"></i><span> Docker</span></a></li><li><a class="site-page child" href="/categories/Linux"><i class="fa-fw fa fa-music"></i><span> Linux</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 分享</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/tags/Tools"><i class="fa-fw fa fa-music"></i><span> 工具</span></a></li><li><a class="site-page child" href="/tags/guide"><i class="fa-fw fa fa-music"></i><span> 教程</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 项目</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/tags/Tools"><i class="fa-fw fa fa-music"></i><span> 工具</span></a></li><li><a class="site-page child" href="/tags/guide"><i class="fa-fw fa fa-music"></i><span> 教程</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-heartbeat"></i><span> 娱乐</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/gallery/"><i class="fa-fw fa fa-images"></i><span> 图库</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fa fa-film"></i><span> 电影</span></a></li><li><a class="site-page child" href="/books/"><i class="fa-fw fa fa-book"></i><span> 图书</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 我的</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/artitalk/"><i class="fa-fw fa fa-commenting"></i><span> 说说</span></a></li><li><a class="site-page child" href="/todo/"><i class="fa-fw fa fa-flag"></i><span> TODO</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img15_wiXTy2.jpeg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">传礼</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 归档</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-calendar"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 开发</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/Java"><i class="fa-fw fa fa-music"></i><span> Java</span></a></li><li><a class="site-page child" href="/categories/Python"><i class="fa-fw fa fa-music"></i><span> Python</span></a></li><li><a class="site-page child" href="/categories/VUE"><i class="fa-fw fa fa-music"></i><span> VUE</span></a></li><li><a class="site-page child" href="/categories/MySQL"><i class="fa-fw fa fa-music"></i><span> MySQL</span></a></li><li><a class="site-page child" href="/categories/Redis"><i class="fa-fw fa fa-music"></i><span> Redis</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 架构</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/Spring"><i class="fa-fw fa fa-music"></i><span> Spring</span></a></li><li><a class="site-page child" href="/categories/microServeices"><i class="fa-fw fa fa-music"></i><span> 微服务</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 运维</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/Docker"><i class="fa-fw fa fa-music"></i><span> Docker</span></a></li><li><a class="site-page child" href="/categories/Linux"><i class="fa-fw fa fa-music"></i><span> Linux</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 分享</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/tags/Tools"><i class="fa-fw fa fa-music"></i><span> 工具</span></a></li><li><a class="site-page child" href="/tags/guide"><i class="fa-fw fa fa-music"></i><span> 教程</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 项目</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/tags/Tools"><i class="fa-fw fa fa-music"></i><span> 工具</span></a></li><li><a class="site-page child" href="/tags/guide"><i class="fa-fw fa fa-music"></i><span> 教程</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-heartbeat"></i><span> 娱乐</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/gallery/"><i class="fa-fw fa fa-images"></i><span> 图库</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fa fa-film"></i><span> 电影</span></a></li><li><a class="site-page child" href="/books/"><i class="fa-fw fa fa-book"></i><span> 图书</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 我的</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/artitalk/"><i class="fa-fw fa fa-commenting"></i><span> 说说</span></a></li><li><a class="site-page child" href="/todo/"><i class="fa-fw fa fa-flag"></i><span> TODO</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">BOM的常见内置方法和内置对象</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-11-28T07:04:49.777Z" title="发表于 2022-11-28 07:04:49">2022-11-28</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-04-18T09:19:56.000Z" title="更新于 2022-04-18 09:19:56">2022-04-18</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.3k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>5分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="BOM的常见内置方法和内置对象"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><hr>
+<h2 id="publish-false"><a href="#publish-false" class="headerlink" title="publish: false"></a>publish: false</h2><blockquote>
+<p>本文最初发表于<a target="_blank" rel="noopener external nofollow noreferrer" href="http://www.cnblogs.com/smyhvae/p/8401662.html">博客园</a>，并在<a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/qianguyihao/Web">GitHub</a>上持续更新<strong>前端的系列文章</strong>。欢迎在GitHub上关注我，一起入门和进阶前端。</p>
+</blockquote>
+<blockquote>
+<p>以下是正文。</p>
+</blockquote>
+<h2 id="BOM的介绍"><a href="#BOM的介绍" class="headerlink" title="BOM的介绍"></a>BOM的介绍</h2><h3 id="JavaScript的组成"><a href="#JavaScript的组成" class="headerlink" title="JavaScript的组成"></a>JavaScript的组成</h3><p>JavaScript基础分为三个部分：</p>
+<ul>
+<li><p>ECMAScript：JavaScript的语法标准。包括变量、表达式、运算符、函数、if语句、for语句等。</p>
+</li>
+<li><p><strong>DOM</strong>：文档对象模型，操作<strong>网页上的元素</strong>的API。比如让盒子移动、变色、轮播图等。</p>
+</li>
+<li><p><strong>BOM</strong>：浏览器对象模型，操作<strong>浏览器部分功能</strong>的API。比如让浏览器自动滚动。</p>
+</li>
+</ul>
+<h3 id="什么是BOM"><a href="#什么是BOM" class="headerlink" title="什么是BOM"></a>什么是BOM</h3><p>BOM：Browser Object Model，浏览器对象模型。</p>
+<p><strong>BOM的结构图：</strong></p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://img.smyhvae.com/20180201_2052.png"></p>
+<p>从上图也可以看出：</p>
+<ul>
+<li><p><strong>window对象是BOM的顶层(核心)对象</strong>，所有对象都是通过它延伸出来的，也可以称为window的子对象。</p>
+</li>
+<li><p>DOM越是BOM的一部分。</p>
+</li>
+</ul>
+<p><strong>window对象：</strong></p>
+<ul>
+<li><p><strong>window对象是JavaScript中的顶级对象</strong>。</p>
+</li>
+<li><p>全局变量、自定义函数也是window对象的属性和方法。</p>
+</li>
+<li><p>window对象下的属性和方法调用时，可以省略window。</p>
+</li>
+</ul>
+<p>下面讲一下 <strong>BOM 的常见内置方法和内置对象</strong>。</p>
+<h2 id="弹出系统对话框"><a href="#弹出系统对话框" class="headerlink" title="弹出系统对话框"></a>弹出系统对话框</h2><p>比如说，<code>alert(1)</code>是<code>window.alert(1)</code>的简写，因为它是window的子方法。</p>
+<p>系统对话框有三种：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="title function_">alert</span>();	<span class="comment">//不同浏览器中的外观是不一样的</span></span><br><span class="line"><span class="title function_">confirm</span>();  <span class="comment">//兼容不好</span></span><br><span class="line"><span class="title function_">prompt</span>();	<span class="comment">//不推荐使用</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="打开窗口、关闭窗口"><a href="#打开窗口、关闭窗口" class="headerlink" title="打开窗口、关闭窗口"></a>打开窗口、关闭窗口</h2><p>1、打开窗口：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">window.open(url,target,param)</span><br></pre></td></tr></table></figure>
+
+<p><strong>参数解释：</strong></p>
+<ul>
+<li><p>url：要打开的地址。</p>
+</li>
+<li><p>target：新窗口的位置。可以是：<code>_blank</code> 、<code>_self</code>、 <code>_parent</code> 父框架。</p>
+</li>
+<li><p>param：新窗口的一些设置。</p>
+</li>
+<li><p>返回值：新窗口的句柄。</p>
+</li>
+</ul>
+<p><strong>param</strong>这个参数，可以填各种各样的参数（），比如：</p>
+<ul>
+<li><p>name：新窗口的名称，可以为空</p>
+</li>
+<li><p>features：属性控制字符串，在此控制窗口的各种属性，属性之间以逗号隔开。</p>
+</li>
+<li><p>fullscreen= { yes/no/1/0 } 是否全屏，默认no</p>
+</li>
+<li><p>channelmode= { yes/no/1/0 } 是否显示频道栏，默认no</p>
+</li>
+<li><p>toolbar= { yes/no/1/0 } 是否显示工具条，默认no</p>
+</li>
+<li><p>location= { yes/no/1/0 } 是否显示地址栏，默认no。（有的浏览器不一定支持）</p>
+</li>
+<li><p>directories = { yes/no/1/0 } 是否显示转向按钮，默认no</p>
+</li>
+<li><p>status= { yes/no/1/0 } 是否显示窗口状态条，默认no</p>
+</li>
+<li><p>menubar= { yes/no/1/0 } 是否显示菜单，默认no</p>
+</li>
+<li><p>scrollbars= { yes/no/1/0 } 是否显示滚动条，默认yes</p>
+</li>
+<li><p>resizable= { yes/no/1/0 } 是否窗口可调整大小，默认no</p>
+</li>
+<li><p>width=number 窗口宽度（像素单位）</p>
+</li>
+<li><p>height=number 窗口高度（像素单位）</p>
+</li>
+<li><p>top=number 窗口离屏幕顶部距离（像素单位）</p>
+</li>
+<li><p>left=number 窗口离屏幕左边距离（像素单位）</p>
+</li>
+</ul>
+<p>各个参数之间用逗号隔开就行，但我们最好是把它们统一放到json里。</p>
+<p>2、关闭窗口：window.close()</p>
+<p>（1）和（2）的代码举例：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span><span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;javascript:;&quot;</span>&gt;</span>点击我打开一个新的页面<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;javascript:;&quot;</span>&gt;</span>点击我关闭本页面<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    <span class="comment">//新窗口 = window.open(地址,是否开新窗口,新窗口的各种参数);</span></span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">var</span> a1 = <span class="variable language_">document</span>.<span class="title function_">getElementsByTagName</span>(<span class="string">&quot;a&quot;</span>)[<span class="number">0</span>];</span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">var</span> a2 = <span class="variable language_">document</span>.<span class="title function_">getElementsByTagName</span>(<span class="string">&quot;a&quot;</span>)[<span class="number">1</span>];</span></span><br><span class="line"><span class="language-javascript">    a1.<span class="property">onclick</span> = <span class="keyword">function</span> (<span class="params"></span>) &#123;</span></span><br><span class="line"><span class="language-javascript"><span class="comment">//举例1： window.open(&quot;http://www.jx.com&quot;,&quot;_blank&quot;);</span></span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">var</span> json = &#123;</span></span><br><span class="line"><span class="language-javascript">            <span class="string">&quot;name&quot;</span>: <span class="string">&quot;helloworld&quot;</span>,</span></span><br><span class="line"><span class="language-javascript">            <span class="string">&quot;fullscreen&quot;</span>: <span class="string">&quot;no&quot;</span>,</span></span><br><span class="line"><span class="language-javascript">            <span class="string">&quot;location&quot;</span>: <span class="string">&quot;no&quot;</span>,</span></span><br><span class="line"><span class="language-javascript">            <span class="string">&quot;width&quot;</span>: <span class="string">&quot;100px&quot;</span>,</span></span><br><span class="line"><span class="language-javascript">            <span class="string">&quot;height&quot;</span>: <span class="string">&quot;100px&quot;</span>,</span></span><br><span class="line"><span class="language-javascript">            <span class="string">&quot;top&quot;</span>: <span class="string">&quot;100px&quot;</span>,</span></span><br><span class="line"><span class="language-javascript">            <span class="string">&quot;left&quot;</span>: <span class="string">&quot;100px&quot;</span></span></span><br><span class="line"><span class="language-javascript">        &#125;;</span></span><br><span class="line"><span class="language-javascript">        <span class="variable language_">window</span>.<span class="title function_">open</span>(<span class="string">&quot;http://www.baidu.com&quot;</span>, <span class="string">&quot;_blank&quot;</span>, json); <span class="comment">//举例2</span></span></span><br><span class="line"><span class="language-javascript">    &#125;</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    <span class="comment">//关闭本页面</span></span></span><br><span class="line"><span class="language-javascript">    a2.<span class="property">onclick</span> = <span class="keyword">function</span> (<span class="params"></span>) &#123;</span></span><br><span class="line"><span class="language-javascript">        <span class="variable language_">window</span>.<span class="title function_">close</span>();</span></span><br><span class="line"><span class="language-javascript">    &#125;</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>3、新窗口相关：</p>
+<ul>
+<li><p>新窗口.moveTo(5,5)</p>
+</li>
+<li><p>新窗口.moveBy()</p>
+</li>
+<li><p>新窗口.resizeTo()</p>
+</li>
+<li><p>window.resizeBy()</p>
+</li>
+</ul>
+<p>代码举例：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> newWin = <span class="variable language_">window</span>.<span class="title function_">open</span>(<span class="string">&quot;demo.html&quot;</span>, <span class="string">&quot;_blank&quot;</span>, json);</span><br><span class="line">newWin.<span class="title function_">moveTo</span>(<span class="number">500</span>, <span class="number">500</span>);</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="location对象"><a href="#location对象" class="headerlink" title="location对象"></a>location对象</h2><p><code>window.location</code>可以简写成location。location相当于浏览器地址栏，可以将url解析成独立的片段。</p>
+<h3 id="location对象的属性"><a href="#location对象的属性" class="headerlink" title="location对象的属性"></a>location对象的属性</h3><ul>
+<li><p><strong>href</strong>：跳转</p>
+</li>
+<li><p>hash   返回url中#后面的内容，包含#</p>
+</li>
+<li><p>host    主机名，包括端口</p>
+</li>
+<li><p>hostname   主机名</p>
+</li>
+<li><p>pathname     url中的路径部分</p>
+</li>
+<li><p>protocol    协议 一般是http、https</p>
+</li>
+<li><p>search         查询字符串</p>
+</li>
+</ul>
+<p><strong>location.href属性举例</strong>：</p>
+<p><strong>举例1：</strong>点击盒子时，进行跳转。</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span>smyhvae<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">var</span> div = <span class="variable language_">document</span>.<span class="title function_">getElementsByTagName</span>(<span class="string">&quot;div&quot;</span>)[<span class="number">0</span>];</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    div.<span class="property">onclick</span> = <span class="keyword">function</span> (<span class="params"></span>) &#123;</span></span><br><span class="line"><span class="language-javascript">        location.<span class="property">href</span> = <span class="string">&quot;http://www.baidu.com&quot;</span>;   <span class="comment">//点击div时，跳转到指定链接</span></span></span><br><span class="line"><span class="language-javascript"> <span class="comment">//     window.open(&quot;http://www.baidu.com&quot;,&quot;_blank&quot;);  //方式二</span></span></span><br><span class="line"><span class="language-javascript">    &#125;</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>举例2：5秒后自动跳转到百度</strong>。</p>
+<p>有时候，当我们访问一个不存在的网页时，会提示5秒后自动跳转到指定页面，此时就可以用到location。举例：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    <span class="built_in">setTimeout</span>(<span class="keyword">function</span> (<span class="params"></span>) &#123;</span></span><br><span class="line"><span class="language-javascript">        location.<span class="property">href</span> = <span class="string">&quot;http://www.baidu.com&quot;</span>;</span></span><br><span class="line"><span class="language-javascript">    &#125;, <span class="number">5000</span>);</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+<h3 id="location对象的方法"><a href="#location对象的方法" class="headerlink" title="location对象的方法"></a>location对象的方法</h3><ul>
+<li>location.assign()：改变浏览器地址栏的地址，并记录到历史中</li>
+</ul>
+<p>设置location.href  就会调用assign()。一般使用location.href 进行页面之间的跳转。</p>
+<ul>
+<li><p>location.replace()：替换浏览器地址栏的地址，不会记录到历史中</p>
+</li>
+<li><p>location.reload()：重新加载</p>
+</li>
+</ul>
+<h2 id="navigator对象"><a href="#navigator对象" class="headerlink" title="navigator对象"></a>navigator对象</h2><p>window.navigator 的一些属性可以获取客户端的一些信息。</p>
+<ul>
+<li><p>userAgent：系统，浏览器)</p>
+</li>
+<li><p>platform：浏览器支持的系统，win/mac/linux</p>
+</li>
+</ul>
+<p>举例：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(navigator.<span class="property">userAgent</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(navigator.<span class="property">platform</span>);</span><br></pre></td></tr></table></figure>
+
+<p>效果如下：</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://img.smyhvae.com/20180201_2140.png"></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:978252321@qq.com" rel="external nofollow noreferrer">传礼</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://iwangchuanli.github.io/posts/45680.html">https://iwangchuanli.github.io/posts/45680.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow noreferrer" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://iwangchuanli.github.io" target="_blank">传礼</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img15_wiXTy2.jpeg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/posts/39053.html"><img class="prev-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img6_L358Nt.jpeg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">49-Zepto入门</div></div></a></div><div class="next-post pull-right"><a href="/posts/35931.html"><img class="next-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img39_3NMH7S.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">ES6：Symbol</div></div></a></div></nav><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div><div id="comment-switch"><span class="first-comment">Valine</span><span class="switch-btn"></span><span class="second-comment">Gitalk</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div><div><div id="gitalk-container"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">Nice to meet you ~</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#publish-false"><span class="toc-number">1.</span> <span class="toc-text">publish: false</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#BOM%E7%9A%84%E4%BB%8B%E7%BB%8D"><span class="toc-number">2.</span> <span class="toc-text">BOM的介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#JavaScript%E7%9A%84%E7%BB%84%E6%88%90"><span class="toc-number">2.1.</span> <span class="toc-text">JavaScript的组成</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFBOM"><span class="toc-number">2.2.</span> <span class="toc-text">什么是BOM</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%B9%E5%87%BA%E7%B3%BB%E7%BB%9F%E5%AF%B9%E8%AF%9D%E6%A1%86"><span class="toc-number">3.</span> <span class="toc-text">弹出系统对话框</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%93%E5%BC%80%E7%AA%97%E5%8F%A3%E3%80%81%E5%85%B3%E9%97%AD%E7%AA%97%E5%8F%A3"><span class="toc-number">4.</span> <span class="toc-text">打开窗口、关闭窗口</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#location%E5%AF%B9%E8%B1%A1"><span class="toc-number">5.</span> <span class="toc-text">location对象</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#location%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%B1%9E%E6%80%A7"><span class="toc-number">5.1.</span> <span class="toc-text">location对象的属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#location%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%96%B9%E6%B3%95"><span class="toc-number">5.2.</span> <span class="toc-text">location对象的方法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#navigator%E5%AF%B9%E8%B1%A1"><span class="toc-number">6.</span> <span class="toc-text">navigator对象</span></a></li></ol></div></div><div class="card-widget ads-wrap"><a target="_blank" href="https://www.aliyun.com/activity?userCode=dpj8p3hl" rel="external nofollow noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/aliyun_whuCuE.jpg" style="width:100%;height:100%;object-fit:cover;"></a></div></div></div></main><footer id="footer" style="background-image: url('https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img15_wiXTy2.jpeg')"><div id="footer-wrap"><div class="copyright">&copy;2018 - 2022 By 传礼</div><div class="footer_custom_text"><p style="display:inline-flex">本网站由<a href="https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral" rel="external nofollow noreferrer" target="_blank"><img style="width:60px;height:35px;" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/11/又拍云_logo5_O9kNul.png" title="又拍云"/></a>提供CDN加速/云存储服务</p><p><a style="margin-inline:5px" target="_blank" href="https://hexo.io/" rel="external nofollow noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Frame-Hexo-blue?style=flat&logo=hexo" title="博客框架为Hexo"></a><a style="margin-inline:5px" target="_blank" href="https://butterfly.js.org/" rel="external nofollow noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Theme-Butterfly-6513df?style=flat&logo=bitdefender" title="主题采用butterfly"></a><a style="margin-inline:5px" target="_blank" href="https://www.jsdelivr.com/" rel="external nofollow noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/CDN-jsDelivr-orange?style=flat&logo=jsDelivr" title="本站使用JsDelivr为静态资源提供CDN加速"></a><a style="margin-inline:5px" target="_blank" href="https://github.com/" rel="external nofollow noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Source-Github-d021d6?style=flat&logo=GitHub" title="本站项目由Github托管"></a><a style="margin-inline:5px" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Copyright-BY--NC--SA%204.0-d42328?style=flat&logo=Claris" title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可"></a></p></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="chat_btn" type="button" title="聊天"><i class="fas fa-sms"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">本地搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script src="/js/search/local-search.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"><script>function loadValine () {
+  function initValine () {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: 'zHUfFgUbITfMSQGuSPgS2e3C-gzGzoHsz',
+      appKey: 'yPXpeKX8VJxdFRPEsDaqNgEY',
+      avatar: 'wavatar',
+      serverURLs: 'https://zhuffgub.lc-cn-n1-shared.com',
+      emojiMaps: "",
+      path: window.location.pathname,
+      visitor: true,
+      master: '447d56ab3606de5490a2109d3e441219,135d837ea1033c9787dd307e59884d36'.split(','),
+      friends: '5c?????bfe6rfc72a????e268ad3819c'.split(','),
+      tagMeta: '博主,小伙伴,访客'.split(',')
+        
+    }, {"placeholder":"请输入内容～"}))
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/gh/HCLonely/Valine@latest/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !true) {
+  if (true) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script><script>function addGitalkSource () {
+  const ele = document.createElement('link')
+  ele.rel = 'stylesheet'
+  ele.href= 'https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css'
+  document.getElementsByTagName('head')[0].appendChild(ele)
+}
+
+function loadGitalk () {
+  function initGitalk () {
+    var gitalk = new Gitalk(Object.assign({
+      clientID: '052d9d6486112e93fa50',
+      clientSecret: '6fea35bfb7a17521694a95f705683622976d2f53',
+      repo: 'gitalk',
+      owner: 'iwangchuanli',
+      admin: ['iwangchuanli'],
+      id: '5c41749388aaecbbde2df060eaab5465',
+      updateCountCallback: commentCount
+    },null))
+
+    gitalk.render('gitalk-container')
+  }
+
+  if (typeof Gitalk === 'function') initGitalk()
+  else {
+    addGitalkSource()
+    getScript('https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.js').then(initGitalk)
+  }
+}
+
+function commentCount(n){
+  let isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+  if (isCommentCount) {
+    isCommentCount.innerHTML= n
+  }
+}
+
+if ('Valine' === 'Gitalk' || !true) {
+  if (true) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+  else loadGitalk()
+} else {
+  function loadOtherComment () {
+    loadGitalk()
+  }
+}</script></div><div class="aplayer no-destroy" data-id="7355841544" data-server="netease" data-type="playlist" data-fixed="true" data-autoplay="false"> </div><script async src="/js/grayscale.js"></script><script async src="//at.alicdn.com/t/font_1885008_srfhrsykmk.js"></script><script>((window.gitter = {}).chat = {}).options = {
+  disableDefaultChat: true,
+};
+document.addEventListener('gitter-sidecar-ready', (e) => {
+  const GitterChat = e.detail.Chat
+  let chat
+
+  function initGitter () {
+    chat = new GitterChat({
+      room: 'wangchuangli-/community',
+      activationElement: '#chat_btn'
+    });
+  }
+
+  initGitter()
+
+  if (true) {
+    document.addEventListener('pjax:complete', () => {
+      chat.destroy()
+      initGitter()
+    })
+  }
+
+})</script><script src="https://sidecar.gitter.im/dist/sidecar.v1.js" async="async" defer="defer"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/meting@1.2.0/dist/Meting.min.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = ["title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"]):not([href="/music/"]):not([href="/no-pjax/"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.tocScrollFn && window.removeEventListener('scroll', window.tocScrollFn)
+  window.scrollCollect && window.removeEventListener('scroll', scrollCollect)
+
+  typeof preloader === 'object' && preloader.initLoading()
+  document.getElementById('rightside').style.cssText = "opacity: ''; transform: ''"
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+
+  typeof preloader === 'object' && preloader.endLoading()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><!-- hexo injector body_end start --><script data-pjax>
+  function butterfly_swiper_injector_config(){
+    var parent_div_git = document.getElementById('recent-posts');
+    var item_html = '<div class="recent-post-item" style="height: auto;width: 100%"><div class="blog-slider swiper-container-fade swiper-container-horizontal" id="swiper_container"><div class="blog-slider__wrp swiper-wrapper" style="transition-duration: 0ms;"><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" onclick="pjax.loadUrl(&quot;posts/4496.html&quot;);" href="javascript:void(0);" rel="external nofollow noreferrer" alt=""><img width="48" height="48" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img6_L358Nt.jpeg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2018-09-05</span><a class="blog-slider__title" onclick="pjax.loadUrl(&quot;posts/4496.html&quot;);" href="javascript:void(0);" rel="external nofollow noreferrer" alt="">编程系列书单推荐</a><div class="blog-slider__text">再怎么看我也不知道怎么描述它的啦！</div><a class="blog-slider__button" onclick="pjax.loadUrl(&quot;posts/4496.html&quot;);" href="javascript:void(0);" rel="external nofollow noreferrer" alt="">详情       </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" onclick="pjax.loadUrl(&quot;posts/35693.html&quot;);" href="javascript:void(0);" rel="external nofollow noreferrer" alt=""><img width="48" height="48" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img33_fnRUqR.jpeg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2018-11-26</span><a class="blog-slider__title" onclick="pjax.loadUrl(&quot;posts/35693.html&quot;);" href="javascript:void(0);" rel="external nofollow noreferrer" alt="">优秀科技博客订阅</a><div class="blog-slider__text">再怎么看我也不知道怎么描述它的啦！</div><a class="blog-slider__button" onclick="pjax.loadUrl(&quot;posts/35693.html&quot;);" href="javascript:void(0);" rel="external nofollow noreferrer" alt="">详情       </a></div></div></div><div class="blog-slider__pagination swiper-pagination-clickable swiper-pagination-bullets"></div></div></div>';
+    console.log('已挂载butterfly_swiper')
+    parent_div_git.insertAdjacentHTML("afterbegin",item_html)
+    }
+  var elist = 'undefined'.split(',');
+  var cpage = location.pathname;
+  var epage = 'all';
+  var flag = 0;
+
+  for (var i=0;i<elist.length;i++){
+    if (cpage.includes(elist[i])){
+      flag++;
+    }
+  }
+
+  if ((epage ==='all')&&(flag == 0)){
+    butterfly_swiper_injector_config();
+  }
+  else if (epage === cpage){
+    butterfly_swiper_injector_config();
+  }
+  </script><script defer src="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper.min.js"></script><script defer data-pjax src="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper_init.js"></script><!-- hexo injector body_end end --></body></html>

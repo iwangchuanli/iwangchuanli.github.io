@@ -1,0 +1,429 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>JavaScript模块化：AMD | 传礼</title><meta name="keywords" content="博客,blog,王传礼,java,python,大数据"><meta name="author" content="传礼,978252321@qq.com"><meta name="copyright" content="传礼"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="title: JavaScript模块化：AMDpublish: true  AMD的基本语法AMD的概念AMD（Asynchronous Module Definition）：异步模块定义。AMD专门用于浏览器端，模块的加载是异步的。 AMD规范：是 RequireJS 在推广过程中对模块化定义的规范化产出。 RequireJS：一个基于AMD规范实现的模块化开发解决方案。 暴露模块的方式定义">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript模块化：AMD">
+<meta property="og:url" content="https://iwangchuanli.github.io/posts/551.html">
+<meta property="og:site_name" content="传礼">
+<meta property="og:description" content="title: JavaScript模块化：AMDpublish: true  AMD的基本语法AMD的概念AMD（Asynchronous Module Definition）：异步模块定义。AMD专门用于浏览器端，模块的加载是异步的。 AMD规范：是 RequireJS 在推广过程中对模块化定义的规范化产出。 RequireJS：一个基于AMD规范实现的模块化开发解决方案。 暴露模块的方式定义">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img16_UxoLFp.jpeg">
+<meta property="article:published_time" content="2021-10-25T08:41:56.000Z">
+<meta property="article:modified_time" content="2022-04-18T09:19:57.000Z">
+<meta property="article:author" content="传礼">
+<meta property="article:tag" content="博客,blog,王传礼,java,python,大数据">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img16_UxoLFp.jpeg"><link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/03/favicons_uH14Fb.gif"><link rel="canonical" href="https://iwangchuanli.github.io/posts/551"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin=""/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta name="baidu-site-verification" content="qKvGNFZPF9"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?39bd6e37a6e70dc030e6a043a642784e";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: 传礼","link":"链接: ","source":"来源: 传礼","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#121212","position":"bottom-left"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: true,
+  islazyload: true,
+  isAnchor: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'JavaScript模块化：AMD',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-04-18 09:19:57'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/custom.css"  media="defer" onload="this.media='all'"><!-- hexo injector head_end start --><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiperstyle.css" media="print" onload="this.media='all'"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.1"><link rel="alternate" href="/atom.xml" title="传礼" type="application/atom+xml">
+</head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/03/photo_NZBQPu.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><div class="data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">511</div></a></div><div class="data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">50</div></a></div><div class="data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">22</div></a></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 归档</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-calendar"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 开发</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/Java"><i class="fa-fw fa fa-music"></i><span> Java</span></a></li><li><a class="site-page child" href="/categories/Python"><i class="fa-fw fa fa-music"></i><span> Python</span></a></li><li><a class="site-page child" href="/categories/VUE"><i class="fa-fw fa fa-music"></i><span> VUE</span></a></li><li><a class="site-page child" href="/categories/MySQL"><i class="fa-fw fa fa-music"></i><span> MySQL</span></a></li><li><a class="site-page child" href="/categories/Redis"><i class="fa-fw fa fa-music"></i><span> Redis</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 架构</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/Spring"><i class="fa-fw fa fa-music"></i><span> Spring</span></a></li><li><a class="site-page child" href="/categories/microServeices"><i class="fa-fw fa fa-music"></i><span> 微服务</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 运维</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/Docker"><i class="fa-fw fa fa-music"></i><span> Docker</span></a></li><li><a class="site-page child" href="/categories/Linux"><i class="fa-fw fa fa-music"></i><span> Linux</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 分享</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/tags/Tools"><i class="fa-fw fa fa-music"></i><span> 工具</span></a></li><li><a class="site-page child" href="/tags/guide"><i class="fa-fw fa fa-music"></i><span> 教程</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 项目</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/tags/Tools"><i class="fa-fw fa fa-music"></i><span> 工具</span></a></li><li><a class="site-page child" href="/tags/guide"><i class="fa-fw fa fa-music"></i><span> 教程</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-heartbeat"></i><span> 娱乐</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/gallery/"><i class="fa-fw fa fa-images"></i><span> 图库</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fa fa-film"></i><span> 电影</span></a></li><li><a class="site-page child" href="/books/"><i class="fa-fw fa fa-book"></i><span> 图书</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 我的</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/artitalk/"><i class="fa-fw fa fa-commenting"></i><span> 说说</span></a></li><li><a class="site-page child" href="/todo/"><i class="fa-fw fa fa-flag"></i><span> TODO</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img16_UxoLFp.jpeg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">传礼</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 归档</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-calendar"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 开发</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/Java"><i class="fa-fw fa fa-music"></i><span> Java</span></a></li><li><a class="site-page child" href="/categories/Python"><i class="fa-fw fa fa-music"></i><span> Python</span></a></li><li><a class="site-page child" href="/categories/VUE"><i class="fa-fw fa fa-music"></i><span> VUE</span></a></li><li><a class="site-page child" href="/categories/MySQL"><i class="fa-fw fa fa-music"></i><span> MySQL</span></a></li><li><a class="site-page child" href="/categories/Redis"><i class="fa-fw fa fa-music"></i><span> Redis</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 架构</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/Spring"><i class="fa-fw fa fa-music"></i><span> Spring</span></a></li><li><a class="site-page child" href="/categories/microServeices"><i class="fa-fw fa fa-music"></i><span> 微服务</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 运维</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/Docker"><i class="fa-fw fa fa-music"></i><span> Docker</span></a></li><li><a class="site-page child" href="/categories/Linux"><i class="fa-fw fa fa-music"></i><span> Linux</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 分享</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/tags/Tools"><i class="fa-fw fa fa-music"></i><span> 工具</span></a></li><li><a class="site-page child" href="/tags/guide"><i class="fa-fw fa fa-music"></i><span> 教程</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 项目</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/tags/Tools"><i class="fa-fw fa fa-music"></i><span> 工具</span></a></li><li><a class="site-page child" href="/tags/guide"><i class="fa-fw fa fa-music"></i><span> 教程</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-heartbeat"></i><span> 娱乐</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/gallery/"><i class="fa-fw fa fa-images"></i><span> 图库</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fa fa-film"></i><span> 电影</span></a></li><li><a class="site-page child" href="/books/"><i class="fa-fw fa fa-book"></i><span> 图书</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 我的</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/artitalk/"><i class="fa-fw fa fa-commenting"></i><span> 说说</span></a></li><li><a class="site-page child" href="/todo/"><i class="fa-fw fa fa-flag"></i><span> TODO</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">JavaScript模块化：AMD</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-10-25T08:41:56.000Z" title="发表于 2021-10-25 08:41:56">2021-10-25</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-04-18T09:19:57.000Z" title="更新于 2022-04-18 09:19:57">2022-04-18</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.1k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>4分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="JavaScript模块化：AMD"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><hr>
+<p>title: JavaScript模块化：AMD<br>publish: true</p>
+<hr>
+<h2 id="AMD的基本语法"><a href="#AMD的基本语法" class="headerlink" title="AMD的基本语法"></a>AMD的基本语法</h2><h3 id="AMD的概念"><a href="#AMD的概念" class="headerlink" title="AMD的概念"></a>AMD的概念</h3><p><strong>AMD</strong>（Asynchronous Module Definition）：异步模块定义。AMD专门用于浏览器端，模块的加载是异步的。</p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/amdjs/amdjs-api"><strong>AMD规范</strong></a>：是 <strong><a target="_blank" rel="noopener external nofollow noreferrer" href="http://requirejs.org/">RequireJS</a></strong> 在推广过程中对模块化定义的规范化产出。</p>
+<p>RequireJS：一个基于AMD规范实现的模块化开发解决方案。</p>
+<h3 id="暴露模块的方式"><a href="#暴露模块的方式" class="headerlink" title="暴露模块的方式"></a>暴露模块的方式</h3><p><strong>定义没有依赖的模块</strong>：（参数只有一个 function）</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="title function_">define</span>(<span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> 模块</span><br><span class="line"></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+
+<p><strong>定义有依赖的模块</strong>：（参数有两个：模块名、function）</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">//定义有依赖的模块：第一个参数为数组</span></span><br><span class="line"><span class="title function_">define</span>([<span class="string">&#x27;module1&#x27;</span>, <span class="string">&#x27;module2&#x27;</span>], <span class="keyword">function</span> (<span class="params">m1, m2</span>) &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> 模块</span><br><span class="line"></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>代码解释：</p>
+<ul>
+<li><p>第一个参数必须是数组，里面存放的是，需要依赖的其他的模块。</p>
+</li>
+<li><p>第二个参数是function，里面带了形参 m1 和 m2，分别代表了 module1 和 module2。这个形参的作用是，前面依赖的模块一旦声明了，就可以一一对应地注入到 function中去，从而在 function 内部使用依赖的模块。这种方式称之为<strong>显式声明依赖注入</strong>。</p>
+</li>
+</ul>
+<h3 id="引入模块的方式"><a href="#引入模块的方式" class="headerlink" title="引入模块的方式"></a>引入模块的方式</h3><p>在主模块中引入其他的模块：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">//在主模块中引入其他的模块</span></span><br><span class="line"><span class="built_in">require</span>([<span class="string">&#x27;module1&#x27;</span>, <span class="string">&#x27;module2&#x27;</span>], <span class="keyword">function</span> (<span class="params">m1, m2</span>) &#123;</span><br><span class="line"></span><br><span class="line">    使用m1 / m2</span><br><span class="line"></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="RequireJS：是AMD的实现"><a href="#RequireJS：是AMD的实现" class="headerlink" title="RequireJS：是AMD的实现"></a>RequireJS：是AMD的实现</h3><ul>
+<li><p><a target="_blank" rel="noopener external nofollow noreferrer" href="http://www.requirejs.org/">http://www.requirejs.org/</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener external nofollow noreferrer" href="http://www.ruanyifeng.com/blog/2012/11/require_js.html">http://www.ruanyifeng.com/blog/2012/11/require_js.html</a></p>
+</li>
+</ul>
+<h2 id="RequireJS的使用举例（自定义模块）"><a href="#RequireJS的使用举例（自定义模块）" class="headerlink" title="RequireJS的使用举例（自定义模块）"></a>RequireJS的使用举例（自定义模块）</h2><h3 id="1、创建项目结构"><a href="#1、创建项目结构" class="headerlink" title="1、创建项目结构"></a>1、创建项目结构</h3><p>在工程文件中新建如下目录：</p>
+  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">js</span><br><span class="line">    | libs</span><br><span class="line"></span><br><span class="line">    | modules</span><br><span class="line">      	| alerter.js</span><br><span class="line">      	| dataService.js</span><br><span class="line">    | main.js</span><br><span class="line"></span><br><span class="line">index.html</span><br></pre></td></tr></table></figure>
+
+<p>所有的代码写完之后，项目结构如下：</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://img.smyhvae.com/20180411_1331.png"></p>
+<h3 id="2、下载require-js，并导入"><a href="#2、下载require-js，并导入" class="headerlink" title="2、下载require.js，并导入"></a>2、下载require.js，并导入</h3><ul>
+<li><p>官网: <a target="_blank" rel="noopener external nofollow noreferrer" href="http://requirejs.org/docs/download.html">http://requirejs.org/docs/download.html</a></p>
+</li>
+<li><p>GitHub：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/requirejs/requirejs">https://github.com/requirejs/requirejs</a></p>
+</li>
+</ul>
+<p>在官网下载<code>require.js</code>文件：</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://img.smyhvae.com/20180411_1127.png"></p>
+<p>然后将<code>require.js</code>文件拷贝到项目的<code>js/libs/</code>目录中。</p>
+<p>这样的话，就导入成功了。</p>
+<h3 id="3、自定义模块"><a href="#3、自定义模块" class="headerlink" title="3、自定义模块"></a>3、自定义模块</h3><p>（1）dataService.js：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">//定义没有依赖的模块</span></span><br><span class="line"><span class="title function_">define</span>(<span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> name = <span class="string">&#x27;我是 dataService.js中的内容&#x27;</span>;</span><br><span class="line">    <span class="keyword">function</span> <span class="title function_">getName</span>(<span class="params"></span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//暴露模块</span></span><br><span class="line">    <span class="keyword">return</span> &#123; getName &#125;;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+
+<p>这模块没有依赖。</p>
+<p>（2）alerter.js：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">//定义有依赖的模块</span></span><br><span class="line"><span class="title function_">define</span>([<span class="string">&#x27;myDataService&#x27;</span>], <span class="keyword">function</span> (<span class="params">dataService</span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> msg = <span class="string">&#x27;我是 aleter.js中的内容&#x27;</span>;</span><br><span class="line">    <span class="keyword">function</span> <span class="title function_">showMsg</span>(<span class="params"></span>) &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(dataService.<span class="title function_">getName</span>());  <span class="comment">//调用了 myDataService 模块中的内容</span></span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(msg);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//暴露模块</span></span><br><span class="line">    <span class="keyword">return</span> &#123; showMsg &#125;;</span><br><span class="line"></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>这个模块，依赖了<code>myDataService</code>这个模块，模块名是我自己起的。稍后，我们会在main.js中做映射，将<code>myDataService</code>这个名字和<code>dataService.js</code>文件关联起来。</p>
+<p>（3）main.js：</p>
+<blockquote>
+<p>这个是主模块。</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">requirejs.<span class="title function_">config</span>(&#123;</span><br><span class="line">    <span class="comment">//baseUrl: &#x27;js/&#x27;,     //基本路径</span></span><br><span class="line">    <span class="attr">paths</span>: &#123;    <span class="comment">//配置路径</span></span><br><span class="line">        <span class="attr">myDataService</span>: <span class="string">&#x27;./modules/dataService&#x27;</span>,</span><br><span class="line">        <span class="attr">myAlerter</span>: <span class="string">&#x27;./modules/alerter&#x27;</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">requirejs([<span class="string">&#x27;myAlerter&#x27;</span>], <span class="keyword">function</span> (<span class="params">alerter</span>) &#123;</span><br><span class="line">    alerter.<span class="title function_">showMsg</span>();</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
+
+<p>这个模块，依赖了<code>myAlerter</code>这个模块，模块名是我自己起的。并且，我们在文件的上方做了映射，将<code>myAlerter</code>这个名字和<code>alerter.js</code>文件关联了起来。</p>
+<p>我们来讲一下最上方的几行代码（即<code>requirejs.config</code>里的内容）的意思：</p>
+<ul>
+<li><p>我们可以看到，文件（3）依赖了文件（2），文件（2）依赖了文件（1）。</p>
+</li>
+<li><p><code>paths</code>里做的就是映射：将键<code>myDataService</code>和文件<code>dataService.js</code>进行关联，将键<code>myAlerter</code>和文件<code>alerter.js</code>进行关联。</p>
+</li>
+</ul>
+<p>另外，再讲一下注释里的<code>baseUrl</code>的用法：如果没有这个注释，那么<code>paths</code>里的路径，是从<strong>当前这个文件</strong>（main.js）的角度出发的；如果加了一行<code>baseUrl</code>，表明它是 paths 里所有路径的最开头的部分，<code>baseUrl</code>的路径是从<strong>项目的根目录</strong>的角度出发的。</p>
+<p>（4）index.html：</p>
+<p>这个是入口文件。</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;viewport&quot;</span> <span class="attr">content</span>=<span class="string">&quot;width=device-width, initial-scale=1.0&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">&quot;X-UA-Compatible&quot;</span> <span class="attr">content</span>=<span class="string">&quot;ie=edge&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 先通过 src 引入 require.js 文件，然后通过 data-main 引入主模块（main.js） --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">data-main</span>=<span class="string">&quot;js/main.js&quot;</span> <span class="attr">src</span>=<span class="string">&quot;js/libs/require.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>注意，上面的代码中，我们直接通过<code>src</code>属性引入<code>requre.js </code>文件，一旦这个文件发挥作用了，会去找<code>data-main</code>属性里的指向，它正好指向的是主模块。</p>
+<p>有了上面这种引入的方式，我们就不用再老土地引入多个<code>&lt;script&gt;</code>标签了。</p>
+<p>运行 index.html，打印结果如下：</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://img.smyhvae.com/20180411_1740.png"></p>
+<p>项目源码：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://download.csdn.net/download/smyhvae/10341963">2018-04-11-RequireJSDemo</a></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:978252321@qq.com" rel="external nofollow noreferrer">传礼</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://iwangchuanli.github.io/posts/551.html">https://iwangchuanli.github.io/posts/551.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow noreferrer" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://iwangchuanli.github.io" target="_blank">传礼</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img16_UxoLFp.jpeg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/posts/13229.html"><img class="prev-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img15_wiXTy2.jpeg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">ES6</div></div></a></div><div class="next-post pull-right"><a href="/posts/49798.html"><img class="next-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img15_wiXTy2.jpeg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">JavaScript模块化：CMD</div></div></a></div></nav><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div><div id="comment-switch"><span class="first-comment">Valine</span><span class="switch-btn"></span><span class="second-comment">Gitalk</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div><div><div id="gitalk-container"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">Nice to meet you ~</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#AMD%E7%9A%84%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95"><span class="toc-number">1.</span> <span class="toc-text">AMD的基本语法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#AMD%E7%9A%84%E6%A6%82%E5%BF%B5"><span class="toc-number">1.1.</span> <span class="toc-text">AMD的概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9A%B4%E9%9C%B2%E6%A8%A1%E5%9D%97%E7%9A%84%E6%96%B9%E5%BC%8F"><span class="toc-number">1.2.</span> <span class="toc-text">暴露模块的方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%95%E5%85%A5%E6%A8%A1%E5%9D%97%E7%9A%84%E6%96%B9%E5%BC%8F"><span class="toc-number">1.3.</span> <span class="toc-text">引入模块的方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#RequireJS%EF%BC%9A%E6%98%AFAMD%E7%9A%84%E5%AE%9E%E7%8E%B0"><span class="toc-number">1.4.</span> <span class="toc-text">RequireJS：是AMD的实现</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RequireJS%E7%9A%84%E4%BD%BF%E7%94%A8%E4%B8%BE%E4%BE%8B%EF%BC%88%E8%87%AA%E5%AE%9A%E4%B9%89%E6%A8%A1%E5%9D%97%EF%BC%89"><span class="toc-number">2.</span> <span class="toc-text">RequireJS的使用举例（自定义模块）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81%E5%88%9B%E5%BB%BA%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84"><span class="toc-number">2.1.</span> <span class="toc-text">1、创建项目结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81%E4%B8%8B%E8%BD%BDrequire-js%EF%BC%8C%E5%B9%B6%E5%AF%BC%E5%85%A5"><span class="toc-number">2.2.</span> <span class="toc-text">2、下载require.js，并导入</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E3%80%81%E8%87%AA%E5%AE%9A%E4%B9%89%E6%A8%A1%E5%9D%97"><span class="toc-number">2.3.</span> <span class="toc-text">3、自定义模块</span></a></li></ol></li></ol></div></div><div class="card-widget ads-wrap"><a target="_blank" href="https://www.aliyun.com/activity?userCode=dpj8p3hl" rel="external nofollow noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/aliyun_whuCuE.jpg" style="width:100%;height:100%;object-fit:cover;"></a></div></div></div></main><footer id="footer" style="background-image: url('https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img16_UxoLFp.jpeg')"><div id="footer-wrap"><div class="copyright">&copy;2018 - 2022 By 传礼</div><div class="footer_custom_text"><p style="display:inline-flex">本网站由<a href="https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral" rel="external nofollow noreferrer" target="_blank"><img style="width:60px;height:35px;" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/11/又拍云_logo5_O9kNul.png" title="又拍云"/></a>提供CDN加速/云存储服务</p><p><a style="margin-inline:5px" target="_blank" href="https://hexo.io/" rel="external nofollow noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Frame-Hexo-blue?style=flat&logo=hexo" title="博客框架为Hexo"></a><a style="margin-inline:5px" target="_blank" href="https://butterfly.js.org/" rel="external nofollow noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Theme-Butterfly-6513df?style=flat&logo=bitdefender" title="主题采用butterfly"></a><a style="margin-inline:5px" target="_blank" href="https://www.jsdelivr.com/" rel="external nofollow noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/CDN-jsDelivr-orange?style=flat&logo=jsDelivr" title="本站使用JsDelivr为静态资源提供CDN加速"></a><a style="margin-inline:5px" target="_blank" href="https://github.com/" rel="external nofollow noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Source-Github-d021d6?style=flat&logo=GitHub" title="本站项目由Github托管"></a><a style="margin-inline:5px" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Copyright-BY--NC--SA%204.0-d42328?style=flat&logo=Claris" title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可"></a></p></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="chat_btn" type="button" title="聊天"><i class="fas fa-sms"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">本地搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script src="/js/search/local-search.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"><script>function loadValine () {
+  function initValine () {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: 'zHUfFgUbITfMSQGuSPgS2e3C-gzGzoHsz',
+      appKey: 'yPXpeKX8VJxdFRPEsDaqNgEY',
+      avatar: 'wavatar',
+      serverURLs: 'https://zhuffgub.lc-cn-n1-shared.com',
+      emojiMaps: "",
+      path: window.location.pathname,
+      visitor: true,
+      master: '447d56ab3606de5490a2109d3e441219,135d837ea1033c9787dd307e59884d36'.split(','),
+      friends: '5c?????bfe6rfc72a????e268ad3819c'.split(','),
+      tagMeta: '博主,小伙伴,访客'.split(',')
+        
+    }, {"placeholder":"请输入内容～"}))
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/gh/HCLonely/Valine@latest/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !true) {
+  if (true) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script><script>function addGitalkSource () {
+  const ele = document.createElement('link')
+  ele.rel = 'stylesheet'
+  ele.href= 'https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css'
+  document.getElementsByTagName('head')[0].appendChild(ele)
+}
+
+function loadGitalk () {
+  function initGitalk () {
+    var gitalk = new Gitalk(Object.assign({
+      clientID: '052d9d6486112e93fa50',
+      clientSecret: '6fea35bfb7a17521694a95f705683622976d2f53',
+      repo: 'gitalk',
+      owner: 'iwangchuanli',
+      admin: ['iwangchuanli'],
+      id: 'c8e58f8913d99d961efc31e56929feda',
+      updateCountCallback: commentCount
+    },null))
+
+    gitalk.render('gitalk-container')
+  }
+
+  if (typeof Gitalk === 'function') initGitalk()
+  else {
+    addGitalkSource()
+    getScript('https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.js').then(initGitalk)
+  }
+}
+
+function commentCount(n){
+  let isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+  if (isCommentCount) {
+    isCommentCount.innerHTML= n
+  }
+}
+
+if ('Valine' === 'Gitalk' || !true) {
+  if (true) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+  else loadGitalk()
+} else {
+  function loadOtherComment () {
+    loadGitalk()
+  }
+}</script></div><div class="aplayer no-destroy" data-id="7355841544" data-server="netease" data-type="playlist" data-fixed="true" data-autoplay="false"> </div><script async src="/js/grayscale.js"></script><script async src="//at.alicdn.com/t/font_1885008_srfhrsykmk.js"></script><script>((window.gitter = {}).chat = {}).options = {
+  disableDefaultChat: true,
+};
+document.addEventListener('gitter-sidecar-ready', (e) => {
+  const GitterChat = e.detail.Chat
+  let chat
+
+  function initGitter () {
+    chat = new GitterChat({
+      room: 'wangchuangli-/community',
+      activationElement: '#chat_btn'
+    });
+  }
+
+  initGitter()
+
+  if (true) {
+    document.addEventListener('pjax:complete', () => {
+      chat.destroy()
+      initGitter()
+    })
+  }
+
+})</script><script src="https://sidecar.gitter.im/dist/sidecar.v1.js" async="async" defer="defer"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/meting@1.2.0/dist/Meting.min.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = ["title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"]):not([href="/music/"]):not([href="/no-pjax/"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.tocScrollFn && window.removeEventListener('scroll', window.tocScrollFn)
+  window.scrollCollect && window.removeEventListener('scroll', scrollCollect)
+
+  typeof preloader === 'object' && preloader.initLoading()
+  document.getElementById('rightside').style.cssText = "opacity: ''; transform: ''"
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+
+  typeof preloader === 'object' && preloader.endLoading()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><!-- hexo injector body_end start --><script data-pjax>
+  function butterfly_swiper_injector_config(){
+    var parent_div_git = document.getElementById('recent-posts');
+    var item_html = '<div class="recent-post-item" style="height: auto;width: 100%"><div class="blog-slider swiper-container-fade swiper-container-horizontal" id="swiper_container"><div class="blog-slider__wrp swiper-wrapper" style="transition-duration: 0ms;"><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" onclick="pjax.loadUrl(&quot;posts/4496.html&quot;);" href="javascript:void(0);" rel="external nofollow noreferrer" alt=""><img width="48" height="48" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img6_L358Nt.jpeg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2018-09-05</span><a class="blog-slider__title" onclick="pjax.loadUrl(&quot;posts/4496.html&quot;);" href="javascript:void(0);" rel="external nofollow noreferrer" alt="">编程系列书单推荐</a><div class="blog-slider__text">再怎么看我也不知道怎么描述它的啦！</div><a class="blog-slider__button" onclick="pjax.loadUrl(&quot;posts/4496.html&quot;);" href="javascript:void(0);" rel="external nofollow noreferrer" alt="">详情       </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" onclick="pjax.loadUrl(&quot;posts/35693.html&quot;);" href="javascript:void(0);" rel="external nofollow noreferrer" alt=""><img width="48" height="48" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img33_fnRUqR.jpeg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2018-11-26</span><a class="blog-slider__title" onclick="pjax.loadUrl(&quot;posts/35693.html&quot;);" href="javascript:void(0);" rel="external nofollow noreferrer" alt="">优秀科技博客订阅</a><div class="blog-slider__text">再怎么看我也不知道怎么描述它的啦！</div><a class="blog-slider__button" onclick="pjax.loadUrl(&quot;posts/35693.html&quot;);" href="javascript:void(0);" rel="external nofollow noreferrer" alt="">详情       </a></div></div></div><div class="blog-slider__pagination swiper-pagination-clickable swiper-pagination-bullets"></div></div></div>';
+    console.log('已挂载butterfly_swiper')
+    parent_div_git.insertAdjacentHTML("afterbegin",item_html)
+    }
+  var elist = 'undefined'.split(',');
+  var cpage = location.pathname;
+  var epage = 'all';
+  var flag = 0;
+
+  for (var i=0;i<elist.length;i++){
+    if (cpage.includes(elist[i])){
+      flag++;
+    }
+  }
+
+  if ((epage ==='all')&&(flag == 0)){
+    butterfly_swiper_injector_config();
+  }
+  else if (epage === cpage){
+    butterfly_swiper_injector_config();
+  }
+  </script><script defer src="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper.min.js"></script><script defer data-pjax src="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper_init.js"></script><!-- hexo injector body_end end --></body></html>

@@ -1,0 +1,989 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>CentOS安装MySQL详解 - 掘金 | 传礼</title><meta name="keywords" content="博客,blog,王传礼,java,python,大数据"><meta name="author" content="传礼,978252321@qq.com"><meta name="copyright" content="传礼"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="首页 沸点 课程 直播 资讯 活动  开放社区商城APP插件               CentOS安装MySQL详解 tianranll   2019年06月18日 01:44 ·  阅读 49783 引言最近某云搞活动，买了个服务器作为平时学习和测试用，新机器啥也没有，一些常用软件的安装是免不了的，于是乎想着把安装过程都详细记录下来，一是做个备忘，二是给有需要的同学作个参考。 Linu">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CentOS安装MySQL详解 - 掘金">
+<meta property="og:url" content="https://iwangchuanli.github.io/posts/12000.html">
+<meta property="og:site_name" content="传礼">
+<meta property="og:description" content="首页 沸点 课程 直播 资讯 活动  开放社区商城APP插件               CentOS安装MySQL详解 tianranll   2019年06月18日 01:44 ·  阅读 49783 引言最近某云搞活动，买了个服务器作为平时学习和测试用，新机器啥也没有，一些常用软件的安装是免不了的，于是乎想着把安装过程都详细记录下来，一是做个备忘，二是给有需要的同学作个参考。 Linu">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img36_H3Vi3i.jpeg">
+<meta property="article:published_time" content="2022-11-28T07:04:49.753Z">
+<meta property="article:modified_time" content="2022-05-26T06:51:19.000Z">
+<meta property="article:author" content="传礼">
+<meta property="article:tag" content="博客,blog,王传礼,java,python,大数据">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img36_H3Vi3i.jpeg"><link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/03/favicons_uH14Fb.gif"><link rel="canonical" href="https://iwangchuanli.github.io/posts/12000"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin=""/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta name="baidu-site-verification" content="qKvGNFZPF9"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?39bd6e37a6e70dc030e6a043a642784e";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: 传礼","link":"链接: ","source":"来源: 传礼","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#121212","position":"bottom-left"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: true,
+  islazyload: true,
+  isAnchor: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'CentOS安装MySQL详解 - 掘金',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-05-26 06:51:19'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/custom.css"  media="defer" onload="this.media='all'"><!-- hexo injector head_end start --><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiperstyle.css" media="print" onload="this.media='all'"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.1"><link rel="alternate" href="/atom.xml" title="传礼" type="application/atom+xml">
+</head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/03/photo_NZBQPu.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><div class="data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">511</div></a></div><div class="data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">50</div></a></div><div class="data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">22</div></a></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 归档</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-calendar"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 开发</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/Java"><i class="fa-fw fa fa-music"></i><span> Java</span></a></li><li><a class="site-page child" href="/categories/Python"><i class="fa-fw fa fa-music"></i><span> Python</span></a></li><li><a class="site-page child" href="/categories/VUE"><i class="fa-fw fa fa-music"></i><span> VUE</span></a></li><li><a class="site-page child" href="/categories/MySQL"><i class="fa-fw fa fa-music"></i><span> MySQL</span></a></li><li><a class="site-page child" href="/categories/Redis"><i class="fa-fw fa fa-music"></i><span> Redis</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 架构</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/Spring"><i class="fa-fw fa fa-music"></i><span> Spring</span></a></li><li><a class="site-page child" href="/categories/microServeices"><i class="fa-fw fa fa-music"></i><span> 微服务</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 运维</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/Docker"><i class="fa-fw fa fa-music"></i><span> Docker</span></a></li><li><a class="site-page child" href="/categories/Linux"><i class="fa-fw fa fa-music"></i><span> Linux</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 分享</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/tags/Tools"><i class="fa-fw fa fa-music"></i><span> 工具</span></a></li><li><a class="site-page child" href="/tags/guide"><i class="fa-fw fa fa-music"></i><span> 教程</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 项目</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/tags/Tools"><i class="fa-fw fa fa-music"></i><span> 工具</span></a></li><li><a class="site-page child" href="/tags/guide"><i class="fa-fw fa fa-music"></i><span> 教程</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-heartbeat"></i><span> 娱乐</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/gallery/"><i class="fa-fw fa fa-images"></i><span> 图库</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fa fa-film"></i><span> 电影</span></a></li><li><a class="site-page child" href="/books/"><i class="fa-fw fa fa-book"></i><span> 图书</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 我的</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/artitalk/"><i class="fa-fw fa fa-commenting"></i><span> 说说</span></a></li><li><a class="site-page child" href="/todo/"><i class="fa-fw fa fa-flag"></i><span> TODO</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img36_H3Vi3i.jpeg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">传礼</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 归档</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-calendar"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 开发</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/Java"><i class="fa-fw fa fa-music"></i><span> Java</span></a></li><li><a class="site-page child" href="/categories/Python"><i class="fa-fw fa fa-music"></i><span> Python</span></a></li><li><a class="site-page child" href="/categories/VUE"><i class="fa-fw fa fa-music"></i><span> VUE</span></a></li><li><a class="site-page child" href="/categories/MySQL"><i class="fa-fw fa fa-music"></i><span> MySQL</span></a></li><li><a class="site-page child" href="/categories/Redis"><i class="fa-fw fa fa-music"></i><span> Redis</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 架构</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/Spring"><i class="fa-fw fa fa-music"></i><span> Spring</span></a></li><li><a class="site-page child" href="/categories/microServeices"><i class="fa-fw fa fa-music"></i><span> 微服务</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 运维</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/Docker"><i class="fa-fw fa fa-music"></i><span> Docker</span></a></li><li><a class="site-page child" href="/categories/Linux"><i class="fa-fw fa fa-music"></i><span> Linux</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 分享</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/tags/Tools"><i class="fa-fw fa fa-music"></i><span> 工具</span></a></li><li><a class="site-page child" href="/tags/guide"><i class="fa-fw fa fa-music"></i><span> 教程</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 项目</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/tags/Tools"><i class="fa-fw fa fa-music"></i><span> 工具</span></a></li><li><a class="site-page child" href="/tags/guide"><i class="fa-fw fa fa-music"></i><span> 教程</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-heartbeat"></i><span> 娱乐</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/gallery/"><i class="fa-fw fa fa-images"></i><span> 图库</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fa fa-film"></i><span> 电影</span></a></li><li><a class="site-page child" href="/books/"><i class="fa-fw fa fa-book"></i><span> 图书</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 我的</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/artitalk/"><i class="fa-fw fa fa-commenting"></i><span> 说说</span></a></li><li><a class="site-page child" href="/todo/"><i class="fa-fw fa fa-flag"></i><span> TODO</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">CentOS安装MySQL详解 - 掘金</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-11-28T07:04:49.753Z" title="发表于 2022-11-28 07:04:49">2022-11-28</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-05-26T06:51:19.000Z" title="更新于 2022-05-26 06:51:19">2022-05-26</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">5.1k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>19分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="CentOS安装MySQL详解 - 掘金"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/"><img width="107" height="22" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/e08da34488b114bd4c665ba2fa520a31_d27effcbdc5642e59.svg"/></a></p>
+<ul>
+<li><ul>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/">首页</a><ul>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/pins">沸点</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/course">课程</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/live">直播</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/news">资讯</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/events/all">活动</a></li>
+</ul>
+开放社区<a target="_blank" rel="noopener external nofollow noreferrer" href="https://detail.youzan.com/show/goods/newest?kdt_id=104340304">商城</a><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/app?utm_source=jj_nav">APP</a><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/extension?utm_source=jj_nav">插件</a></li>
+</ul>
+</li>
+<li><ul>
+<li><img width="16" height="16" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/1e8ab9a22f0ddc36349f60b38900d0bd_20c8dcbb80f647368.svg"/>
+    </li>
+</ul>
+</li>
+<li><p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/vip-presale?utm_source=web_nav"><img width="36" height="36" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/vip-entry.a14de9c_63afc5d3932049db97d12eed687bf0fa.png"/></a></p>
+</li>
+</ul>
+<h1 id="CentOS安装MySQL详解"><a href="#CentOS安装MySQL详解" class="headerlink" title="CentOS安装MySQL详解"></a>CentOS安装MySQL详解</h1><p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/4125023359730120"><img width="40" height="40" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/3ca016afea8ab3edd98f09023ff671fd_3dca516679e04673b.png"/></a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/4125023359730120">tianranll <img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/f597b88d22ce5370bd94495780459040_dfb265188c664509a.svg" alt="lv-2"></a> </p>
+<p>2019年06月18日 01:44 ·  阅读 49783</p>
+<h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>最近某云搞活动，买了个服务器作为平时学习和测试用，新机器啥也没有，一些常用软件的安装是免不了的，于是乎想着把安装过程都详细记录下来，一是做个备忘，二是给有需要的同学作个参考。</p>
+<p>Linux上安装软件常见的几种方式：</p>
+<ul>
+<li>源码编译</li>
+<li>压缩包解压（一般为tar.gz）</li>
+<li>编译好的安装包（RPM、DPKG等）</li>
+<li>在线安装（YUM、APT等）</li>
+</ul>
+<p>以上几种方式便捷性依次增加，但通用性依次下降，比如直接下载压缩包进行解压，这种方式一般需要自己做一些额外的配置工作，但只要掌握了方法，各个平台基本都适用，YUM虽然简单，但是平台受限，网络受限，必要的时候还需要增加一些特定YUM源。</p>
+<p>几种安装方式最好都能掌握，原则上能用简单的就用简单的：YUM&gt;RPM&gt;tar.gz&gt;源码</p>
+<p>本文是介绍MySQL在CentOS上的安装，主要步骤都是参考了MySQL官方文档：<a href="https://link.juejin.cn/?target=https://dev.mysql.com/doc/refman/5.7/en/installing.html" rel="external nofollow noreferrer" title="https://dev.mysql.com/doc/refman/5.7/en/installing.html">dev.mysql.com/doc/refman/…</a></p>
+<p>为了测试不同安装方式，反复折腾了好几次，装了删，删了装，每个步骤都是亲测成功的，每条命令都是亲自执行过的，可以放心使用</p>
+<p>咱们闲话少说，书归正传（这闲话就不少了…）</p>
+<h2 id="一、YUM"><a href="#一、YUM" class="headerlink" title="一、YUM"></a>一、YUM</h2><h4 id="0、删除已安装的MySQL"><a href="#0、删除已安装的MySQL" class="headerlink" title="0、删除已安装的MySQL"></a>0、删除已安装的MySQL</h4><h5 id="检查MariaDB"><a href="#检查MariaDB" class="headerlink" title="检查MariaDB"></a>检查MariaDB</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">shell&gt; rpm -qa|grep mariadb</span><br><span class="line">mariadb-server-5.5.60-1.el7_5.x86_64</span><br><span class="line">mariadb-5.5.60-1.el7_5.x86_64</span><br><span class="line">mariadb-libs-5.5.60-1.el7_5.x86_64</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
+
+<h5 id="删除mariadb"><a href="#删除mariadb" class="headerlink" title="删除mariadb"></a>删除mariadb</h5><p>如果不存在（上面检查结果返回空）则跳过步骤</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">shell&gt; rpm -e --nodeps mariadb-server</span><br><span class="line">shell&gt; rpm -e --nodeps mariadb</span><br><span class="line">shell&gt; rpm -e --nodeps mariadb-libs</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
+
+<p><em>其实yum方式安装是可以不用删除mariadb的，安装MySQL会覆盖掉之前已存在的mariadb</em></p>
+<h5 id="检查MySQL"><a href="#检查MySQL" class="headerlink" title="检查MySQL"></a>检查MySQL</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">shell&gt; rpm -qa|grep mysql</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
+
+<h5 id="删除MySQL"><a href="#删除MySQL" class="headerlink" title="删除MySQL"></a>删除MySQL</h5><p>如果不存在（上面检查结果返回空）则跳过步骤</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">shell&gt; rpm -e --nodeps xxx</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
+
+<h3 id="1、添加MySQL-Yum-Repository"><a href="#1、添加MySQL-Yum-Repository" class="headerlink" title="1、添加MySQL Yum Repository"></a>1、添加MySQL Yum Repository</h3><blockquote>
+<p>从CentOS 7开始，MariaDB成为Yum源中默认的数据库安装包。也就是说在CentOS 7及以上的系统中使用yum安装MySQL默认安装的会是MariaDB（MySQL的一个分支）。如果想安装官方MySQL版本，需要使用MySQL提供的Yum源。</p>
+</blockquote>
+<h5 id="下载MySQL源"><a href="#下载MySQL源" class="headerlink" title="下载MySQL源"></a>下载MySQL源</h5><p>官网地址：<a href="https://link.juejin.cn/?target=https://dev.mysql.com/downloads/repo/yum/" rel="external nofollow noreferrer" title="https://dev.mysql.com/downloads/repo/yum/">dev.mysql.com/downloads/r…</a></p>
+<p>查看系统版本：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">shell&gt; cat /etc/redhat-release</span><br><span class="line">CentOS Linux release 7.6.1810 (Core)</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
+
+<p>选择对应的版本进行下载，例如CentOS 7当前在官网查看最新Yum源的下载地址为： <a href="https://link.juejin.cn/?target=https://dev.mysql.com/get/mysql80-community-release-el7-3.noarch.rpm" rel="external nofollow noreferrer" title="https://dev.mysql.com/get/mysql80-community-release-el7-3.noarch.rpm">dev.mysql.com/get/mysql80…</a></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">shell&gt; wget https://dev.mysql.com/get/mysql80-community-release-el7-3.noarch.rpm</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
+
+<h5 id="安装MySQL源"><a href="#安装MySQL源" class="headerlink" title="安装MySQL源"></a>安装MySQL源</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">shell&gt; sudo rpm -Uvh platform-and-version-specific-package-name.rpm</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
+
+<p>例如CentOS7当前最新MySQL源安装：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">shell&gt; sudo rpm -Uvh mysql80-community-release-el7-3.noarch.rpm</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
+
+<h5 id="检查是否安装成功"><a href="#检查是否安装成功" class="headerlink" title="检查是否安装成功"></a>检查是否安装成功</h5><p>执行成功后会在<code>/etc/yum.repos.d/</code>目录下生成两个repo文件<code>mysql-community.repo</code>及 <code>mysql-community-source.repo</code></p>
+<p>并且通过<code>yum repolist</code>可以看到mysql相关资源</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">shell&gt; yum repolist enabled | grep &quot;mysql.*-community.*&quot;</span><br><span class="line">!mysql-connectors-community/x86_64 MySQL Connectors Community                108</span><br><span class="line">!mysql-tools-community/x86_64      MySQL Tools Community                      90</span><br><span class="line">!mysql80-community/x86_64          MySQL 8.0 Community Server                113</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
+
+<h3 id="2、选择MySQL版本"><a href="#2、选择MySQL版本" class="headerlink" title="2、选择MySQL版本"></a>2、选择MySQL版本</h3><p>使用MySQL Yum Repository安装MySQL，默认会选择当前最新的稳定版本，例如通过上面的MySQL源进行安装的话，默安装会选择MySQL 8.0版本，如果就是想要安装该版本，可以直接跳过此步骤，如果不是，比如我这里希望安装MySQL5.7版本，就需要“切换一下版本”：</p>
+<h5 id="查看当前MySQL-Yum-Repository中所有MySQL版本（每个版本在不同的子仓库中）"><a href="#查看当前MySQL-Yum-Repository中所有MySQL版本（每个版本在不同的子仓库中）" class="headerlink" title="查看当前MySQL Yum Repository中所有MySQL版本（每个版本在不同的子仓库中）"></a>查看当前MySQL Yum Repository中所有MySQL版本（每个版本在不同的子仓库中）</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">shell&gt; yum repolist all | grep mysql</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
+
+<h5 id="切换版本"><a href="#切换版本" class="headerlink" title="切换版本"></a>切换版本</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">shell&gt; sudo yum-config-manager --disable mysql80-community</span><br><span class="line">shell&gt; sudo yum-config-manager --enable mysql57-community</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
+
+<p>除了使用yum-config-manager之外，还可以直接编辑<code>/etc/yum.repos.d/mysql-community.repo</code>文件</p>
+<p>enabled=0禁用</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[mysql80-community]</span><br><span class="line">name=MySQL 8.0 Community Server</span><br><span class="line">baseurl=http://repo.mysql.com/yum/mysql-8.0-community/el/7/$basearch/</span><br><span class="line">enabled=0</span><br><span class="line">gpgcheck=1</span><br><span class="line">gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-mysql</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
+
+<p>enabled=1启用</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># Enable to use MySQL 5.7</span><br><span class="line">[mysql57-community]</span><br><span class="line">name=MySQL 5.7 Community Server</span><br><span class="line">baseurl=http://repo.mysql.com/yum/mysql-5.7-community/el/7/$basearch/</span><br><span class="line">enabled=1</span><br><span class="line">gpgcheck=1</span><br><span class="line">gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-mysql</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
+
+<h5 id="检查当前启用的MySQL仓库"><a href="#检查当前启用的MySQL仓库" class="headerlink" title="检查当前启用的MySQL仓库"></a>检查当前启用的MySQL仓库</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">shell&gt; yum repolist enabled | grep mysql</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
+
+<p><em>如果同时启用了多个仓库，安装时会选择最新版本</em></p>
+<h3 id="3、安装MySQL"><a href="#3、安装MySQL" class="headerlink" title="3、安装MySQL"></a>3、安装MySQL</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">shell&gt; sudo yum install mysql-community-server</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
+
+<p>该命令会安装MySQL服务器 (mysql-community-server) 及其所需的依赖、相关组件，包括mysql-community-client、mysql-community-common、mysql-community-libs等</p>
+<p>如果带宽不够，这个步骤时间会比较长，请耐心等待~</p>
+<h3 id="4、启动MySQL"><a href="#4、启动MySQL" class="headerlink" title="4、启动MySQL"></a>4、启动MySQL</h3><h5 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">shell&gt; sudo systemctl start mysqld.service</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
+
+<p>CentOS 6：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">shell&gt; sudo service mysqld start</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
+
+<h5 id="查看状态"><a href="#查看状态" class="headerlink" title="查看状态"></a>查看状态</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">	shell&gt; sudo systemctl status mysqld.service</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
+
+<p>CentOS 6：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">shell&gt; sudo service mysqld status</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
+
+<h5 id="停止"><a href="#停止" class="headerlink" title="停止"></a>停止</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">shell&gt; sudo systemctl stop mysqld.service</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
+
+<p>CentOS 6：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">shell&gt; sudo service mysqld stop</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
+
+<h5 id="重启"><a href="#重启" class="headerlink" title="重启"></a>重启</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">shell&gt; sudo systemctl restart mysqld.service</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
+
+<p>CentOS 6：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">shell&gt; sudo service mysqld restart</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
+
+<h3 id="5、修改密码"><a href="#5、修改密码" class="headerlink" title="5、修改密码"></a>5、修改密码</h3><h5 id="初始密码"><a href="#初始密码" class="headerlink" title="初始密码"></a>初始密码</h5><p>MySQL第一次启动后会创建超级管理员账号<code>root@localhost</code>，初始密码存储在日志文件中：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">shell&gt; sudo grep &#x27;temporary password&#x27; /var/log/mysqld.log</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">L8Pp#rGyw,;c</span><br></pre></td></tr></table></figure>
+
+<h5 id="修改默认密码"><a href="#修改默认密码" class="headerlink" title="修改默认密码"></a>修改默认密码</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">shell&gt; mysql -uroot -p</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mysql&gt; ALTER USER &#x27;root&#x27;@&#x27;localhost&#x27; IDENTIFIED BY &#x27;123456&#x27;;</span><br><span class="line">ERROR 1819 (HY000): Your password does not satisfy the current policy requirements</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
+<p>ALTER USER ‘root‘@’localhost’ IDENTIFIED BY ‘fyJyc@123’;</p>
+<p>出现上面的提示是因为密码太简单了，解决方法如下：</p>
+<ol>
+<li> 使用复杂密码，MySQL默认的密码策略是要包含数字、字母及特殊字符；</li>
+<li> 如果只是测试用，不想用那么复杂的密码，可以修改默认策略，即<code>validate_password_policy</code>（以及<code>validate_password_length</code>等相关参数），使其支持简单密码的设定，具体方法可以自行百度；</li>
+<li> 修改配置文件<code>/etc/my.cnf</code>，添加<code>validate_password=OFF</code>，保存并重启MySQL</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mysql&gt; ALTER USER &#x27;root&#x27;@&#x27;localhost&#x27; IDENTIFIED BY &#x27;123456&#x27;;</span><br><span class="line">Query OK, 0 rows affected (0.00 sec)</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
+
+<h3 id="6、允许root远程访问"><a href="#6、允许root远程访问" class="headerlink" title="6、允许root远程访问"></a>6、允许root远程访问</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mysql&gt; GRANT ALL PRIVILEGES ON *.* TO &#x27;root&#x27;@&#x27;%&#x27; IDENTIFIED BY &#x27;123456&#x27; WITH GRANT OPTION;</span><br><span class="line">mysql&gt; FLUSH PRIVILEGES;</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
+
+<h3 id="7、设置编码为utf8"><a href="#7、设置编码为utf8" class="headerlink" title="7、设置编码为utf8"></a>7、设置编码为utf8</h3><h5 id="查看编码"><a href="#查看编码" class="headerlink" title="查看编码"></a>查看编码</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mysql&gt; SHOW VARIABLES LIKE &#x27;character%&#x27;;</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
+
+<h5 id="设置编码"><a href="#设置编码" class="headerlink" title="设置编码"></a>设置编码</h5><p>编辑/etc/my.cnf，[mysqld]节点增加以下代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[mysqld]</span><br><span class="line">character_set_server=utf8</span><br><span class="line">init-connect=&#x27;SET NAMES utf8&#x27;</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
+
+<h3 id="8、设置开机启动"><a href="#8、设置开机启动" class="headerlink" title="8、设置开机启动"></a>8、设置开机启动</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">shell&gt; systemctl enable mysqld</span><br><span class="line">shell&gt; systemctl daemon-reload</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
+
+<h2 id="二、RPM"><a href="#二、RPM" class="headerlink" title="二、RPM"></a>二、RPM</h2><blockquote>
+<p>除安装过程外，其他步骤和yum方式安装相同，不再赘述</p>
+</blockquote>
+<h3 id="0、删除已旧版本"><a href="#0、删除已旧版本" class="headerlink" title="0、删除已旧版本"></a>0、删除已旧版本</h3><p>略</p>
+<h3 id="1、下载MySQL安装包"><a href="#1、下载MySQL安装包" class="headerlink" title="1、下载MySQL安装包"></a>1、下载MySQL安装包</h3><p>下载地址：<a href="https://link.juejin.cn/?target=https://dev.mysql.com/downloads/mysql/" rel="external nofollow noreferrer" title="https://dev.mysql.com/downloads/mysql/">dev.mysql.com/downloads/m…</a></p>
+<p>选择对应的版本：</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/16b66894c80e9b32_tplv-t2oaga2asx_2538b99721eb414d9.webp"></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">shell&gt; wget https://dev.mysql.com/get/Downloads/MySQL-5.7/mysql-5.7.26-1.el7.x86_64.rpm-bundle.tar</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
+
+<h3 id="2、安装MySQL"><a href="#2、安装MySQL" class="headerlink" title="2、安装MySQL"></a>2、安装MySQL</h3><h5 id="解压（解打包）"><a href="#解压（解打包）" class="headerlink" title="解压（解打包）"></a>解压（解打包）</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">shell&gt; tar -xvf mysql-5.7.26-1.el7.x86_64.rpm-bundle.tar</span><br><span class="line">tar -xvf mysql-5.7.26-1.el7.x86_64.rpm-bundle.tar</span><br><span class="line">mysql-community-embedded-devel-5.7.26-1.el7.x86_64.rpm</span><br><span class="line">mysql-community-libs-5.7.26-1.el7.x86_64.rpm</span><br><span class="line">mysql-community-embedded-5.7.26-1.el7.x86_64.rpm</span><br><span class="line">mysql-community-test-5.7.26-1.el7.x86_64.rpm</span><br><span class="line">mysql-community-embedded-compat-5.7.26-1.el7.x86_64.rpm</span><br><span class="line">mysql-community-common-5.7.26-1.el7.x86_64.rpm</span><br><span class="line">mysql-community-devel-5.7.26-1.el7.x86_64.rpm</span><br><span class="line">mysql-community-client-5.7.26-1.el7.x86_64.rpm</span><br><span class="line">mysql-community-server-5.7.26-1.el7.x86_64.rpm</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
+
+<p>我们主要安装的是这四个（如果有需要也可以一并安装其它的）：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mysql-community-libs-5.7.26-1.el7.x86_64.rpm</span><br><span class="line">mysql-community-common-5.7.26-1.el7.x86_64.rpm</span><br><span class="line">mysql-community-client-5.7.26-1.el7.x86_64.rpm</span><br><span class="line">mysql-community-server-5.7.26-1.el7.x86_64.rpm</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
+
+<p>如果不想下载rpm-bundle，官网也提供单独的rpm下载链接</p>
+<h5 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h5><p>各rpm包是有依赖关系的，所以需要按照一定顺序进行安装，安装期间如果提示缺少哪些依赖也要先安装相应的包：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">shell&gt; rpm -ivh mysql-community-common-5.7.26-1.el7.x86_64.rpm</span><br><span class="line">shell&gt; rpm -ivh mysql-community-libs-5.7.26-1.el7.x86_64.rpm</span><br><span class="line">shell&gt; rpm -ivh mysql-community-client-5.7.26-1.el7.x86_64.rpm</span><br><span class="line">shell&gt; rpm -ivh mysql-community-server-5.7.26-1.el7.x86_64.rpm</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
+
+<p>还有一种简单的方式，可以自动处理各个包之间的依赖关系并自动下载缺少的依赖：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">shell&gt; yum install mysql-community-&#123;server,client,common,libs&#125;-*</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
+
+<p><em>注意：上面的<code>yum install</code>命令需要在tar解压之后的各个rpm包所在目录内执行，否则就变成yum方式安装了，需要配置MySQL的yum源并且速度很慢，还要当前机器支持外网访问</em></p>
+<h3 id="3、设置"><a href="#3、设置" class="headerlink" title="3、设置"></a>3、设置</h3><p>略</p>
+<h2 id="三、tar-gz"><a href="#三、tar-gz" class="headerlink" title="三、tar.gz"></a>三、tar.gz</h2><h3 id="0、删除旧版本"><a href="#0、删除旧版本" class="headerlink" title="0、删除旧版本"></a>0、删除旧版本</h3><p>略</p>
+<h3 id="1、下载"><a href="#1、下载" class="headerlink" title="1、下载"></a>1、下载</h3><p>下载地址：<a href="https://link.juejin.cn/?target=https://dev.mysql.com/downloads/mysql/" rel="external nofollow noreferrer" title="https://dev.mysql.com/downloads/mysql/">dev.mysql.com/downloads/m…</a></p>
+<p>选择对应的版本：</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/16b668a1b3c258aa_tplv-t2oaga2asx_4fea008ebce94f3cb.webp"></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">shell&gt; wget https://dev.mysql.com/get/Downloads/MySQL-5.7/mysql-5.7.26-linux-glibc2.12-x86_64.tar.gz</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
+
+<h3 id="2、安装-amp-配置："><a href="#2、安装-amp-配置：" class="headerlink" title="2、安装&amp;配置："></a>2、安装&amp;配置：</h3><h5 id="依赖"><a href="#依赖" class="headerlink" title="依赖"></a>依赖</h5><p>MySQL依赖libaio库，如果没有先安装一下：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">shell&gt; yum install libaio</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
+
+<h5 id="创建mysql用户"><a href="#创建mysql用户" class="headerlink" title="创建mysql用户"></a>创建mysql用户</h5><p>不需要登录的一个系统账号，启动MySQL服务时会使用该账号</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">shell&gt; groupadd mysql</span><br><span class="line">shell&gt; useradd -r -g mysql -s /bin/false mysql</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
+
+<h5 id="解压并创建链接"><a href="#解压并创建链接" class="headerlink" title="解压并创建链接"></a>解压并创建链接</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">shell&gt; cd /usr/local</span><br><span class="line">shell&gt; tar zxvf /path/to/mysql-5.7.26-linux-glibc2.12-x86_64.tar.gz</span><br><span class="line">shell&gt; ln -s mysql-5.7.26-linux-glibc2.12-x86_64/ mysql</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
+
+<h5 id="创建mysql-files目录"><a href="#创建mysql-files目录" class="headerlink" title="创建mysql-files目录"></a>创建mysql-files目录</h5><p>这一步并不是必须的，可以设置secure_file_priv的值指向该目录（用于限制数据导入导出操作的目录）</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">shell&gt; cd mysql</span><br><span class="line">shell&gt; mkdir mysql-files</span><br><span class="line">shell&gt; chown mysql:mysql mysql-files</span><br><span class="line">shell&gt; chmod 750 mysql-files</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
+
+<h5 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">shell&gt; bin/mysqld --initialize --user=mysql</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
+
+<p>如果初始化时报错如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">error while loading shared libraries: libnuma.so.1: cannot open shared object file: No such file or directory</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
+
+<p>是因为libnuma没有安装（或者默认安装的是32位），我们这里需要64位的：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">shell&gt; yum install numactl.x86_64</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
+
+<p>执行完后重新初始化即可 初始化成功后返回结果中有一行包含初始密码，第一次登录时要用到它：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">A temporary password is generated for root@localhost: 8M0ary878s*U</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
+
+<h5 id="启用SSL（非必须）"><a href="#启用SSL（非必须）" class="headerlink" title="启用SSL（非必须）"></a>启用SSL（非必须）</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">shell&gt; bin/mysql_ssl_rsa_setup</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
+
+<h5 id="启动-1"><a href="#启动-1" class="headerlink" title="启动"></a>启动</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">shell&gt; bin/mysqld_safe --user=mysql &amp;</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
+
+<p>查看进程可以看到一些默认参数，可以在配置文件中修改这些参数</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">shell&gt; ps -ef | grep mysql</span><br><span class="line">root     14604 12719  0 00:03 pts/0    00:00:00 /bin/sh bin/mysqld_safe --user=mysql</span><br><span class="line">mysql    14674 14604  0 00:03 pts/0    00:00:00 /usr/local/mysql/bin/mysqld --basedir=/usr/local/mysql --datadir=/usr/local/mysql/data --plugin-dir=/usr/local/mysql/lib/plugin --user=mysql --log-error=VM_2_24_centos.err --pid-file=VM_2_24_centos.pid</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
+
+<h5 id="设置环境变量"><a href="#设置环境变量" class="headerlink" title="设置环境变量"></a>设置环境变量</h5><p>避免每次执行mysql命令都要加上路径，在<code>/etc/profile</code>中添加：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">export PATH=$PATH:/usr/local/mysql/bin</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
+
+<h5 id="设置为服务"><a href="#设置为服务" class="headerlink" title="设置为服务"></a>设置为服务</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">shell&gt; cp support-files/mysql.server /etc/init.d/mysqld</span><br><span class="line">shell&gt; service mysqld start|stop|restart|status</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
+
+<h5 id="开机启动"><a href="#开机启动" class="headerlink" title="开机启动"></a>开机启动</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">shell&gt; chkconfig --add mysqld</span><br><span class="line">shell&gt; chkconfig --list mysqld</span><br><span class="line">mysqld         	0:关	1:关	2:开	3:开	4:开	5:开	6:关</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
+
+<p><em>其他配置与yum、rpm相同，不再赘述</em></p>
+<h2 id="四、源码安装"><a href="#四、源码安装" class="headerlink" title="四、源码安装"></a>四、源码安装</h2><p>就别费这个劲了吧…</p>
+<h2 id="结束语"><a href="#结束语" class="headerlink" title="结束语"></a>结束语</h2><p>我们不是Linux运维专家，也不是MySQL专家，生在这个年代也不知算是幸福还是不幸，线上的环境已经越来越少有人（主要指平时写代码的人）手动去搞这些数据库、中间件的安装配置了，为什么呢？因为各种云产品实在是太方便了呀，一般的公司也不会差这几个钱，既方便又稳定，何乐而不为呢~但是我们自己搞一搞用于自己测试还是必要的，而且还有不少公司的开发环境、测试环境偶尔还是需要手动搞一下的，当然，还有那些个自己搞机房的巨头们。</p>
+<p>那我们既然不是专家，上面所写的内容如果有纰漏也是在所难免的，如果被看到了还希望能够及时批评指正~</p>
+<p>分类：</p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/backend">后端</a></p>
+<p>标签：</p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/tag/MySQL">MySQL</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/extension/?utm_source=standalone&utm_medium=post&utm_campaign=extension_promotion">安装掘金浏览器插件</a></p>
+<p>多内容聚合浏览、多引擎快捷搜索、多工具便捷提效、多模式随心畅享，你想要的，这里都有！</p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/extension/?utm_source=standalone&utm_medium=post&utm_campaign=extension_promotion">前往安装</a></p>
+<p>评论</p>
+<img width="40" height="40" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/3d037b5ac4d71e77f538b18b04f1b240_6926a14fcf8248dea.png"/>
+
+<p>热门评论</p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/3949101497717239"><img width="40" height="40" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/3d037b5ac4d71e77f538b18b04f1b240_6926a14fcf8248dea.png"/></a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/3949101497717239">dufeng <img width="21" height="13" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/f597b88d22ce5370bd94495780459040_dfb265188c664509a.svg"/></a> </p>
+<p>web前端 1年前</p>
+<p>启动提示： Failed to start mysqld.service: Unit not found.</p>
+<p>点赞</p>
+<p>2</p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/3624450345939870"><img width="24" height="24" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/3d037b5ac4d71e77f538b18b04f1b240_6926a14fcf8248dea.png"/></a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/3624450345939870">用户4639810939756</a></p>
+<p>11月前</p>
+<p>我也是启动的时候报错，好兄弟你有解决吗</p>
+<p>点赞</p>
+<p>回复</p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/3949101497717239"><img width="24" height="24" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/3d037b5ac4d71e77f538b18b04f1b240_6926a14fcf8248dea.png"/></a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/3949101497717239">dufeng <img width="21" height="13" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/f597b88d22ce5370bd94495780459040_dfb265188c664509a.svg"/></a> </p>
+<p>回复</p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/3624450345939870">用户4639810939756</a></p>
+<p>11月前</p>
+<p>解决了，但是忘了<img width="0" height="20" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/1f602.svg_tplv-t2oaga2asx-image_87fd8725ccfe4e389d.svg"/>好像是不同版本启动命令不一样。和linux环境有关系。</p>
+<p>“</p>
+<p>我也是启动的时候报错，好兄弟你有解决吗</p>
+<p>”</p>
+<p>点赞</p>
+<p>回复</p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/8451822992855"><img width="40" height="40" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/3d037b5ac4d71e77f538b18b04f1b240_6926a14fcf8248dea.png"/></a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/8451822992855">饼饼饼 <img width="21" height="13" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/636691cd590f92898cfcda37357472b8_f23528b867dd4502a.svg"/></a> </p>
+<p>FEer 2年前</p>
+<p>谢谢大佬用第三种一次就成功了 另外我想说的是如果有人碰到navicate连接数据库的问题可以找我 刚刚踩了很多坑<img width="0" height="20" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/1f603.svg_tplv-t2oaga2asx-image_792e883297b8489dae.svg"/><img width="0" height="20" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/1f603.svg_tplv-t2oaga2asx-image_792e883297b8489dae.svg"/></p>
+<p>点赞</p>
+<p>1</p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/4125023359730120"><img width="24" height="24" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/3d037b5ac4d71e77f538b18b04f1b240_6926a14fcf8248dea.png"/></a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/4125023359730120">tianranll <img width="21" height="13" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/f597b88d22ce5370bd94495780459040_dfb265188c664509a.svg"/></a> </p>
+<p>（作者） 2年前</p>
+<p><img width="0" height="20" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/1f44f.svg_tplv-t2oaga2asx-image_4eee8e15183e4ad59d.svg"/><img width="0" height="20" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/1f603.svg_tplv-t2oaga2asx-image_792e883297b8489dae.svg"/></p>
+<p>点赞</p>
+<p>回复</p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/8451822464030"><img width="40" height="40" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/3d037b5ac4d71e77f538b18b04f1b240_6926a14fcf8248dea.png"/></a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/8451822464030">要吃早餐 <img width="21" height="13" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/f597b88d22ce5370bd94495780459040_dfb265188c664509a.svg"/></a> </p>
+<p>WEB前端开发 @ 文思海辉 2年前</p>
+<p>写的很详细，谢谢你的帮助。</p>
+<p>点赞</p>
+<p>1</p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/4125023359730120"><img width="24" height="24" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/3d037b5ac4d71e77f538b18b04f1b240_6926a14fcf8248dea.png"/></a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/4125023359730120">tianranll <img width="21" height="13" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/f597b88d22ce5370bd94495780459040_dfb265188c664509a.svg"/></a> </p>
+<p>（作者） 2年前</p>
+<img width="0" height="20" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/1f603.svg_tplv-t2oaga2asx-image_792e883297b8489dae.svg"/>
+
+<p>点赞</p>
+<p>回复</p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/3315782800379373"><img width="40" height="40" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/3d037b5ac4d71e77f538b18b04f1b240_6926a14fcf8248dea.png"/></a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/3315782800379373">phostann <img width="21" height="13" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/636691cd590f92898cfcda37357472b8_f23528b867dd4502a.svg"/></a> </p>
+<p>保姆 2年前</p>
+<p><img width="0" height="20" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/1f612.svg_tplv-t2oaga2asx-image_c64cfb9ad8184f8795.svg"/>TXY</p>
+<p>点赞</p>
+<p>1</p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/4125023359730120"><img width="24" height="24" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/3d037b5ac4d71e77f538b18b04f1b240_6926a14fcf8248dea.png"/></a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/4125023359730120">tianranll <img width="21" height="13" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/f597b88d22ce5370bd94495780459040_dfb265188c664509a.svg"/></a> </p>
+<p>（作者） 2年前</p>
+<p>暴露了<img width="0" height="20" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/1f633.svg_tplv-t2oaga2asx-image_c541629106554be9a9.svg"/></p>
+<p>点赞</p>
+<p>回复</p>
+<p>全部评论 31</p>
+<p>最新</p>
+<p>最热</p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/2252216989388823"><img width="40" height="40" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/3d037b5ac4d71e77f538b18b04f1b240_6926a14fcf8248dea.png"/></a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/2252216989388823">用户6553539640783</a></p>
+<p>2月前</p>
+<p>GPG keys错误的可以使用这条命令升级GPG: sudo rpm –import <a href="https://link.juejin.cn/?target=https://repo.mysql.com/RPM-GPG-KEY-mysql-2022" rel="external nofollow noreferrer" title="https://repo.mysql.com/RPM-GPG-KEY-mysql-2022"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/3f843e8626a3844c624fb596dddd9674_8354f71de8a14bf5a.svg">repo.mysql.com</a></p>
+<p>点赞</p>
+<p>回复</p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/3562073406843726"><img width="40" height="40" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/3d037b5ac4d71e77f538b18b04f1b240_6926a14fcf8248dea.png"/></a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/3562073406843726">BostinHoo</a></p>
+<p>4月前</p>
+<p>写的不错，楼主能出一期这几种安装方式，它的原理的文章吗</p>
+<p>点赞</p>
+<p>回复</p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/289926802602029"><img width="40" height="40" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/3d037b5ac4d71e77f538b18b04f1b240_6926a14fcf8248dea.png"/></a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/289926802602029">不爱喝牛nai <img width="21" height="13" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/636691cd590f92898cfcda37357472b8_f23528b867dd4502a.svg"/></a> </p>
+<p>6月前</p>
+<p>USE mysql;<br>CREATE USER ‘user‘@’localhost’ IDENTIFIED BY ‘P@ssW0rd’;<br>GRANT ALL ON <em>.</em> TO ‘user‘@’localhost’;<br>FLUSH PRIVILEGES;</p>
+<p>点赞</p>
+<p>回复</p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/1891584197011367"><img width="40" height="40" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/3d037b5ac4d71e77f538b18b04f1b240_6926a14fcf8248dea.png"/></a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/1891584197011367">ChenJG</a></p>
+<p>6月前</p>
+<p>很好！很方便!<img width="0" height="20" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/jj_emoji_2.cd1e2bd_2f240f0063794284bf100636605ae22.png"/></p>
+<p>点赞</p>
+<p>回复</p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/3949101497717239"><img width="40" height="40" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/3d037b5ac4d71e77f538b18b04f1b240_6926a14fcf8248dea.png"/></a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/3949101497717239">dufeng <img width="21" height="13" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/f597b88d22ce5370bd94495780459040_dfb265188c664509a.svg"/></a> </p>
+<p>web前端 1年前</p>
+<p>启动提示： Failed to start mysqld.service: Unit not found.</p>
+<p>点赞</p>
+<p>2</p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/3624450345939870"><img width="24" height="24" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/3d037b5ac4d71e77f538b18b04f1b240_6926a14fcf8248dea.png"/></a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/3624450345939870">用户4639810939756</a></p>
+<p>11月前</p>
+<p>我也是启动的时候报错，好兄弟你有解决吗</p>
+<p>点赞</p>
+<p>回复</p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/3949101497717239"><img width="24" height="24" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/3d037b5ac4d71e77f538b18b04f1b240_6926a14fcf8248dea.png"/></a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/3949101497717239">dufeng <img width="21" height="13" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/f597b88d22ce5370bd94495780459040_dfb265188c664509a.svg"/></a> </p>
+<p>回复</p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/3624450345939870">用户4639810939756</a></p>
+<p>11月前</p>
+<p>解决了，但是忘了<img width="0" height="20" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/1f602.svg_tplv-t2oaga2asx-image_87fd8725ccfe4e389d.svg"/>好像是不同版本启动命令不一样。和linux环境有关系。</p>
+<p>“</p>
+<p>我也是启动的时候报错，好兄弟你有解决吗</p>
+<p>”</p>
+<p>点赞</p>
+<p>回复</p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/1688446222739591"><img width="40" height="40" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/3d037b5ac4d71e77f538b18b04f1b240_6926a14fcf8248dea.png"/></a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/1688446222739591">NightBreeze</a></p>
+<p>java开发 1年前</p>
+<p>感谢！！安装成功！</p>
+<p>点赞</p>
+<p>回复</p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/4309717223264584"><img width="40" height="40" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/3d037b5ac4d71e77f538b18b04f1b240_6926a14fcf8248dea.png"/></a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/4309717223264584">用户1824698797340</a></p>
+<p>1年前</p>
+<p>mysql8；<br>create user root@’%’ identified by ‘23456’;<br>grant all privileges on <em>.</em> to root@’%’ with grant option;<br>FLUSH PRIVILEGES;</p>
+<p>1</p>
+<p>回复</p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/2805609403516503"><img width="40" height="40" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/3d037b5ac4d71e77f538b18b04f1b240_6926a14fcf8248dea.png"/></a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/2805609403516503">侠客有情剑无情 <img width="21" height="13" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/f597b88d22ce5370bd94495780459040_dfb265188c664509a.svg"/></a> </p>
+<p>web前端 1年前</p>
+<p>注意一下，<br>A temporary password is generated for root@localhost: xxxxx<br>复制密码的时候前面的空格不包含。</p>
+<p>点赞</p>
+<p>回复</p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/2796803833995790"><img width="40" height="40" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/3d037b5ac4d71e77f538b18b04f1b240_6926a14fcf8248dea.png"/></a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/2796803833995790">用户1490584652733</a></p>
+<p>1年前</p>
+<p>安装成功 非常感谢<img width="0" height="20" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/1f44f.svg_tplv-t2oaga2asx-image_4eee8e15183e4ad59d.svg"/></p>
+<p>点赞</p>
+<p>回复</p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/3526889032921223"><img width="40" height="40" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/3d037b5ac4d71e77f538b18b04f1b240_6926a14fcf8248dea.png"/></a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/3526889032921223">JackHateTitanic <img width="21" height="13" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/e108c685147dfe1fb03d4a37257fb417_5c6f591b51b7459c8.svg"/></a> </p>
+<p>前端忽悠工程师 1年前</p>
+<p>感谢，感谢，解决了我的问题</p>
+<p>点赞</p>
+<p>回复</p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/4344880388376541"><img width="40" height="40" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/3d037b5ac4d71e77f538b18b04f1b240_6926a14fcf8248dea.png"/></a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/4344880388376541">myboy <img width="21" height="13" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/f597b88d22ce5370bd94495780459040_dfb265188c664509a.svg"/></a> </p>
+<p>不断学习者 1年前</p>
+<p>感谢你，解决了我的大问题</p>
+<p>点赞</p>
+<p>回复</p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/1969951908826776"><img width="40" height="40" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/3d037b5ac4d71e77f538b18b04f1b240_6926a14fcf8248dea.png"/></a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/1969951908826776">小驴不吃草</a></p>
+<p>1年前</p>
+<p>写的很仔细，有帮助，感谢~<img width="0" height="20" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/1f618.svg_tplv-t2oaga2asx-image_efe77affbb53453691.svg"/></p>
+<p>点赞</p>
+<p>回复</p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/3245414055938445"><img width="40" height="40" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/3d037b5ac4d71e77f538b18b04f1b240_6926a14fcf8248dea.png"/></a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/3245414055938445">张飞肥</a></p>
+<p>PHP摸鱼攻城狮 @ 摸鱼 1年前</p>
+<p>就是来看你 源码安装的 ~！<br>就别费这个劲了吧…<br><img width="0" height="20" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/1f630.svg_tplv-t2oaga2asx-image_473f02762c5c45dd86.svg"/></p>
+<p>点赞</p>
+<p>回复</p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/360295547277822"><img width="40" height="40" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/3d037b5ac4d71e77f538b18b04f1b240_6926a14fcf8248dea.png"/></a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/360295547277822">王采臣 <img width="21" height="13" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/f597b88d22ce5370bd94495780459040_dfb265188c664509a.svg"/></a> </p>
+<p>Python后端开发 @ 家里蹲科技股份有限公司 1年前</p>
+<p>按照顺序安装，安装到这rpm包 报错<br>[root@localhost ~]# rpm -ivh mysql-community-libs-compat-5.7.26-1.el7.x86_64.rpm<br>警告：mysql-community-libs-compat-5.7.26-1.el7.x86_64.rpm: 头V3 DSA/SHA1 Signature, 密钥 ID 5072e1f5: NOKEY<br>错误：依赖检测失败：<br>mysql-community-libs(x86-64) &gt;= 5.7.9 被 mysql-community-libs-compat-5.7.26-1.el7.x86_64 需要<br>mariadb-libs 被 mysql-community-libs-compat-5.7.26-1.el7.x86_64 取代<br>[root@localhost ~]# rpm -ivh mysql-community-libs-5.7.26-1.el7.x86_64.rpm<br>警告：mysql-community-libs-5.7.26-1.el7.x86_64.rpm: 头V3 DSA/SHA1 Signature, 密钥 ID 5072e1f5: NOKEY<br>错误：依赖检测失败：<br>mysql-community-common(x86-64) &gt;= 5.7.9 被 mysql-community-libs-5.7.26-1.el7.x86_64 需要<br>mariadb-libs 被 mysql-community-libs-5.7.26-1.el7.x86_64 取代</p>
+<p>展开</p>
+<p>点赞</p>
+<p>回复</p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/2541726616785182"><img width="40" height="40" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/3d037b5ac4d71e77f538b18b04f1b240_6926a14fcf8248dea.png"/></a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/2541726616785182">菜蛋</a></p>
+<p>1年前</p>
+<p>成功~<img width="0" height="20" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/1f44f.svg_tplv-t2oaga2asx-image_4eee8e15183e4ad59d.svg"/></p>
+<p>点赞</p>
+<p>回复</p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/870468942068749"><img width="40" height="40" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/3d037b5ac4d71e77f538b18b04f1b240_6926a14fcf8248dea.png"/></a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/870468942068749">orca</a></p>
+<p>1年前</p>
+<p>你好，yum安装需要设置环境变量嘛？</p>
+<p>点赞</p>
+<p>回复</p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/1679709496152302"><img width="40" height="40" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/3d037b5ac4d71e77f538b18b04f1b240_6926a14fcf8248dea.png"/></a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/1679709496152302">bokuhide</a></p>
+<p>前端 1年前</p>
+<p>很仔细，照着做一次就成功了😀</p>
+<p>点赞</p>
+<p>回复</p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/2999123453673630"><img width="40" height="40" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/3d037b5ac4d71e77f538b18b04f1b240_6926a14fcf8248dea.png"/></a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/2999123453673630">Yin Lixue <img width="21" height="13" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/636691cd590f92898cfcda37357472b8_f23528b867dd4502a.svg"/></a> </p>
+<p>1年前</p>
+<p>万分感谢<img width="0" height="20" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/1f44f.svg_tplv-t2oaga2asx-image_4eee8e15183e4ad59d.svg"/></p>
+<p>点赞</p>
+<p>回复</p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/8451822992855"><img width="40" height="40" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/3d037b5ac4d71e77f538b18b04f1b240_6926a14fcf8248dea.png"/></a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/8451822992855">饼饼饼 <img width="21" height="13" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/636691cd590f92898cfcda37357472b8_f23528b867dd4502a.svg"/></a> </p>
+<p>FEer 2年前</p>
+<p>谢谢大佬用第三种一次就成功了 另外我想说的是如果有人碰到navicate连接数据库的问题可以找我 刚刚踩了很多坑<img width="0" height="20" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/1f603.svg_tplv-t2oaga2asx-image_792e883297b8489dae.svg"/><img width="0" height="20" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/1f603.svg_tplv-t2oaga2asx-image_792e883297b8489dae.svg"/></p>
+<p>点赞</p>
+<p>1</p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/4125023359730120"><img width="24" height="24" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/3d037b5ac4d71e77f538b18b04f1b240_6926a14fcf8248dea.png"/></a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/4125023359730120">tianranll <img width="21" height="13" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/f597b88d22ce5370bd94495780459040_dfb265188c664509a.svg"/></a> </p>
+<p>（作者） 2年前</p>
+<p><img width="0" height="20" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/1f44f.svg_tplv-t2oaga2asx-image_4eee8e15183e4ad59d.svg"/><img width="0" height="20" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/1f603.svg_tplv-t2oaga2asx-image_792e883297b8489dae.svg"/></p>
+<p>点赞</p>
+<p>回复</p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/8451822464030"><img width="40" height="40" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/3d037b5ac4d71e77f538b18b04f1b240_6926a14fcf8248dea.png"/></a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/8451822464030">要吃早餐 <img width="21" height="13" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/f597b88d22ce5370bd94495780459040_dfb265188c664509a.svg"/></a> </p>
+<p>WEB前端开发 @ 文思海辉 2年前</p>
+<p>写的很详细，谢谢你的帮助。</p>
+<p>点赞</p>
+<p>1</p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/4125023359730120"><img width="24" height="24" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/3d037b5ac4d71e77f538b18b04f1b240_6926a14fcf8248dea.png"/></a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/4125023359730120">tianranll <img width="21" height="13" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/f597b88d22ce5370bd94495780459040_dfb265188c664509a.svg"/></a> </p>
+<p>（作者） 2年前</p>
+<img width="0" height="20" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/1f603.svg_tplv-t2oaga2asx-image_792e883297b8489dae.svg"/>
+
+<p>点赞</p>
+<p>回复</p>
+<p>查看全部 31 条回复</p>
+<p>相关推荐</p>
+<ul>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/1890815728952526">ljp345775</a>  1月前  <a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/tag/Linux">Linux</a>  <a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/post/7082360588659064868" title="Centos7 联网下载安装mysql8">Centos7 联网下载安装mysql8</a><ul>
+<li>568</li>
+<li>1</li>
+<li>评论</li>
+</ul>
+</li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/580981571988904">大飞学习笔记</a>  3月前  <a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/tag/%E5%90%8E%E7%AB%AF">后端</a>  <a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/post/7067108452610342948" title="开发环境：CentOS7 安装 MySQL8 避坑指南">开发环境：CentOS7 安装 MySQL8 避坑指南</a><ul>
+<li>171</li>
+<li>4</li>
+<li>评论</li>
+</ul>
+</li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/1310273592897752">Morgan_</a>  8月前  <a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/tag/%E5%90%8E%E7%AB%AF">后端</a>  <a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/post/7009261083949023240" title="阿里云服务器Linux-CentOS7安装MySQL、JDK、NGINX">阿里云服务器Linux-CentOS7安装MySQL、JDK、NGINX</a><ul>
+<li>717</li>
+<li>1</li>
+<li>1</li>
+</ul>
+</li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/3571630350551789">一颗剽悍的种子</a>  1月前  <a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/tag/MySQL">MySQL</a>  <a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/post/7081065180301361183" title="MySQL 为什么采用 B+树作为索引？5年经验程序员回答让我悟了">MySQL 为什么采用 B+树作为索引？5年经验程序员回答让我悟了</a><ul>
+<li>2.1w</li>
+<li>238</li>
+<li>30</li>
+</ul>
+</li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/3544481221056526">经典鸡翅</a>  7月前  <a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/tag/%E5%90%8E%E7%AB%AF">后端</a>  <a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/post/7020801261658357774" title="yum 快速安装centos7 mysql5.7">yum 快速安装centos7 mysql5.7</a><ul>
+<li>372</li>
+<li>1</li>
+<li>评论</li>
+</ul>
+</li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/676954891624046">旺仔小小馒头</a>  9月前  <a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/tag/MySQL">MySQL</a> <a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/tag/%E5%90%8E%E7%AB%AF">后端</a>  <a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/post/6990926262818570276" title="Centos下MySQL快速安装">Centos下MySQL快速安装</a><ul>
+<li>235</li>
+<li>点赞</li>
+<li>评论</li>
+</ul>
+</li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/888061126511720">蝉沐风</a>  1月前  <a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/tag/%E5%90%8E%E7%AB%AF">后端</a> <a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/tag/MySQL">MySQL</a>  <a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/post/7079417143019700255" title="为什么不建议你使用SELECT *？">为什么不建议你使用SELECT *？</a><ul>
+<li>1.7w</li>
+<li>125</li>
+<li>12</li>
+</ul>
+</li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/3315782801438504">白鹿洞书院</a>  2年前  <a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/tag/%E5%89%8D%E7%AB%AF">前端</a>  <a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/post/6844904133833523207" title="CentOS 7 下Jenkins安装部署教程">CentOS 7 下Jenkins安装部署教程</a><ul>
+<li>2343</li>
+<li>1</li>
+<li>评论</li>
+</ul>
+</li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/4292138769320221">是Nicole呀</a>  7月前  <a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/tag/%E5%90%8E%E7%AB%AF">后端</a>  <a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/post/7018477869923827719" title="centos7安装mysql8">centos7安装mysql8</a><ul>
+<li>583</li>
+<li>点赞</li>
+<li>评论</li>
+</ul>
+</li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/3350967172214056">学习Java的小姐姐</a>  2年前  <a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/tag/MySQL">MySQL</a>  <a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/post/6844904039860142088" title="MySQL的万字总结（缓存，索引，Explain，事务，redo日志等）">MySQL的万字总结（缓存，索引，Explain，事务，redo日志等）</a><ul>
+<li>1.8w</li>
+<li>282</li>
+<li>27</li>
+</ul>
+</li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/1028798616702471">你也是蘑菇吗</a>  6月前  <a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/tag/CentOS">CentOS</a>  <a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/post/7031200273129275428" title="虚拟机安装Centos7">虚拟机安装Centos7</a><ul>
+<li>463</li>
+<li>点赞</li>
+<li>1</li>
+</ul>
+</li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/3685218709675933"><em>沸羊羊</em></a>  9月前  <a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/tag/MySQL">MySQL</a> <a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/tag/%E5%90%8E%E7%AB%AF">后端</a>  <a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/post/6989871497040887845" title="MySQL模糊查询再也不用like+%了">MySQL模糊查询再也不用like+%了</a><ul>
+<li>1.8w</li>
+<li>162</li>
+<li>20</li>
+</ul>
+</li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/1626932938547950">Owater</a>  1年前  <a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/tag/MySQL">MySQL</a>  <a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/post/6863668253898735629" title="面试官：一千万数据，怎么快速查询？">面试官：一千万数据，怎么快速查询？</a><ul>
+<li>2.2w</li>
+<li>148</li>
+<li>40</li>
+</ul>
+</li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/712139234346894">HollisChuang</a>  2年前  <a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/tag/MySQL">MySQL</a>  <a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/post/6844903885501530125" title="我以为我对Mysql索引很了解，直到我遇到了阿里的面试官">我以为我对Mysql索引很了解，直到我遇到了阿里的面试官</a><ul>
+<li>3.5w</li>
+<li>705</li>
+<li>65</li>
+</ul>
+</li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/3448527863681853">twinkle</a>  10月前  <a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/tag/%E5%90%8E%E7%AB%AF">后端</a>  <a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/post/6978285972244922399" title="centos 部署node环境 pm2 安装">centos 部署node环境 pm2 安装</a><ul>
+<li>1120</li>
+<li>点赞</li>
+<li>评论</li>
+</ul>
+</li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/3843548380922045">JavaFish</a>  10月前  <a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/tag/MySQL">MySQL</a> <a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/tag/Java">Java</a> <a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/tag/%E5%90%8E%E7%AB%AF">后端</a>  <a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/post/6984275678761844743" title="面试官：数据库自增 ID 用完了会咋样？">面试官：数据库自增 ID 用完了会咋样？</a><ul>
+<li>1.6w</li>
+<li>115</li>
+<li>21</li>
+</ul>
+</li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/3861140566444942">掘地者</a>  1年前  <a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/tag/MySQL">MySQL</a>  <a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/post/6925418599721107463" title="阿里云服务器Centos7.6系统安装Mysql数据库">阿里云服务器Centos7.6系统安装Mysql数据库</a><ul>
+<li>1178</li>
+<li>8</li>
+<li>4</li>
+</ul>
+</li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/3438928101642958">Java3y</a>  7月前  <a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/tag/%E5%90%8E%E7%AB%AF">后端</a> <a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/tag/MySQL">MySQL</a> <a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/tag/Java">Java</a>  <a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/post/7017969370206830623" title="面试官问我MySQL调优，我真的是">面试官问我MySQL调优，我真的是</a><ul>
+<li>1.9w</li>
+<li>303</li>
+<li>29</li>
+</ul>
+</li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/3368559359568696">程序新视界</a>  2月前  <a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/tag/MySQL">MySQL</a> <a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/tag/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96">性能优化</a>  <a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/post/7069912887258513445" title="不要再用where 1=1了，有更好的写法">不要再用where 1=1了，有更好的写法</a><ul>
+<li>1.6w</li>
+<li>54</li>
+<li>34</li>
+</ul>
+</li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/1046390801171949">热心的大肚皮</a>  4月前  <a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/tag/MySQL">MySQL</a> <a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/tag/%E5%90%8E%E7%AB%AF">后端</a>  <a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/post/7051451581182525470" title="CentOs 7 Mysql单机搭建攻略">CentOs 7 Mysql单机搭建攻略</a><ul>
+<li>333</li>
+<li>2</li>
+<li>评论</li>
+</ul>
+</li>
+</ul>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/4125023359730120"><img width="48" height="48" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/3ca016afea8ab3edd98f09023ff671fd_3dca516679e04673b.png"/></a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/4125023359730120"></a><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/4125023359730120">tianranll <img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/f597b88d22ce5370bd94495780459040_dfb265188c664509a.svg" alt="lv-2"></a> </p>
+<p>获得点赞 138</p>
+<p>文章被阅读 71,897</p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/app"><img width="50" height="50" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/9f2402c0a0ba3e700b8b622c175fe4de_0e7bf0500b96453a8.png"/><br>下载稀土掘金APP<br>一个帮助开发者成长的社区</a></p>
+<p>相关文章</p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/post/6844903865851052040" title="Java设计模式-工厂模式">Java设计模式-工厂模式<br>6点赞<br> · <br>0评论</a><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/post/6844904134345228301" title="CentOS 7 安装 Nginx">CentOS 7 安装 Nginx<br>27点赞<br> · <br>1评论</a><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/post/6925418599721107463" title="阿里云服务器Centos7.6系统安装Mysql数据库">阿里云服务器Centos7.6系统安装Mysql数据库<br>8点赞<br> · <br>4评论</a><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/post/7018477869923827719" title="centos7安装mysql8">centos7安装mysql8<br>0点赞<br> · <br>0评论</a><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/post/7029577342011834376" title="CentOS安装MySQL">CentOS安装MySQL<br>3点赞<br> · <br>0评论</a></p>
+<p>目录</p>
+<ul>
+<li><a href="#heading-0" title="引言">引言</a></li>
+<li><a href="#heading-1" title="一、YUM">一、YUM</a><ul>
+<li><a href="#heading-2" title="0、删除已安装的MySQL">0、删除已安装的MySQL</a><ul>
+<li><a href="#heading-3" title="检查MariaDB">检查MariaDB</a></li>
+<li><a href="#heading-4" title="删除mariadb">删除mariadb</a></li>
+<li><a href="#heading-5" title="检查MySQL">检查MySQL</a></li>
+<li><a href="#heading-6" title="删除MySQL">删除MySQL</a></li>
+</ul>
+</li>
+<li><a href="#heading-7" title="1、添加MySQL Yum Repository">1、添加MySQL Yum Repository</a><ul>
+<li><a href="#heading-8" title="下载MySQL源">下载MySQL源</a></li>
+<li><a href="#heading-9" title="安装MySQL源">安装MySQL源</a></li>
+<li><a href="#heading-10" title="检查是否安装成功">检查是否安装成功</a></li>
+</ul>
+</li>
+<li><a href="#heading-11" title="2、选择MySQL版本">2、选择MySQL版本</a><ul>
+<li><a href="#heading-12" title="查看当前MySQL Yum Repository中所有MySQL版本（每个版本在不同的子仓库中）">查看当前MySQL Yum Repository中所有MySQL版本（每个版本在不同的子仓库中）</a></li>
+<li><a href="#heading-13" title="切换版本">切换版本</a></li>
+<li><a href="#heading-14" title="检查当前启用的MySQL仓库">检查当前启用的MySQL仓库</a></li>
+</ul>
+</li>
+<li><a href="#heading-15" title="3、安装MySQL">3、安装MySQL</a></li>
+<li><a href="#heading-16" title="4、启动MySQL">4、启动MySQL</a><ul>
+<li><a href="#heading-17" title="启动">启动</a></li>
+<li><a href="#heading-18" title="查看状态">查看状态</a></li>
+<li><a href="#heading-19" title="停止">停止</a></li>
+<li><a href="#heading-20" title="重启">重启</a></li>
+</ul>
+</li>
+<li><a href="#heading-21" title="5、修改密码">5、修改密码</a><ul>
+<li><a href="#heading-22" title="初始密码">初始密码</a></li>
+<li><a href="#heading-23" title="修改默认密码">修改默认密码</a></li>
+</ul>
+</li>
+<li><a href="#heading-24" title="6、允许root远程访问">6、允许root远程访问</a></li>
+<li><a href="#heading-25" title="7、设置编码为utf8">7、设置编码为utf8</a><ul>
+<li><a href="#heading-26" title="查看编码">查看编码</a></li>
+<li><a href="#heading-27" title="设置编码">设置编码</a></li>
+</ul>
+</li>
+<li><a href="#heading-28" title="8、设置开机启动">8、设置开机启动</a></li>
+</ul>
+</li>
+<li><a href="#heading-29" title="二、RPM">二、RPM</a><ul>
+<li><a href="#heading-30" title="0、删除已旧版本">0、删除已旧版本</a></li>
+<li><a href="#heading-31" title="1、下载MySQL安装包">1、下载MySQL安装包</a></li>
+<li><a href="#heading-32" title="2、安装MySQL">2、安装MySQL</a><ul>
+<li><a href="#heading-33" title="解压（解打包）">解压（解打包）</a></li>
+<li><a href="#heading-34" title="安装">安装</a></li>
+</ul>
+</li>
+<li><a href="#heading-35" title="3、设置">3、设置</a></li>
+</ul>
+</li>
+<li><a href="#heading-36" title="三、tar.gz">三、tar.gz</a><ul>
+<li><a href="#heading-37" title="0、删除旧版本">0、删除旧版本</a></li>
+<li><a href="#heading-38" title="1、下载">1、下载</a></li>
+<li><a href="#heading-39" title="2、安装&amp;配置：">2、安装&amp;配置：</a><ul>
+<li><a href="#heading-40" title="依赖">依赖</a></li>
+<li><a href="#heading-41" title="创建mysql用户">创建mysql用户</a></li>
+<li><a href="#heading-42" title="解压并创建链接">解压并创建链接</a></li>
+<li><a href="#heading-43" title="创建mysql-files目录">创建mysql-files目录</a></li>
+<li><a href="#heading-44" title="初始化">初始化</a></li>
+<li><a href="#heading-45" title="启用SSL（非必须）">启用SSL（非必须）</a></li>
+<li><a href="#heading-46" title="启动">启动</a></li>
+<li><a href="#heading-47" title="设置环境变量">设置环境变量</a></li>
+<li><a href="#heading-48" title="设置为服务">设置为服务</a></li>
+<li><a href="#heading-49" title="开机启动">开机启动</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#heading-50" title="四、源码安装">四、源码安装</a></li>
+<li><a href="#heading-51" title="结束语">结束语</a></li>
+</ul>
+<p>稀土掘金浏览器插件——你的一站式工作台</p>
+<p>多内容聚合浏览、多引擎快捷搜索、多工具便捷提效、多模式随心畅享，你想要的，这里都有。</p>
+<p><a id="fatkun-drop-panel-close-btn"></a>×</p>
+<p>拖拽到此处</p>
+<p>图片将完成下载</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:978252321@qq.com" rel="external nofollow noreferrer">传礼</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://iwangchuanli.github.io/posts/12000.html">https://iwangchuanli.github.io/posts/12000.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow noreferrer" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://iwangchuanli.github.io" target="_blank">传礼</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img36_H3Vi3i.jpeg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/posts/1053.html"><img class="prev-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img15_wiXTy2.jpeg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">解决 Hexo 在使用 Node.js 14 时的 Accessing non-existent property 'xxx' of module exports inside circular dependency 问题</div></div></a></div><div class="next-post pull-right"><a href="/posts/12627.html"><img class="next-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img33_fnRUqR.jpeg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Centos7 防火墙配置</div></div></a></div></nav><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div><div id="comment-switch"><span class="first-comment">Valine</span><span class="switch-btn"></span><span class="second-comment">Gitalk</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div><div><div id="gitalk-container"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">Nice to meet you ~</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#CentOS%E5%AE%89%E8%A3%85MySQL%E8%AF%A6%E8%A7%A3"><span class="toc-number">1.</span> <span class="toc-text">CentOS安装MySQL详解</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%95%E8%A8%80"><span class="toc-number">1.1.</span> <span class="toc-text">引言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81YUM"><span class="toc-number">1.2.</span> <span class="toc-text">一、YUM</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#0%E3%80%81%E5%88%A0%E9%99%A4%E5%B7%B2%E5%AE%89%E8%A3%85%E7%9A%84MySQL"><span class="toc-number">1.2.0.1.</span> <span class="toc-text">0、删除已安装的MySQL</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%A3%80%E6%9F%A5MariaDB"><span class="toc-number">1.2.0.1.1.</span> <span class="toc-text">检查MariaDB</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%88%A0%E9%99%A4mariadb"><span class="toc-number">1.2.0.1.2.</span> <span class="toc-text">删除mariadb</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%A3%80%E6%9F%A5MySQL"><span class="toc-number">1.2.0.1.3.</span> <span class="toc-text">检查MySQL</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%88%A0%E9%99%A4MySQL"><span class="toc-number">1.2.0.1.4.</span> <span class="toc-text">删除MySQL</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81%E6%B7%BB%E5%8A%A0MySQL-Yum-Repository"><span class="toc-number">1.2.1.</span> <span class="toc-text">1、添加MySQL Yum Repository</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%B8%8B%E8%BD%BDMySQL%E6%BA%90"><span class="toc-number">1.2.1.0.1.</span> <span class="toc-text">下载MySQL源</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%AE%89%E8%A3%85MySQL%E6%BA%90"><span class="toc-number">1.2.1.0.2.</span> <span class="toc-text">安装MySQL源</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%A3%80%E6%9F%A5%E6%98%AF%E5%90%A6%E5%AE%89%E8%A3%85%E6%88%90%E5%8A%9F"><span class="toc-number">1.2.1.0.3.</span> <span class="toc-text">检查是否安装成功</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81%E9%80%89%E6%8B%A9MySQL%E7%89%88%E6%9C%AC"><span class="toc-number">1.2.2.</span> <span class="toc-text">2、选择MySQL版本</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E5%BD%93%E5%89%8DMySQL-Yum-Repository%E4%B8%AD%E6%89%80%E6%9C%89MySQL%E7%89%88%E6%9C%AC%EF%BC%88%E6%AF%8F%E4%B8%AA%E7%89%88%E6%9C%AC%E5%9C%A8%E4%B8%8D%E5%90%8C%E7%9A%84%E5%AD%90%E4%BB%93%E5%BA%93%E4%B8%AD%EF%BC%89"><span class="toc-number">1.2.2.0.1.</span> <span class="toc-text">查看当前MySQL Yum Repository中所有MySQL版本（每个版本在不同的子仓库中）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%88%87%E6%8D%A2%E7%89%88%E6%9C%AC"><span class="toc-number">1.2.2.0.2.</span> <span class="toc-text">切换版本</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%A3%80%E6%9F%A5%E5%BD%93%E5%89%8D%E5%90%AF%E7%94%A8%E7%9A%84MySQL%E4%BB%93%E5%BA%93"><span class="toc-number">1.2.2.0.3.</span> <span class="toc-text">检查当前启用的MySQL仓库</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E3%80%81%E5%AE%89%E8%A3%85MySQL"><span class="toc-number">1.2.3.</span> <span class="toc-text">3、安装MySQL</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4%E3%80%81%E5%90%AF%E5%8A%A8MySQL"><span class="toc-number">1.2.4.</span> <span class="toc-text">4、启动MySQL</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8"><span class="toc-number">1.2.4.0.1.</span> <span class="toc-text">启动</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E7%8A%B6%E6%80%81"><span class="toc-number">1.2.4.0.2.</span> <span class="toc-text">查看状态</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%81%9C%E6%AD%A2"><span class="toc-number">1.2.4.0.3.</span> <span class="toc-text">停止</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%87%8D%E5%90%AF"><span class="toc-number">1.2.4.0.4.</span> <span class="toc-text">重启</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5%E3%80%81%E4%BF%AE%E6%94%B9%E5%AF%86%E7%A0%81"><span class="toc-number">1.2.5.</span> <span class="toc-text">5、修改密码</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%88%9D%E5%A7%8B%E5%AF%86%E7%A0%81"><span class="toc-number">1.2.5.0.1.</span> <span class="toc-text">初始密码</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E9%BB%98%E8%AE%A4%E5%AF%86%E7%A0%81"><span class="toc-number">1.2.5.0.2.</span> <span class="toc-text">修改默认密码</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6%E3%80%81%E5%85%81%E8%AE%B8root%E8%BF%9C%E7%A8%8B%E8%AE%BF%E9%97%AE"><span class="toc-number">1.2.6.</span> <span class="toc-text">6、允许root远程访问</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7%E3%80%81%E8%AE%BE%E7%BD%AE%E7%BC%96%E7%A0%81%E4%B8%BAutf8"><span class="toc-number">1.2.7.</span> <span class="toc-text">7、设置编码为utf8</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E7%BC%96%E7%A0%81"><span class="toc-number">1.2.7.0.1.</span> <span class="toc-text">查看编码</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%AE%BE%E7%BD%AE%E7%BC%96%E7%A0%81"><span class="toc-number">1.2.7.0.2.</span> <span class="toc-text">设置编码</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8%E3%80%81%E8%AE%BE%E7%BD%AE%E5%BC%80%E6%9C%BA%E5%90%AF%E5%8A%A8"><span class="toc-number">1.2.8.</span> <span class="toc-text">8、设置开机启动</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81RPM"><span class="toc-number">1.3.</span> <span class="toc-text">二、RPM</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#0%E3%80%81%E5%88%A0%E9%99%A4%E5%B7%B2%E6%97%A7%E7%89%88%E6%9C%AC"><span class="toc-number">1.3.1.</span> <span class="toc-text">0、删除已旧版本</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81%E4%B8%8B%E8%BD%BDMySQL%E5%AE%89%E8%A3%85%E5%8C%85"><span class="toc-number">1.3.2.</span> <span class="toc-text">1、下载MySQL安装包</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81%E5%AE%89%E8%A3%85MySQL"><span class="toc-number">1.3.3.</span> <span class="toc-text">2、安装MySQL</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%A7%A3%E5%8E%8B%EF%BC%88%E8%A7%A3%E6%89%93%E5%8C%85%EF%BC%89"><span class="toc-number">1.3.3.0.1.</span> <span class="toc-text">解压（解打包）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%AE%89%E8%A3%85"><span class="toc-number">1.3.3.0.2.</span> <span class="toc-text">安装</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E3%80%81%E8%AE%BE%E7%BD%AE"><span class="toc-number">1.3.4.</span> <span class="toc-text">3、设置</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81tar-gz"><span class="toc-number">1.4.</span> <span class="toc-text">三、tar.gz</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#0%E3%80%81%E5%88%A0%E9%99%A4%E6%97%A7%E7%89%88%E6%9C%AC"><span class="toc-number">1.4.1.</span> <span class="toc-text">0、删除旧版本</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81%E4%B8%8B%E8%BD%BD"><span class="toc-number">1.4.2.</span> <span class="toc-text">1、下载</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81%E5%AE%89%E8%A3%85-amp-%E9%85%8D%E7%BD%AE%EF%BC%9A"><span class="toc-number">1.4.3.</span> <span class="toc-text">2、安装&amp;配置：</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BE%9D%E8%B5%96"><span class="toc-number">1.4.3.0.1.</span> <span class="toc-text">依赖</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%88%9B%E5%BB%BAmysql%E7%94%A8%E6%88%B7"><span class="toc-number">1.4.3.0.2.</span> <span class="toc-text">创建mysql用户</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%A7%A3%E5%8E%8B%E5%B9%B6%E5%88%9B%E5%BB%BA%E9%93%BE%E6%8E%A5"><span class="toc-number">1.4.3.0.3.</span> <span class="toc-text">解压并创建链接</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%88%9B%E5%BB%BAmysql-files%E7%9B%AE%E5%BD%95"><span class="toc-number">1.4.3.0.4.</span> <span class="toc-text">创建mysql-files目录</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="toc-number">1.4.3.0.5.</span> <span class="toc-text">初始化</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%90%AF%E7%94%A8SSL%EF%BC%88%E9%9D%9E%E5%BF%85%E9%A1%BB%EF%BC%89"><span class="toc-number">1.4.3.0.6.</span> <span class="toc-text">启用SSL（非必须）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8-1"><span class="toc-number">1.4.3.0.7.</span> <span class="toc-text">启动</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%AE%BE%E7%BD%AE%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F"><span class="toc-number">1.4.3.0.8.</span> <span class="toc-text">设置环境变量</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%AE%BE%E7%BD%AE%E4%B8%BA%E6%9C%8D%E5%8A%A1"><span class="toc-number">1.4.3.0.9.</span> <span class="toc-text">设置为服务</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%BC%80%E6%9C%BA%E5%90%AF%E5%8A%A8"><span class="toc-number">1.4.3.0.10.</span> <span class="toc-text">开机启动</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E6%BA%90%E7%A0%81%E5%AE%89%E8%A3%85"><span class="toc-number">1.5.</span> <span class="toc-text">四、源码安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%93%E6%9D%9F%E8%AF%AD"><span class="toc-number">1.6.</span> <span class="toc-text">结束语</span></a></li></ol></li></ol></div></div><div class="card-widget ads-wrap"><a target="_blank" href="https://www.aliyun.com/activity?userCode=dpj8p3hl" rel="external nofollow noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/aliyun_whuCuE.jpg" style="width:100%;height:100%;object-fit:cover;"></a></div></div></div></main><footer id="footer" style="background-image: url('https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img36_H3Vi3i.jpeg')"><div id="footer-wrap"><div class="copyright">&copy;2018 - 2022 By 传礼</div><div class="footer_custom_text"><p style="display:inline-flex">本网站由<a href="https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral" rel="external nofollow noreferrer" target="_blank"><img style="width:60px;height:35px;" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/11/又拍云_logo5_O9kNul.png" title="又拍云"/></a>提供CDN加速/云存储服务</p><p><a style="margin-inline:5px" target="_blank" href="https://hexo.io/" rel="external nofollow noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Frame-Hexo-blue?style=flat&logo=hexo" title="博客框架为Hexo"></a><a style="margin-inline:5px" target="_blank" href="https://butterfly.js.org/" rel="external nofollow noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Theme-Butterfly-6513df?style=flat&logo=bitdefender" title="主题采用butterfly"></a><a style="margin-inline:5px" target="_blank" href="https://www.jsdelivr.com/" rel="external nofollow noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/CDN-jsDelivr-orange?style=flat&logo=jsDelivr" title="本站使用JsDelivr为静态资源提供CDN加速"></a><a style="margin-inline:5px" target="_blank" href="https://github.com/" rel="external nofollow noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Source-Github-d021d6?style=flat&logo=GitHub" title="本站项目由Github托管"></a><a style="margin-inline:5px" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Copyright-BY--NC--SA%204.0-d42328?style=flat&logo=Claris" title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可"></a></p></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="chat_btn" type="button" title="聊天"><i class="fas fa-sms"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">本地搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script src="/js/search/local-search.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"><script>function loadValine () {
+  function initValine () {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: 'zHUfFgUbITfMSQGuSPgS2e3C-gzGzoHsz',
+      appKey: 'yPXpeKX8VJxdFRPEsDaqNgEY',
+      avatar: 'wavatar',
+      serverURLs: 'https://zhuffgub.lc-cn-n1-shared.com',
+      emojiMaps: "",
+      path: window.location.pathname,
+      visitor: true,
+      master: '447d56ab3606de5490a2109d3e441219,135d837ea1033c9787dd307e59884d36'.split(','),
+      friends: '5c?????bfe6rfc72a????e268ad3819c'.split(','),
+      tagMeta: '博主,小伙伴,访客'.split(',')
+        
+    }, {"placeholder":"请输入内容～"}))
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/gh/HCLonely/Valine@latest/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !true) {
+  if (true) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script><script>function addGitalkSource () {
+  const ele = document.createElement('link')
+  ele.rel = 'stylesheet'
+  ele.href= 'https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css'
+  document.getElementsByTagName('head')[0].appendChild(ele)
+}
+
+function loadGitalk () {
+  function initGitalk () {
+    var gitalk = new Gitalk(Object.assign({
+      clientID: '052d9d6486112e93fa50',
+      clientSecret: '6fea35bfb7a17521694a95f705683622976d2f53',
+      repo: 'gitalk',
+      owner: 'iwangchuanli',
+      admin: ['iwangchuanli'],
+      id: '21b5e4e6321cf3ca8e7a0b503f820064',
+      updateCountCallback: commentCount
+    },null))
+
+    gitalk.render('gitalk-container')
+  }
+
+  if (typeof Gitalk === 'function') initGitalk()
+  else {
+    addGitalkSource()
+    getScript('https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.js').then(initGitalk)
+  }
+}
+
+function commentCount(n){
+  let isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+  if (isCommentCount) {
+    isCommentCount.innerHTML= n
+  }
+}
+
+if ('Valine' === 'Gitalk' || !true) {
+  if (true) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+  else loadGitalk()
+} else {
+  function loadOtherComment () {
+    loadGitalk()
+  }
+}</script></div><div class="aplayer no-destroy" data-id="7355841544" data-server="netease" data-type="playlist" data-fixed="true" data-autoplay="false"> </div><script async src="/js/grayscale.js"></script><script async src="//at.alicdn.com/t/font_1885008_srfhrsykmk.js"></script><script>((window.gitter = {}).chat = {}).options = {
+  disableDefaultChat: true,
+};
+document.addEventListener('gitter-sidecar-ready', (e) => {
+  const GitterChat = e.detail.Chat
+  let chat
+
+  function initGitter () {
+    chat = new GitterChat({
+      room: 'wangchuangli-/community',
+      activationElement: '#chat_btn'
+    });
+  }
+
+  initGitter()
+
+  if (true) {
+    document.addEventListener('pjax:complete', () => {
+      chat.destroy()
+      initGitter()
+    })
+  }
+
+})</script><script src="https://sidecar.gitter.im/dist/sidecar.v1.js" async="async" defer="defer"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/meting@1.2.0/dist/Meting.min.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = ["title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"]):not([href="/music/"]):not([href="/no-pjax/"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.tocScrollFn && window.removeEventListener('scroll', window.tocScrollFn)
+  window.scrollCollect && window.removeEventListener('scroll', scrollCollect)
+
+  typeof preloader === 'object' && preloader.initLoading()
+  document.getElementById('rightside').style.cssText = "opacity: ''; transform: ''"
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+
+  typeof preloader === 'object' && preloader.endLoading()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><!-- hexo injector body_end start --><script data-pjax>
+  function butterfly_swiper_injector_config(){
+    var parent_div_git = document.getElementById('recent-posts');
+    var item_html = '<div class="recent-post-item" style="height: auto;width: 100%"><div class="blog-slider swiper-container-fade swiper-container-horizontal" id="swiper_container"><div class="blog-slider__wrp swiper-wrapper" style="transition-duration: 0ms;"><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" onclick="pjax.loadUrl(&quot;posts/4496.html&quot;);" href="javascript:void(0);" rel="external nofollow noreferrer" alt=""><img width="48" height="48" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img6_L358Nt.jpeg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2018-09-05</span><a class="blog-slider__title" onclick="pjax.loadUrl(&quot;posts/4496.html&quot;);" href="javascript:void(0);" rel="external nofollow noreferrer" alt="">编程系列书单推荐</a><div class="blog-slider__text">再怎么看我也不知道怎么描述它的啦！</div><a class="blog-slider__button" onclick="pjax.loadUrl(&quot;posts/4496.html&quot;);" href="javascript:void(0);" rel="external nofollow noreferrer" alt="">详情       </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" onclick="pjax.loadUrl(&quot;posts/35693.html&quot;);" href="javascript:void(0);" rel="external nofollow noreferrer" alt=""><img width="48" height="48" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img33_fnRUqR.jpeg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2018-11-26</span><a class="blog-slider__title" onclick="pjax.loadUrl(&quot;posts/35693.html&quot;);" href="javascript:void(0);" rel="external nofollow noreferrer" alt="">优秀科技博客订阅</a><div class="blog-slider__text">再怎么看我也不知道怎么描述它的啦！</div><a class="blog-slider__button" onclick="pjax.loadUrl(&quot;posts/35693.html&quot;);" href="javascript:void(0);" rel="external nofollow noreferrer" alt="">详情       </a></div></div></div><div class="blog-slider__pagination swiper-pagination-clickable swiper-pagination-bullets"></div></div></div>';
+    console.log('已挂载butterfly_swiper')
+    parent_div_git.insertAdjacentHTML("afterbegin",item_html)
+    }
+  var elist = 'undefined'.split(',');
+  var cpage = location.pathname;
+  var epage = 'all';
+  var flag = 0;
+
+  for (var i=0;i<elist.length;i++){
+    if (cpage.includes(elist[i])){
+      flag++;
+    }
+  }
+
+  if ((epage ==='all')&&(flag == 0)){
+    butterfly_swiper_injector_config();
+  }
+  else if (epage === cpage){
+    butterfly_swiper_injector_config();
+  }
+  </script><script defer src="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper.min.js"></script><script defer data-pjax src="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper_init.js"></script><!-- hexo injector body_end end --></body></html>

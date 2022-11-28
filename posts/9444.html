@@ -1,0 +1,543 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>Java的12个语法糖 | 传礼</title><meta name="keywords" content="Java"><meta name="author" content="传礼,978252321@qq.com"><meta name="copyright" content="传礼"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="原创 | 不了解这12个语法糖，别说你会Java！原创 Hollis Hollis 2019-05-13 08:30 △Hollis, 一个对Coding有着独特追求的人△   这是Hollis的第 212 篇原创分享。 作者 l Hollis 来源 l Hollis（ID：hollischuang） 本文从 Java 编译原理角度，深入字节码及 class 文件，抽丝剥茧，了解 Java 中的语">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java的12个语法糖">
+<meta property="og:url" content="https://iwangchuanli.github.io/posts/9444.html">
+<meta property="og:site_name" content="传礼">
+<meta property="og:description" content="原创 | 不了解这12个语法糖，别说你会Java！原创 Hollis Hollis 2019-05-13 08:30 △Hollis, 一个对Coding有着独特追求的人△   这是Hollis的第 212 篇原创分享。 作者 l Hollis 来源 l Hollis（ID：hollischuang） 本文从 Java 编译原理角度，深入字节码及 class 文件，抽丝剥茧，了解 Java 中的语">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img37_UGZvBP.jpeg">
+<meta property="article:published_time" content="2022-01-07T07:18:23.000Z">
+<meta property="article:modified_time" content="2022-04-15T08:27:23.000Z">
+<meta property="article:author" content="传礼">
+<meta property="article:tag" content="Java">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img37_UGZvBP.jpeg"><link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/03/favicons_uH14Fb.gif"><link rel="canonical" href="https://iwangchuanli.github.io/posts/9444"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin=""/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta name="baidu-site-verification" content="qKvGNFZPF9"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?39bd6e37a6e70dc030e6a043a642784e";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: 传礼","link":"链接: ","source":"来源: 传礼","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#121212","position":"bottom-left"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: true,
+  islazyload: true,
+  isAnchor: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Java的12个语法糖',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-04-15 08:27:23'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/custom.css"  media="defer" onload="this.media='all'"><!-- hexo injector head_end start --><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiperstyle.css" media="print" onload="this.media='all'"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.1"><link rel="alternate" href="/atom.xml" title="传礼" type="application/atom+xml">
+</head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/03/photo_NZBQPu.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><div class="data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">511</div></a></div><div class="data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">50</div></a></div><div class="data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">22</div></a></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 归档</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-calendar"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 开发</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/Java"><i class="fa-fw fa fa-music"></i><span> Java</span></a></li><li><a class="site-page child" href="/categories/Python"><i class="fa-fw fa fa-music"></i><span> Python</span></a></li><li><a class="site-page child" href="/categories/VUE"><i class="fa-fw fa fa-music"></i><span> VUE</span></a></li><li><a class="site-page child" href="/categories/MySQL"><i class="fa-fw fa fa-music"></i><span> MySQL</span></a></li><li><a class="site-page child" href="/categories/Redis"><i class="fa-fw fa fa-music"></i><span> Redis</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 架构</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/Spring"><i class="fa-fw fa fa-music"></i><span> Spring</span></a></li><li><a class="site-page child" href="/categories/microServeices"><i class="fa-fw fa fa-music"></i><span> 微服务</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 运维</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/Docker"><i class="fa-fw fa fa-music"></i><span> Docker</span></a></li><li><a class="site-page child" href="/categories/Linux"><i class="fa-fw fa fa-music"></i><span> Linux</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 分享</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/tags/Tools"><i class="fa-fw fa fa-music"></i><span> 工具</span></a></li><li><a class="site-page child" href="/tags/guide"><i class="fa-fw fa fa-music"></i><span> 教程</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 项目</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/tags/Tools"><i class="fa-fw fa fa-music"></i><span> 工具</span></a></li><li><a class="site-page child" href="/tags/guide"><i class="fa-fw fa fa-music"></i><span> 教程</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-heartbeat"></i><span> 娱乐</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/gallery/"><i class="fa-fw fa fa-images"></i><span> 图库</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fa fa-film"></i><span> 电影</span></a></li><li><a class="site-page child" href="/books/"><i class="fa-fw fa fa-book"></i><span> 图书</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 我的</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/artitalk/"><i class="fa-fw fa fa-commenting"></i><span> 说说</span></a></li><li><a class="site-page child" href="/todo/"><i class="fa-fw fa fa-flag"></i><span> TODO</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img37_UGZvBP.jpeg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">传礼</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 归档</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-calendar"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 开发</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/Java"><i class="fa-fw fa fa-music"></i><span> Java</span></a></li><li><a class="site-page child" href="/categories/Python"><i class="fa-fw fa fa-music"></i><span> Python</span></a></li><li><a class="site-page child" href="/categories/VUE"><i class="fa-fw fa fa-music"></i><span> VUE</span></a></li><li><a class="site-page child" href="/categories/MySQL"><i class="fa-fw fa fa-music"></i><span> MySQL</span></a></li><li><a class="site-page child" href="/categories/Redis"><i class="fa-fw fa fa-music"></i><span> Redis</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 架构</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/Spring"><i class="fa-fw fa fa-music"></i><span> Spring</span></a></li><li><a class="site-page child" href="/categories/microServeices"><i class="fa-fw fa fa-music"></i><span> 微服务</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 运维</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/Docker"><i class="fa-fw fa fa-music"></i><span> Docker</span></a></li><li><a class="site-page child" href="/categories/Linux"><i class="fa-fw fa fa-music"></i><span> Linux</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 分享</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/tags/Tools"><i class="fa-fw fa fa-music"></i><span> 工具</span></a></li><li><a class="site-page child" href="/tags/guide"><i class="fa-fw fa fa-music"></i><span> 教程</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 项目</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/tags/Tools"><i class="fa-fw fa fa-music"></i><span> 工具</span></a></li><li><a class="site-page child" href="/tags/guide"><i class="fa-fw fa fa-music"></i><span> 教程</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-heartbeat"></i><span> 娱乐</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/gallery/"><i class="fa-fw fa fa-images"></i><span> 图库</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fa fa-film"></i><span> 电影</span></a></li><li><a class="site-page child" href="/books/"><i class="fa-fw fa fa-book"></i><span> 图书</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 我的</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/artitalk/"><i class="fa-fw fa fa-commenting"></i><span> 说说</span></a></li><li><a class="site-page child" href="/todo/"><i class="fa-fw fa fa-flag"></i><span> TODO</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Java的12个语法糖</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-01-07T07:18:23.000Z" title="发表于 2022-01-07 07:18:23">2022-01-07</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-04-15T08:27:23.000Z" title="更新于 2022-04-15 08:27:23">2022-04-15</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Java/">Java</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">6.2k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>24分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Java的12个语法糖"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="原创-不了解这12个语法糖，别说你会Java！"><a href="#原创-不了解这12个语法糖，别说你会Java！" class="headerlink" title="原创 | 不了解这12个语法糖，别说你会Java！"></a>原创 | 不了解这12个语法糖，别说你会Java！</h1><p><a id="copyright_logo"></a>原创 <a id="js_author_name"></a>Hollis <a id="profileBt"></a><a id="js_name"></a>Hollis <em>2019-05-13 08:30</em></p>
+<p>△Hollis, 一个对Coding有着独特追求的人△</p>
+<img width="660" height="432" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/640_tp_webp_wxfrom_5_wx_lazy_1_w_84e7d31cf1214242a.webp"/>
+
+<p>这是Hollis的第 <strong>212</strong> 篇原创分享。</p>
+<p>作者 l Hollis</p>
+<p>来源 l Hollis（ID：hollischuang）</p>
+<p>本文从 Java 编译原理角度，深入字节码及 class 文件，抽丝剥茧，了解 Java 中的语法糖原理及用法，帮助大家在学会如何使用 Java 语法糖的同时，了解这些语法糖背后的原理</p>
+<h3 id=""><a href="#" class="headerlink" title=""></a></h3><h3 id="语法糖"><a href="#语法糖" class="headerlink" title="语法糖"></a><strong>语法糖</strong></h3><p>语法糖（Syntactic Sugar），也称糖衣语法，是由英国计算机学家 Peter.J.Landin 发明的一个术语，指在计算机语言中添加的某种语法，这种语法对语言的功能并没有影响，但是更方便程序员使用。简而言之，语法糖让程序更加简洁，有更高的可读性。</p>
+<p>有意思的是，在编程领域，除了语法糖，还有语法盐和语法糖精的说法，篇幅有限这里不做扩展了。</p>
+<p>我们所熟知的编程语言中几乎都有语法糖。作者认为，语法糖的多少是评判一个语言够不够牛逼的标准之一。</p>
+<p>很多人说Java是一个“低糖语言”，其实从Java 7开始Java语言层面上一直在添加各种糖，主要是在“Project Coin”项目下研发。尽管现在Java有人还是认为现在的Java是低糖，未来还会持续向着“高糖”的方向发展。</p>
+<h3 id="-1"><a href="#-1" class="headerlink" title=""></a></h3><h3 id="解语法糖"><a href="#解语法糖" class="headerlink" title="解语法糖"></a><strong>解语法糖</strong></h3><p>前面提到过，语法糖的存在主要是方便开发人员使用。但其实，Java虚拟机并不支持这些语法糖。这些语法糖在编译阶段就会被还原成简单的基础语法结构，这个过程就是解语法糖。</p>
+<p>说到编译，大家肯定都知道，Java语言中，javac命令可以将后缀名为.java的源文件编译为后缀名为.class的可以运行于Java虚拟机的字节码。</p>
+<p>如果你去看com.sun.tools.javac.main.JavaCompiler的源码，你会发现在compile()中有一个步骤就是调用desugar()，这个方法就是负责解语法糖的实现的。</p>
+<p>Java 中最常用的语法糖主要有泛型、变长参数、条件编译、自动拆装箱、内部类等。本文主要来分析下这些语法糖背后的原理。一步一步剥去糖衣，看看其本质。</p>
+<h3 id="-2"><a href="#-2" class="headerlink" title=""></a></h3><h3 id="糖块一、-switch-支持-String-与枚举"><a href="#糖块一、-switch-支持-String-与枚举" class="headerlink" title="糖块一、 switch 支持 String 与枚举"></a><strong>糖块一、 switch 支持 String 与枚举</strong></h3><p>前面提到过，从Java 7 开始，Java语言中的语法糖在逐渐丰富，其中一个比较重要的就是Java 7中switch开始支持String。</p>
+<p>在开始coding之前先科普下，Java中的swith自身原本就支持基本类型。比如int、char等。</p>
+<p>对于int类型，直接进行数值的比较。对于char类型则是比较其ascii码。</p>
+<p>所以，对于编译器来说，switch中其实只能使用整型，任何类型的比较都要转换成整型。比如byte。short，char(ackii码是整型)以及int。</p>
+<p>那么接下来看下switch对String得支持，有以下代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">public class switchDemoString &#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        String str = &quot;world&quot;;</span><br><span class="line">        switch (str) &#123;</span><br><span class="line">        case &quot;hello&quot;:</span><br><span class="line">            System.out.println(&quot;hello&quot;);</span><br><span class="line">            break;</span><br><span class="line">        case &quot;world&quot;:</span><br><span class="line">            System.out.println(&quot;world&quot;);</span><br><span class="line">            break;</span><br><span class="line">        default:</span><br><span class="line">            break;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="http://mp.weixin.qq.com/s?__biz=MzI3NzE0NjcwMg==&mid=2650120609&idx=1&sn=5659f96310963ad57d55b48cee63c788&chksm=f36bbc80c41c3596a1e4bf9501c6280481f1b9e06d07af354474e6f3ed366fef016df673a7ba&scene=21#wechat_redirect">反编译</a>后内容如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">public class switchDemoString</span><br><span class="line">&#123;</span><br><span class="line">    public switchDemoString()</span><br><span class="line">    &#123;</span><br><span class="line">    &#125;</span><br><span class="line">    public static void main(String args[])</span><br><span class="line">    &#123;</span><br><span class="line">        String str = &quot;world&quot;;</span><br><span class="line">        String s;</span><br><span class="line">        switch((s = str).hashCode())</span><br><span class="line">        &#123;</span><br><span class="line">        default:</span><br><span class="line">            break;</span><br><span class="line">        case 99162322:</span><br><span class="line">            if(s.equals(&quot;hello&quot;))</span><br><span class="line">                System.out.println(&quot;hello&quot;);</span><br><span class="line">            break;</span><br><span class="line">        case 113318802:</span><br><span class="line">            if(s.equals(&quot;world&quot;))</span><br><span class="line">                System.out.println(&quot;world&quot;);</span><br><span class="line">            break;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>看到这个代码，你知道原来字符串的switch是通过equals()和hashCode()方法来实现的。还好hashCode()方法返回的是int，而不是long。</p>
+<p>仔细看下可以发现，进行switch的实际是哈希值，然后通过使用equals方法比较进行安全检查，这个检查是必要的，因为哈希可能会发生碰撞。因此它的性能是不如使用枚举进行switch或者使用纯整数常量，但这也不是很差。</p>
+<h3 id="-3"><a href="#-3" class="headerlink" title=""></a></h3><h3 id="-4"><a href="#-4" class="headerlink" title=""></a></h3><h3 id="糖块二、-泛型"><a href="#糖块二、-泛型" class="headerlink" title="糖块二、 泛型"></a><strong>糖块二、 泛型</strong></h3><p>我们都知道，很多语言都是支持泛型的，但是很多人不知道的是，不同的编译器对于泛型的处理方式是不同的。</p>
+<p>通常情况下，一个编译器处理泛型有两种方式：Code specialization和Code sharing。</p>
+<p>C++和C#是使用Code specialization的处理机制，而Java使用的是Code sharing的机制。</p>
+<p>Code sharing方式为每个泛型类型创建唯一的字节码表示，并且将该泛型类型的实例都映射到这个唯一的字节码表示上。将多种泛型类形实例映射到唯一的字节码表示是通过类型擦除（type erasue）实现的。</p>
+<p>也就是说，对于Java虚拟机来说，他根本不认识Map&lt;String, String&gt; map这样的语法。需要在编译阶段通过类型擦除的方式进行解语法糖。</p>
+<p>类型擦除的主要过程如下：</p>
+<ul>
+<li> 1.将所有的泛型参数用其最左边界（最顶级的父类型）类型替换。</li>
+<li> 2.移除所有的类型参数。</li>
+</ul>
+<p>以下代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">Map&lt;String, String&gt; map = new HashMap&lt;String, String&gt;();  </span><br><span class="line">map.put(&quot;name&quot;, &quot;hollis&quot;);  </span><br><span class="line">map.put(&quot;wechat&quot;, &quot;Hollis&quot;);  </span><br><span class="line">map.put(&quot;blog&quot;, &quot;www.hollischuang.com&quot;);  </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>解语法糖之后会变成：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">Map map = new HashMap();  </span><br><span class="line">map.put(&quot;name&quot;, &quot;hollis&quot;);  </span><br><span class="line">map.put(&quot;wechat&quot;, &quot;Hollis&quot;);  </span><br><span class="line">map.put(&quot;blog&quot;, &quot;www.hollischuang.com&quot;);  </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>以下代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">public static &lt;A extends Comparable&lt;A&gt;&gt; A max(Collection&lt;A&gt; xs) &#123;</span><br><span class="line">    Iterator&lt;A&gt; xi = xs.iterator();</span><br><span class="line">    A w = xi.next();</span><br><span class="line">    while (xi.hasNext()) &#123;</span><br><span class="line">        A x = xi.next();</span><br><span class="line">        if (w.compareTo(x) &lt; 0)</span><br><span class="line">            w = x;</span><br><span class="line">    &#125;</span><br><span class="line">    return w;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>类型擦除后会变成：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"> public static Comparable max(Collection xs)&#123;</span><br><span class="line">    Iterator xi = xs.iterator();</span><br><span class="line">    Comparable w = (Comparable)xi.next();</span><br><span class="line">    while(xi.hasNext())</span><br><span class="line">    &#123;</span><br><span class="line">        Comparable x = (Comparable)xi.next();</span><br><span class="line">        if(w.compareTo(x) &lt; 0)</span><br><span class="line">            w = x;</span><br><span class="line">    &#125;</span><br><span class="line">    return w;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>虚拟机中没有泛型，只有普通类和普通方法，所有泛型类的类型参数在编译时都会被擦除，泛型类并没有自己独有的Class类对象。比如并不存在List&lt;String&gt;.class或是List&lt;Integer&gt;.class，而只有List.class。</p>
+<h3 id="-5"><a href="#-5" class="headerlink" title=""></a></h3><h3 id="糖块三、-自动装箱与拆箱"><a href="#糖块三、-自动装箱与拆箱" class="headerlink" title="糖块三、 自动装箱与拆箱"></a><strong>糖块三、 自动装箱与拆箱</strong></h3><p>自动装箱就是Java自动将原始类型值转换成对应的对象，比如将int的变量转换成Integer对象，这个过程叫做装箱，反之将Integer对象转换成int类型值，这个过程叫做拆箱。参考：<a target="_blank" rel="noopener external nofollow noreferrer" href="http://mp.weixin.qq.com/s?__biz=MzI3NzE0NjcwMg==&mid=2650121987&idx=1&sn=70bba3f7f42a269eeada9cecb34c10a5&chksm=f36bba22c41c3334b92f184e402f2f77e2d5e0a2e0a21ec5a8229773afcab4f026a0b6f47fc4&scene=21#wechat_redirect">一文读懂什么是Java中的自动拆装箱</a></p>
+<p>因为这里的装箱和拆箱是自动进行的非人为转换，所以就称作为自动装箱和拆箱。</p>
+<p>原始类型byte, short, char, int, long, float, double 和 boolean 对应的封装类为Byte, Short, Character, Integer, Long, Float, Double, Boolean。</p>
+<p>先来看个自动装箱的代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"> public static void main(String[] args) &#123;</span><br><span class="line">    int i = 10;</span><br><span class="line">    Integer n = i;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>反编译后代码如下:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">public static void main(String args[])</span><br><span class="line">&#123;</span><br><span class="line">    int i = 10;</span><br><span class="line">    Integer n = Integer.valueOf(i);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>再来看个自动拆箱的代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">public static void main(String[] args) &#123;</span><br><span class="line">    Integer i = 10;</span><br><span class="line">    int n = i;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>反编译后代码如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">public static void main(String args[])</span><br><span class="line">&#123;</span><br><span class="line">    Integer i = Integer.valueOf(10);</span><br><span class="line">    int n = i.intValue();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>从反编译得到内容可以看出，在装箱的时候自动调用的是Integer的valueOf(int)方法。而在拆箱的时候自动调用的是Integer的intValue方法。</p>
+<p>所以，装箱过程是通过调用包装器的valueOf方法实现的，而拆箱过程是通过调用包装器的 xxxValue方法实现的。</p>
+<h3 id="-6"><a href="#-6" class="headerlink" title=""></a></h3><h3 id="糖块四-、-方法变长参数"><a href="#糖块四-、-方法变长参数" class="headerlink" title="糖块四 、 方法变长参数"></a><strong>糖块四 、 方法变长参数</strong></h3><p>可变参数(variable arguments)是在Java 1.5中引入的一个特性。它允许一个方法把任意数量的值作为参数。</p>
+<p>看下以下可变参数代码，其中print方法接收可变参数：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">public static void main(String[] args)</span><br><span class="line">    &#123;</span><br><span class="line">        print(&quot;Holis&quot;, &quot;公众号:Hollis&quot;, &quot;博客：www.hollischuang.com&quot;, &quot;QQ：907607222&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">public static void print(String... strs)</span><br><span class="line">&#123;</span><br><span class="line">    for (int i = 0; i &lt; strs.length; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        System.out.println(strs[i]);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>反编译后代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"> public static void main(String args[])</span><br><span class="line">&#123;</span><br><span class="line">    print(new String[] &#123;</span><br><span class="line">        &quot;Holis&quot;, &quot;\u516C\u4F17\u53F7:Hollis&quot;, &quot;\u535A\u5BA2\uFF1Awww.hollischuang.com&quot;, &quot;QQ\uFF1A907607222&quot;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line">public static transient void print(String strs[])</span><br><span class="line">&#123;</span><br><span class="line">    for(int i = 0; i &lt; strs.length; i++)</span><br><span class="line">        System.out.println(strs[i]);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>从反编译后代码可以看出，可变参数在被使用的时候，他首先会创建一个数组，数组的长度就是调用该方法是传递的实参的个数，然后再把参数值全部放到这个数组当中，然后再把这个数组作为参数传递到被调用的方法中。</p>
+<h3 id="-7"><a href="#-7" class="headerlink" title=""></a></h3><h3 id="糖块五-、-枚举"><a href="#糖块五-、-枚举" class="headerlink" title="糖块五 、 枚举"></a><strong>糖块五 、 枚举</strong></h3><p>Java SE5提供了一种新的类型-Java的枚举类型，关键字enum可以将一组具名的值的有限集合创建为一种新的类型，而这些具名的值可以作为常规的程序组件使用，这是一种非常有用的功能。参考：<a target="_blank" rel="noopener external nofollow noreferrer" href="http://mp.weixin.qq.com/s?__biz=MzI3NzE0NjcwMg==&mid=402247345&idx=1&sn=a0e1f8cc739dd8cf96ede6ec5181d244&chksm=7967d3904e105a867b1d737bc64e526756125ced5f33cc9a9b35064228f639e391d024e3abde&scene=21#wechat_redirect">Java的枚举类型用法介绍</a></p>
+<p>要想看源码，首先得有一个类吧，那么枚举类型到底是什么类呢？是enum吗？</p>
+<p>答案很明显不是，enum就和class一样，只是一个关键字，他并不是一个类。</p>
+<p>那么枚举是由什么类维护的呢，我们简单的写一个枚举：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">public enum t &#123;</span><br><span class="line">    SPRING,SUMMER;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>然后我们使用反编译，看看这段代码到底是怎么实现的，反编译后代码内容如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">public final class T extends Enum</span><br><span class="line">&#123;</span><br><span class="line">    private T(String s, int i)</span><br><span class="line">    &#123;</span><br><span class="line">        super(s, i);</span><br><span class="line">    &#125;</span><br><span class="line">    public static T[] values()</span><br><span class="line">    &#123;</span><br><span class="line">        T at[];</span><br><span class="line">        int i;</span><br><span class="line">        T at1[];</span><br><span class="line">        System.arraycopy(at = ENUM$VALUES, 0, at1 = new T[i = at.length], 0, i);</span><br><span class="line">        return at1;</span><br><span class="line">    &#125;</span><br><span class="line">    public static T valueOf(String s)</span><br><span class="line">    &#123;</span><br><span class="line">        return (T)Enum.valueOf(demo/T, s);</span><br><span class="line">    &#125;</span><br><span class="line">    public static final T SPRING;</span><br><span class="line">    public static final T SUMMER;</span><br><span class="line">    private static final T ENUM$VALUES[];</span><br><span class="line">    static</span><br><span class="line">    &#123;</span><br><span class="line">        SPRING = new T(&quot;SPRING&quot;, 0);</span><br><span class="line">        SUMMER = new T(&quot;SUMMER&quot;, 1);</span><br><span class="line">        ENUM$VALUES = (new T[] &#123;</span><br><span class="line">            SPRING, SUMMER</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>通过反编译后代码我们可以看到，public final class T extends Enum，说明，该类是继承了Enum类的，同时final关键字告诉我们，这个类也是不能被继承的。</p>
+<p>当我们使用enmu来定义一个枚举类型的时候，编译器会自动帮我们创建一个final类型的类继承Enum类，所以枚举类型不能被继承。</p>
+<h3 id="-8"><a href="#-8" class="headerlink" title=""></a></h3><h3 id="糖块六-、-内部类"><a href="#糖块六-、-内部类" class="headerlink" title="糖块六 、 内部类"></a><strong>糖块六 、 内部类</strong></h3><p>内部类又称为嵌套类，可以把内部类理解为外部类的一个普通成员。</p>
+<p>内部类之所以也是语法糖，是因为它仅仅是一个编译时的概念。</p>
+<p>outer.java里面定义了一个内部类inner，一旦编译成功，就会生成两个完全不同的.class文件了，分别是outer.class和outer$inner.class。所以内部类的名字完全可以和它的外部类名字相同。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">public class OutterClass &#123;</span><br><span class="line">    private String userName;</span><br><span class="line">    public String getUserName() &#123;</span><br><span class="line">        return userName;</span><br><span class="line">    &#125;</span><br><span class="line">    public void setUserName(String userName) &#123;</span><br><span class="line">        this.userName = userName;</span><br><span class="line">    &#125;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">    &#125;</span><br><span class="line">    class InnerClass&#123;</span><br><span class="line">        private String name;</span><br><span class="line">        public String getName() &#123;</span><br><span class="line">            return name;</span><br><span class="line">        &#125;</span><br><span class="line">        public void setName(String name) &#123;</span><br><span class="line">            this.name = name;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>以上代码编译后会生成两个class文件：OutterClass$InnerClass.class 、OutterClass.class 。</p>
+<p>当我们尝试使用jad对OutterClass.class文件进行反编译的时候，命令行会打印以下内容：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Parsing OutterClass.class...</span><br><span class="line">Parsing inner class OutterClass$InnerClass.class...</span><br><span class="line">Generating OutterClass.jad</span><br></pre></td></tr></table></figure>
+
+<p>他会把两个文件全部进行反编译，然后一起生成一个OutterClass.jad文件。文件内容如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">public class OutterClass</span><br><span class="line">&#123;</span><br><span class="line">    class InnerClass</span><br><span class="line">    &#123;</span><br><span class="line">        public String getName()</span><br><span class="line">        &#123;</span><br><span class="line">            return name;</span><br><span class="line">        &#125;</span><br><span class="line">        public void setName(String name)</span><br><span class="line">        &#123;</span><br><span class="line">            this.name = name;</span><br><span class="line">        &#125;</span><br><span class="line">        private String name;</span><br><span class="line">        final OutterClass this$0;</span><br><span class="line">        InnerClass()</span><br><span class="line">        &#123;</span><br><span class="line">            this.this$0 = OutterClass.this;</span><br><span class="line">            super();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    public OutterClass()</span><br><span class="line">    &#123;</span><br><span class="line">    &#125;</span><br><span class="line">    public String getUserName()</span><br><span class="line">    &#123;</span><br><span class="line">        return userName;</span><br><span class="line">    &#125;</span><br><span class="line">    public void setUserName(String userName)&#123;</span><br><span class="line">        this.userName = userName;</span><br><span class="line">    &#125;</span><br><span class="line">    public static void main(String args1[])</span><br><span class="line">    &#123;</span><br><span class="line">    &#125;</span><br><span class="line">    private String userName;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="-9"><a href="#-9" class="headerlink" title=""></a></h3><h3 id="-10"><a href="#-10" class="headerlink" title=""></a></h3><h3 id="糖块七-、条件编译"><a href="#糖块七-、条件编译" class="headerlink" title="糖块七 、条件编译"></a><strong>糖块七 、条件编译</strong></h3><p>—般情况下，程序中的每一行代码都要参加编译。但有时候出于对程序代码优化的考虑，希望只对其中一部分内容进行编译，此时就需要在程序中加上条件，让编译器只对满足条件的代码进行编译，将不满足条件的代码舍弃，这就是条件编译。</p>
+<p>如在C或CPP中，可以通过预处理语句来实现条件编译。其实在Java中也可实现条件编译。我们先来看一段代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">public class ConditionalCompilation &#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        final boolean DEBUG = true;</span><br><span class="line">        if(DEBUG) &#123;</span><br><span class="line">            System.out.println(&quot;Hello, DEBUG!&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">        final boolean ONLINE = false;</span><br><span class="line">        if(ONLINE)&#123;</span><br><span class="line">            System.out.println(&quot;Hello, ONLINE!&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>反编译后代码如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">public class ConditionalCompilation</span><br><span class="line">&#123;</span><br><span class="line">    public ConditionalCompilation()</span><br><span class="line">    &#123;</span><br><span class="line">    &#125;</span><br><span class="line">    public static void main(String args[])</span><br><span class="line">    &#123;</span><br><span class="line">        boolean DEBUG = true;</span><br><span class="line">        System.out.println(&quot;Hello, DEBUG!&quot;);</span><br><span class="line">        boolean ONLINE = false;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>首先，我们发现，在反编译后的代码中没有System.out.println(“Hello, ONLINE!”);，这其实就是条件编译。</p>
+<p>当if(ONLINE)为false的时候，编译器就没有对其内的代码进行编译。</p>
+<p>所以，Java语法的条件编译，是通过判断条件为常量的if语句实现的。根据if判断条件的真假，编译器直接把分支为false的代码块消除。通过该方式实现的条件编译，必须在方法体内实现，而无法在正整个Java类的结构或者类的属性上进行条件编译。</p>
+<p>这与C/C++的条件编译相比，确实更有局限性。在Java语言设计之初并没有引入条件编译的功能，虽有局限，但是总比没有更强。</p>
+<h3 id="-11"><a href="#-11" class="headerlink" title=""></a></h3><h3 id="糖块八-、-断言"><a href="#糖块八-、-断言" class="headerlink" title="糖块八 、 断言"></a><strong>糖块八 、 断言</strong></h3><p>在Java中，assert关键字是从JAVA SE 1.4 引入的，为了避免和老版本的Java代码中使用了assert关键字导致错误，Java在执行的时候默认是不启动断言检查的（这个时候，所有的断言语句都将忽略！）。</p>
+<p>如果要开启断言检查，则需要用开关-enableassertions或-ea来开启。</p>
+<p>看一段包含断言的代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">public class AssertTest &#123;</span><br><span class="line">    public static void main(String args[]) &#123;</span><br><span class="line">        int a = 1;</span><br><span class="line">        int b = 1;</span><br><span class="line">        assert a == b;</span><br><span class="line">        System.out.println(&quot;公众号：Hollis&quot;);</span><br><span class="line">        assert a != b : &quot;Hollis&quot;;</span><br><span class="line">        System.out.println(&quot;博客：www.hollischuang.com&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>反编译后代码如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">public class AssertTest &#123;</span><br><span class="line">   public AssertTest()</span><br><span class="line">    &#123;</span><br><span class="line">    &#125;</span><br><span class="line">    public static void main(String args[])</span><br><span class="line">&#123;</span><br><span class="line">    int a = 1;</span><br><span class="line">    int b = 1;</span><br><span class="line">    if(!$assertionsDisabled &amp;&amp; a != b)</span><br><span class="line">        throw new AssertionError();</span><br><span class="line">    System.out.println(&quot;\u516C\u4F17\u53F7\uFF1AHollis&quot;);</span><br><span class="line">    if(!$assertionsDisabled &amp;&amp; a == b)</span><br><span class="line">    &#123;</span><br><span class="line">        throw new AssertionError(&quot;Hollis&quot;);</span><br><span class="line">    &#125; else</span><br><span class="line">    &#123;</span><br><span class="line">        System.out.println(&quot;\u535A\u5BA2\uFF1Awww.hollischuang.com&quot;);</span><br><span class="line">        return;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">static final boolean $assertionsDisabled = !com/hollis/suguar/AssertTest.desiredAssertionStatus();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>很明显，反编译之后的代码要比我们自己的代码复杂的多。所以，使用了assert这个语法糖我们节省了很多代码。</p>
+<p>其实断言的底层实现就是if语言，如果断言结果为true，则什么都不做，程序继续执行，如果断言结果为false，则程序抛出AssertError来打断程序的执行。</p>
+<p>-enableassertions会设置$assertionsDisabled字段的值。</p>
+<h3 id="-12"><a href="#-12" class="headerlink" title=""></a></h3><h3 id="糖块九-、-数值字面量"><a href="#糖块九-、-数值字面量" class="headerlink" title="糖块九 、 数值字面量"></a><strong>糖块九 、 数值字面量</strong></h3><p>在java 7中，数值字面量，不管是整数还是浮点数，都允许在数字之间插入任意多个下划线。这些下划线不会对字面量的数值产生影响，目的就是方便阅读。</p>
+<p>比如：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">public class Test &#123;</span><br><span class="line">    public static void main(String... args) &#123;</span><br><span class="line">        int i = 10_000;</span><br><span class="line">        System.out.println(i);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>反编译后：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">public class Test</span><br><span class="line">&#123;</span><br><span class="line">  public static void main(String[] args)</span><br><span class="line">  &#123;</span><br><span class="line">    int i = 10000;</span><br><span class="line">    System.out.println(i);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>反编译后就是把_删除了。也就是说编译器并不认识在数字字面量中的_，需要在编译阶段把他去掉。</p>
+<h3 id="-13"><a href="#-13" class="headerlink" title=""></a></h3><h3 id="糖块十-、-for-each"><a href="#糖块十-、-for-each" class="headerlink" title="糖块十 、 for-each"></a><strong>糖块十 、 for-each</strong></h3><p>增强for循环（for-each）相信大家都不陌生，日常开发经常会用到的，他会比for循环要少写很多代码，那么这个语法糖背后是如何实现的呢？</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">public static void main(String... args) &#123;</span><br><span class="line">    String[] strs = &#123;&quot;Hollis&quot;, &quot;公众号：Hollis&quot;, &quot;博客：www.hollischuang.com&quot;&#125;;</span><br><span class="line">    for (String s : strs) &#123;</span><br><span class="line">        System.out.println(s);</span><br><span class="line">    &#125;</span><br><span class="line">    List&lt;String&gt; strList = ImmutableList.of(&quot;Hollis&quot;, &quot;公众号：Hollis&quot;, &quot;博客：www.hollischuang.com&quot;);</span><br><span class="line">    for (String s : strList) &#123;</span><br><span class="line">        System.out.println(s);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>反编译后代码如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">public static transient void main(String args[])</span><br><span class="line">&#123;</span><br><span class="line">    String strs[] = &#123;</span><br><span class="line">        &quot;Hollis&quot;, &quot;\u516C\u4F17\u53F7\uFF1AHollis&quot;, &quot;\u535A\u5BA2\uFF1Awww.hollischuang.com&quot;</span><br><span class="line">    &#125;;</span><br><span class="line">    String args1[] = strs;</span><br><span class="line">    int i = args1.length;</span><br><span class="line">    for(int j = 0; j &lt; i; j++)</span><br><span class="line">    &#123;</span><br><span class="line">        String s = args1[j];</span><br><span class="line">        System.out.println(s);</span><br><span class="line">    &#125;</span><br><span class="line">    List strList = ImmutableList.of(&quot;Hollis&quot;, &quot;\u516C\u4F17\u53F7\uFF1AHollis&quot;, &quot;\u535A\u5BA2\uFF1Awww.hollischuang.com&quot;);</span><br><span class="line">    String s;</span><br><span class="line">    for(Iterator iterator = strList.iterator(); iterator.hasNext(); System.out.println(s))</span><br><span class="line">        s = (String)iterator.next();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>代码很简单，for-each的实现原理其实就是使用了普通的for循环和迭代器。</p>
+<h3 id="-14"><a href="#-14" class="headerlink" title=""></a></h3><h3 id="糖块十一-、-try-with-resource"><a href="#糖块十一-、-try-with-resource" class="headerlink" title="糖块十一 、 try-with-resource"></a><strong>糖块十一 、 try-with-resource</strong></h3><p>Java里，对于文件操作IO流、数据库连接等开销非常昂贵的资源，用完之后必须及时通过close方法将其关闭，否则资源会一直处于打开状态，可能会导致内存泄露等问题。</p>
+<p>关闭资源的常用方式就是在finally块里是释放，即调用close方法。比如，我们经常会写这样的代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">public static void main(String[] args) &#123;</span><br><span class="line">    BufferedReader br = null;</span><br><span class="line">    try &#123;</span><br><span class="line">        String line;</span><br><span class="line">        br = new BufferedReader(new FileReader(&quot;d:\\hollischuang.xml&quot;));</span><br><span class="line">        while ((line = br.readLine()) != null) &#123;</span><br><span class="line">            System.out.println(line);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; catch (IOException e) &#123;</span><br><span class="line">        // handle exception</span><br><span class="line">    &#125; finally &#123;</span><br><span class="line">        try &#123;</span><br><span class="line">            if (br != null) &#123;</span><br><span class="line">                br.close();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; catch (IOException ex) &#123;</span><br><span class="line">            // handle exception</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>从Java 7开始，jdk提供了一种更好的方式关闭资源，使用try-with-resources语句，改写一下上面的代码，效果如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">public static void main(String... args) &#123;</span><br><span class="line">    try (BufferedReader br = new BufferedReader(new FileReader(&quot;d:\\ hollischuang.xml&quot;))) &#123;</span><br><span class="line">        String line;</span><br><span class="line">        while ((line = br.readLine()) != null) &#123;</span><br><span class="line">            System.out.println(line);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; catch (IOException e) &#123;</span><br><span class="line">        // handle exception</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>看，这简直是一大福音啊，虽然我之前一般使用IOUtils去关闭流，并不会使用在finally中写很多代码的方式，但是这种新的语法糖看上去好像优雅很多呢。</p>
+<p>反编译以上代码，看下他的背后原理：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">public static transient void main(String args[])</span><br><span class="line">    &#123;</span><br><span class="line">        BufferedReader br;</span><br><span class="line">        Throwable throwable;</span><br><span class="line">        br = new BufferedReader(new FileReader(&quot;d:\\ hollischuang.xml&quot;));</span><br><span class="line">        throwable = null;</span><br><span class="line">        String line;</span><br><span class="line">        try</span><br><span class="line">        &#123;</span><br><span class="line">            while((line = br.readLine()) != null)</span><br><span class="line">                System.out.println(line);</span><br><span class="line">        &#125;</span><br><span class="line">        catch(Throwable throwable2)</span><br><span class="line">        &#123;</span><br><span class="line">            throwable = throwable2;</span><br><span class="line">            throw throwable2;</span><br><span class="line">        &#125;</span><br><span class="line">        if(br != null)</span><br><span class="line">            if(throwable != null)</span><br><span class="line">                try</span><br><span class="line">                &#123;</span><br><span class="line">                    br.close();</span><br><span class="line">                &#125;</span><br><span class="line">                catch(Throwable throwable1)</span><br><span class="line">                &#123;</span><br><span class="line">                    throwable.addSuppressed(throwable1);</span><br><span class="line">                &#125;</span><br><span class="line">            else</span><br><span class="line">                br.close();</span><br><span class="line">            break MISSING_BLOCK_LABEL_113;</span><br><span class="line">            Exception exception;</span><br><span class="line">            exception;</span><br><span class="line">            if(br != null)</span><br><span class="line">                if(throwable != null)</span><br><span class="line">                    try</span><br><span class="line">                    &#123;</span><br><span class="line">                        br.close();</span><br><span class="line">                    &#125;</span><br><span class="line">                    catch(Throwable throwable3)</span><br><span class="line">                      &#123;</span><br><span class="line">                        throwable.addSuppressed(throwable3);</span><br><span class="line">                    &#125;</span><br><span class="line">                else</span><br><span class="line">                    br.close();</span><br><span class="line">        throw exception;</span><br><span class="line">        IOException ioexception;</span><br><span class="line">        ioexception;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>其实背后的原理也很简单，那些我们没有做的关闭资源的操作，编译器都帮我们做了。</p>
+<p>所以，再次印证了，语法糖的作用就是方便程序员的使用，但最终还是要转成编译器认识的语言。</p>
+<h3 id="-15"><a href="#-15" class="headerlink" title=""></a></h3><h3 id="糖块十二、Lambda表达式"><a href="#糖块十二、Lambda表达式" class="headerlink" title="糖块十二、Lambda表达式"></a><strong>糖块十二、Lambda表达式</strong></h3><p>关于lambda表达式，有人可能会有质疑，因为网上有人说他并不是语法糖。其实我想纠正下这个说法。</p>
+<p>Labmda表达式不是匿名内部类的语法糖，但是他也是一个语法糖。实现方式其实是依赖了几个JVM底层提供的lambda相关api。</p>
+<p>先来看一个简单的lambda表达式。遍历一个list：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">public static void main(String... args) &#123;</span><br><span class="line">    List&lt;String&gt; strList = ImmutableList.of(&quot;Hollis&quot;, &quot;公众号：Hollis&quot;, &quot;博客：www.hollischuang.com&quot;);</span><br><span class="line">    strList.forEach( s -&gt; &#123; System.out.println(s); &#125; );</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>为啥说他并不是内部类的语法糖呢，前面讲内部类我们说过，内部类在编译之后会有两个class文件，但是，包含lambda表达式的类编译后只有一个文件。</p>
+<p>反编译后代码如下:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">public static /* varargs */ void main(String ... args) &#123;</span><br><span class="line">    ImmutableList strList = ImmutableList.of((Object)&quot;Hollis&quot;, (Object)&quot;\u516c\u4f17\u53f7\uff1aHollis&quot;, (Object)&quot;\u535a\u5ba2\uff1awww.hollischuang.com&quot;);</span><br><span class="line">    strList.forEach((Consumer&lt;String&gt;)LambdaMetafactory.metafactory(null, null, null, (Ljava/lang/Object;)V, lambda$main$0(java.lang.String ), (Ljava/lang/String;)V)());</span><br><span class="line">&#125;</span><br><span class="line">private static /* synthetic */ void lambda$main$0(String s) &#123;</span><br><span class="line">    System.out.println(s);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>可以看到，在forEach方法中，其实是调用了java.lang.invoke.LambdaMetafactory#metafactory方法，该方法的第四个参数implMethod指定了方法实现。可以看到这里其实是调用了一个lambda$main$0方法进行了输出。</p>
+<p>再来看一个稍微复杂一点的，先对List进行过滤，然后再输出：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">public static void main(String... args) &#123;</span><br><span class="line">    List&lt;String&gt; strList = ImmutableList.of(&quot;Hollis&quot;, &quot;公众号：Hollis&quot;, &quot;博客：www.hollischuang.com&quot;);</span><br><span class="line">    List HollisList = strList.stream().filter(string -&gt; string.contains(&quot;Hollis&quot;)).collect(Collectors.toList());</span><br><span class="line">    HollisList.forEach( s -&gt; &#123; System.out.println(s); &#125; );</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>反编译后代码如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">public static /* varargs */ void main(String ... args) &#123;</span><br><span class="line">    ImmutableList strList = ImmutableList.of((Object)&quot;Hollis&quot;, (Object)&quot;\u516c\u4f17\u53f7\uff1aHollis&quot;, (Object)&quot;\u535a\u5ba2\uff1awww.hollischuang.com&quot;);</span><br><span class="line">    List&lt;Object&gt; HollisList = strList.stream().filter((Predicate&lt;String&gt;)LambdaMetafactory.metafactory(null, null, null, (Ljava/lang/Object;)Z, lambda$main$0(java.lang.String ), (Ljava/lang/String;)Z)()).collect(Collectors.toList());</span><br><span class="line">    HollisList.forEach((Consumer&lt;Object&gt;)LambdaMetafactory.metafactory(null, null, null, (Ljava/lang/Object;)V, lambda$main$1(java.lang.Object ), (Ljava/lang/Object;)V)());</span><br><span class="line">&#125;</span><br><span class="line">private static /* synthetic */ void lambda$main$1(Object s) &#123;</span><br><span class="line">    System.out.println(s);</span><br><span class="line">&#125;</span><br><span class="line">private static /* synthetic */ boolean lambda$main$0(String string) &#123;</span><br><span class="line">    return string.contains(&quot;Hollis&quot;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>两个lambda表达式分别调用了lambda$main$1和lambda$main$0两个方法。</p>
+<p>所以，lambda表达式的实现其实是依赖了一些底层的api，在编译阶段，编译器会把lambda表达式进行解糖，转换成调用内部api的方式。</p>
+<h3 id="-16"><a href="#-16" class="headerlink" title=""></a></h3><h3 id="可能遇到的坑"><a href="#可能遇到的坑" class="headerlink" title="可能遇到的坑"></a><strong>可能遇到的坑</strong></h3><h4 id="泛型——当泛型遇到重载"><a href="#泛型——当泛型遇到重载" class="headerlink" title="泛型——当泛型遇到重载****"></a><strong>泛型——</strong>当泛型遇到重载****</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">public class GenericTypes &#123;</span><br><span class="line"></span><br><span class="line"> public static void method(List&lt;String&gt; list)&#123;  </span><br><span class="line">        System.out.println(&quot;invoke method(List&lt;String&gt; list)&quot;);  </span><br><span class="line">    &#125;  </span><br><span class="line">    public static void method(List&lt;Integer&gt; list) &#123;  </span><br><span class="line">        System.out.println(&quot;invoke method(List&lt;Integer&gt; list)&quot;);  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>上面这段代码，有两个重载的函数，因为他们的参数类型不同，一个是List另一个是List，但是，这段代码是编译通不过的。因为我们前面讲过，参数List和List编译之后都被擦除了，变成了一样的原生类型List，擦除动作导致这两个方法的特征签名变得一模一样。</p>
+<h4 id="泛型——-当泛型遇到catch"><a href="#泛型——-当泛型遇到catch" class="headerlink" title="泛型——****当泛型遇到catch"></a><strong>泛型——****当泛型遇到catch</strong></h4><p>泛型的类型参数不能用在Java异常处理的catch语句中。因为异常处理是由JVM在运行时刻来进行的。由于类型信息被擦除，JVM是无法区分两个异常类型MyException<String>和MyException&lt;Integer&gt;的</p>
+<h4 id="泛型——当泛型内包含静态变量"><a href="#泛型——当泛型内包含静态变量" class="headerlink" title="泛型——当泛型内包含静态变量"></a><strong>泛型—<strong><strong>—</strong></strong>当泛型内包含静态变量</strong></h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">public class StaticTest&#123;</span><br><span class="line">    public static void main(String[] args)&#123;</span><br><span class="line">        GT&lt;Integer&gt; gti = new GT&lt;Integer&gt;();</span><br><span class="line">        gti.var=1;</span><br><span class="line">        GT&lt;String&gt; gts = new GT&lt;String&gt;();</span><br><span class="line">        gts.var=2;</span><br><span class="line">        System.out.println(gti.var);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">class GT&lt;T&gt;&#123;</span><br><span class="line">    public static int var=0;</span><br><span class="line">    public void nothing(T x)&#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>以上代码输出结果为：2！由于经过类型擦除，所有的泛型类实例都关联到同一份字节码上，泛型类的所有静态变量是共享的。</p>
+<h4 id="自动装箱与拆箱——对象相等比较"><a href="#自动装箱与拆箱——对象相等比较" class="headerlink" title="自动装箱与拆箱——对象相等比较"></a>自动装箱与拆箱——<strong>对象相等比较</strong></h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">public static void main(String[] args) &#123;</span><br><span class="line">    Integer a = 1000;</span><br><span class="line">    Integer b = 1000;</span><br><span class="line">    Integer c = 100;</span><br><span class="line">    Integer d = 100;</span><br><span class="line">    System.out.println(&quot;a == b is &quot; + (a == b));</span><br><span class="line">    System.out.println((&quot;c == d is &quot; + (c == d)));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>输出结果：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">a == b is false</span><br><span class="line">c == d is true</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>在Java 5中，在Integer的操作上引入了一个新功能来节省内存和提高性能。整型对象通过使用相同的对象引用实现了缓存和重用。</p>
+<p>适用于整数值区间-128 至 +127。</p>
+<p>只适用于自动装箱。使用构造函数创建对象不适用。</p>
+<h4 id="增强for循环"><a href="#增强for循环" class="headerlink" title="增强for循环"></a>增强for循环</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">for (Student stu : students) &#123;    </span><br><span class="line">    if (stu.getId() == 2)     </span><br><span class="line">        students.remove(stu);    </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>会抛出ConcurrentModificationException异常。</p>
+<p>Iterator是工作在一个独立的线程中，并且拥有一个 mutex 锁。 Iterator被创建之后会建立一个指向原来对象的单链索引表，当原来的对象数量发生变化时，这个索引表的内容不会同步改变，所以当索引指针往后移动的时候就找不到要迭代的对象，所以按照 fail-fast 原则 Iterator 会马上抛出java.util.ConcurrentModificationException异常。参考：<a target="_blank" rel="noopener external nofollow noreferrer" href="http://mp.weixin.qq.com/s?__biz=MzI3NzE0NjcwMg==&mid=2650123769&idx=2&sn=87d070e0a1a5e66a87eed4e22a99aa63&chksm=f36bb0d8c41c39ce80af4ff385a75f762a7f73850589517cb1ba28a42e9eb09eeb3bd81d4201&scene=21#wechat_redirect">一不小心就让Java开发者踩坑的fail-fast是个什么鬼？</a></p>
+<p>所以 Iterator 在工作的时候是不允许被迭代的对象被改变的。但你可以使用 Iterator 本身的方法remove()来删除对象，Iterator.remove() 方法会在删除当前迭代对象的同时维护索引的一致性。</p>
+<h3 id="-17"><a href="#-17" class="headerlink" title=""></a></h3><h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a><strong>总结</strong></h3><p>前面介绍了12种Java中常用的语法糖。所谓语法糖就是提供给开发人员便于开发的一种语法而已。</p>
+<p>但是这种语法只有开发人员认识。要想被执行，需要进行解糖，即转成JVM认识的语法。</p>
+<p>当我们把语法糖解糖之后，你就会发现其实我们日常使用的这些方便的语法，其实都是一些其他更简单的语法构成的。</p>
+<p>有了这些语法糖，我们在日常开发的时候可以大大提升效率，但是同时也要避免过渡使用。使用之前最好了解下原理，避免掉坑。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:978252321@qq.com" rel="external nofollow noreferrer">传礼</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://iwangchuanli.github.io/posts/9444.html">https://iwangchuanli.github.io/posts/9444.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow noreferrer" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://iwangchuanli.github.io" target="_blank">传礼</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Java/">Java</a></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img37_UGZvBP.jpeg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/posts/4603.html"><img class="prev-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img2_qWI50v.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">这几道Java集合框架面试题几乎必问</div></div></a></div><div class="next-post pull-right"><a href="/posts/50821.html"><img class="next-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img22_700Zcx.jpeg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Java内存模型</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/posts/47405.html" title="AQS-AbstractQueuedSynchronizer"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img16_UxoLFp.jpeg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-01-07</div><div class="title">AQS-AbstractQueuedSynchronizer</div></div></a></div><div><a href="/posts/65526.html" title="ArrayList-Grow"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img37_UGZvBP.jpeg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-01-07</div><div class="title">ArrayList-Grow</div></div></a></div><div><a href="/posts/35230.html" title="ArrayList"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img18_JzIWdl.jpeg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-01-07</div><div class="title">ArrayList</div></div></a></div><div><a href="/posts/43613.html" title="Atomic"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img12_dEurxP.jpeg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-01-07</div><div class="title">Atomic</div></div></a></div><div><a href="/posts/20418.html" title="BATJ都爱问的多线程面试题"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img36_H3Vi3i.jpeg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-01-07</div><div class="title">BATJ都爱问的多线程面试题</div></div></a></div><div><a href="/posts/30608.html" title="Flowable Unknown property used in expression: xxx"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img19_kf59TQ.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-08-23</div><div class="title">Flowable Unknown property used in expression: xxx</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div><div id="comment-switch"><span class="first-comment">Valine</span><span class="switch-btn"></span><span class="second-comment">Gitalk</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div><div><div id="gitalk-container"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">Nice to meet you ~</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8E%9F%E5%88%9B-%E4%B8%8D%E4%BA%86%E8%A7%A3%E8%BF%9912%E4%B8%AA%E8%AF%AD%E6%B3%95%E7%B3%96%EF%BC%8C%E5%88%AB%E8%AF%B4%E4%BD%A0%E4%BC%9AJava%EF%BC%81"><span class="toc-number">1.</span> <span class="toc-text">原创 | 不了解这12个语法糖，别说你会Java！</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-number">1.0.1.</span> <span class="toc-text"></span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%AD%E6%B3%95%E7%B3%96"><span class="toc-number">1.0.2.</span> <span class="toc-text">语法糖</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#-1"><span class="toc-number">1.0.3.</span> <span class="toc-text"></span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%A3%E8%AF%AD%E6%B3%95%E7%B3%96"><span class="toc-number">1.0.4.</span> <span class="toc-text">解语法糖</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#-2"><span class="toc-number">1.0.5.</span> <span class="toc-text"></span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B3%96%E5%9D%97%E4%B8%80%E3%80%81-switch-%E6%94%AF%E6%8C%81-String-%E4%B8%8E%E6%9E%9A%E4%B8%BE"><span class="toc-number">1.0.6.</span> <span class="toc-text">糖块一、 switch 支持 String 与枚举</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#-3"><span class="toc-number">1.0.7.</span> <span class="toc-text"></span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#-4"><span class="toc-number">1.0.8.</span> <span class="toc-text"></span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B3%96%E5%9D%97%E4%BA%8C%E3%80%81-%E6%B3%9B%E5%9E%8B"><span class="toc-number">1.0.9.</span> <span class="toc-text">糖块二、 泛型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#-5"><span class="toc-number">1.0.10.</span> <span class="toc-text"></span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B3%96%E5%9D%97%E4%B8%89%E3%80%81-%E8%87%AA%E5%8A%A8%E8%A3%85%E7%AE%B1%E4%B8%8E%E6%8B%86%E7%AE%B1"><span class="toc-number">1.0.11.</span> <span class="toc-text">糖块三、 自动装箱与拆箱</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#-6"><span class="toc-number">1.0.12.</span> <span class="toc-text"></span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B3%96%E5%9D%97%E5%9B%9B-%E3%80%81-%E6%96%B9%E6%B3%95%E5%8F%98%E9%95%BF%E5%8F%82%E6%95%B0"><span class="toc-number">1.0.13.</span> <span class="toc-text">糖块四 、 方法变长参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#-7"><span class="toc-number">1.0.14.</span> <span class="toc-text"></span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B3%96%E5%9D%97%E4%BA%94-%E3%80%81-%E6%9E%9A%E4%B8%BE"><span class="toc-number">1.0.15.</span> <span class="toc-text">糖块五 、 枚举</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#-8"><span class="toc-number">1.0.16.</span> <span class="toc-text"></span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B3%96%E5%9D%97%E5%85%AD-%E3%80%81-%E5%86%85%E9%83%A8%E7%B1%BB"><span class="toc-number">1.0.17.</span> <span class="toc-text">糖块六 、 内部类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#-9"><span class="toc-number">1.0.18.</span> <span class="toc-text"></span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#-10"><span class="toc-number">1.0.19.</span> <span class="toc-text"></span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B3%96%E5%9D%97%E4%B8%83-%E3%80%81%E6%9D%A1%E4%BB%B6%E7%BC%96%E8%AF%91"><span class="toc-number">1.0.20.</span> <span class="toc-text">糖块七 、条件编译</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#-11"><span class="toc-number">1.0.21.</span> <span class="toc-text"></span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B3%96%E5%9D%97%E5%85%AB-%E3%80%81-%E6%96%AD%E8%A8%80"><span class="toc-number">1.0.22.</span> <span class="toc-text">糖块八 、 断言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#-12"><span class="toc-number">1.0.23.</span> <span class="toc-text"></span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B3%96%E5%9D%97%E4%B9%9D-%E3%80%81-%E6%95%B0%E5%80%BC%E5%AD%97%E9%9D%A2%E9%87%8F"><span class="toc-number">1.0.24.</span> <span class="toc-text">糖块九 、 数值字面量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#-13"><span class="toc-number">1.0.25.</span> <span class="toc-text"></span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B3%96%E5%9D%97%E5%8D%81-%E3%80%81-for-each"><span class="toc-number">1.0.26.</span> <span class="toc-text">糖块十 、 for-each</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#-14"><span class="toc-number">1.0.27.</span> <span class="toc-text"></span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B3%96%E5%9D%97%E5%8D%81%E4%B8%80-%E3%80%81-try-with-resource"><span class="toc-number">1.0.28.</span> <span class="toc-text">糖块十一 、 try-with-resource</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#-15"><span class="toc-number">1.0.29.</span> <span class="toc-text"></span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B3%96%E5%9D%97%E5%8D%81%E4%BA%8C%E3%80%81Lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="toc-number">1.0.30.</span> <span class="toc-text">糖块十二、Lambda表达式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#-16"><span class="toc-number">1.0.31.</span> <span class="toc-text"></span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%AF%E8%83%BD%E9%81%87%E5%88%B0%E7%9A%84%E5%9D%91"><span class="toc-number">1.0.32.</span> <span class="toc-text">可能遇到的坑</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B3%9B%E5%9E%8B%E2%80%94%E2%80%94%E5%BD%93%E6%B3%9B%E5%9E%8B%E9%81%87%E5%88%B0%E9%87%8D%E8%BD%BD"><span class="toc-number">1.0.32.1.</span> <span class="toc-text">泛型——当泛型遇到重载****</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B3%9B%E5%9E%8B%E2%80%94%E2%80%94-%E5%BD%93%E6%B3%9B%E5%9E%8B%E9%81%87%E5%88%B0catch"><span class="toc-number">1.0.32.2.</span> <span class="toc-text">泛型——****当泛型遇到catch</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B3%9B%E5%9E%8B%E2%80%94%E2%80%94%E5%BD%93%E6%B3%9B%E5%9E%8B%E5%86%85%E5%8C%85%E5%90%AB%E9%9D%99%E6%80%81%E5%8F%98%E9%87%8F"><span class="toc-number">1.0.32.3.</span> <span class="toc-text">泛型——当泛型内包含静态变量</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%87%AA%E5%8A%A8%E8%A3%85%E7%AE%B1%E4%B8%8E%E6%8B%86%E7%AE%B1%E2%80%94%E2%80%94%E5%AF%B9%E8%B1%A1%E7%9B%B8%E7%AD%89%E6%AF%94%E8%BE%83"><span class="toc-number">1.0.32.4.</span> <span class="toc-text">自动装箱与拆箱——对象相等比较</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A2%9E%E5%BC%BAfor%E5%BE%AA%E7%8E%AF"><span class="toc-number">1.0.32.5.</span> <span class="toc-text">增强for循环</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#-17"><span class="toc-number">1.0.33.</span> <span class="toc-text"></span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">1.0.34.</span> <span class="toc-text">总结</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget ads-wrap"><a target="_blank" href="https://www.aliyun.com/activity?userCode=dpj8p3hl" rel="external nofollow noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/aliyun_whuCuE.jpg" style="width:100%;height:100%;object-fit:cover;"></a></div></div></div></main><footer id="footer" style="background-image: url('https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img37_UGZvBP.jpeg')"><div id="footer-wrap"><div class="copyright">&copy;2018 - 2022 By 传礼</div><div class="footer_custom_text"><p style="display:inline-flex">本网站由<a href="https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral" rel="external nofollow noreferrer" target="_blank"><img style="width:60px;height:35px;" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/11/又拍云_logo5_O9kNul.png" title="又拍云"/></a>提供CDN加速/云存储服务</p><p><a style="margin-inline:5px" target="_blank" href="https://hexo.io/" rel="external nofollow noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Frame-Hexo-blue?style=flat&logo=hexo" title="博客框架为Hexo"></a><a style="margin-inline:5px" target="_blank" href="https://butterfly.js.org/" rel="external nofollow noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Theme-Butterfly-6513df?style=flat&logo=bitdefender" title="主题采用butterfly"></a><a style="margin-inline:5px" target="_blank" href="https://www.jsdelivr.com/" rel="external nofollow noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/CDN-jsDelivr-orange?style=flat&logo=jsDelivr" title="本站使用JsDelivr为静态资源提供CDN加速"></a><a style="margin-inline:5px" target="_blank" href="https://github.com/" rel="external nofollow noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Source-Github-d021d6?style=flat&logo=GitHub" title="本站项目由Github托管"></a><a style="margin-inline:5px" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Copyright-BY--NC--SA%204.0-d42328?style=flat&logo=Claris" title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可"></a></p></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="chat_btn" type="button" title="聊天"><i class="fas fa-sms"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">本地搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script src="/js/search/local-search.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"><script>function loadValine () {
+  function initValine () {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: 'zHUfFgUbITfMSQGuSPgS2e3C-gzGzoHsz',
+      appKey: 'yPXpeKX8VJxdFRPEsDaqNgEY',
+      avatar: 'wavatar',
+      serverURLs: 'https://zhuffgub.lc-cn-n1-shared.com',
+      emojiMaps: "",
+      path: window.location.pathname,
+      visitor: true,
+      master: '447d56ab3606de5490a2109d3e441219,135d837ea1033c9787dd307e59884d36'.split(','),
+      friends: '5c?????bfe6rfc72a????e268ad3819c'.split(','),
+      tagMeta: '博主,小伙伴,访客'.split(',')
+        
+    }, {"placeholder":"请输入内容～"}))
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/gh/HCLonely/Valine@latest/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !true) {
+  if (true) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script><script>function addGitalkSource () {
+  const ele = document.createElement('link')
+  ele.rel = 'stylesheet'
+  ele.href= 'https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css'
+  document.getElementsByTagName('head')[0].appendChild(ele)
+}
+
+function loadGitalk () {
+  function initGitalk () {
+    var gitalk = new Gitalk(Object.assign({
+      clientID: '052d9d6486112e93fa50',
+      clientSecret: '6fea35bfb7a17521694a95f705683622976d2f53',
+      repo: 'gitalk',
+      owner: 'iwangchuanli',
+      admin: ['iwangchuanli'],
+      id: 'e8729ac6792d80a8c17205462c3d2a6b',
+      updateCountCallback: commentCount
+    },null))
+
+    gitalk.render('gitalk-container')
+  }
+
+  if (typeof Gitalk === 'function') initGitalk()
+  else {
+    addGitalkSource()
+    getScript('https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.js').then(initGitalk)
+  }
+}
+
+function commentCount(n){
+  let isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+  if (isCommentCount) {
+    isCommentCount.innerHTML= n
+  }
+}
+
+if ('Valine' === 'Gitalk' || !true) {
+  if (true) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+  else loadGitalk()
+} else {
+  function loadOtherComment () {
+    loadGitalk()
+  }
+}</script></div><div class="aplayer no-destroy" data-id="7355841544" data-server="netease" data-type="playlist" data-fixed="true" data-autoplay="false"> </div><script async src="/js/grayscale.js"></script><script async src="//at.alicdn.com/t/font_1885008_srfhrsykmk.js"></script><script>((window.gitter = {}).chat = {}).options = {
+  disableDefaultChat: true,
+};
+document.addEventListener('gitter-sidecar-ready', (e) => {
+  const GitterChat = e.detail.Chat
+  let chat
+
+  function initGitter () {
+    chat = new GitterChat({
+      room: 'wangchuangli-/community',
+      activationElement: '#chat_btn'
+    });
+  }
+
+  initGitter()
+
+  if (true) {
+    document.addEventListener('pjax:complete', () => {
+      chat.destroy()
+      initGitter()
+    })
+  }
+
+})</script><script src="https://sidecar.gitter.im/dist/sidecar.v1.js" async="async" defer="defer"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/meting@1.2.0/dist/Meting.min.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = ["title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"]):not([href="/music/"]):not([href="/no-pjax/"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.tocScrollFn && window.removeEventListener('scroll', window.tocScrollFn)
+  window.scrollCollect && window.removeEventListener('scroll', scrollCollect)
+
+  typeof preloader === 'object' && preloader.initLoading()
+  document.getElementById('rightside').style.cssText = "opacity: ''; transform: ''"
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+
+  typeof preloader === 'object' && preloader.endLoading()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><!-- hexo injector body_end start --><script data-pjax>
+  function butterfly_swiper_injector_config(){
+    var parent_div_git = document.getElementById('recent-posts');
+    var item_html = '<div class="recent-post-item" style="height: auto;width: 100%"><div class="blog-slider swiper-container-fade swiper-container-horizontal" id="swiper_container"><div class="blog-slider__wrp swiper-wrapper" style="transition-duration: 0ms;"><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" onclick="pjax.loadUrl(&quot;posts/4496.html&quot;);" href="javascript:void(0);" rel="external nofollow noreferrer" alt=""><img width="48" height="48" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img6_L358Nt.jpeg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2018-09-05</span><a class="blog-slider__title" onclick="pjax.loadUrl(&quot;posts/4496.html&quot;);" href="javascript:void(0);" rel="external nofollow noreferrer" alt="">编程系列书单推荐</a><div class="blog-slider__text">再怎么看我也不知道怎么描述它的啦！</div><a class="blog-slider__button" onclick="pjax.loadUrl(&quot;posts/4496.html&quot;);" href="javascript:void(0);" rel="external nofollow noreferrer" alt="">详情       </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" onclick="pjax.loadUrl(&quot;posts/35693.html&quot;);" href="javascript:void(0);" rel="external nofollow noreferrer" alt=""><img width="48" height="48" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img33_fnRUqR.jpeg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2018-11-26</span><a class="blog-slider__title" onclick="pjax.loadUrl(&quot;posts/35693.html&quot;);" href="javascript:void(0);" rel="external nofollow noreferrer" alt="">优秀科技博客订阅</a><div class="blog-slider__text">再怎么看我也不知道怎么描述它的啦！</div><a class="blog-slider__button" onclick="pjax.loadUrl(&quot;posts/35693.html&quot;);" href="javascript:void(0);" rel="external nofollow noreferrer" alt="">详情       </a></div></div></div><div class="blog-slider__pagination swiper-pagination-clickable swiper-pagination-bullets"></div></div></div>';
+    console.log('已挂载butterfly_swiper')
+    parent_div_git.insertAdjacentHTML("afterbegin",item_html)
+    }
+  var elist = 'undefined'.split(',');
+  var cpage = location.pathname;
+  var epage = 'all';
+  var flag = 0;
+
+  for (var i=0;i<elist.length;i++){
+    if (cpage.includes(elist[i])){
+      flag++;
+    }
+  }
+
+  if ((epage ==='all')&&(flag == 0)){
+    butterfly_swiper_injector_config();
+  }
+  else if (epage === cpage){
+    butterfly_swiper_injector_config();
+  }
+  </script><script defer src="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper.min.js"></script><script defer data-pjax src="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper_init.js"></script><!-- hexo injector body_end end --></body></html>

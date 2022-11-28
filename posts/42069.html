@@ -1,0 +1,669 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>03-MySQL的基本操作 | 传礼</title><meta name="keywords" content="博客,blog,王传礼,java,python,大数据"><meta name="author" content="传礼,978252321@qq.com"><meta name="copyright" content="传礼"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="title: 03-MySQL的基本操作publish: true  SQL 的一些简单语法规则结束符SQL 指令需要语句结束符，默认是英文分号;。 当然，还有另外两个结束符：  \g 与英文分号;等效。  \G：将查到的结构旋转90度变成纵向。   反引号&#96;&#96;SQL语句中如果用到了关键字或者保留字，需要使用反引号&#96;&#96;（Tab键上面的符号）来包裹，让系统忽略。 MySQL 数据库的操作分类根据数">
+<meta property="og:type" content="article">
+<meta property="og:title" content="03-MySQL的基本操作">
+<meta property="og:url" content="https://iwangchuanli.github.io/posts/42069.html">
+<meta property="og:site_name" content="传礼">
+<meta property="og:description" content="title: 03-MySQL的基本操作publish: true  SQL 的一些简单语法规则结束符SQL 指令需要语句结束符，默认是英文分号;。 当然，还有另外两个结束符：  \g 与英文分号;等效。  \G：将查到的结构旋转90度变成纵向。   反引号&#96;&#96;SQL语句中如果用到了关键字或者保留字，需要使用反引号&#96;&#96;（Tab键上面的符号）来包裹，让系统忽略。 MySQL 数据库的操作分类根据数">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img4_DmcHVm.jpeg">
+<meta property="article:published_time" content="2022-11-28T07:04:49.757Z">
+<meta property="article:modified_time" content="2022-04-18T09:19:57.000Z">
+<meta property="article:author" content="传礼">
+<meta property="article:tag" content="博客,blog,王传礼,java,python,大数据">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img4_DmcHVm.jpeg"><link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/03/favicons_uH14Fb.gif"><link rel="canonical" href="https://iwangchuanli.github.io/posts/42069"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin=""/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta name="baidu-site-verification" content="qKvGNFZPF9"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?39bd6e37a6e70dc030e6a043a642784e";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: 传礼","link":"链接: ","source":"来源: 传礼","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#121212","position":"bottom-left"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: true,
+  islazyload: true,
+  isAnchor: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '03-MySQL的基本操作',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-04-18 09:19:57'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/custom.css"  media="defer" onload="this.media='all'"><!-- hexo injector head_end start --><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiperstyle.css" media="print" onload="this.media='all'"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.1"><link rel="alternate" href="/atom.xml" title="传礼" type="application/atom+xml">
+</head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/03/photo_NZBQPu.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><div class="data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">511</div></a></div><div class="data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">50</div></a></div><div class="data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">22</div></a></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 归档</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-calendar"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 开发</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/Java"><i class="fa-fw fa fa-music"></i><span> Java</span></a></li><li><a class="site-page child" href="/categories/Python"><i class="fa-fw fa fa-music"></i><span> Python</span></a></li><li><a class="site-page child" href="/categories/VUE"><i class="fa-fw fa fa-music"></i><span> VUE</span></a></li><li><a class="site-page child" href="/categories/MySQL"><i class="fa-fw fa fa-music"></i><span> MySQL</span></a></li><li><a class="site-page child" href="/categories/Redis"><i class="fa-fw fa fa-music"></i><span> Redis</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 架构</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/Spring"><i class="fa-fw fa fa-music"></i><span> Spring</span></a></li><li><a class="site-page child" href="/categories/microServeices"><i class="fa-fw fa fa-music"></i><span> 微服务</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 运维</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/Docker"><i class="fa-fw fa fa-music"></i><span> Docker</span></a></li><li><a class="site-page child" href="/categories/Linux"><i class="fa-fw fa fa-music"></i><span> Linux</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 分享</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/tags/Tools"><i class="fa-fw fa fa-music"></i><span> 工具</span></a></li><li><a class="site-page child" href="/tags/guide"><i class="fa-fw fa fa-music"></i><span> 教程</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 项目</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/tags/Tools"><i class="fa-fw fa fa-music"></i><span> 工具</span></a></li><li><a class="site-page child" href="/tags/guide"><i class="fa-fw fa fa-music"></i><span> 教程</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-heartbeat"></i><span> 娱乐</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/gallery/"><i class="fa-fw fa fa-images"></i><span> 图库</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fa fa-film"></i><span> 电影</span></a></li><li><a class="site-page child" href="/books/"><i class="fa-fw fa fa-book"></i><span> 图书</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 我的</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/artitalk/"><i class="fa-fw fa fa-commenting"></i><span> 说说</span></a></li><li><a class="site-page child" href="/todo/"><i class="fa-fw fa fa-flag"></i><span> TODO</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img4_DmcHVm.jpeg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">传礼</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 归档</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-calendar"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 开发</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/Java"><i class="fa-fw fa fa-music"></i><span> Java</span></a></li><li><a class="site-page child" href="/categories/Python"><i class="fa-fw fa fa-music"></i><span> Python</span></a></li><li><a class="site-page child" href="/categories/VUE"><i class="fa-fw fa fa-music"></i><span> VUE</span></a></li><li><a class="site-page child" href="/categories/MySQL"><i class="fa-fw fa fa-music"></i><span> MySQL</span></a></li><li><a class="site-page child" href="/categories/Redis"><i class="fa-fw fa fa-music"></i><span> Redis</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 架构</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/Spring"><i class="fa-fw fa fa-music"></i><span> Spring</span></a></li><li><a class="site-page child" href="/categories/microServeices"><i class="fa-fw fa fa-music"></i><span> 微服务</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 运维</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/Docker"><i class="fa-fw fa fa-music"></i><span> Docker</span></a></li><li><a class="site-page child" href="/categories/Linux"><i class="fa-fw fa fa-music"></i><span> Linux</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 分享</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/tags/Tools"><i class="fa-fw fa fa-music"></i><span> 工具</span></a></li><li><a class="site-page child" href="/tags/guide"><i class="fa-fw fa fa-music"></i><span> 教程</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 项目</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/tags/Tools"><i class="fa-fw fa fa-music"></i><span> 工具</span></a></li><li><a class="site-page child" href="/tags/guide"><i class="fa-fw fa fa-music"></i><span> 教程</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-heartbeat"></i><span> 娱乐</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/gallery/"><i class="fa-fw fa fa-images"></i><span> 图库</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fa fa-film"></i><span> 电影</span></a></li><li><a class="site-page child" href="/books/"><i class="fa-fw fa fa-book"></i><span> 图书</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 我的</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/artitalk/"><i class="fa-fw fa fa-commenting"></i><span> 说说</span></a></li><li><a class="site-page child" href="/todo/"><i class="fa-fw fa fa-flag"></i><span> TODO</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">03-MySQL的基本操作</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-11-28T07:04:49.757Z" title="发表于 2022-11-28 07:04:49">2022-11-28</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-04-18T09:19:57.000Z" title="更新于 2022-04-18 09:19:57">2022-04-18</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">3.2k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>10分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="03-MySQL的基本操作"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><hr>
+<p>title: 03-MySQL的基本操作<br>publish: true</p>
+<hr>
+<h2 id="SQL-的一些简单语法规则"><a href="#SQL-的一些简单语法规则" class="headerlink" title="SQL 的一些简单语法规则"></a>SQL 的一些简单语法规则</h2><h3 id="结束符"><a href="#结束符" class="headerlink" title="结束符"></a>结束符</h3><p>SQL 指令需要语句结束符，默认是英文分号<code>;</code>。</p>
+<p>当然，还有另外两个结束符：</p>
+<ul>
+<li><p><code>\g</code> 与英文分号<code>;</code>等效。</p>
+</li>
+<li><p><code>\G</code>：将查到的结构旋转90度变成纵向。</p>
+</li>
+</ul>
+<h3 id="反引号"><a href="#反引号" class="headerlink" title="反引号``"></a>反引号``</h3><p>SQL语句中如果用到了关键字或者保留字，需要使用反引号``（Tab键上面的符号）来包裹，让系统忽略。</p>
+<h2 id="MySQL-数据库的操作分类"><a href="#MySQL-数据库的操作分类" class="headerlink" title="MySQL 数据库的操作分类"></a>MySQL 数据库的操作分类</h2><p>根据数据库的对象层级，可以将<strong>SQL的基础操作分为四类</strong>：</p>
+<ul>
+<li><p>数据库（DB）操作。</p>
+</li>
+<li><p>数据表（Table）操作。</p>
+</li>
+<li><p>数据字段（Field）操作。</p>
+</li>
+<li><p>数据操作。</p>
+</li>
+</ul>
+<p>下面来详细讲一讲。</p>
+<h2 id="一、数据库（DB）的基本操作"><a href="#一、数据库（DB）的基本操作" class="headerlink" title="一、数据库（DB）的基本操作"></a>一、数据库（DB）的基本操作</h2><p>在终端的任何位置，输入如下命令，即可进入 mysql 命令的执行窗口：</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">mysql <span class="operator">-</span>u root <span class="operator">-</span>p</span><br></pre></td></tr></table></figure>
+
+<h3 id="1、创建数据库"><a href="#1、创建数据库" class="headerlink" title="1、创建数据库"></a>1、创建数据库</h3><p><strong>语法格式</strong>：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">create database 数据库名称 [数据库选项];</span><br></pre></td></tr></table></figure>
+
+<p><strong>数据库名称的命名规范</strong>：</p>
+<ul>
+<li>由数字、字母和下划线组成。</li>
+<li>不区分大小写。</li>
+<li>不能以数字开头。</li>
+<li>建议使用下划线法创建复杂的数据库名字。比如 <code>db_qianguyihao</code>。</li>
+</ul>
+<p><strong>举例</strong>：</p>
+<p>创建一个名为 db_qianguyihao1 的数据库：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">create database db_qianguyihao1;</span><br></pre></td></tr></table></figure>
+
+
+<p>创建一个指定字符集的数据库：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">create database db_qianguyihao2 charset utf8MB4;</span><br></pre></td></tr></table></figure>
+
+<p>创建一个指定校对集的数据库：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">create database db_qianguyihao3 charset utf8MB4 collate utf8mb4_general_ci</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="2、查看数据库"><a href="#2、查看数据库" class="headerlink" title="2、查看数据库"></a>2、查看数据库</h3><p>查看有哪些数据库：(显示所有的数据库列表)</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">show databases;</span><br></pre></td></tr></table></figure>
+
+<p>查看 <code>db_qianguyihao1</code> 这个数据库的具体创建指令是怎样的：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">show create database db_qianguyihao1;</span><br></pre></td></tr></table></figure>
+
+<p>备注：由于系统会加工，所以看到的结果不一定是真实的创建指令。</p>
+<h3 id="3、使用指定的数据库"><a href="#3、使用指定的数据库" class="headerlink" title="3、使用指定的数据库"></a>3、使用指定的数据库</h3><p>使用指定的数据库：（也可以理解成：进入指定的数据库）</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 语法格式</span><br><span class="line">use database_xxx;</span><br><span class="line"></span><br><span class="line"># 举例</span><br><span class="line">use db_qianguyihao;</span><br></pre></td></tr></table></figure>
+
+<p>假设当前服务器连接中有很多个数据库（db_qianguyihao1、db_qianguyihao2），此时，我输入 <code>use db_qianguyihao2</code>则代表我想使用 <code>db_qianguyihao2</code> 这个数据库。</p>
+<h3 id="4、修改数据库的参数"><a href="#4、修改数据库的参数" class="headerlink" title="4、修改数据库的参数"></a>4、修改数据库的参数</h3><p>我们一般很少修改数据库的名称，一般是去修改数据库的一些选项，比如：</p>
+<ul>
+<li><p>修改字符集</p>
+</li>
+<li><p>修改校对集</p>
+</li>
+</ul>
+<p><strong>语法格式</strong>：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">alter database 数据库名称 [库选项]</span><br></pre></td></tr></table></figure>
+
+<p>举例1、修改数据库的字符集为gbk：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">alter database db_qianguyihao1 charset gbk;</span><br></pre></td></tr></table></figure>
+
+<p>举例2、修改数据库的校对集：</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">alter</span> database db_qianguyihao2 charset gbk <span class="keyword">collate</span> gbk_chinese_ci;</span><br></pre></td></tr></table></figure>
+
+<p>备注：因为校对集是和字符集有关的，所以上方指令是在修改字符集的同时，修改校对集。</p>
+<h3 id="5、删除指定的数据库"><a href="#5、删除指定的数据库" class="headerlink" title="5、删除指定的数据库"></a>5、删除指定的数据库</h3><p><strong>语法格式</strong>：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">drop database 数据库名称;</span><br></pre></td></tr></table></figure>
+
+<p>备注：删除数据库时，会清空当前数据库里的所有数据表，所以删除数据库的操作一定要谨慎。</p>
+<h2 id="二、数据表（Table）的基本操作"><a href="#二、数据表（Table）的基本操作" class="headerlink" title="二、数据表（Table）的基本操作"></a>二、数据表（Table）的基本操作</h2><p>注意，我们最好先通过 <code>use xxx_database</code> 命令进入指定的数据库（DB），然后在当前数据库下，进行数据表（Table）的操作。</p>
+<h3 id="1、创建数据表"><a href="#1、创建数据表" class="headerlink" title="1、创建数据表"></a>1、创建数据表</h3><p><strong>语法格式</strong>：</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> [数据库名].[表名] (</span><br><span class="line">	字段名<span class="number">1</span> 字段类型,</span><br><span class="line">	...</span><br><span class="line">    ...</span><br><span class="line">    字段名<span class="number">2</span> 字段类型</span><br><span class="line">) 表选项;</span><br></pre></td></tr></table></figure>
+
+<p><strong>举例</strong>：</p>
+<p>1、在当前数据库中创建数据表 <code>table_qiangu1</code>，并新增<strong>主键</strong> id 字段：</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> table_qiangu1 (</span><br><span class="line">  id <span class="type">int</span> <span class="keyword">NOT</span> <span class="keyword">NULL</span> AUTO_INCREMENT <span class="keyword">PRIMARY</span> KEY</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<p>2、在当前数据库中创建数据表 <code>t_student1</code>，并新增 name、age这连个字段：</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> t_student1(</span><br><span class="line">    name <span class="type">varchar</span>(<span class="number">255</span>),</span><br><span class="line">    age <span class="type">int</span></span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>3、在指定的数据库 <code>db_2</code> 中创建数据表 <code>t_student2</code>：</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> db_2.t_student2(</span><br><span class="line">    name <span class="type">varchar</span>(<span class="number">255</span>),</span><br><span class="line">    age <span class="type">int</span></span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<p>4、在当前数据库中创建数据表 <code>t_student3</code>（含表选项）：</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> t_student3(</span><br><span class="line">    name <span class="type">varchar</span>(<span class="number">255</span>),</span><br><span class="line">    age <span class="type">int</span></span><br><span class="line">)engine Innodb charset utf8MB4;</span><br></pre></td></tr></table></figure>
+
+<p>举例4中的代码涉及到存储引擎，这里解释一下：</p>
+<p><strong>存储引擎</strong>是指数据存储和管理的方式，MySQL中提供了多种存储引擎，一般使用默认存储引擎 InnoDB。</p>
+<ul>
+<li><p>InnoDB：默认存储引擎；支持事务处理和外键；数据统一管理。</p>
+</li>
+<li><p>MyIsam：不支持事务和外键；数据、表结构、索引独立管理；MySQL5.6以后不再维护。</p>
+</li>
+</ul>
+<p>6、扩展：如果想创建一个与已有表一样的数据表，MySQL提供了一种便捷的复制模式</p>
+<h3 id="2、复制数据表"><a href="#2、复制数据表" class="headerlink" title="2、复制数据表"></a>2、复制数据表</h3><p>如果想创建一个与已有表一样的数据表，MySQL提供了一种便捷的<strong>复制</strong>模式。</p>
+<p><strong>语法格式</strong>：（复制现有的表 <code>table_xx1</code> 到 <code>table_xx2</code>）</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> table_xx1 <span class="keyword">like</span> 数据库名.table_xx2;</span><br></pre></td></tr></table></figure>
+
+<p>注意，这种复制模式，<code>table_xx2</code> 只会复制表 <code>table_xx1</code> 中的字段，不会复制表<code>table_xx1</code>中的数据。</p>
+<p><strong>举例</strong>：</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"># 在当前数据库下，复制现有的表`t_qianguyihao1` 到表 `t_qianguyihao2`</span><br><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> t_qianguyihao1 <span class="keyword">like</span> t_qianguyihao2;</span><br><span class="line"></span><br><span class="line"># 复制现有的表`t_qianguyihao1` 到表 `t_qianguyihao2`，是复制到 `db2`这个数据库中</span><br><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> t_qianguyihao1 <span class="keyword">like</span> db2.t_qianguyihao2;</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="3、显示数据表的名称"><a href="#3、显示数据表的名称" class="headerlink" title="3、显示数据表的名称"></a>3、显示数据表的名称</h3><p>在当前数据库下，显示所有的数据表：</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">show</span> tables;</span><br></pre></td></tr></table></figure>
+
+<p>在指定的数据库中，显示所有的数据表：</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">show</span> tables <span class="keyword">from</span> db_qianguyihao1;</span><br></pre></td></tr></table></figure>
+
+<p>显示数据表的创建指令：(查看 <code>t_qianguyihao1</code> 这个数据表的具体创建指令是怎样的)</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">show create table t_qianguyihao1; # 备注：由于系统会加工，所以看到的结果不一定是真实的创建指令。</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="4、查询（查找）数据表的名称"><a href="#4、查询（查找）数据表的名称" class="headerlink" title="4、查询（查找）数据表的名称"></a>4、查询（查找）数据表的名称</h3><blockquote>
+<p>根据 表名称 查询数据表，也可以理解成：按条件显示部分数据表。</p>
+</blockquote>
+<p>根据数据表的<strong>表名称</strong>查找数据表时，需要用到关键词<code>like</code>，而且还要涉及到两个符号：</p>
+<ul>
+<li><p><code>%</code> 表示匹配任意<strong>多个字符</strong>。</p>
+</li>
+<li><p><code>_</code> 表示匹配任意<strong>一个字符</strong>（固定位置）。</p>
+</li>
+</ul>
+<p>上面这两个模糊查询的符号，大家要牢记。我们来看看具体的例子。</p>
+<p>语法举例：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">show tables like &#x27;%like_&#x27;;	# _表示匹配一个字符（固定位置），%表示匹配N个字符</span><br></pre></td></tr></table></figure>
+
+<p><strong><code>%</code> 符号举例</strong>：</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"># 查询表名称中，包含 “qiangu” 这个关键字的表（“qiangu”这个关键字的前后可能都有内容）</span><br><span class="line"><span class="keyword">show</span> tables <span class="keyword">like</span> <span class="string">&#x27;%qiangu%&#x27;</span>;</span><br><span class="line"></span><br><span class="line"># 查询表名称以“qiangu”开头的表（这个命令应该很实用）</span><br><span class="line"><span class="keyword">show</span> tables <span class="keyword">like</span> <span class="string">&#x27;qiangu%&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<p><strong><code>_</code>符号举例</strong>：</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"># 根据 表名称 来查询表，查询条件是：表名称以“qiangu”开头，而且要确保 qiangu 的后面有三个字符（因为我在 qiangu 的后面写了三个下划线）。</span><br><span class="line"><span class="keyword">show</span> tables <span class="keyword">like</span> <span class="string">&#x27;qiangu___&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="5、desc：查看数据表的表结构"><a href="#5、desc：查看数据表的表结构" class="headerlink" title="5、desc：查看数据表的表结构"></a>5、desc：查看数据表的表结构</h3><p>查看数据表的表结构，就是<strong>查看这张表中定义了哪些字段</strong>，以及这些字段是如何定义的。通过这种方式，我们可以清晰地了解数据的存储形式。</p>
+<p>项目开发中，领导在检查我们的工作时，首先看的就是我们的表中定义了哪些字段。所以说，这种方式，还是很实用的。</p>
+<p><strong>语法格式</strong>：</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"># 方式<span class="number">1</span></span><br><span class="line"><span class="keyword">desc</span> 表名称;</span><br><span class="line"></span><br><span class="line"># 方式<span class="number">2</span></span><br><span class="line"><span class="keyword">describe</span> 表名称;</span><br><span class="line"></span><br><span class="line"># 方式<span class="number">3</span></span><br><span class="line"><span class="keyword">show</span> columns <span class="keyword">from</span> 表名称;</span><br></pre></td></tr></table></figure>
+
+<p>上面的三种方式，效果都一样，三选一即可。</p>
+<h3 id="6、修改数据表的表名称和表选项"><a href="#6、修改数据表的表名称和表选项" class="headerlink" title="6、修改数据表的表名称和表选项"></a>6、修改数据表的表名称和表选项</h3><p><strong>修改数据表的表名称</strong>：</p>
+<p>在当前数据库下，修改数据表的表名称：</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">rename <span class="keyword">table</span> 原表名 <span class="keyword">to</span> 新表名;</span><br></pre></td></tr></table></figure>
+
+<p>指定某个数据库，然后修改数据表的表名称：</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">rename <span class="keyword">table</span> 数据库名.原表名 <span class="keyword">to</span> 数据库名.新表名;</span><br></pre></td></tr></table></figure>
+
+<p><strong>修改数据表的表名称</strong>：</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> table1 charset gbk;</span><br></pre></td></tr></table></figure>
+
+<h3 id="7、删除数据表"><a href="#7、删除数据表" class="headerlink" title="7、删除数据表"></a>7、删除数据表</h3><p>语法格式：</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">drop</span> <span class="keyword">table</span> 数据表名称;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<h2 id="三、字段（Field）的基本操作"><a href="#三、字段（Field）的基本操作" class="headerlink" title="三、字段（Field）的基本操作"></a>三、字段（Field）的基本操作</h2><p>数据表 table 创建好了之后，我们就可以开始在这张表中新增字段了。</p>
+<h3 id="1、新增字段"><a href="#1、新增字段" class="headerlink" title="1、新增字段"></a>1、新增字段</h3><p><strong>语法格式</strong>：</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> 表名 <span class="keyword">add</span> [<span class="keyword">column</span>] 字段名 字段类型 [字段属性] [字段位置];</span><br></pre></td></tr></table></figure>
+
+<p>注意事项：</p>
+<ul>
+<li><p>新增字段时，必须制指定字段类型。</p>
+</li>
+<li><p>[column]、 [字段属性]、[字段位置] 这几个都是选填，其他是必填。</p>
+</li>
+<li><p>追加字段时，这个字段的顺序默认排在最后。</p>
+</li>
+</ul>
+<p><strong>举例</strong>：</p>
+<p>新增字段 <code>name</code>:</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> table_qiangu1 <span class="keyword">add</span> name <span class="type">varchar</span>(<span class="number">255</span>);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>新增字段 <code>age</code>：</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> table_qiangu1 <span class="keyword">add</span> age <span class="type">int</span>;</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="2、新增字段时，设置字段的位置（顺序）"><a href="#2、新增字段时，设置字段的位置（顺序）" class="headerlink" title="2、新增字段时，设置字段的位置（顺序）"></a>2、新增字段时，设置字段的位置（顺序）</h3><p>在新增字段时，它的顺序是默认放在最后面的，当然，我们也可以人工指定它的顺序。</p>
+<p>在修改字段的位置时，我们可以用到下面这两个关键字：</p>
+<ul>
+<li><p><code>first</code> 放到最前面</p>
+</li>
+<li><p><code>after</code> 放到某个字段的后面</p>
+</li>
+</ul>
+<p><strong>语法格式</strong>：</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> 表名 <span class="keyword">add</span> 新字段名 字段类型 字段位置;</span><br></pre></td></tr></table></figure>
+
+
+<p><strong>举例1</strong>：</p>
+<p>在 <code>name</code>字段的后面，新增一个 <code>sex</code> 字段：</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> t_qiangu1 <span class="keyword">add</span> sex <span class="type">varchar</span>(<span class="number">255</span>) <span class="keyword">default</span> <span class="keyword">null</span> comment <span class="string">&#x27;性别&#x27;</span> after name;</span><br></pre></td></tr></table></figure>
+
+<p>注意，上方举例中，如果是新建 varchar 类型的字段，一定要指定 varchar 的长度（比如255），否则报错。</p>
+<p><strong>举例2</strong>：</p>
+<p>新增一个 <code>id</code> 字段，放到最前面：</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> t_qiangu1 <span class="keyword">add</span> id <span class="type">int</span> <span class="keyword">first</span>;</span><br></pre></td></tr></table></figure>
+
+
+
+
+<h3 id="3、change：修改现有字段的字段名"><a href="#3、change：修改现有字段的字段名" class="headerlink" title="3、change：修改现有字段的字段名"></a>3、change：修改现有字段的字段名</h3><blockquote>
+<p>修改现有字段的字段名，是通过 change 关键字，不是通过 modify 关键字（后者会报错，执行失败）。</p>
+</blockquote>
+<p><strong>语法格式</strong>：</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"># 格式<span class="number">1</span>（精简版）</span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> 表名 change 原字段名 新字段名 字段类型;</span><br><span class="line"></span><br><span class="line"># 格式<span class="number">2</span>（完整版）</span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> 表名 change 原字段名 新字段名 字段类型 [字段属性] [位置];</span><br></pre></td></tr></table></figure>
+
+<p>注意：</p>
+<ul>
+<li><p>修改字段名时，一定要设置新字段的字段类型。</p>
+</li>
+<li><p>虽然 change 关键字也可以修改现有字段的字段属性、字段位置，但我们一般是通过 modify 关键字来做（下面会讲）。</p>
+</li>
+</ul>
+<p><strong>举例</strong>：</p>
+<p>修改字段名 <code>sex</code> 为 <code>sexy</code>：</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> t_qiangu2 change sex sexy <span class="type">varchar</span>(<span class="number">255</span>);</span><br></pre></td></tr></table></figure>
+
+<h3 id="4、modify：修改现有字段的的字段类型、字段位置、字段属性"><a href="#4、modify：修改现有字段的的字段类型、字段位置、字段属性" class="headerlink" title="4、modify：修改现有字段的的字段类型、字段位置、字段属性"></a>4、modify：修改现有字段的的字段类型、字段位置、字段属性</h3><p><strong>语法格式</strong>：</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> 表名 modify 现有字段的字段名 现有字段的字段类型 [字段属性] [位置]；</span><br></pre></td></tr></table></figure>
+
+<p><strong>举例1</strong>、针对现有的字段 <code>name</code> 和 <code>age</code>，更换这两个字段的顺序：</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"># 注意，这里的 age 后面一定要跟上它的字段类型，否则执行失败</span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> t_qiangu1 modify age <span class="type">int</span> after name;</span><br></pre></td></tr></table></figure>
+
+<h3 id="修改字段的默认值"><a href="#修改字段的默认值" class="headerlink" title="修改字段的默认值"></a>修改字段的默认值</h3><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"># 若本身存在默认值，则先删除</span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> 表名 <span class="keyword">alter</span> <span class="keyword">column</span> 字段名 <span class="keyword">drop</span> <span class="keyword">default</span>;</span><br><span class="line"></span><br><span class="line"># 若本身不存在则可以直接设定</span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> 表名 <span class="keyword">alter</span> <span class="keyword">column</span> 字段名 <span class="keyword">set</span> <span class="keyword">default</span> 默认值;</span><br></pre></td></tr></table></figure>
+<h3 id="5、删除字段"><a href="#5、删除字段" class="headerlink" title="5、删除字段"></a>5、删除字段</h3><blockquote>
+<p> 删除字段的同时，会删除字段对应的数据。删除字段的操作不可逆，请谨慎操作。</p>
+</blockquote>
+<p>语法格式：</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> 表名 <span class="keyword">drop</span> 字段名;</span><br></pre></td></tr></table></figure>
+
+<p>举例：（删除 t_qiangu1 表中的 age 这个字段）</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> t_qiangu1 <span class="keyword">drop</span> age;</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="四、数据的基本操作"><a href="#四、数据的基本操作" class="headerlink" title="四、数据的基本操作"></a>四、数据的基本操作</h2><h3 id="1、新增数据"><a href="#1、新增数据" class="headerlink" title="1、新增数据"></a>1、新增数据</h3><p><strong>方式1、全字段插入</strong>：</p>
+<p>语法格式：</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> 表名 <span class="keyword">values</span>(值<span class="number">1</span>, 值<span class="number">2</span>, ... 最后一个值);</span><br></pre></td></tr></table></figure>
+
+<p>解释：</p>
+<ul>
+<li>值的顺序必须与所有字段的顺序一致。</li>
+<li>值的数据类型也必须与字段定义的数据类型一致。</li>
+</ul>
+<p>举例（给 t_qiangu1 这个表中插入一条完整的数据）：</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> t_qiangu1 <span class="keyword">values</span>(<span class="number">3</span>, <span class="string">&#x27;qianguyihao&#x27;</span>, <span class="number">28</span>);</span><br></pre></td></tr></table></figure>
+
+<p><strong>方式1、部分字段插入</strong>：</p>
+<p>语法格式：</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> 表名 (字段<span class="number">1</span>, 字段<span class="number">2</span>, 字段<span class="number">3</span>) <span class="keyword">values</span>(值<span class="number">1</span>, 值<span class="number">2</span>, 值<span class="number">3</span>);</span><br></pre></td></tr></table></figure>
+
+<p>解释：</p>
+<p>-字段的顺序可以随意，但值的顺序必须要与前面的字段顺序<strong>一一对应</strong>，数据类型也要一致。</p>
+<p>举例（给 t_qiangu1 这个表中的指定字段插入数据）：</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> t_qiangu1 (id, name) <span class="keyword">values</span>(<span class="number">4</span>, <span class="string">&#x27;xusong&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<h3 id="2、查询数据"><a href="#2、查询数据" class="headerlink" title="2、查询数据"></a>2、查询数据</h3><blockquote>
+<p>查询数据的操作，占sql日常操作的95%以上。</p>
+</blockquote>
+<p><strong>语法格式</strong>：</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> xxx <span class="keyword">from</span> 表名;</span><br></pre></td></tr></table></figure>
+
+<p><strong>举例</strong>：</p>
+<p>查询表中的所有数据：</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> t_qiangu1;</span><br></pre></td></tr></table></figure>
+
+<p>查询表中 name、age 这两个字段的数据：</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> name, age <span class="keyword">from</span> t_qiangu2;</span><br></pre></td></tr></table></figure>
+
+<p>查询表中 id=2 的数据：</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> t_qiangu3 <span class="keyword">where</span> id <span class="operator">=</span> <span class="number">2</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="3、修改数据"><a href="#3、修改数据" class="headerlink" title="3、修改数据"></a>3、修改数据</h3><p><strong>语法格式</strong>：</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">update</span> 表名 <span class="keyword">set</span> (字段<span class="number">1</span> <span class="operator">=</span> 新值<span class="number">1</span>, 字段<span class="number">2</span> <span class="operator">=</span> 新值<span class="number">2</span>) [<span class="keyword">where</span> 条件筛选];</span><br></pre></td></tr></table></figure>
+
+<p><strong>解释</strong>：</p>
+<ul>
+<li><p>我们通常是结合 where 条件语句来修改数据。</p>
+</li>
+<li><p><strong>修改数据之前，要先保证表里面有数据</strong>。如果这张表是空表，那么，执行这个命令后，等于没执行。</p>
+</li>
+</ul>
+<p><strong>举例</strong>：</p>
+<p>将表中，name 这个字段的值全部修改为<code>千古壹号</code>：</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">update</span> t_qiangu1 <span class="keyword">set</span> name <span class="operator">=</span> <span class="string">&#x27;千古壹号&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<p>id = 3 的这条记录中，修改 name 和 age 这两个字段的值：</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">update</span> t_qiangu1 <span class="keyword">set</span> name <span class="operator">=</span> <span class="string">&#x27;许嵩&#x27;</span>, age <span class="operator">=</span> <span class="string">&#x27;34&#x27;</span> <span class="keyword">where</span> id <span class="operator">=</span> <span class="number">3</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="4、删除数据"><a href="#4、删除数据" class="headerlink" title="4、删除数据"></a>4、删除数据</h3><blockquote>
+<p>删除字段的操作不可逆，请谨慎操作。</p>
+</blockquote>
+<p><strong>语法格式</strong>：</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">delete</span> <span class="keyword">from</span> 表名 [<span class="keyword">where</span> 条件];</span><br></pre></td></tr></table></figure>
+
+<p><strong>解释</strong>：</p>
+<ul>
+<li><p>执行删除操作之后，匹配到的<strong>整条记录</strong>，都会删除。</p>
+</li>
+<li><p><strong>删除数据之前，要先保证表里面有数据</strong>。如果这张表是空表，那么，执行这个命令后，等于没执行。</p>
+</li>
+</ul>
+<p><strong>举例</strong>：</p>
+<p>删除表中<code>id = 2</code>的记录：</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">delete</span> <span class="keyword">from</span> t_qiangu1 <span class="keyword">where</span> id <span class="operator">=</span> <span class="number">2</span>;</span><br></pre></td></tr></table></figure>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:978252321@qq.com" rel="external nofollow noreferrer">传礼</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://iwangchuanli.github.io/posts/42069.html">https://iwangchuanli.github.io/posts/42069.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow noreferrer" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://iwangchuanli.github.io" target="_blank">传礼</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img4_DmcHVm.jpeg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/posts/53744.html"><img class="prev-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img1_znhZsi.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">02-MySQL的安装和Navicat软件使用</div></div></a></div><div class="next-post pull-right"><a href="/posts/22661.html"><img class="next-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img3_17WEKf.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">04-MySQL字段的数据类型</div></div></a></div></nav><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div><div id="comment-switch"><span class="first-comment">Valine</span><span class="switch-btn"></span><span class="second-comment">Gitalk</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div><div><div id="gitalk-container"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">Nice to meet you ~</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#SQL-%E7%9A%84%E4%B8%80%E4%BA%9B%E7%AE%80%E5%8D%95%E8%AF%AD%E6%B3%95%E8%A7%84%E5%88%99"><span class="toc-number">1.</span> <span class="toc-text">SQL 的一些简单语法规则</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%93%E6%9D%9F%E7%AC%A6"><span class="toc-number">1.1.</span> <span class="toc-text">结束符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%8D%E5%BC%95%E5%8F%B7"><span class="toc-number">1.2.</span> <span class="toc-text">反引号&#96;&#96;</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MySQL-%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E6%93%8D%E4%BD%9C%E5%88%86%E7%B1%BB"><span class="toc-number">2.</span> <span class="toc-text">MySQL 数据库的操作分类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E6%95%B0%E6%8D%AE%E5%BA%93%EF%BC%88DB%EF%BC%89%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C"><span class="toc-number">3.</span> <span class="toc-text">一、数据库（DB）的基本操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81%E5%88%9B%E5%BB%BA%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-number">3.1.</span> <span class="toc-text">1、创建数据库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81%E6%9F%A5%E7%9C%8B%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-number">3.2.</span> <span class="toc-text">2、查看数据库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E3%80%81%E4%BD%BF%E7%94%A8%E6%8C%87%E5%AE%9A%E7%9A%84%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-number">3.3.</span> <span class="toc-text">3、使用指定的数据库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4%E3%80%81%E4%BF%AE%E6%94%B9%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E5%8F%82%E6%95%B0"><span class="toc-number">3.4.</span> <span class="toc-text">4、修改数据库的参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5%E3%80%81%E5%88%A0%E9%99%A4%E6%8C%87%E5%AE%9A%E7%9A%84%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-number">3.5.</span> <span class="toc-text">5、删除指定的数据库</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E6%95%B0%E6%8D%AE%E8%A1%A8%EF%BC%88Table%EF%BC%89%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C"><span class="toc-number">4.</span> <span class="toc-text">二、数据表（Table）的基本操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81%E5%88%9B%E5%BB%BA%E6%95%B0%E6%8D%AE%E8%A1%A8"><span class="toc-number">4.1.</span> <span class="toc-text">1、创建数据表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81%E5%A4%8D%E5%88%B6%E6%95%B0%E6%8D%AE%E8%A1%A8"><span class="toc-number">4.2.</span> <span class="toc-text">2、复制数据表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E3%80%81%E6%98%BE%E7%A4%BA%E6%95%B0%E6%8D%AE%E8%A1%A8%E7%9A%84%E5%90%8D%E7%A7%B0"><span class="toc-number">4.3.</span> <span class="toc-text">3、显示数据表的名称</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4%E3%80%81%E6%9F%A5%E8%AF%A2%EF%BC%88%E6%9F%A5%E6%89%BE%EF%BC%89%E6%95%B0%E6%8D%AE%E8%A1%A8%E7%9A%84%E5%90%8D%E7%A7%B0"><span class="toc-number">4.4.</span> <span class="toc-text">4、查询（查找）数据表的名称</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5%E3%80%81desc%EF%BC%9A%E6%9F%A5%E7%9C%8B%E6%95%B0%E6%8D%AE%E8%A1%A8%E7%9A%84%E8%A1%A8%E7%BB%93%E6%9E%84"><span class="toc-number">4.5.</span> <span class="toc-text">5、desc：查看数据表的表结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6%E3%80%81%E4%BF%AE%E6%94%B9%E6%95%B0%E6%8D%AE%E8%A1%A8%E7%9A%84%E8%A1%A8%E5%90%8D%E7%A7%B0%E5%92%8C%E8%A1%A8%E9%80%89%E9%A1%B9"><span class="toc-number">4.6.</span> <span class="toc-text">6、修改数据表的表名称和表选项</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7%E3%80%81%E5%88%A0%E9%99%A4%E6%95%B0%E6%8D%AE%E8%A1%A8"><span class="toc-number">4.7.</span> <span class="toc-text">7、删除数据表</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E5%AD%97%E6%AE%B5%EF%BC%88Field%EF%BC%89%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C"><span class="toc-number">5.</span> <span class="toc-text">三、字段（Field）的基本操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81%E6%96%B0%E5%A2%9E%E5%AD%97%E6%AE%B5"><span class="toc-number">5.1.</span> <span class="toc-text">1、新增字段</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81%E6%96%B0%E5%A2%9E%E5%AD%97%E6%AE%B5%E6%97%B6%EF%BC%8C%E8%AE%BE%E7%BD%AE%E5%AD%97%E6%AE%B5%E7%9A%84%E4%BD%8D%E7%BD%AE%EF%BC%88%E9%A1%BA%E5%BA%8F%EF%BC%89"><span class="toc-number">5.2.</span> <span class="toc-text">2、新增字段时，设置字段的位置（顺序）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E3%80%81change%EF%BC%9A%E4%BF%AE%E6%94%B9%E7%8E%B0%E6%9C%89%E5%AD%97%E6%AE%B5%E7%9A%84%E5%AD%97%E6%AE%B5%E5%90%8D"><span class="toc-number">5.3.</span> <span class="toc-text">3、change：修改现有字段的字段名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4%E3%80%81modify%EF%BC%9A%E4%BF%AE%E6%94%B9%E7%8E%B0%E6%9C%89%E5%AD%97%E6%AE%B5%E7%9A%84%E7%9A%84%E5%AD%97%E6%AE%B5%E7%B1%BB%E5%9E%8B%E3%80%81%E5%AD%97%E6%AE%B5%E4%BD%8D%E7%BD%AE%E3%80%81%E5%AD%97%E6%AE%B5%E5%B1%9E%E6%80%A7"><span class="toc-number">5.4.</span> <span class="toc-text">4、modify：修改现有字段的的字段类型、字段位置、字段属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E5%AD%97%E6%AE%B5%E7%9A%84%E9%BB%98%E8%AE%A4%E5%80%BC"><span class="toc-number">5.5.</span> <span class="toc-text">修改字段的默认值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5%E3%80%81%E5%88%A0%E9%99%A4%E5%AD%97%E6%AE%B5"><span class="toc-number">5.6.</span> <span class="toc-text">5、删除字段</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E6%95%B0%E6%8D%AE%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C"><span class="toc-number">6.</span> <span class="toc-text">四、数据的基本操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81%E6%96%B0%E5%A2%9E%E6%95%B0%E6%8D%AE"><span class="toc-number">6.1.</span> <span class="toc-text">1、新增数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81%E6%9F%A5%E8%AF%A2%E6%95%B0%E6%8D%AE"><span class="toc-number">6.2.</span> <span class="toc-text">2、查询数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E3%80%81%E4%BF%AE%E6%94%B9%E6%95%B0%E6%8D%AE"><span class="toc-number">6.3.</span> <span class="toc-text">3、修改数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4%E3%80%81%E5%88%A0%E9%99%A4%E6%95%B0%E6%8D%AE"><span class="toc-number">6.4.</span> <span class="toc-text">4、删除数据</span></a></li></ol></li></ol></div></div><div class="card-widget ads-wrap"><a target="_blank" href="https://www.aliyun.com/activity?userCode=dpj8p3hl" rel="external nofollow noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/aliyun_whuCuE.jpg" style="width:100%;height:100%;object-fit:cover;"></a></div></div></div></main><footer id="footer" style="background-image: url('https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img4_DmcHVm.jpeg')"><div id="footer-wrap"><div class="copyright">&copy;2018 - 2022 By 传礼</div><div class="footer_custom_text"><p style="display:inline-flex">本网站由<a href="https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral" rel="external nofollow noreferrer" target="_blank"><img style="width:60px;height:35px;" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/11/又拍云_logo5_O9kNul.png" title="又拍云"/></a>提供CDN加速/云存储服务</p><p><a style="margin-inline:5px" target="_blank" href="https://hexo.io/" rel="external nofollow noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Frame-Hexo-blue?style=flat&logo=hexo" title="博客框架为Hexo"></a><a style="margin-inline:5px" target="_blank" href="https://butterfly.js.org/" rel="external nofollow noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Theme-Butterfly-6513df?style=flat&logo=bitdefender" title="主题采用butterfly"></a><a style="margin-inline:5px" target="_blank" href="https://www.jsdelivr.com/" rel="external nofollow noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/CDN-jsDelivr-orange?style=flat&logo=jsDelivr" title="本站使用JsDelivr为静态资源提供CDN加速"></a><a style="margin-inline:5px" target="_blank" href="https://github.com/" rel="external nofollow noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Source-Github-d021d6?style=flat&logo=GitHub" title="本站项目由Github托管"></a><a style="margin-inline:5px" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Copyright-BY--NC--SA%204.0-d42328?style=flat&logo=Claris" title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可"></a></p></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="chat_btn" type="button" title="聊天"><i class="fas fa-sms"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">本地搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script src="/js/search/local-search.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"><script>function loadValine () {
+  function initValine () {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: 'zHUfFgUbITfMSQGuSPgS2e3C-gzGzoHsz',
+      appKey: 'yPXpeKX8VJxdFRPEsDaqNgEY',
+      avatar: 'wavatar',
+      serverURLs: 'https://zhuffgub.lc-cn-n1-shared.com',
+      emojiMaps: "",
+      path: window.location.pathname,
+      visitor: true,
+      master: '447d56ab3606de5490a2109d3e441219,135d837ea1033c9787dd307e59884d36'.split(','),
+      friends: '5c?????bfe6rfc72a????e268ad3819c'.split(','),
+      tagMeta: '博主,小伙伴,访客'.split(',')
+        
+    }, {"placeholder":"请输入内容～"}))
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/gh/HCLonely/Valine@latest/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !true) {
+  if (true) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script><script>function addGitalkSource () {
+  const ele = document.createElement('link')
+  ele.rel = 'stylesheet'
+  ele.href= 'https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css'
+  document.getElementsByTagName('head')[0].appendChild(ele)
+}
+
+function loadGitalk () {
+  function initGitalk () {
+    var gitalk = new Gitalk(Object.assign({
+      clientID: '052d9d6486112e93fa50',
+      clientSecret: '6fea35bfb7a17521694a95f705683622976d2f53',
+      repo: 'gitalk',
+      owner: 'iwangchuanli',
+      admin: ['iwangchuanli'],
+      id: '10bad45876852efbb6ca0ec71d74e8e7',
+      updateCountCallback: commentCount
+    },null))
+
+    gitalk.render('gitalk-container')
+  }
+
+  if (typeof Gitalk === 'function') initGitalk()
+  else {
+    addGitalkSource()
+    getScript('https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.js').then(initGitalk)
+  }
+}
+
+function commentCount(n){
+  let isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+  if (isCommentCount) {
+    isCommentCount.innerHTML= n
+  }
+}
+
+if ('Valine' === 'Gitalk' || !true) {
+  if (true) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+  else loadGitalk()
+} else {
+  function loadOtherComment () {
+    loadGitalk()
+  }
+}</script></div><div class="aplayer no-destroy" data-id="7355841544" data-server="netease" data-type="playlist" data-fixed="true" data-autoplay="false"> </div><script async src="/js/grayscale.js"></script><script async src="//at.alicdn.com/t/font_1885008_srfhrsykmk.js"></script><script>((window.gitter = {}).chat = {}).options = {
+  disableDefaultChat: true,
+};
+document.addEventListener('gitter-sidecar-ready', (e) => {
+  const GitterChat = e.detail.Chat
+  let chat
+
+  function initGitter () {
+    chat = new GitterChat({
+      room: 'wangchuangli-/community',
+      activationElement: '#chat_btn'
+    });
+  }
+
+  initGitter()
+
+  if (true) {
+    document.addEventListener('pjax:complete', () => {
+      chat.destroy()
+      initGitter()
+    })
+  }
+
+})</script><script src="https://sidecar.gitter.im/dist/sidecar.v1.js" async="async" defer="defer"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/meting@1.2.0/dist/Meting.min.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = ["title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"]):not([href="/music/"]):not([href="/no-pjax/"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.tocScrollFn && window.removeEventListener('scroll', window.tocScrollFn)
+  window.scrollCollect && window.removeEventListener('scroll', scrollCollect)
+
+  typeof preloader === 'object' && preloader.initLoading()
+  document.getElementById('rightside').style.cssText = "opacity: ''; transform: ''"
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+
+  typeof preloader === 'object' && preloader.endLoading()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><!-- hexo injector body_end start --><script data-pjax>
+  function butterfly_swiper_injector_config(){
+    var parent_div_git = document.getElementById('recent-posts');
+    var item_html = '<div class="recent-post-item" style="height: auto;width: 100%"><div class="blog-slider swiper-container-fade swiper-container-horizontal" id="swiper_container"><div class="blog-slider__wrp swiper-wrapper" style="transition-duration: 0ms;"><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" onclick="pjax.loadUrl(&quot;posts/4496.html&quot;);" href="javascript:void(0);" rel="external nofollow noreferrer" alt=""><img width="48" height="48" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img6_L358Nt.jpeg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2018-09-05</span><a class="blog-slider__title" onclick="pjax.loadUrl(&quot;posts/4496.html&quot;);" href="javascript:void(0);" rel="external nofollow noreferrer" alt="">编程系列书单推荐</a><div class="blog-slider__text">再怎么看我也不知道怎么描述它的啦！</div><a class="blog-slider__button" onclick="pjax.loadUrl(&quot;posts/4496.html&quot;);" href="javascript:void(0);" rel="external nofollow noreferrer" alt="">详情       </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" onclick="pjax.loadUrl(&quot;posts/35693.html&quot;);" href="javascript:void(0);" rel="external nofollow noreferrer" alt=""><img width="48" height="48" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img33_fnRUqR.jpeg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2018-11-26</span><a class="blog-slider__title" onclick="pjax.loadUrl(&quot;posts/35693.html&quot;);" href="javascript:void(0);" rel="external nofollow noreferrer" alt="">优秀科技博客订阅</a><div class="blog-slider__text">再怎么看我也不知道怎么描述它的啦！</div><a class="blog-slider__button" onclick="pjax.loadUrl(&quot;posts/35693.html&quot;);" href="javascript:void(0);" rel="external nofollow noreferrer" alt="">详情       </a></div></div></div><div class="blog-slider__pagination swiper-pagination-clickable swiper-pagination-bullets"></div></div></div>';
+    console.log('已挂载butterfly_swiper')
+    parent_div_git.insertAdjacentHTML("afterbegin",item_html)
+    }
+  var elist = 'undefined'.split(',');
+  var cpage = location.pathname;
+  var epage = 'all';
+  var flag = 0;
+
+  for (var i=0;i<elist.length;i++){
+    if (cpage.includes(elist[i])){
+      flag++;
+    }
+  }
+
+  if ((epage ==='all')&&(flag == 0)){
+    butterfly_swiper_injector_config();
+  }
+  else if (epage === cpage){
+    butterfly_swiper_injector_config();
+  }
+  </script><script defer src="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper.min.js"></script><script defer data-pjax src="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper_init.js"></script><!-- hexo injector body_end end --></body></html>

@@ -1,0 +1,535 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>【linux】查看Linux系统版本信息的几种方法 - opensmarty - 博客园 | 传礼</title><meta name="keywords" content="博客,blog,王传礼,java,python,大数据"><meta name="author" content="传礼,978252321@qq.com"><meta name="copyright" content="传礼"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="#【linux】查看Linux系统版本信息的几种方法 一、查看Linux内核版本命令（两种方法）： 1、cat &#x2F;proc&#x2F;version  2、uname -a  二、查看Linux系统版本的命令（3种方法）： 1、lsb_release -a，即可列出所有版本信息：  这个命令适用于所有的Linux发行版，包括RedHat、SUSE、Debian…等发行版。 2、cat &#x2F;etc&#x2F;redhat">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【linux】查看Linux系统版本信息的几种方法 - opensmarty - 博客园">
+<meta property="og:url" content="https://iwangchuanli.github.io/posts/42656.html">
+<meta property="og:site_name" content="传礼">
+<meta property="og:description" content="#【linux】查看Linux系统版本信息的几种方法 一、查看Linux内核版本命令（两种方法）： 1、cat &#x2F;proc&#x2F;version  2、uname -a  二、查看Linux系统版本的命令（3种方法）： 1、lsb_release -a，即可列出所有版本信息：  这个命令适用于所有的Linux发行版，包括RedHat、SUSE、Debian…等发行版。 2、cat &#x2F;etc&#x2F;redhat">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img22_700Zcx.jpeg">
+<meta property="article:published_time" content="2022-11-28T07:04:49.749Z">
+<meta property="article:modified_time" content="2022-08-18T00:54:07.000Z">
+<meta property="article:author" content="传礼">
+<meta property="article:tag" content="博客,blog,王传礼,java,python,大数据">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img22_700Zcx.jpeg"><link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/03/favicons_uH14Fb.gif"><link rel="canonical" href="https://iwangchuanli.github.io/posts/42656"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin=""/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta name="baidu-site-verification" content="qKvGNFZPF9"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?39bd6e37a6e70dc030e6a043a642784e";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: 传礼","link":"链接: ","source":"来源: 传礼","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#121212","position":"bottom-left"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: true,
+  islazyload: true,
+  isAnchor: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '【linux】查看Linux系统版本信息的几种方法 - opensmarty - 博客园',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-08-18 00:54:07'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/custom.css"  media="defer" onload="this.media='all'"><!-- hexo injector head_end start --><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiperstyle.css" media="print" onload="this.media='all'"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.1"><link rel="alternate" href="/atom.xml" title="传礼" type="application/atom+xml">
+</head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/03/photo_NZBQPu.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><div class="data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">511</div></a></div><div class="data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">50</div></a></div><div class="data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">22</div></a></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 归档</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-calendar"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 开发</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/Java"><i class="fa-fw fa fa-music"></i><span> Java</span></a></li><li><a class="site-page child" href="/categories/Python"><i class="fa-fw fa fa-music"></i><span> Python</span></a></li><li><a class="site-page child" href="/categories/VUE"><i class="fa-fw fa fa-music"></i><span> VUE</span></a></li><li><a class="site-page child" href="/categories/MySQL"><i class="fa-fw fa fa-music"></i><span> MySQL</span></a></li><li><a class="site-page child" href="/categories/Redis"><i class="fa-fw fa fa-music"></i><span> Redis</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 架构</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/Spring"><i class="fa-fw fa fa-music"></i><span> Spring</span></a></li><li><a class="site-page child" href="/categories/microServeices"><i class="fa-fw fa fa-music"></i><span> 微服务</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 运维</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/Docker"><i class="fa-fw fa fa-music"></i><span> Docker</span></a></li><li><a class="site-page child" href="/categories/Linux"><i class="fa-fw fa fa-music"></i><span> Linux</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 分享</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/tags/Tools"><i class="fa-fw fa fa-music"></i><span> 工具</span></a></li><li><a class="site-page child" href="/tags/guide"><i class="fa-fw fa fa-music"></i><span> 教程</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 项目</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/tags/Tools"><i class="fa-fw fa fa-music"></i><span> 工具</span></a></li><li><a class="site-page child" href="/tags/guide"><i class="fa-fw fa fa-music"></i><span> 教程</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-heartbeat"></i><span> 娱乐</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/gallery/"><i class="fa-fw fa fa-images"></i><span> 图库</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fa fa-film"></i><span> 电影</span></a></li><li><a class="site-page child" href="/books/"><i class="fa-fw fa fa-book"></i><span> 图书</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 我的</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/artitalk/"><i class="fa-fw fa fa-commenting"></i><span> 说说</span></a></li><li><a class="site-page child" href="/todo/"><i class="fa-fw fa fa-flag"></i><span> TODO</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img22_700Zcx.jpeg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">传礼</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 归档</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-calendar"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 开发</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/Java"><i class="fa-fw fa fa-music"></i><span> Java</span></a></li><li><a class="site-page child" href="/categories/Python"><i class="fa-fw fa fa-music"></i><span> Python</span></a></li><li><a class="site-page child" href="/categories/VUE"><i class="fa-fw fa fa-music"></i><span> VUE</span></a></li><li><a class="site-page child" href="/categories/MySQL"><i class="fa-fw fa fa-music"></i><span> MySQL</span></a></li><li><a class="site-page child" href="/categories/Redis"><i class="fa-fw fa fa-music"></i><span> Redis</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 架构</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/Spring"><i class="fa-fw fa fa-music"></i><span> Spring</span></a></li><li><a class="site-page child" href="/categories/microServeices"><i class="fa-fw fa fa-music"></i><span> 微服务</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 运维</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/Docker"><i class="fa-fw fa fa-music"></i><span> Docker</span></a></li><li><a class="site-page child" href="/categories/Linux"><i class="fa-fw fa fa-music"></i><span> Linux</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 分享</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/tags/Tools"><i class="fa-fw fa fa-music"></i><span> 工具</span></a></li><li><a class="site-page child" href="/tags/guide"><i class="fa-fw fa fa-music"></i><span> 教程</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 项目</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/tags/Tools"><i class="fa-fw fa fa-music"></i><span> 工具</span></a></li><li><a class="site-page child" href="/tags/guide"><i class="fa-fw fa fa-music"></i><span> 教程</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-heartbeat"></i><span> 娱乐</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/gallery/"><i class="fa-fw fa fa-images"></i><span> 图库</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fa fa-film"></i><span> 电影</span></a></li><li><a class="site-page child" href="/books/"><i class="fa-fw fa fa-book"></i><span> 图书</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 我的</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/artitalk/"><i class="fa-fw fa fa-commenting"></i><span> 说说</span></a></li><li><a class="site-page child" href="/todo/"><i class="fa-fw fa fa-flag"></i><span> TODO</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">【linux】查看Linux系统版本信息的几种方法 - opensmarty - 博客园</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-11-28T07:04:49.749Z" title="发表于 2022-11-28 07:04:49">2022-11-28</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-08-18T00:54:07.000Z" title="更新于 2022-08-18 00:54:07">2022-08-18</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.1k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>4分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="【linux】查看Linux系统版本信息的几种方法 - opensmarty - 博客园"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>#【linux】查看Linux系统版本信息的几种方法</p>
+<p>一、查看Linux内核版本命令（两种方法）：</p>
+<p>1、cat /proc/version</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/u_3687560437_3430652141_fm_173_a_6fb9195ed3b24b2da.jpg"></p>
+<p>2、uname -a</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/u_1836221927_3579391228_fm_173_a_127ea45efe62467cb.jpg"></p>
+<p>二、查看Linux系统版本的命令（3种方法）：</p>
+<p>1、lsb_release -a，即可列出所有版本信息：</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/u_3785205678_857041028_fm_173_ap_e9af0bce563a49659.jpg"></p>
+<p>这个命令适用于所有的Linux发行版，包括RedHat、SUSE、Debian…等发行版。</p>
+<p>2、cat /etc/redhat-release，这种方法只适合Redhat系的Linux：</p>
+<p>[root@S-CentOS home]# cat /etc/redhat-release</p>
+<p>CentOS release 6.5 (Final)</p>
+<p>3、cat /etc/issue，此命令也适用于所有的Linux发行版。</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/u_555963645_171250024_fm_173_app_d401471a14f045b09.jpg"></p>
+<p>分类: <a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/opensmarty/category/1208444.html">linux</a></p>
+<p>标签: <a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/opensmarty/tag/linux/">linux</a></p>
+<p><a id="green_channel_digg"></a>好文要顶 <a id="green_channel_follow"></a>关注我 <a id="green_channel_favorite"></a>收藏该文 <a id="green_channel_weibo"></a><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/icon_weibo_24_cbe8cb2afb4e459988beabef1841f776.png"><a id="green_channel_wechat"></a><img width="24" height="24" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/wechat_d42710b695404b3e83103caa08f7a678.png"/></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://home.cnblogs.com/u/opensmarty/"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/20170320120514_ba702f45297b4a9b915e59703493a1cc.png"></a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://home.cnblogs.com/u/opensmarty/">opensmarty</a><br><a target="_blank" rel="noopener external nofollow noreferrer" href="https://home.cnblogs.com/u/opensmarty/followers/">粉丝 - 3</a> <a target="_blank" rel="noopener external nofollow noreferrer" href="https://home.cnblogs.com/u/opensmarty/followees/">关注 - 305</a></p>
+<p>+加关注</p>
+<p><a id="digg_count"></a>10</p>
+<p><a id="bury_count"></a>0</p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/opensmarty/p/10935890.html">«</a> 上一篇： <a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/opensmarty/p/10935890.html" title="发布于 2019-05-28 10:56">【shuguo】34 /etc/php-fpm.d/www.conf配置</a><br><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/opensmarty/p/10936951.html">»</a> 下一篇： <a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/opensmarty/p/10936951.html" title="发布于 2019-05-28 14:04">【shuguo】CentOs 6.8 安装httpd2433及解决相关pcre等错误</a></p>
+<p>posted @ <a id="post-date"></a>2019-05-28 11:47  <a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/opensmarty/">opensmarty</a>  阅读(<a id="post_view_count"></a>194424)  评论(<a id="post_comment_count"></a>0)  <a target="_blank" rel="noopener external nofollow noreferrer" href="https://i.cnblogs.com/EditPosts.aspx?postid=10936315">编辑</a>  收藏  举报</p>
+<p><a id="!comments"></a></p>
+<p><a id="commentform"></a></p>
+<p><a id="lnk_RefreshComments"></a>刷新评论<a href="#">刷新页面</a><a href="#top">返回顶部</a></p>
+<p>登录后才能查看或发表评论，立即 登录 或者 <a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/">逛逛</a> 博客园首页</p>
+<p><strong>编辑推荐：</strong><br>· <a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/chanshuyi/p/how-to-build-the-stable-system.html">系统总出故障怎么办，或许你该学学稳定性建设！</a><br>· <a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/huangxincheng/p/16476232.html">记一次 .NET 某电厂 Web 系统 内存泄漏分析</a><br>· <a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/lulianqi/p/16476166.html">HTTPS 如何保证数据传输安全</a><br>· <a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/coco1s/p/16472985.html">利用噪声构建美妙的 CSS 图形</a><br>· <a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/makemylife/p/16462866.html">一次线上事故，我顿悟了异步的精髓</a></p>
+<p><strong>最新新闻</strong>：<br>· <a target="_blank" rel="noopener external nofollow noreferrer" href="https://news.cnblogs.com/n/724832/">iPhone 14要来了！富士康招工高峰期提前，万元奖励“抢人”</a><br>· <a target="_blank" rel="noopener external nofollow noreferrer" href="https://news.cnblogs.com/n/724831/">估值缩水70%，这个烧了40亿美元的独角兽还有机会吗？</a><br>· <a target="_blank" rel="noopener external nofollow noreferrer" href="https://news.cnblogs.com/n/724830/">警方介入，创始人静养，币圈交易所AEX宣布暂停所有服务</a><br>· <a target="_blank" rel="noopener external nofollow noreferrer" href="https://news.cnblogs.com/n/724829/">理想汽车回应空悬断裂：试制版缓冲环遇大冲击工况会偶发失效</a><br>· <a target="_blank" rel="noopener external nofollow noreferrer" href="https://news.cnblogs.com/n/724828/">贾跃亭被恢复执行10亿元</a><br>» <a target="_blank" rel="noopener external nofollow noreferrer" href="https://news.cnblogs.com/" title="IT 新闻">更多新闻…</a></p>
+<h3 id="公告"><a href="#公告" class="headerlink" title="公告"></a>公告</h3><p>昵称： <a target="_blank" rel="noopener external nofollow noreferrer" href="https://home.cnblogs.com/u/opensmarty/">opensmarty</a><br>园龄： <a target="_blank" rel="noopener external nofollow noreferrer" href="https://home.cnblogs.com/u/opensmarty/" title="入园时间：2014-08-12">7年11个月</a><br>粉丝： <a target="_blank" rel="noopener external nofollow noreferrer" href="https://home.cnblogs.com/u/opensmarty/followers/">3</a><br>关注： <a target="_blank" rel="noopener external nofollow noreferrer" href="https://home.cnblogs.com/u/opensmarty/followees/">305</a></p>
+<p>+加关注</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>&lt;</td>
+<td>2022年7月</td>
+<td>&gt;</td>
+</tr>
+</tbody></table>
+<p>日一二三四五六2627282930123<a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/opensmarty/archive/2022/07/04.html">4</a>56<a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/opensmarty/archive/2022/07/07.html">7</a><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/opensmarty/archive/2022/07/08.html">8</a>9101112<a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/opensmarty/archive/2022/07/13.html">13</a>141516171819202122232425262728293031123456</p>
+<h3 id="搜索"><a href="#搜索" class="headerlink" title="搜索"></a>搜索</h3><h3 id="我的标签"><a href="#我的标签" class="headerlink" title="我的标签"></a>我的标签</h3><ul>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/opensmarty/tag/go/">go(90)</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/opensmarty/tag/linux/">linux(65)</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/opensmarty/tag/shuguo/">shuguo(40)</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/opensmarty/tag/c%26c%2B%2B/">c&amp;c++(31)</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/opensmarty/tag/mysql/">mysql(30)</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/opensmarty/tag/%E6%8A%80%E6%9C%AF%E6%96%87%E6%A1%A3/">技术文档(27)</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/opensmarty/tag/php/">php(20)</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/opensmarty/tag/tool/">tool(16)</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/opensmarty/tag/%E6%97%A5%E5%B8%B8%E9%97%AE%E9%A2%98/">日常问题(16)</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/opensmarty/tag/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84/">微服务架构(14)</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/opensmarty/tag/">更多</a></li>
+</ul>
+<h3 id="随笔分类-253"><a href="#随笔分类-253" class="headerlink" title="随笔分类 (253)"></a><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/opensmarty/categories">随笔分类</a> (253)</h3><ul>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/opensmarty/category/1208452.html">android(7)</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/opensmarty/category/1465260.html">apache(4)</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/opensmarty/category/2052646.html">asterisk(5)</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/opensmarty/category/1208446.html">c&amp;c++(24)</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/opensmarty/category/1208460.html">config(3)</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/opensmarty/category/2100873.html">freeswitch(7)</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/opensmarty/category/1472570.html">git(8)</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/opensmarty/category/1433139.html">go(27)</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/opensmarty/category/1208444.html">linux(35)</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/opensmarty/category/1208453.html">mysql(16)</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/opensmarty/category/1467570.html">nginx(12)</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/opensmarty/category/1206245.html">php(20)</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/opensmarty/category/1459923.html">shuguo(34)</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/opensmarty/category/1208443.html">tool(16)</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/opensmarty/category/1476453.html">ubuntu(7)</a></li>
+<li>更多</li>
+</ul>
+<h3 id="随笔档案-297"><a href="#随笔档案-297" class="headerlink" title="随笔档案 (297)"></a>随笔档案 (297)</h3><ul>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/opensmarty/archive/2022/07.html">2022年7月(4)</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/opensmarty/archive/2022/06.html">2022年6月(9)</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/opensmarty/archive/2022/05.html">2022年5月(8)</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/opensmarty/archive/2022/04.html">2022年4月(1)</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/opensmarty/archive/2022/03.html">2022年3月(3)</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/opensmarty/archive/2022/02.html">2022年2月(6)</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/opensmarty/archive/2022/01.html">2022年1月(9)</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/opensmarty/archive/2021/12.html">2021年12月(8)</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/opensmarty/archive/2021/11.html">2021年11月(30)</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/opensmarty/archive/2021/10.html">2021年10月(19)</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/opensmarty/archive/2021/09.html">2021年9月(3)</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/opensmarty/archive/2021/08.html">2021年8月(1)</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/opensmarty/archive/2021/07.html">2021年7月(1)</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/opensmarty/archive/2021/06.html">2021年6月(1)</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/opensmarty/archive/2021/03.html">2021年3月(1)</a></li>
+<li>更多</li>
+</ul>
+<h3 id="帮助链接"><a href="#帮助链接" class="headerlink" title="帮助链接"></a>帮助链接</h3><ul>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.webpackjs.com/">webpackjs</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="http://document.thinkphp.cn/manual_3_2.html">thinkphp3.2开发手册</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.kancloud.cn/manual/thinkphp5_1">ThinkPHP5.1开发手册</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="http://redisdoc.com/">redisdoc</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="http://doc.redisfans.com/">redisfans</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://curl.haxx.se/">curl</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://pingcap.com/">tidb</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://jwt.io/">JWT官网</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="http://pecl.php.net/">pecl</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://windows.php.net/downloads/pecl/releases/">win.pecl</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="http://c.biancheng.net/">c.biancheng</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.sqlpy.com/">sqlpy</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://gopm.io/download">gopm.io</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.rabbitmq.com/">rabbitmq</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://guzzle3.readthedocs.io/index.html">guzzle3</a></li>
+<li>更多</li>
+</ul>
+<h3 id="开源链接"><a href="#开源链接" class="headerlink" title="开源链接"></a>开源链接</h3><ul>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/etcd-io/etcd">etcd</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/guzzle/guzzle/">guzzle</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/lisijie/go-study">lisijie</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/Neeky/mysqltools">mysqltools</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/liexusong/php-beast">php-beast</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://goproxy.io/">goproxy</a></li>
+</ul>
+<h3 id="实用链接"><a href="#实用链接" class="headerlink" title="实用链接"></a>实用链接</h3><ul>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://get.videolan.org/">vcl</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/opensmarty/p/windows.php.net">win.php.net</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/opensmarty/p/www.php.net">php.net</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://packagist.laravel-china.org/">composer-laravel.org</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="http://phpclicks.com/">phpclicks</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="http://tool.chinaz.com/tools/urlencode.aspx">URL编码与解码工具</a></li>
+</ul>
+<h3 id="友情链接"><a href="#友情链接" class="headerlink" title="友情链接"></a>友情链接</h3><ul>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="http://www.rootop.org/">rootop</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.liaoxuefeng.com/">liaoxuefeng</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.sqlpy.com/">sqlpy</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://yangbingdong.com/">yangbingdong</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="http://news.caibaojian.com/">caibaojian</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="http://www.5lazy.cn/">5lazy</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="http://www.4wei.cn/">4wei</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://klionsec.github.io/">klionsec</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="http://php-note.com/">php-note.com</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.copylian.com/">copylian</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="http://vearne.cc/">vearne</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/yorkyang">yorkyang</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/superhin/">superhin</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.liwenzhou.com/">liwenzhou</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/taoshihan">taoshihan</a></li>
+</ul>
+<h3 id="阅读排行榜"><a href="#阅读排行榜" class="headerlink" title="阅读排行榜"></a><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/opensmarty/most-viewed">阅读排行榜</a></h3><ul>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/opensmarty/p/10936315.html">1. 【linux】查看Linux系统版本信息的几种方法(194405)</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/opensmarty/p/11377624.html">2. 【php】php获取当前毫秒时间戳(59917)</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/opensmarty/p/10838311.html">3. 【linux】linux命令如何查看文件、文件夹的属性，包括大小、修改时间、谁修改的(24406)</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/opensmarty/p/10899914.html">4. 【linux】ls显示文件大小时显示单位(13271)</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/opensmarty/p/10875446.html">5. 【linux】linux修改系统时间和linux查看时区、修改时区的方法(12007)</a></li>
+</ul>
+<h3 id="评论排行榜"><a href="#评论排行榜" class="headerlink" title="评论排行榜"></a><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/opensmarty/most-commented">评论排行榜</a></h3><ul>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/opensmarty/p/11377624.html">1. 【php】php获取当前毫秒时间戳(4)</a></li>
+</ul>
+<h3 id="推荐排行榜"><a href="#推荐排行榜" class="headerlink" title="推荐排行榜"></a><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/opensmarty/most-liked">推荐排行榜</a></h3><ul>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/opensmarty/p/10936315.html">1. 【linux】查看Linux系统版本信息的几种方法(10)</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/opensmarty/p/10838311.html">2. 【linux】linux命令如何查看文件、文件夹的属性，包括大小、修改时间、谁修改的(3)</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/opensmarty/p/11377624.html">3. 【php】php获取当前毫秒时间戳(2)</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/opensmarty/p/11078439.html">4. 【php】PHP中Session ID的实现原理(1)</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/opensmarty/p/10899914.html">5. 【linux】ls显示文件大小时显示单位(1)</a></li>
+</ul>
+<h3 id="最新评论"><a href="#最新评论" class="headerlink" title="最新评论"></a><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/opensmarty/comments">最新评论</a></h3><ul>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/opensmarty/p/11377624.html">1. Re:【php】php获取当前毫秒时间戳</a></li>
+<li>@喵喵酱 最近刚学PHP，关于时间戳问题看了好几篇博文，写了一堆然后看评论发现你这个最简单直接，赞赞赞…</li>
+<li>–夜月归途</li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/opensmarty/p/11377624.html">2. Re:【php】php获取当前毫秒时间戳</a></li>
+<li>所以为什么不直接microtime(true)*1000呢</li>
+<li>–喵喵酱</li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/opensmarty/p/11377624.html">3. Re:【php】php获取当前毫秒时间戳</a></li>
+<li>@ 保温杯大叔大叔，sprintf转换为字符串类型，加float强制转换为整型了…</li>
+<li>–opensmarty</li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/opensmarty/p/11377624.html">4. Re:【php】php获取当前毫秒时间戳</a></li>
+<li>特意评论，你的方法有效，但是 (float)sprintf(‘%.0f’, (floatval($msec) + floatval($sec)) * 1000)， 你这代码前面加的 (float) 官…</li>
+<li>–保温杯大叔</li>
+</ul>
+<p>Copyright © 2022 opensmarty<br><a id="poweredby"></a>Powered by .NET 6 on Kubernetes</p>
+<p><a id="fatkun-drop-panel-close-btn"></a>×</p>
+<p>拖拽到此处</p>
+<p>图片将完成下载</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:978252321@qq.com" rel="external nofollow noreferrer">传礼</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://iwangchuanli.github.io/posts/42656.html">https://iwangchuanli.github.io/posts/42656.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow noreferrer" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://iwangchuanli.github.io" target="_blank">传礼</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img22_700Zcx.jpeg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/posts/17416.html"><img class="prev-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img12_dEurxP.jpeg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">message-queue</div></div></a></div><div class="next-post pull-right"><a href="/posts/30490.html"><img class="next-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img1_znhZsi.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">个人阅读书籍清单</div></div></a></div></nav><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div><div id="comment-switch"><span class="first-comment">Valine</span><span class="switch-btn"></span><span class="second-comment">Gitalk</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div><div><div id="gitalk-container"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">Nice to meet you ~</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%AC%E5%91%8A"><span class="toc-number">1.</span> <span class="toc-text">公告</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%90%9C%E7%B4%A2"><span class="toc-number">2.</span> <span class="toc-text">搜索</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%88%91%E7%9A%84%E6%A0%87%E7%AD%BE"><span class="toc-number">3.</span> <span class="toc-text">我的标签</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9A%8F%E7%AC%94%E5%88%86%E7%B1%BB-253"><span class="toc-number">4.</span> <span class="toc-text">随笔分类 (253)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9A%8F%E7%AC%94%E6%A1%A3%E6%A1%88-297"><span class="toc-number">5.</span> <span class="toc-text">随笔档案 (297)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%AE%E5%8A%A9%E9%93%BE%E6%8E%A5"><span class="toc-number">6.</span> <span class="toc-text">帮助链接</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%80%E6%BA%90%E9%93%BE%E6%8E%A5"><span class="toc-number">7.</span> <span class="toc-text">开源链接</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E7%94%A8%E9%93%BE%E6%8E%A5"><span class="toc-number">8.</span> <span class="toc-text">实用链接</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%8B%E6%83%85%E9%93%BE%E6%8E%A5"><span class="toc-number">9.</span> <span class="toc-text">友情链接</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%98%85%E8%AF%BB%E6%8E%92%E8%A1%8C%E6%A6%9C"><span class="toc-number">10.</span> <span class="toc-text">阅读排行榜</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%84%E8%AE%BA%E6%8E%92%E8%A1%8C%E6%A6%9C"><span class="toc-number">11.</span> <span class="toc-text">评论排行榜</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8E%A8%E8%8D%90%E6%8E%92%E8%A1%8C%E6%A6%9C"><span class="toc-number">12.</span> <span class="toc-text">推荐排行榜</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%80%E6%96%B0%E8%AF%84%E8%AE%BA"><span class="toc-number">13.</span> <span class="toc-text">最新评论</span></a></li></ol></div></div><div class="card-widget ads-wrap"><a target="_blank" href="https://www.aliyun.com/activity?userCode=dpj8p3hl" rel="external nofollow noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/aliyun_whuCuE.jpg" style="width:100%;height:100%;object-fit:cover;"></a></div></div></div></main><footer id="footer" style="background-image: url('https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img22_700Zcx.jpeg')"><div id="footer-wrap"><div class="copyright">&copy;2018 - 2022 By 传礼</div><div class="footer_custom_text"><p style="display:inline-flex">本网站由<a href="https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral" rel="external nofollow noreferrer" target="_blank"><img style="width:60px;height:35px;" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/11/又拍云_logo5_O9kNul.png" title="又拍云"/></a>提供CDN加速/云存储服务</p><p><a style="margin-inline:5px" target="_blank" href="https://hexo.io/" rel="external nofollow noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Frame-Hexo-blue?style=flat&logo=hexo" title="博客框架为Hexo"></a><a style="margin-inline:5px" target="_blank" href="https://butterfly.js.org/" rel="external nofollow noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Theme-Butterfly-6513df?style=flat&logo=bitdefender" title="主题采用butterfly"></a><a style="margin-inline:5px" target="_blank" href="https://www.jsdelivr.com/" rel="external nofollow noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/CDN-jsDelivr-orange?style=flat&logo=jsDelivr" title="本站使用JsDelivr为静态资源提供CDN加速"></a><a style="margin-inline:5px" target="_blank" href="https://github.com/" rel="external nofollow noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Source-Github-d021d6?style=flat&logo=GitHub" title="本站项目由Github托管"></a><a style="margin-inline:5px" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Copyright-BY--NC--SA%204.0-d42328?style=flat&logo=Claris" title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可"></a></p></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="chat_btn" type="button" title="聊天"><i class="fas fa-sms"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">本地搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script src="/js/search/local-search.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"><script>function loadValine () {
+  function initValine () {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: 'zHUfFgUbITfMSQGuSPgS2e3C-gzGzoHsz',
+      appKey: 'yPXpeKX8VJxdFRPEsDaqNgEY',
+      avatar: 'wavatar',
+      serverURLs: 'https://zhuffgub.lc-cn-n1-shared.com',
+      emojiMaps: "",
+      path: window.location.pathname,
+      visitor: true,
+      master: '447d56ab3606de5490a2109d3e441219,135d837ea1033c9787dd307e59884d36'.split(','),
+      friends: '5c?????bfe6rfc72a????e268ad3819c'.split(','),
+      tagMeta: '博主,小伙伴,访客'.split(',')
+        
+    }, {"placeholder":"请输入内容～"}))
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/gh/HCLonely/Valine@latest/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !true) {
+  if (true) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script><script>function addGitalkSource () {
+  const ele = document.createElement('link')
+  ele.rel = 'stylesheet'
+  ele.href= 'https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css'
+  document.getElementsByTagName('head')[0].appendChild(ele)
+}
+
+function loadGitalk () {
+  function initGitalk () {
+    var gitalk = new Gitalk(Object.assign({
+      clientID: '052d9d6486112e93fa50',
+      clientSecret: '6fea35bfb7a17521694a95f705683622976d2f53',
+      repo: 'gitalk',
+      owner: 'iwangchuanli',
+      admin: ['iwangchuanli'],
+      id: '90a35028ca4cd8f64a0e817d183029c5',
+      updateCountCallback: commentCount
+    },null))
+
+    gitalk.render('gitalk-container')
+  }
+
+  if (typeof Gitalk === 'function') initGitalk()
+  else {
+    addGitalkSource()
+    getScript('https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.js').then(initGitalk)
+  }
+}
+
+function commentCount(n){
+  let isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+  if (isCommentCount) {
+    isCommentCount.innerHTML= n
+  }
+}
+
+if ('Valine' === 'Gitalk' || !true) {
+  if (true) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+  else loadGitalk()
+} else {
+  function loadOtherComment () {
+    loadGitalk()
+  }
+}</script></div><div class="aplayer no-destroy" data-id="7355841544" data-server="netease" data-type="playlist" data-fixed="true" data-autoplay="false"> </div><script async src="/js/grayscale.js"></script><script async src="//at.alicdn.com/t/font_1885008_srfhrsykmk.js"></script><script>((window.gitter = {}).chat = {}).options = {
+  disableDefaultChat: true,
+};
+document.addEventListener('gitter-sidecar-ready', (e) => {
+  const GitterChat = e.detail.Chat
+  let chat
+
+  function initGitter () {
+    chat = new GitterChat({
+      room: 'wangchuangli-/community',
+      activationElement: '#chat_btn'
+    });
+  }
+
+  initGitter()
+
+  if (true) {
+    document.addEventListener('pjax:complete', () => {
+      chat.destroy()
+      initGitter()
+    })
+  }
+
+})</script><script src="https://sidecar.gitter.im/dist/sidecar.v1.js" async="async" defer="defer"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/meting@1.2.0/dist/Meting.min.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = ["title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"]):not([href="/music/"]):not([href="/no-pjax/"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.tocScrollFn && window.removeEventListener('scroll', window.tocScrollFn)
+  window.scrollCollect && window.removeEventListener('scroll', scrollCollect)
+
+  typeof preloader === 'object' && preloader.initLoading()
+  document.getElementById('rightside').style.cssText = "opacity: ''; transform: ''"
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+
+  typeof preloader === 'object' && preloader.endLoading()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><!-- hexo injector body_end start --><script data-pjax>
+  function butterfly_swiper_injector_config(){
+    var parent_div_git = document.getElementById('recent-posts');
+    var item_html = '<div class="recent-post-item" style="height: auto;width: 100%"><div class="blog-slider swiper-container-fade swiper-container-horizontal" id="swiper_container"><div class="blog-slider__wrp swiper-wrapper" style="transition-duration: 0ms;"><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" onclick="pjax.loadUrl(&quot;posts/4496.html&quot;);" href="javascript:void(0);" rel="external nofollow noreferrer" alt=""><img width="48" height="48" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img6_L358Nt.jpeg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2018-09-05</span><a class="blog-slider__title" onclick="pjax.loadUrl(&quot;posts/4496.html&quot;);" href="javascript:void(0);" rel="external nofollow noreferrer" alt="">编程系列书单推荐</a><div class="blog-slider__text">再怎么看我也不知道怎么描述它的啦！</div><a class="blog-slider__button" onclick="pjax.loadUrl(&quot;posts/4496.html&quot;);" href="javascript:void(0);" rel="external nofollow noreferrer" alt="">详情       </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" onclick="pjax.loadUrl(&quot;posts/35693.html&quot;);" href="javascript:void(0);" rel="external nofollow noreferrer" alt=""><img width="48" height="48" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img33_fnRUqR.jpeg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2018-11-26</span><a class="blog-slider__title" onclick="pjax.loadUrl(&quot;posts/35693.html&quot;);" href="javascript:void(0);" rel="external nofollow noreferrer" alt="">优秀科技博客订阅</a><div class="blog-slider__text">再怎么看我也不知道怎么描述它的啦！</div><a class="blog-slider__button" onclick="pjax.loadUrl(&quot;posts/35693.html&quot;);" href="javascript:void(0);" rel="external nofollow noreferrer" alt="">详情       </a></div></div></div><div class="blog-slider__pagination swiper-pagination-clickable swiper-pagination-bullets"></div></div></div>';
+    console.log('已挂载butterfly_swiper')
+    parent_div_git.insertAdjacentHTML("afterbegin",item_html)
+    }
+  var elist = 'undefined'.split(',');
+  var cpage = location.pathname;
+  var epage = 'all';
+  var flag = 0;
+
+  for (var i=0;i<elist.length;i++){
+    if (cpage.includes(elist[i])){
+      flag++;
+    }
+  }
+
+  if ((epage ==='all')&&(flag == 0)){
+    butterfly_swiper_injector_config();
+  }
+  else if (epage === cpage){
+    butterfly_swiper_injector_config();
+  }
+  </script><script defer src="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper.min.js"></script><script defer data-pjax src="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper_init.js"></script><!-- hexo injector body_end end --></body></html>

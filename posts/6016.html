@@ -1,0 +1,664 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>Linux系统中禁止scp命令（完整版）_im奥特曼的博客-CSDN博客_禁用scp | 传礼</title><meta name="keywords" content="博客,blog,王传礼,java,python,大数据"><meta name="author" content="传礼,978252321@qq.com"><meta name="copyright" content="传礼"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="博客 下载·课程 问答 学习 社区 认证 MyGitHub 云服务   会员中心   足迹 动态 消息 创作中心   发布 Linux系统中禁止scp命令（完整版）  im奥特曼 于 2021-05-18 12:02:00 发布 4810 收藏 5  分类专栏： 我的博客 运维 文章标签： linux centos 运维 ssh 服务器 版权 我的博客 同时被 2 个专栏收录 49 篇文章 3">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux系统中禁止scp命令（完整版）_im奥特曼的博客-CSDN博客_禁用scp">
+<meta property="og:url" content="https://iwangchuanli.github.io/posts/6016.html">
+<meta property="og:site_name" content="传礼">
+<meta property="og:description" content="博客 下载·课程 问答 学习 社区 认证 MyGitHub 云服务   会员中心   足迹 动态 消息 创作中心   发布 Linux系统中禁止scp命令（完整版）  im奥特曼 于 2021-05-18 12:02:00 发布 4810 收藏 5  分类专栏： 我的博客 运维 文章标签： linux centos 运维 ssh 服务器 版权 我的博客 同时被 2 个专栏收录 49 篇文章 3">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img16_UxoLFp.jpeg">
+<meta property="article:published_time" content="2022-11-28T07:04:49.749Z">
+<meta property="article:modified_time" content="2022-08-18T02:04:51.000Z">
+<meta property="article:author" content="传礼">
+<meta property="article:tag" content="博客,blog,王传礼,java,python,大数据">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img16_UxoLFp.jpeg"><link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/03/favicons_uH14Fb.gif"><link rel="canonical" href="https://iwangchuanli.github.io/posts/6016"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin=""/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta name="baidu-site-verification" content="qKvGNFZPF9"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?39bd6e37a6e70dc030e6a043a642784e";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: 传礼","link":"链接: ","source":"来源: 传礼","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#121212","position":"bottom-left"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: true,
+  islazyload: true,
+  isAnchor: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Linux系统中禁止scp命令（完整版）_im奥特曼的博客-CSDN博客_禁用scp',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-08-18 02:04:51'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/custom.css"  media="defer" onload="this.media='all'"><!-- hexo injector head_end start --><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiperstyle.css" media="print" onload="this.media='all'"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.1"><link rel="alternate" href="/atom.xml" title="传礼" type="application/atom+xml">
+</head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/03/photo_NZBQPu.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><div class="data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">511</div></a></div><div class="data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">50</div></a></div><div class="data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">22</div></a></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 归档</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-calendar"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 开发</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/Java"><i class="fa-fw fa fa-music"></i><span> Java</span></a></li><li><a class="site-page child" href="/categories/Python"><i class="fa-fw fa fa-music"></i><span> Python</span></a></li><li><a class="site-page child" href="/categories/VUE"><i class="fa-fw fa fa-music"></i><span> VUE</span></a></li><li><a class="site-page child" href="/categories/MySQL"><i class="fa-fw fa fa-music"></i><span> MySQL</span></a></li><li><a class="site-page child" href="/categories/Redis"><i class="fa-fw fa fa-music"></i><span> Redis</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 架构</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/Spring"><i class="fa-fw fa fa-music"></i><span> Spring</span></a></li><li><a class="site-page child" href="/categories/microServeices"><i class="fa-fw fa fa-music"></i><span> 微服务</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 运维</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/Docker"><i class="fa-fw fa fa-music"></i><span> Docker</span></a></li><li><a class="site-page child" href="/categories/Linux"><i class="fa-fw fa fa-music"></i><span> Linux</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 分享</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/tags/Tools"><i class="fa-fw fa fa-music"></i><span> 工具</span></a></li><li><a class="site-page child" href="/tags/guide"><i class="fa-fw fa fa-music"></i><span> 教程</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 项目</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/tags/Tools"><i class="fa-fw fa fa-music"></i><span> 工具</span></a></li><li><a class="site-page child" href="/tags/guide"><i class="fa-fw fa fa-music"></i><span> 教程</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-heartbeat"></i><span> 娱乐</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/gallery/"><i class="fa-fw fa fa-images"></i><span> 图库</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fa fa-film"></i><span> 电影</span></a></li><li><a class="site-page child" href="/books/"><i class="fa-fw fa fa-book"></i><span> 图书</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 我的</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/artitalk/"><i class="fa-fw fa fa-commenting"></i><span> 说说</span></a></li><li><a class="site-page child" href="/todo/"><i class="fa-fw fa fa-flag"></i><span> TODO</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img16_UxoLFp.jpeg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">传礼</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 归档</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-calendar"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 开发</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/Java"><i class="fa-fw fa fa-music"></i><span> Java</span></a></li><li><a class="site-page child" href="/categories/Python"><i class="fa-fw fa fa-music"></i><span> Python</span></a></li><li><a class="site-page child" href="/categories/VUE"><i class="fa-fw fa fa-music"></i><span> VUE</span></a></li><li><a class="site-page child" href="/categories/MySQL"><i class="fa-fw fa fa-music"></i><span> MySQL</span></a></li><li><a class="site-page child" href="/categories/Redis"><i class="fa-fw fa fa-music"></i><span> Redis</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 架构</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/Spring"><i class="fa-fw fa fa-music"></i><span> Spring</span></a></li><li><a class="site-page child" href="/categories/microServeices"><i class="fa-fw fa fa-music"></i><span> 微服务</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 运维</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/Docker"><i class="fa-fw fa fa-music"></i><span> Docker</span></a></li><li><a class="site-page child" href="/categories/Linux"><i class="fa-fw fa fa-music"></i><span> Linux</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 分享</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/tags/Tools"><i class="fa-fw fa fa-music"></i><span> 工具</span></a></li><li><a class="site-page child" href="/tags/guide"><i class="fa-fw fa fa-music"></i><span> 教程</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 项目</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/tags/Tools"><i class="fa-fw fa fa-music"></i><span> 工具</span></a></li><li><a class="site-page child" href="/tags/guide"><i class="fa-fw fa fa-music"></i><span> 教程</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-heartbeat"></i><span> 娱乐</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/gallery/"><i class="fa-fw fa fa-images"></i><span> 图库</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fa fa-film"></i><span> 电影</span></a></li><li><a class="site-page child" href="/books/"><i class="fa-fw fa fa-book"></i><span> 图书</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 我的</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/artitalk/"><i class="fa-fw fa fa-commenting"></i><span> 说说</span></a></li><li><a class="site-page child" href="/todo/"><i class="fa-fw fa fa-flag"></i><span> TODO</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Linux系统中禁止scp命令（完整版）_im奥特曼的博客-CSDN博客_禁用scp</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-11-28T07:04:49.749Z" title="发表于 2022-11-28 07:04:49">2022-11-28</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-08-18T02:04:51.000Z" title="更新于 2022-08-18 02:04:51">2022-08-18</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">3k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>10分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Linux系统中禁止scp命令（完整版）_im奥特曼的博客-CSDN博客_禁用scp"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.csdn.net/"><img width="80" height="44" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/20201124032511_f26adc00b738465f80a2f3d538d19004.png"/></a></p>
+<ul>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/nav/cloud-native">博客</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://download.csdn.net/">下载·课程</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://ask.csdn.net/">问答</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://edu.csdn.net/">学习</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://bbs.csdn.net/">社区</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://ac.csdn.net/?short_code=13271b93">认证</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://mp.csdn.net/mp_others/manage/code?utm_source=csdn_toolbar">MyGitHub</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://dev-portal.csdn.net/welcome?utm_source=toolbar">云服务</a></li>
+</ul>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/wang978252321"><img width="32" height="32" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/2_wang978252321_e986cd3d0c4944329ceb978ead1ef2e4.png"/></a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://mall.csdn.net/vip">会员中心 <img width="14" height="24" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/20210918025138_eff8a59e204241eeaae729ce20e949a3.gif"/></a> </p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://i.csdn.net/#/user-center/collection-list?type=1">足迹</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blink.csdn.net/">动态</a></p>
+<p><a id="toolbar-remind"></a><a target="_blank" rel="noopener external nofollow noreferrer" href="https://i.csdn.net/#/msg/index">消息</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://mp.csdn.net/" title="创作中心">创作中心 <img width="14" height="14" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/20220627041202_a6f297c8c1404cc9b4980b3eb639f24a.png"/></a> </p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://mp.csdn.net/edit">发布</a></p>
+<h1 id="Linux系统中禁止scp命令（完整版）"><a href="#Linux系统中禁止scp命令（完整版）" class="headerlink" title="Linux系统中禁止scp命令（完整版）"></a>Linux系统中禁止scp命令（完整版）</h1><img width="36" height="32" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/original_827413b48b074518bda5eed09f60bf19.png"/>
+
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/weixin_50093343">im奥特曼</a> <img width="16" height="16" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/newCurrentTime2_094fde1e468f4e6ba94b97c2b69f6656.png"/>于 2021-05-18 12:02:00 发布 <img width="16" height="16" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/articleReadEyes2_3fbd799e1ebb4dfab4a70880b624203f.png"/>4810 <a id="blog_detail_zk_collection"></a><img width="16" height="16" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/tobarCollect2_61ebd3495dce467784f470d1c3ede50e.png"/>收藏 5 </p>
+<p>分类专栏： <a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/weixin_50093343/category_11003673.html">我的博客</a> <a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/weixin_50093343/category_10592221.html">运维</a> 文章标签： <a target="_blank" rel="noopener external nofollow noreferrer" href="https://so.csdn.net/so/search/s.do?q=linux&t=blog&o=vip&s=&l=&f=&viparticle=">linux</a> <a target="_blank" rel="noopener external nofollow noreferrer" href="https://so.csdn.net/so/search/s.do?q=centos&t=blog&o=vip&s=&l=&f=&viparticle=">centos</a> <a target="_blank" rel="noopener external nofollow noreferrer" href="https://so.csdn.net/so/search/s.do?q=%E8%BF%90%E7%BB%B4&t=blog&o=vip&s=&l=&f=&viparticle=">运维</a> <a target="_blank" rel="noopener external nofollow noreferrer" href="https://so.csdn.net/so/search/s.do?q=ssh&t=blog&o=vip&s=&l=&f=&viparticle=">ssh</a> <a target="_blank" rel="noopener external nofollow noreferrer" href="https://so.csdn.net/so/search/s.do?q=%E6%9C%8D%E5%8A%A1%E5%99%A8&t=blog&o=vip&s=&l=&f=&viparticle=">服务器</a></p>
+<p>版权</p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/weixin_50093343/category_11003673.html" title="我的博客"><img width="34" height="34" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/resize_m_fixed_h_64_w_64_75dea4a066614553bac12108c.png"/>我的博客 同时被 2 个专栏收录<img width="16" height="20" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/newArrowDown1White_eab0681b237148d487e568317f738e7.png"/></a></p>
+<p>49 篇文章 3 订阅</p>
+<p>订阅专栏</p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/weixin_50093343/category_10592221.html" title="运维"><img width="34" height="34" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/resize_m_fixed_h_64_w_64_681037d75c2946ad8f15fad04.png"/>运维</a></p>
+<p>31 篇文章 1 订阅</p>
+<p>订阅专栏</p>
+<p><strong>今天处理服务器的漏洞需要禁止scp命令，随手记录了下来。</strong></p>
+<h2 id="前言："><a href="#前言：" class="headerlink" title="前言："></a><a id="t0"></a><a id="_2"></a>前言：</h2><blockquote>
+<p>系统环境：CentOS Linux release 7.7.1908 (Core)<br><a target="_blank" rel="noopener external nofollow noreferrer" href="https://so.csdn.net/so/search?q=ssh&spm=1001.2101.3001.7020">ssh</a> 版本：OpenSSH_7.4p1, OpenSSL 1.0.2k-fips 26 Jan 2017</p>
+</blockquote>
+<h2 id="一、禁止scp"><a href="#一、禁止scp" class="headerlink" title="一、禁止scp"></a><a id="t1"></a><a id="scp_7"></a>一、禁止scp</h2><blockquote>
+<p>1、 rpm -qa|<a target="_blank" rel="noopener external nofollow noreferrer" href="https://so.csdn.net/so/search?q=grep&spm=1001.2101.3001.7020">grep</a> openssh-*<br>（释义：查看<a target="_blank" rel="noopener external nofollow noreferrer" href="https://so.csdn.net/so/search?q=openssh&spm=1001.2101.3001.7020">openssh</a>文件）</p>
+</blockquote>
+<blockquote>
+<p>2、 <a target="_blank" rel="noopener external nofollow noreferrer" href="https://so.csdn.net/so/search?q=yum&spm=1001.2101.3001.7020">yum</a> remove openssh-clients -y<br>（释义：删除openssh-clients）</p>
+</blockquote>
+<blockquote>
+<p>3、重启sshd服务（因为修改了配置，所以需要重启sshd服务）<br>命令：systemctl restart sshd.service</p>
+</blockquote>
+<h2 id="二、-禁止sftp服务"><a href="#二、-禁止sftp服务" class="headerlink" title="二、 禁止sftp服务"></a><a id="t2"></a><a id="_sftp_18"></a>二、 禁止sftp服务</h2><blockquote>
+<p>1、修改sshd配置文件 /etc/ssh/sshd.config<br>命令 ：vi /etc/ssh/sshd.config<br>操作：将 # Subsystem sftp /usr/libexec/openssh/sftp-server 信息前面加上”#”</p>
+</blockquote>
+<blockquote>
+<p>2、重启sshd服务<br>命令：systemctl restart sshd.service</p>
+</blockquote>
+<h2 id="三、测试"><a href="#三、测试" class="headerlink" title="三、测试"></a><a id="t3"></a><a id="_26"></a>三、测试</h2><p>输入scp命令进行测试<br><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/20210518120036706_6a5d900a95ce4c909d4876a748b351f6.png" alt="在这里插入图片描述"></p>
+<h2 id="结束语"><a href="#结束语" class="headerlink" title="结束语"></a><a id="t4"></a><a id="_31"></a>结束语</h2><ul>
+<li>记录生活，分享知识！</li>
+<li>本人还在不断学习中，如有问题可留言交流学习！</li>
+</ul>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://edu.csdn.net/contest/detail/8?utm_campaign=marketingcard&utm_source=weixin_50093343&utm_content=116982624"><img width="44" height="44" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/d8158680dc8b4c5a94b957b50a5f1d63_0161c5028f8c468fb.jpeg"/><br>暑期编程PK赛 <img width="5" height="10" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/iconArrowLeftWhite_4732b42405f04139a198ace4bb46c66.png"/><br>得CSDN机械键盘等精美礼品！</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/weixin_50093343"><img width="30" height="30" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/3_weixin_50093343_3687b9d6307145ac86d4ec09da7bf700.png"/>im奥特曼</a></p>
+<p>关注</p>
+<ul>
+<li><p> <img width="24" height="24" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/newHeart2021White_7e106c3e84ba407196de6e21bda1c0dd.png"/> <a id="spanCount"></a>0 </p>
+</li>
+<li><img width="24" height="24" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/newUnHeart2021White_504cd92656c044199669cc5e5c16fc.png"/></li>
+<li><p><img width="24" height="24" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/newComment2021White_4d885e021cec4db7a5d1865587dafd.png"/>1</p>
+</li>
+<li><p> <img width="24" height="24" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/newCollectWhite_fbe31a5a96eb462c9ddd804fd28adb9e.png"/> <a id="get-collection"></a>5 </p>
+</li>
+<li><img width="24" height="24" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/newRewardWhite_0efba605d466418c877387e634e1ca01.png"/></li>
+<li><img width="24" height="24" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/newShareWhite_bf73789a239b4da38a551a0f826ccb73.png"/></li>
+</ul>
+<p>专栏目录</p>
+<p><img width="16" height="16" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/blogType_7df30b2d6b90438cb562eb4f44d05099.png"/><a target="_blank" rel="noopener external nofollow noreferrer" href="https://wangjianhui.blog.csdn.net/article/details/102519239"><em>linux</em>下<em>ssh<strong>禁止</strong>scp</em>、sftp传输文件</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/weixin_41666796">weixin_41666796的博客</a></p>
+<p> <img width="14" height="14" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/readCountWhite_24f5ba48e8dd4dcbace1227a4a617ae0.png"/> 9372 </p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://wangjianhui.blog.csdn.net/article/details/102519239">1.vim /etc/<em>ssh</em>/<em>ssh</em>d_config 注释这一行 #Subsystem sftp /usr/lib/open<em>ssh</em>/sftp-server 2.移走sftp-server mv /usr/lib/sftp-server /usr/lib/ 3.vim ~/.profile vtysh</a></p>
+<p><a id="commentBox"></a></p>
+<p>评论 1</p>
+<ul>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/weixin_50093343"><img width="30" height="30" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/3_weixin_50093343_3687b9d6307145ac86d4ec09da7bf700.png"/></a>  <a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/weixin_50093343">im奥特曼作者</a> 2021.05.18  <img width="16" height="16" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/commentLikeWhite_453c29fe75a0407d827f6b939e9a2c66.png"/>
+  
+  sftp禁止的话无法用sftp进行上传下载文件，如果想重新启动sftp的话，则方法反过来同上<img width="20" height="20" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/005_660eb3a6d547466ea314219f9a34c172.png"/></li>
+</ul>
+<p>查看其他 1 条评论 写评论</p>
+<p><img width="16" height="16" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/blogType_7df30b2d6b90438cb562eb4f44d05099.png"/><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/suo082407128/article/details/119001948"><em>Linux<strong>禁用</strong>scp</em>和sftp_椰汁菠萝的博客_<em>linux</em>关闭sftp</a></p>
+<p>6-21</p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/suo082407128/article/details/119001948">一、<em>禁止**scp</em> 方法一:卸载open<em>ssh</em>-clients rpm -qa|grep open<em>ssh</em>-* yum remove open<em>ssh</em>-clients -y 1 2 删除了open<em>ssh</em>-clients后,再执行<em>scp</em>,就会报下面的错误: -bash: <em>scp</em>: command not found 但删除该包也会导致其他<em>ssh**命令</em>不…</a></p>
+<p><img width="16" height="16" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/blogType_7df30b2d6b90438cb562eb4f44d05099.png"/><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/weixin_51380893/article/details/113865108">转载:<em>禁止**linux</em>使用<em>scp</em>和sftp_rr8page的博客</a></p>
+<p>6-14</p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/weixin_51380893/article/details/113865108">1.先<em>禁止**scp</em> rpm -qa|grep open<em>ssh</em>-* yum remove open<em>ssh</em>-clients -y 删除了open<em>ssh</em>-clients后,再执行<em>scp</em>,就会报下面的错误: -bash: <em>scp</em>: command not found 2.<em>禁止</em>sftp vi /etc/<em>ssh</em>/<em>ssh</em>d_config …</a></p>
+<p><img width="16" height="16" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/blogType_7df30b2d6b90438cb562eb4f44d05099.png"/><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/weixin_35143292/article/details/116733231"><em>linux</em> 关闭<em>scp**服务器</em>,<em>Linux**系统</em>如何关闭<em>scp</em>和sftp<em>命令</em></a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/weixin_35143292">weixin_35143292的博客</a></p>
+<p> <img width="14" height="14" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/readCountWhite_24f5ba48e8dd4dcbace1227a4a617ae0.png"/> 1400 </p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/weixin_35143292/article/details/116733231"><em>Linux**系统</em>如何关闭<em>scp</em>和sftp<em>命令</em>。sftp介绍sftp是Secure File Transfer Protocol的缩写，安全文件传送协议。可以为传输文件提供一种安全的加密方法。sftp 与 ftp 有着几乎一样的语法和功能<em>scp</em>介绍两台主机之间传输文件一般使用<em>scp命令</em>,通常用<em>scp命令</em>通过<em>ssh</em>获取对方<em>linux</em>主机文件的时候都需要输入密码确认，方法差不多了。<em>禁止**scp</em>和sftp<em>命令</em>…</a></p>
+<p><img width="16" height="16" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/blogType_7df30b2d6b90438cb562eb4f44d05099.png"/><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/weixin_34241036/article/details/89859349"><em>禁止**linux</em>使用<em>scp</em>和sftp<br>热门推荐</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/weixin_34241036">weixin_34241036的博客</a></p>
+<p> <img width="14" height="14" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/readCountWhite_24f5ba48e8dd4dcbace1227a4a617ae0.png"/> 1万+ </p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/weixin_34241036/article/details/89859349">公司新上了一台测试<em>服务器</em>,要求<em>禁止</em>使用<em>scp</em>和sftp,说是怕<em>服务器</em>上数据传出去,我说<em>ssh</em>在使用一样会有数据传出去的,但技术总监说毕竟他们不知道那么高深的方法,所以<em>禁止</em>了<em>scp</em>和sftp就够了,好吧,都这样说了我还有什么办法,只能照做. <em>系统</em>:<em>centos</em> 5.x1.先<em>禁止**scp</em>rpm -qa|grep open<em>ssh</em>-*yum remove …</a></p>
+<p><img width="16" height="16" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/blogType_7df30b2d6b90438cb562eb4f44d05099.png"/><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/weixin_39869693/article/details/110810852"><em>linux</em> <em>禁用**scp</em>_<em>Linux</em>搭建ASF在STEAM上挂卡和游戏时长_w…</a></p>
+<p>6-20</p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/weixin_39869693/article/details/110810852">文章标签: <em>linux</em> <em>禁用**scp</em> <em>linux<strong>禁用</strong>scp</em> 1.准备<em>服务器</em> 在使用ASF挂卡的前提下,你必须拥有一个<em>服务器</em>,本篇是在阿里云<em>CentOS</em>7.3搭建的 由于ASF的内存占用相当低,所以我们只需要相对便宜的配置即可 推荐选用阿里云的云<em>服务器</em>ECS,24周岁以下…</a></p>
+<p><img width="16" height="16" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/blogType_7df30b2d6b90438cb562eb4f44d05099.png"/><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/N07ME/article/details/111034326">CVE-2020-15778 open<em>ssh</em>漏洞修复</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/N07ME">N07ME的博客</a></p>
+<p> <img width="14" height="14" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/readCountWhite_24f5ba48e8dd4dcbace1227a4a617ae0.png"/> 5221 </p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/N07ME/article/details/111034326">漏洞描述 https://access.redhat.com/security/cve/cve-2020-15778 简单来说，就是<em>scp命令</em>是可以注入特殊字段，在目标主机上执行指令的。 原理是因为<em>scp</em>是通过<em>ssh</em>实现的，一样的需要用户名和密码才能登陆。也就是说，这个漏洞其实针对的是那些<em>禁用</em>了<em>ssh</em>但是没<em>禁用**scp</em>的主机，针对这些主机，可以从外部通过<em>scp</em>实现和<em>ssh</em>一样的功能。 漏洞修复方案 1.升级到open<em>ssh</em>-8.4以上的版本 <em>（</em>要求操作<em>系统</em>版本在<em>centos</em> 8及以上<em>）</em> 2.<em>禁用**scp命令</em> m</a></p>
+<p><img width="16" height="16" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/blogType_7df30b2d6b90438cb562eb4f44d05099.png"/><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/weixin_35765226/article/details/116675784"><em>linux<strong>禁用</strong>scp命令</em>,<em>Linux**系统</em>如何关闭<em>scp</em>和sftp<em>命令</em></a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/weixin_35765226">weixin_35765226的博客</a></p>
+<p> <img width="14" height="14" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/readCountWhite_24f5ba48e8dd4dcbace1227a4a617ae0.png"/> 653 </p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/weixin_35765226/article/details/116675784">sftp介绍 sftp是Secure File Transfer Protocol的缩写。有需要或者是有兴趣的用户，就会报下面的错误: -bash: <em>scp</em>: command not found 2.<em>禁止</em>sftp vi /etc/<em>ssh</em>/<em>ssh</em>d_config Subsystem sftp /usr/libexec/open<em>ssh</em>/sftp-server 把这行注释了，方法差不多了，sftp 与 …</a></p>
+<p><img width="16" height="16" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/blogType_7df30b2d6b90438cb562eb4f44d05099.png"/><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/u012229282/article/details/103189238">Ubuntu16.04下<em>禁用**scp</em>、sftp和win<em>scp</em></a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/u012229282">HPC&amp;Geophysics攻城狮</a></p>
+<p> <img width="14" height="14" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/readCountWhite_24f5ba48e8dd4dcbace1227a4a617ae0.png"/> 3860 </p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/u012229282/article/details/103189238">在上一篇博文《Ubuntu16.04 搭建FTP<em>服务器</em>，设置用户权限为只许上传、<em>禁止</em>下载和删除》<em>中</em>，我讲述了Ubuntu16.04下配置FTP，并且设定用户权限为只能上传数据，<em>禁止</em>下载和删除数据。这算在FTP层面封堵了<em>服务器</em>数据泄露的途径。 但是，Ubuntu<em>系统</em>的<em>scp</em>和sftp还是起作用的，理论上只要能用本地机器ping通<em>服务器</em>，就可以用<em>scp</em>和sftp下载数据，这还是存在数据泄露可能的，所…</a></p>
+<p><img width="16" height="16" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/blogType_7df30b2d6b90438cb562eb4f44d05099.png"/><a target="_blank" rel="noopener external nofollow noreferrer" href="https://suozq.blog.csdn.net/article/details/119001948"><em>Linux<strong>禁用</strong>scp</em>和sftp</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/suo082407128">椰汁菠萝</a></p>
+<p> <img width="14" height="14" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/readCountWhite_24f5ba48e8dd4dcbace1227a4a617ae0.png"/> 1234 </p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://suozq.blog.csdn.net/article/details/119001948">​ <em>系统</em>:<em>centos</em> 7.x 一、<em>禁止**scp</em> 方法一：卸载open<em>ssh</em>-clients rpm -qa|grep open<em>ssh</em>-* yum remove open<em>ssh</em>-clients -y 删除了open<em>ssh</em>-clients后,再执行<em>scp</em>,就会报下面的错误: -bash: <em>scp</em>: command not found 但删除该包也会导致其他<em>ssh**命令</em>不可用 方法二：移除<em>scp</em>执行权限 whereis <em>scp</em> #查找<em>scp</em>所在目录 cd /usr/bin chmod -x <em>scp</em> #移除执行权限</a></p>
+<p><img width="16" height="16" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/blogType_7df30b2d6b90438cb562eb4f44d05099.png"/><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/weixin_45574151/article/details/117451496"><em>linux<strong>禁用</strong>scp命令</em></a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/weixin_45574151">weixin_45574151的博客</a></p>
+<p> <img width="14" height="14" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/readCountWhite_24f5ba48e8dd4dcbace1227a4a617ae0.png"/> 1761 </p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/weixin_45574151/article/details/117451496">Open<em>SSH</em> <em>命令</em>注入漏洞 yum remove openssl</a></p>
+<p><img width="16" height="16" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/blogType_7df30b2d6b90438cb562eb4f44d05099.png"/><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/weixin_39745933/article/details/111166276"><em>linux</em> <em>禁用**scp</em>_<em>Linux</em> 下 4 种<em>禁用</em> Root 登陆的方法，你掌握了哪几种呢？</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/weixin_39745933">weixin_39745933的博客</a></p>
+<p> <img width="14" height="14" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/readCountWhite_24f5ba48e8dd4dcbace1227a4a617ae0.png"/> 2122 </p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/weixin_39745933/article/details/111166276">我们都知道 <em>Linux</em> 下 Root 用户的权限是最大的，因此一般不推荐直接使用 Root 用户操作。通常都是使用普通用户，在必要时通过 Sudo <em>命令</em>来提权。在 Ubuntu <em>中</em>，更是直接把 Root 用户直接<em>禁用</em>了。那么如何在 <em>Linux</em> <em>中**禁止</em>Root 登陆呢？今天，我们就来介绍几种常用的方法。1. 修改 Root 用户的登陆 Shell我们可以通过编辑 /etc/passwd …</a></p>
+<p><img width="16" height="16" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/blogType_7df30b2d6b90438cb562eb4f44d05099.png"/><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/chenwei3390/article/details/115380726"><em>Linux</em>下<em>禁用</em>root的方法</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/chenwei3390">chenwei3390的专栏</a></p>
+<p> <img width="14" height="14" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/readCountWhite_24f5ba48e8dd4dcbace1227a4a617ae0.png"/> 413 </p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/chenwei3390/article/details/115380726">1. 修改 Root 用户的登陆 Shell 此方法会<em>禁用**ssh</em>和su，编辑 /etc/passwd 文件 root:x:0:0:root:/root:/bin/bash 修改成 root:x:0:0:root:/root:/sbin/nologin 此后，使用 Root 用户登陆只会显示一条信息 “This account is currently not available” 2. <em>禁止</em> Root 用户通过 <em>SSH</em> 登陆 此方法会<em>禁用**ssh</em>，但仍可以使用普通用户su root，编辑 /e.</a></p>
+<p><img width="16" height="16" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/blogType_7df30b2d6b90438cb562eb4f44d05099.png"/><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/qq_45018290/article/details/125178450"><em>Linux<strong>系统</strong>中**禁用</em>启用<em>scp</em>、sftp；<br>最新发布</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/qq_45018290">x871752024的博客</a></p>
+<p> <img width="14" height="14" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/readCountWhite_24f5ba48e8dd4dcbace1227a4a617ae0.png"/> 62 </p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/qq_45018290/article/details/125178450"><em>禁用</em>启用<em>scp</em>、sftp</a></p>
+<p><img width="16" height="16" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/blogType_7df30b2d6b90438cb562eb4f44d05099.png"/><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/hale_hale/article/details/115761084"><em>centos</em>7<em>禁用**scp</em></a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/hale_hale">hale_hale的博客</a></p>
+<p> <img width="14" height="14" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/readCountWhite_24f5ba48e8dd4dcbace1227a4a617ae0.png"/> 3418 </p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/hale_hale/article/details/115761084">参考 1.<em>系统</em>环境:<em>CentOS</em> <em>Linux</em> release 7.7.1908 (Core) 2.<em>ssh</em> 版本:Open<em>SSH</em>_7.4p1, OpenSSL 1.0.2k-fips 26 Jan 2017 3.<em>禁止**scp</em> 3.1 rpm -qa|grep open<em>ssh</em>-* 3.2 yum remove open<em>ssh</em>-clients -y 4.重启<em>ssh</em>d服务 systemctl restart <em>ssh</em>d.service 5. <em>禁止</em>sftp服务 5.1 修改<em>ssh</em>d配置文件 /etc/<em>ssh</em>/<em>ssh</em></a></p>
+<p><img width="16" height="16" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/blogType_7df30b2d6b90438cb562eb4f44d05099.png"/><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/weixin_39612896/article/details/110578662"><em>centos</em>7 <em>禁用**scp</em>_RHEL、<em>CentOS</em>7下OpenSSL 1.0.2s、Open<em>SSH</em> 8.0编译升级方法</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/weixin_39612896">weixin_39612896的博客</a></p>
+<p> <img width="14" height="14" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/readCountWhite_24f5ba48e8dd4dcbace1227a4a617ae0.png"/> 1348 </p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/weixin_39612896/article/details/110578662">这是小编自己工作<em>中</em>整理的一个干货记录，仅供大家参考，也欢迎大家一起共同讨论，学习，谢谢！目录1. 前言12. 操作<em>系统</em>补丁升级方式的选择与建议13. 安装要求84. 注意事项95. 配置本地yum源仓库96. 开通telnet服务116.1. 安装telnet-server及telnet服务116.2. 启动xinetd及telnet并做开机自启动126.3. 修改/etc/securetty文件…</a></p>
+<p><img width="16" height="16" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/blogType_7df30b2d6b90438cb562eb4f44d05099.png"/><a target="_blank" rel="noopener external nofollow noreferrer" href="https://wittpeng.blog.csdn.net/article/details/107755961">[应用漏洞]Open<em>SSH</em> <em>scp命令</em>注入漏洞(CVE-2020-15778)</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/qq_37865996">不忘初心，护天下安全！</a></p>
+<p> <img width="14" height="14" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/readCountWhite_24f5ba48e8dd4dcbace1227a4a617ae0.png"/> 9685 </p>
+<p>[一、漏洞简介 该漏洞发生于Open*SSH* &lt;= 8.3p1 *系统*，即使在*禁用**ssh*登录的情况下，但是允许使用*scp*传文件，而且远程*服务器*允许使用反引号(`)，可利用*scp*复制文件到远程*服务器*时，执行带有payload的*scp命令*，从而在后续利用*中*getshell。 利用条件：知道目标的*ssh*密码 二、漏洞原理 *scp*是 secure copy的缩写, *scp*是*linux**系统*下基于*ssh*登陆进行安全的远程文件拷贝*命令*。*linux*的*scp命令*可以在*linux**服务器*之间复制文件和目录。 *scp*格.](<a target="_blank" rel="noopener external nofollow noreferrer" href="https://wittpeng.blog.csdn.net/article/details/107755961">https://wittpeng.blog.csdn.net/article/details/107755961</a>)</p>
+<p><img width="16" height="16" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/blogType_7df30b2d6b90438cb562eb4f44d05099.png"/><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/weixin_29352517/article/details/116869000"><em>linux</em>指令<em>scp</em>怎么使用,<em>linux</em>指令<em>scp</em>指令详解</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/weixin_29352517">weixin_29352517的博客</a></p>
+<p> <img width="14" height="14" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/readCountWhite_24f5ba48e8dd4dcbace1227a4a617ae0.png"/> 666 </p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/weixin_29352517/article/details/116869000"><em>scp</em>就是secure copy，是用来进行远程文件拷贝的。数据传输使用 <em>ssh</em>，并且和<em>ssh</em> 使用相同的认证方式，提供相同的安全保证 。那么你知道<em>linux</em>指令<em>scp</em>指令详解么?接下来是小编为大家收集的<em>linux</em>指令<em>scp</em>指令详解，欢迎大家阅读：、<em>linux</em>指令<em>scp</em>指令详解<em>scp</em>在不同的<em>linux</em>主机间复制文件是带有Security的文件copy，基于<em>ssh</em>登录。有些<em>linux</em>发行版没有自带s…</a></p>
+<h3 id="“相关推荐”对你有帮助么？"><a href="#“相关推荐”对你有帮助么？" class="headerlink" title="“相关推荐”对你有帮助么？"></a>“相关推荐”对你有帮助么？</h3><ul>
+<li><img width="24" height="24" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/npsFeel1_387ea1cfadb747bda2bc427236a3ddea.png"/>
+  
+  非常没帮助</li>
+<li><img width="24" height="24" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/npsFeel2_dc5e8e9e66f74e67bdb9c02af04fb2e5.png"/>
+  
+  没帮助</li>
+<li><img width="24" height="24" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/npsFeel3_9e430da67dba43aa933063ceb8230ca2.png"/>
+  
+  一般</li>
+<li><img width="24" height="24" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/npsFeel4_8d819c6652824b0ea7c10bd56b63e63b.png"/>
+  
+  有帮助</li>
+<li><img width="24" height="24" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/npsFeel5_9c8924cbdce0426bb66d35ce98294e4b.png"/>
+  
+  非常有帮助</li>
+</ul>
+<p>©️2022 CSDN 皮肤主题：深蓝海洋 设计师：CSDN官方博客 <a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/">返回首页</a></p>
+<ul>
+<li><p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.csdn.net/company/index.html#about">关于我们</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.csdn.net/company/index.html#recruit">招贤纳士</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://marketing.csdn.net/questions/Q2202181741262323995">商务合作</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://marketing.csdn.net/questions/Q2202181748074189855">寻求报道</a></p>
+</li>
+<li><p><img width="16" height="16" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/tel_1f33205f70bb469c908a08c6ba22b15a.png"/> 400-660-0108</p>
+</li>
+<li><p><img width="16" height="16" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/email_7f38593d4268408b8c256d998d0a438a.png"/><a href="mailto:webmaster@csdn.net" rel="external nofollow noreferrer">kefu@csdn.net</a></p>
+</li>
+<li><p><img width="16" height="16" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/cs_8c3e4969d4a8400e96ee36dee82d8d7f.png"/><a target="_blank" rel="noopener external nofollow noreferrer" href="https://csdn.s2.udesk.cn/im_client/?web_plugin_id=29181">在线客服</a></p>
+</li>
+<li><p>工作时间 8:30-22:00</p>
+</li>
+<li><p><a target="_blank" rel="noopener external nofollow noreferrer" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=11010502030143">公安备案号11010502030143</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener external nofollow noreferrer" href="http://beian.miit.gov.cn/publish/query/indexFirst.action">京ICP备19004658号</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://csdnimg.cn/release/live_fe/culture_license.png">京网文〔2020〕1039-165号</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://csdnimg.cn/cdn/content-toolbar/csdn-ICP.png">经营性网站备案信息</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener external nofollow noreferrer" href="http://www.bjjubao.org/">北京互联网违法和不良信息举报中心</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://download.csdn.net/tutelage/home">家长监护</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener external nofollow noreferrer" href="http://www.cyberpolice.cn/">网络110报警服务</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener external nofollow noreferrer" href="http://www.12377.cn/">中国互联网举报中心</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://chrome.google.com/webstore/detail/csdn%E5%BC%80%E5%8F%91%E8%80%85%E5%8A%A9%E6%89%8B/kfkdboecolemdjodhmhmcibjocfopejo?hl=zh-CN">Chrome商店下载</a></p>
+</li>
+<li><p>©1999-2022北京创新乐知网络技术有限公司</p>
+</li>
+<li><p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.csdn.net/company/index.html#statement">版权与免责声明</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/blogdevteam/article/details/90369522">版权申诉</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://img-home.csdnimg.cn/images/20220705052819.png">出版物许可证</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://img-home.csdnimg.cn/images/20210414021142.jpg">营业执照</a></p>
+</li>
+</ul>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/weixin_50093343"><img width="48" height="48" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/3_weixin_50093343_3687b9d6307145ac86d4ec09da7bf700.png"/></a></p>
+<p><a id="uid"></a><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/weixin_50093343" title="im奥特曼">im奥特曼</a></p>
+<p>码龄2年 <a target="_blank" rel="noopener external nofollow noreferrer" href="https://i.csdn.net/#/uc/profile?utm_source=14998968" title="暂无认证"><img width="12" height="14" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/nocErtification_15f96d6c917643ca9bf36a09a773dc95.png"/> 暂无认证</a> </p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/weixin_50093343">49<br>原创</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/rank/list/weekly">17万+<br>周排名</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/rank/list/total">8万+<br>总排名</a></p>
+<p>8万+</p>
+<p>访问</p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/blogdevteam/article/details/103478461"><img width="22" height="22" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/blog3_fce7c0456de24a70b02025638c9836fa.png"/></a></p>
+<p>等级</p>
+<p>764</p>
+<p>积分</p>
+<p><a id="fan"></a>22</p>
+<p>粉丝</p>
+<p>39</p>
+<p>获赞</p>
+<p>35</p>
+<p>评论</p>
+<p>306</p>
+<p>收藏</p>
+<img width="36" height="36" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/fenxiangxuetu_240_5364387d8d6641b88e8d10adfea2832a.png"/>
+
+<img width="36" height="36" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/fengxiangxiaobing_240_e1e10a4e3af14a3a85a8e2bcab15.png"/>
+
+<img width="36" height="36" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/qiandao10_240_7d9ea5318c4148c5be58fb88a3cee67b.png"/>
+
+<img width="36" height="36" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/chizhiyiheng_240_4f6a22dd160f44c7a3900f52f37d893c.png"/>
+
+<img width="36" height="36" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/70592b2299594e37aedcaa91fc52a294_7e6bf8f9e46e41059.png"/>
+
+<img width="36" height="36" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/qixiebiaobing4_240_44f3e52b1c1349239b3470ea374cff4.png"/>
+
+<img width="36" height="36" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/yuedu3_240_c77411be641847ab89617af587fde54b.png"/>
+
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://im.csdn.net/chat/weixin_50093343">私信</a></p>
+<p><a id="btnAttent"></a>关注</p>
+<img width="32" height="32" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/csdn-sou_eaa23154f49c4545a13d9e65fcd8e6f3.png"/>
+
+<h3 id="热门文章"><a href="#热门文章" class="headerlink" title="热门文章"></a>热门文章</h3><ul>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/weixin_50093343/article/details/114985960">Linux下如何关闭SELinux的图文教程（完整版） <img width="14" height="14" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/readCountWhite_24f5ba48e8dd4dcbace1227a4a617ae0.png"/> 9353</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/weixin_50093343/article/details/109442668">Linux下安装JDK11图文教程（完整版） <img width="14" height="14" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/readCountWhite_24f5ba48e8dd4dcbace1227a4a617ae0.png"/> 7753</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/weixin_50093343/article/details/116059305">Linux部署Nginx的图文教程（完整版） <img width="14" height="14" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/readCountWhite_24f5ba48e8dd4dcbace1227a4a617ae0.png"/> 5481</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/weixin_50093343/article/details/116982624">Linux系统中禁止scp命令（完整版） <img width="14" height="14" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/readCountWhite_24f5ba48e8dd4dcbace1227a4a617ae0.png"/> 4804</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/weixin_50093343/article/details/123092851">戴尔服务器R720重置iDRAC密码图文教程（完整版） <img width="14" height="14" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/readCountWhite_24f5ba48e8dd4dcbace1227a4a617ae0.png"/> 4544</a></li>
+</ul>
+<h3 id="分类专栏"><a href="#分类专栏" class="headerlink" title="分类专栏"></a>分类专栏</h3><ul>
+<li> <a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/weixin_50093343/category_11003673.html"><img width="22" height="22" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/resize_m_fixed_h_64_w_64_75dea4a066614553bac12108c.png"/>  我的博客</a> 49篇</li>
+<li> <a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/weixin_50093343/category_10592221.html"><img width="22" height="22" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/resize_m_fixed_h_64_w_64_681037d75c2946ad8f15fad04.png"/> 运维</a> 31篇</li>
+<li> <a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/weixin_50093343/category_11410942.html"><img width="22" height="22" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/resize_m_fixed_h_64_w_64_982e1577cddc438ba532aae23.png"/> 服务器</a> 4篇</li>
+<li> <a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/weixin_50093343/category_11485288.html"><img width="22" height="22" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/resize_m_fixed_h_64_w_64_6c309b2fcba44c5da6d9a3a89.png"/> DNS</a> 3篇</li>
+<li> <a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/weixin_50093343/category_11054611.html"><img width="22" height="22" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/resize_m_fixed_h_64_w_64_982e1577cddc438ba532aae23.png"/> 遇到的问题</a> 9篇</li>
+<li> <a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/weixin_50093343/category_11007286.html"><img width="22" height="22" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/resize_m_fixed_h_64_w_64_0114e5911882405b96e4d850b.png"/> 禅道</a> 1篇</li>
+<li> <a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/weixin_50093343/category_11003684.html"><img width="22" height="22" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/resize_m_fixed_h_64_w_64_a9bb9ccb520446e0b962a186b.png"/> 数据库</a> 11篇</li>
+<li> <a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/weixin_50093343/category_11004291.html"><img width="22" height="22" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/resize_m_fixed_h_64_w_64_982e1577cddc438ba532aae23.png"/> 产品原型</a> 1篇</li>
+<li> <a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/weixin_50093343/category_11009627.html"><img width="22" height="22" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/resize_m_fixed_h_64_w_64_ec7a307fb31243d6919608341.png"/> Nginx</a> 1篇</li>
+<li> <a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/weixin_50093343/category_11002091.html"><img width="22" height="22" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/resize_m_fixed_h_64_w_64_982e1577cddc438ba532aae23.png"/> Docker</a> 3篇</li>
+<li> <a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/weixin_50093343/category_11002103.html"><img width="22" height="22" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/resize_m_fixed_h_64_w_64_982e1577cddc438ba532aae23.png"/> 代码检测工具</a> 1篇</li>
+</ul>
+<img width="12" height="7" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/arrowDownWhite_32c166ab170742eaae8119a6aef4286a.png"/>
+
+<h3 id="最新评论"><a href="#最新评论" class="headerlink" title="最新评论"></a>最新评论</h3><ul>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/weixin_50093343/article/details/121510060#comments_22345684">Linux下Centos8网络配置的教程（完整版）</a>  <a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/m0_70021673">m0_70021673:</a> 请问还在吗 可以请教问题吗┭┮﹏┭┮</li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/weixin_50093343/article/details/116059305#comments_22253727">Linux部署Nginx的图文教程（完整版）</a>  <a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/weixin_44782346">94煮:</a> make install DESTDIR=/your path 可以指定安装路径</li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/weixin_50093343/article/details/121676702#comments_22010790">Windows10 下安装 dig 命令的步骤（一）</a>  <a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/qq_46054108">qq_46054108:</a> 感谢大佬！用管理员身份打开install. exe就能解决之前的问题</li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/weixin_50093343/article/details/115726384#comments_22003364">Linux下如何配置邮件服务器的图文教程（完整版）</a>  <a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/m0_69279175">m0_69279175:</a> 你好，想问一下就是foxmail新建邮件账号那里的密码总是说密码错误，这个邮件账号是需要在哪个app上先创建吗</li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/weixin_50093343/article/details/121763118#comments_21703932">Linux下 （CentOS 7）有趣的命令</a>  <a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/weixin_50679268">weixin_50679268:</a> 博主的技术面很广哦，而且都是干货文章，小菜鸟求带，可以加你微信随时和您交流吗，感谢</li>
+</ul>
+<h3 id="您愿意向朋友推荐“博客详情页”吗？"><a href="#您愿意向朋友推荐“博客详情页”吗？" class="headerlink" title="您愿意向朋友推荐“博客详情页”吗？"></a>您愿意向朋友推荐“博客详情页”吗？</h3><ul>
+<li><img width="28" height="28" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/npsFeel1_387ea1cfadb747bda2bc427236a3ddea.png"/>
+  
+  强烈不推荐</li>
+<li><img width="28" height="28" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/npsFeel2_dc5e8e9e66f74e67bdb9c02af04fb2e5.png"/>
+  
+  不推荐</li>
+<li><img width="28" height="28" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/npsFeel3_9e430da67dba43aa933063ceb8230ca2.png"/>
+  
+  一般般</li>
+<li><img width="28" height="28" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/npsFeel4_8d819c6652824b0ea7c10bd56b63e63b.png"/>
+  
+  推荐</li>
+<li><img width="28" height="28" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/npsFeel5_9c8924cbdce0426bb66d35ce98294e4b.png"/>
+  
+  强烈推荐</li>
+</ul>
+<h3 id="最新文章"><a href="#最新文章" class="headerlink" title="最新文章"></a>最新文章</h3><ul>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/weixin_50093343/article/details/123092851">戴尔服务器R720重置iDRAC密码图文教程（完整版）</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/weixin_50093343/article/details/121852497">【遇到的问题】‘dig‘ 不是内部或外部命令，也不是可运行的程序 或批处理文件（二）</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/weixin_50093343/article/details/121763118">Linux下 （CentOS 7）有趣的命令</a></li>
+</ul>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/weixin_50093343?type=blog&year=2022&month=02">2022年1篇</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/weixin_50093343?type=blog&year=2021&month=12">2021年44篇</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/weixin_50093343?type=blog&year=2020&month=12">2020年4篇</a></p>
+<h3 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h3><ol>
+<li> <a href="#t0">前言：</a></li>
+<li> <a href="#t1">一、禁止scp</a></li>
+<li> <a href="#t2">二、 禁止sftp服务</a></li>
+<li> <a href="#t3">三、测试</a></li>
+<li> <a href="#t4">结束语</a></li>
+</ol>
+<p> <img width="24" height="24" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/iconShowDirectory_63baff78a8014e089b4412246f02176f.png"/><img width="26" height="12" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/iconSideBeta_e34d547199884af2a2229cccbfb6622f.png"/> <img width="24" height="24" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/iconHideSide_b8d706621b2f46448b6e857685f2ba1e.png"/><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/iconSideBeta_e34d547199884af2a2229cccbfb6622f.png"><img width="24" height="24" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/guide_d7680c1e26c4456c81463e0e62754957.png"/><img width="24" height="24" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/kefu_75b5b6e0ef854a378e66a8e375f214df.png"/>举报</p>
+<p><a id="fatkun-drop-panel-close-btn"></a>×</p>
+<p>拖拽到此处</p>
+<p>图片将完成下载</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:978252321@qq.com" rel="external nofollow noreferrer">传礼</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://iwangchuanli.github.io/posts/6016.html">https://iwangchuanli.github.io/posts/6016.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow noreferrer" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://iwangchuanli.github.io" target="_blank">传礼</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img16_UxoLFp.jpeg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/posts/27440.html"><img class="prev-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img10_lLsQAP.jpeg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">HTTP 状态码</div></div></a></div><div class="next-post pull-right"><a href="/posts/28341.html"><img class="next-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img16_UxoLFp.jpeg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Mac 同时使用无线 Wi-Fi 和有线上网，解决内网外网一起访问的问题</div></div></a></div></nav><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div><div id="comment-switch"><span class="first-comment">Valine</span><span class="switch-btn"></span><span class="second-comment">Gitalk</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div><div><div id="gitalk-container"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">Nice to meet you ~</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Linux%E7%B3%BB%E7%BB%9F%E4%B8%AD%E7%A6%81%E6%AD%A2scp%E5%91%BD%E4%BB%A4%EF%BC%88%E5%AE%8C%E6%95%B4%E7%89%88%EF%BC%89"><span class="toc-number">1.</span> <span class="toc-text">Linux系统中禁止scp命令（完整版）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80%EF%BC%9A"><span class="toc-number">1.1.</span> <span class="toc-text">前言：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E7%A6%81%E6%AD%A2scp"><span class="toc-number">1.2.</span> <span class="toc-text">一、禁止scp</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81-%E7%A6%81%E6%AD%A2sftp%E6%9C%8D%E5%8A%A1"><span class="toc-number">1.3.</span> <span class="toc-text">二、 禁止sftp服务</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E6%B5%8B%E8%AF%95"><span class="toc-number">1.4.</span> <span class="toc-text">三、测试</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%93%E6%9D%9F%E8%AF%AD"><span class="toc-number">1.5.</span> <span class="toc-text">结束语</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%80%9C%E7%9B%B8%E5%85%B3%E6%8E%A8%E8%8D%90%E2%80%9D%E5%AF%B9%E4%BD%A0%E6%9C%89%E5%B8%AE%E5%8A%A9%E4%B9%88%EF%BC%9F"><span class="toc-number">1.5.1.</span> <span class="toc-text">“相关推荐”对你有帮助么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%83%AD%E9%97%A8%E6%96%87%E7%AB%A0"><span class="toc-number">1.5.2.</span> <span class="toc-text">热门文章</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E7%B1%BB%E4%B8%93%E6%A0%8F"><span class="toc-number">1.5.3.</span> <span class="toc-text">分类专栏</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%80%E6%96%B0%E8%AF%84%E8%AE%BA"><span class="toc-number">1.5.4.</span> <span class="toc-text">最新评论</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%82%A8%E6%84%BF%E6%84%8F%E5%90%91%E6%9C%8B%E5%8F%8B%E6%8E%A8%E8%8D%90%E2%80%9C%E5%8D%9A%E5%AE%A2%E8%AF%A6%E6%83%85%E9%A1%B5%E2%80%9D%E5%90%97%EF%BC%9F"><span class="toc-number">1.5.5.</span> <span class="toc-text">您愿意向朋友推荐“博客详情页”吗？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%80%E6%96%B0%E6%96%87%E7%AB%A0"><span class="toc-number">1.5.6.</span> <span class="toc-text">最新文章</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9B%AE%E5%BD%95"><span class="toc-number">1.5.7.</span> <span class="toc-text">目录</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget ads-wrap"><a target="_blank" href="https://www.aliyun.com/activity?userCode=dpj8p3hl" rel="external nofollow noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/aliyun_whuCuE.jpg" style="width:100%;height:100%;object-fit:cover;"></a></div></div></div></main><footer id="footer" style="background-image: url('https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img16_UxoLFp.jpeg')"><div id="footer-wrap"><div class="copyright">&copy;2018 - 2022 By 传礼</div><div class="footer_custom_text"><p style="display:inline-flex">本网站由<a href="https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral" rel="external nofollow noreferrer" target="_blank"><img style="width:60px;height:35px;" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/11/又拍云_logo5_O9kNul.png" title="又拍云"/></a>提供CDN加速/云存储服务</p><p><a style="margin-inline:5px" target="_blank" href="https://hexo.io/" rel="external nofollow noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Frame-Hexo-blue?style=flat&logo=hexo" title="博客框架为Hexo"></a><a style="margin-inline:5px" target="_blank" href="https://butterfly.js.org/" rel="external nofollow noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Theme-Butterfly-6513df?style=flat&logo=bitdefender" title="主题采用butterfly"></a><a style="margin-inline:5px" target="_blank" href="https://www.jsdelivr.com/" rel="external nofollow noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/CDN-jsDelivr-orange?style=flat&logo=jsDelivr" title="本站使用JsDelivr为静态资源提供CDN加速"></a><a style="margin-inline:5px" target="_blank" href="https://github.com/" rel="external nofollow noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Source-Github-d021d6?style=flat&logo=GitHub" title="本站项目由Github托管"></a><a style="margin-inline:5px" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Copyright-BY--NC--SA%204.0-d42328?style=flat&logo=Claris" title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可"></a></p></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="chat_btn" type="button" title="聊天"><i class="fas fa-sms"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">本地搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script src="/js/search/local-search.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"><script>function loadValine () {
+  function initValine () {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: 'zHUfFgUbITfMSQGuSPgS2e3C-gzGzoHsz',
+      appKey: 'yPXpeKX8VJxdFRPEsDaqNgEY',
+      avatar: 'wavatar',
+      serverURLs: 'https://zhuffgub.lc-cn-n1-shared.com',
+      emojiMaps: "",
+      path: window.location.pathname,
+      visitor: true,
+      master: '447d56ab3606de5490a2109d3e441219,135d837ea1033c9787dd307e59884d36'.split(','),
+      friends: '5c?????bfe6rfc72a????e268ad3819c'.split(','),
+      tagMeta: '博主,小伙伴,访客'.split(',')
+        
+    }, {"placeholder":"请输入内容～"}))
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/gh/HCLonely/Valine@latest/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !true) {
+  if (true) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script><script>function addGitalkSource () {
+  const ele = document.createElement('link')
+  ele.rel = 'stylesheet'
+  ele.href= 'https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css'
+  document.getElementsByTagName('head')[0].appendChild(ele)
+}
+
+function loadGitalk () {
+  function initGitalk () {
+    var gitalk = new Gitalk(Object.assign({
+      clientID: '052d9d6486112e93fa50',
+      clientSecret: '6fea35bfb7a17521694a95f705683622976d2f53',
+      repo: 'gitalk',
+      owner: 'iwangchuanli',
+      admin: ['iwangchuanli'],
+      id: '35720c0b16e360e8ddbf318e03560f25',
+      updateCountCallback: commentCount
+    },null))
+
+    gitalk.render('gitalk-container')
+  }
+
+  if (typeof Gitalk === 'function') initGitalk()
+  else {
+    addGitalkSource()
+    getScript('https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.js').then(initGitalk)
+  }
+}
+
+function commentCount(n){
+  let isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+  if (isCommentCount) {
+    isCommentCount.innerHTML= n
+  }
+}
+
+if ('Valine' === 'Gitalk' || !true) {
+  if (true) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+  else loadGitalk()
+} else {
+  function loadOtherComment () {
+    loadGitalk()
+  }
+}</script></div><div class="aplayer no-destroy" data-id="7355841544" data-server="netease" data-type="playlist" data-fixed="true" data-autoplay="false"> </div><script async src="/js/grayscale.js"></script><script async src="//at.alicdn.com/t/font_1885008_srfhrsykmk.js"></script><script>((window.gitter = {}).chat = {}).options = {
+  disableDefaultChat: true,
+};
+document.addEventListener('gitter-sidecar-ready', (e) => {
+  const GitterChat = e.detail.Chat
+  let chat
+
+  function initGitter () {
+    chat = new GitterChat({
+      room: 'wangchuangli-/community',
+      activationElement: '#chat_btn'
+    });
+  }
+
+  initGitter()
+
+  if (true) {
+    document.addEventListener('pjax:complete', () => {
+      chat.destroy()
+      initGitter()
+    })
+  }
+
+})</script><script src="https://sidecar.gitter.im/dist/sidecar.v1.js" async="async" defer="defer"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/meting@1.2.0/dist/Meting.min.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = ["title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"]):not([href="/music/"]):not([href="/no-pjax/"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.tocScrollFn && window.removeEventListener('scroll', window.tocScrollFn)
+  window.scrollCollect && window.removeEventListener('scroll', scrollCollect)
+
+  typeof preloader === 'object' && preloader.initLoading()
+  document.getElementById('rightside').style.cssText = "opacity: ''; transform: ''"
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+
+  typeof preloader === 'object' && preloader.endLoading()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><!-- hexo injector body_end start --><script data-pjax>
+  function butterfly_swiper_injector_config(){
+    var parent_div_git = document.getElementById('recent-posts');
+    var item_html = '<div class="recent-post-item" style="height: auto;width: 100%"><div class="blog-slider swiper-container-fade swiper-container-horizontal" id="swiper_container"><div class="blog-slider__wrp swiper-wrapper" style="transition-duration: 0ms;"><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" onclick="pjax.loadUrl(&quot;posts/4496.html&quot;);" href="javascript:void(0);" rel="external nofollow noreferrer" alt=""><img width="48" height="48" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img6_L358Nt.jpeg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2018-09-05</span><a class="blog-slider__title" onclick="pjax.loadUrl(&quot;posts/4496.html&quot;);" href="javascript:void(0);" rel="external nofollow noreferrer" alt="">编程系列书单推荐</a><div class="blog-slider__text">再怎么看我也不知道怎么描述它的啦！</div><a class="blog-slider__button" onclick="pjax.loadUrl(&quot;posts/4496.html&quot;);" href="javascript:void(0);" rel="external nofollow noreferrer" alt="">详情       </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" onclick="pjax.loadUrl(&quot;posts/35693.html&quot;);" href="javascript:void(0);" rel="external nofollow noreferrer" alt=""><img width="48" height="48" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img33_fnRUqR.jpeg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2018-11-26</span><a class="blog-slider__title" onclick="pjax.loadUrl(&quot;posts/35693.html&quot;);" href="javascript:void(0);" rel="external nofollow noreferrer" alt="">优秀科技博客订阅</a><div class="blog-slider__text">再怎么看我也不知道怎么描述它的啦！</div><a class="blog-slider__button" onclick="pjax.loadUrl(&quot;posts/35693.html&quot;);" href="javascript:void(0);" rel="external nofollow noreferrer" alt="">详情       </a></div></div></div><div class="blog-slider__pagination swiper-pagination-clickable swiper-pagination-bullets"></div></div></div>';
+    console.log('已挂载butterfly_swiper')
+    parent_div_git.insertAdjacentHTML("afterbegin",item_html)
+    }
+  var elist = 'undefined'.split(',');
+  var cpage = location.pathname;
+  var epage = 'all';
+  var flag = 0;
+
+  for (var i=0;i<elist.length;i++){
+    if (cpage.includes(elist[i])){
+      flag++;
+    }
+  }
+
+  if ((epage ==='all')&&(flag == 0)){
+    butterfly_swiper_injector_config();
+  }
+  else if (epage === cpage){
+    butterfly_swiper_injector_config();
+  }
+  </script><script defer src="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper.min.js"></script><script defer data-pjax src="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper_init.js"></script><!-- hexo injector body_end end --></body></html>

@@ -1,0 +1,594 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>Iconfont Inject | Akilarの糖果屋 | 传礼</title><meta name="keywords" content="博客,blog,王传礼,java,python,大数据"><meta name="author" content="传礼,978252321@qq.com"><meta name="copyright" content="传礼"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="文章456 标签62 分类6  主页 博客 时间轴 标签 朋友圈 友人帐 留言板 生活  相册 追番 关于  随便看看 Hexo 引入阿里矢量图标库 主页 博客 时间轴 标签 朋友圈 友人帐 留言板 生活 随便看看 Iconfont Inject发表于 2020-12-12|更新于 2022-01-26|🍡Akilar の糖葫芦 字数总计:3.6k|阅读时长:14 分钟 | 阅读量:2332|">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Iconfont Inject | Akilarの糖果屋">
+<meta property="og:url" content="https://iwangchuanli.github.io/posts/31337.html">
+<meta property="og:site_name" content="传礼">
+<meta property="og:description" content="文章456 标签62 分类6  主页 博客 时间轴 标签 朋友圈 友人帐 留言板 生活  相册 追番 关于  随便看看 Hexo 引入阿里矢量图标库 主页 博客 时间轴 标签 朋友圈 友人帐 留言板 生活 随便看看 Iconfont Inject发表于 2020-12-12|更新于 2022-01-26|🍡Akilar の糖葫芦 字数总计:3.6k|阅读时长:14 分钟 | 阅读量:2332|">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img37_UGZvBP.jpeg">
+<meta property="article:published_time" content="2022-11-28T07:04:49.753Z">
+<meta property="article:modified_time" content="2022-03-30T07:52:19.000Z">
+<meta property="article:author" content="传礼">
+<meta property="article:tag" content="博客,blog,王传礼,java,python,大数据">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img37_UGZvBP.jpeg"><link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/03/favicons_uH14Fb.gif"><link rel="canonical" href="https://iwangchuanli.github.io/posts/31337"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin=""/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta name="baidu-site-verification" content="qKvGNFZPF9"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?39bd6e37a6e70dc030e6a043a642784e";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: 传礼","link":"链接: ","source":"来源: 传礼","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#121212","position":"bottom-left"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: true,
+  islazyload: true,
+  isAnchor: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Iconfont Inject | Akilarの糖果屋',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-03-30 07:52:19'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/custom.css"  media="defer" onload="this.media='all'"><!-- hexo injector head_end start --><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiperstyle.css" media="print" onload="this.media='all'"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.1"><link rel="alternate" href="/atom.xml" title="传礼" type="application/atom+xml">
+</head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/03/photo_NZBQPu.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><div class="data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">511</div></a></div><div class="data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">50</div></a></div><div class="data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">22</div></a></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 归档</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-calendar"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 开发</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/Java"><i class="fa-fw fa fa-music"></i><span> Java</span></a></li><li><a class="site-page child" href="/categories/Python"><i class="fa-fw fa fa-music"></i><span> Python</span></a></li><li><a class="site-page child" href="/categories/VUE"><i class="fa-fw fa fa-music"></i><span> VUE</span></a></li><li><a class="site-page child" href="/categories/MySQL"><i class="fa-fw fa fa-music"></i><span> MySQL</span></a></li><li><a class="site-page child" href="/categories/Redis"><i class="fa-fw fa fa-music"></i><span> Redis</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 架构</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/Spring"><i class="fa-fw fa fa-music"></i><span> Spring</span></a></li><li><a class="site-page child" href="/categories/microServeices"><i class="fa-fw fa fa-music"></i><span> 微服务</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 运维</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/Docker"><i class="fa-fw fa fa-music"></i><span> Docker</span></a></li><li><a class="site-page child" href="/categories/Linux"><i class="fa-fw fa fa-music"></i><span> Linux</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 分享</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/tags/Tools"><i class="fa-fw fa fa-music"></i><span> 工具</span></a></li><li><a class="site-page child" href="/tags/guide"><i class="fa-fw fa fa-music"></i><span> 教程</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 项目</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/tags/Tools"><i class="fa-fw fa fa-music"></i><span> 工具</span></a></li><li><a class="site-page child" href="/tags/guide"><i class="fa-fw fa fa-music"></i><span> 教程</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-heartbeat"></i><span> 娱乐</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/gallery/"><i class="fa-fw fa fa-images"></i><span> 图库</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fa fa-film"></i><span> 电影</span></a></li><li><a class="site-page child" href="/books/"><i class="fa-fw fa fa-book"></i><span> 图书</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 我的</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/artitalk/"><i class="fa-fw fa fa-commenting"></i><span> 说说</span></a></li><li><a class="site-page child" href="/todo/"><i class="fa-fw fa fa-flag"></i><span> TODO</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img37_UGZvBP.jpeg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">传礼</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 归档</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-calendar"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 开发</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/Java"><i class="fa-fw fa fa-music"></i><span> Java</span></a></li><li><a class="site-page child" href="/categories/Python"><i class="fa-fw fa fa-music"></i><span> Python</span></a></li><li><a class="site-page child" href="/categories/VUE"><i class="fa-fw fa fa-music"></i><span> VUE</span></a></li><li><a class="site-page child" href="/categories/MySQL"><i class="fa-fw fa fa-music"></i><span> MySQL</span></a></li><li><a class="site-page child" href="/categories/Redis"><i class="fa-fw fa fa-music"></i><span> Redis</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 架构</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/Spring"><i class="fa-fw fa fa-music"></i><span> Spring</span></a></li><li><a class="site-page child" href="/categories/microServeices"><i class="fa-fw fa fa-music"></i><span> 微服务</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 运维</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/Docker"><i class="fa-fw fa fa-music"></i><span> Docker</span></a></li><li><a class="site-page child" href="/categories/Linux"><i class="fa-fw fa fa-music"></i><span> Linux</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 分享</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/tags/Tools"><i class="fa-fw fa fa-music"></i><span> 工具</span></a></li><li><a class="site-page child" href="/tags/guide"><i class="fa-fw fa fa-music"></i><span> 教程</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 项目</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/tags/Tools"><i class="fa-fw fa fa-music"></i><span> 工具</span></a></li><li><a class="site-page child" href="/tags/guide"><i class="fa-fw fa fa-music"></i><span> 教程</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-heartbeat"></i><span> 娱乐</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/gallery/"><i class="fa-fw fa fa-images"></i><span> 图库</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fa fa-film"></i><span> 电影</span></a></li><li><a class="site-page child" href="/books/"><i class="fa-fw fa fa-book"></i><span> 图书</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 我的</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/artitalk/"><i class="fa-fw fa fa-commenting"></i><span> 说说</span></a></li><li><a class="site-page child" href="/todo/"><i class="fa-fw fa fa-flag"></i><span> TODO</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Iconfont Inject | Akilarの糖果屋</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-11-28T07:04:49.753Z" title="发表于 2022-11-28 07:04:49">2022-11-28</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-03-30T07:52:19.000Z" title="更新于 2022-03-30 07:52:19">2022-03-30</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">2.5k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>9分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Iconfont Inject | Akilarの糖果屋"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="avatar"></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://akilar.top/archives/">文章<br>456</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://akilar.top/tags/">标签<br>62</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://akilar.top/categories/">分类<br>6</a></p>
+<hr>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.akilar.top/">主页</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://akilar.top/">博客</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://akilar.top/archives/">时间轴</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://akilar.top/tags/">标签</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://akilar.top/fcircle/">朋友圈</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://akilar.top/link/">友人帐</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://akilar.top/comments/">留言板</a></p>
+<p>生活</p>
+<ul>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://akilar.top/gallery/">相册</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://akilar.top/bangumis/">追番</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://akilar.top/about/">关于</a></li>
+</ul>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://akilar.top/random/">随便看看</a></p>
+<p><a id="blog_name"></a><a id="site-name"></a>Hexo 引入阿里矢量图标库</p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.akilar.top/">主页</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://akilar.top/">博客</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://akilar.top/archives/">时间轴</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://akilar.top/tags/">标签</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://akilar.top/fcircle/">朋友圈</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://akilar.top/link/">友人帐</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://akilar.top/comments/">留言板</a></p>
+<p>生活</p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://akilar.top/random/">随便看看</a></p>
+<h1 id="Iconfont-Inject"><a href="#Iconfont-Inject" class="headerlink" title="Iconfont Inject"></a>Iconfont Inject<a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/Akilarlxh/Hexo-blog-source/edit/master/source/_posts/Akilar%E3%81%AE%E7%B3%96%E8%91%AB%E8%8A%A6/%E7%BE%8E%E5%8C%96%E6%97%A5%E8%AE%B0/Iconfont-Inject.md" title="编辑"></a></h1><p>发表于 2020-12-12|更新于 2022-01-26|<a target="_blank" rel="noopener external nofollow noreferrer" href="https://akilar.top/categories/%F0%9F%8D%A1Akilar%E3%81%AE%E7%B3%96%E8%91%AB%E8%8A%A6/">🍡Akilar の糖葫芦</a></p>
+<p>字数总计:3.6k|阅读时长:14 分钟 | 阅读量:<a id="twikoo_visitors"></a>2332| 评论数:<a target="_blank" rel="noopener external nofollow noreferrer" href="https://akilar.top/posts/d2ebecef/#post-comment"><a id="twikoo-count"></a>6</a></p>
+<p>It has been 63 days since the last update, the content of the article may be outdated.</p>
+<p>点击查看更新记录</p>
+<p>更新记录</p>
+<p>2020-12-12: 正式版 v1.0</p>
+<p>iconfont 图标引入方案</p>
+<p>将阿里云图标 symbol 引入改成外挂标签形式</p>
+<p>2021-04-26: 修复 bug</p>
+<ol>
+<li> 感谢 <a target="_blank" rel="noopener external nofollow noreferrer" href="http://huangxiaokai.cn/">@篁竹水声</a>的反馈。</li>
+<li> 缩小 symbol 样式选择域，修复与 note 外挂标签的自定义图标方案的冲突。</li>
+</ol>
+<p>2022-01-14: 方案过期警告</p>
+<ol>
+<li> iconfont 的 fontclass 现已支持直接使用多彩色图标。</li>
+<li> symbol 依然可用，但是考虑到魔改源码未必适合所有人，推荐还是用 fontclass 方式。</li>
+</ol>
+<p>2022-01-14:fontclass 备注说明</p>
+<ol>
+<li> iconfont 的 fontclass 现已支持直接使用多彩色图标。但是使用时发现为了避免文件过大，单一项目若要使用彩色图标，上限是 40 个图标，不便于单一项目管理。</li>
+<li> fontclass 适合萌新。但 symbol 依然是最优解。</li>
+</ol>
+<p>点击查看参考教程</p>
+<table>
+<thead>
+<tr>
+<th>参考方向</th>
+<th>教程原贴</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>三种引入方案</td>
+<td><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.iconfont.cn/help/detail?helptype=code">阿里巴巴矢量图标库使用文档</a></td>
+</tr>
+</tbody></table>
+<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a><a href="#%E7%AE%80%E4%BB%8B" title="简介"></a>简介</h2><p>阿里图标库全名阿里巴巴矢量图标库。提供了丰富的免费图标资源。并且支持多种引入方式。</p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.iconfont.cn/" title="阿里巴巴矢量图标库"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://npm.elemecdn.com/akilar-candyassets/image/siteicon/favicon.ico"><br>阿里巴巴矢量图标库<br>https://www.iconfont.cn/</a></p>
+<p>本帖讨论的引入方案虽然是基于 Butterfly 主题进行的，但是仅仅是特化了引入写法（Butterfly 的文件引入使用 inject 配置项), 整体内容是完全可以兼容其他主题的。读者可以在熟读教程后自行修改引入方案。</p>
+<h2 id="新建图标项目"><a href="#新建图标项目" class="headerlink" title="新建图标项目"></a><a href="#%E6%96%B0%E5%BB%BA%E5%9B%BE%E6%A0%87%E9%A1%B9%E7%9B%AE" title="新建图标项目"></a>新建图标项目</h2><ol>
+<li> 访问<a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.iconfont.cn/">阿里巴巴矢量图标库</a> , 注册登录。</li>
+<li> 搜索自己心仪的图标，然后选择<strong>添加入库</strong>，加到购物车。</li>
+<li>选择完毕后点击右上角的购物车图标，打开侧栏，选择添加到项目，如果没有项目就新建一个。<br> <img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://npm.elemecdn.com/akilar-candyassets/image/81982c3a.png"></li>
+<li>可以通过上方顶栏菜单 -&gt; 资源管理 -&gt; 我的项目，找到之前添加的图标项目。 现在的 iconfont 可以在图标库的项目设置里直接打开彩色设置，然后采用 fontclass 的引用方式即可使用多彩图标。但是<strong>单一项目彩色图标上限是 40 个图标</strong>，酌情采用。<br> <img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://npm.elemecdn.com/akilar-candyassets/image/a11217c7.png"><br> <img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://npm.elemecdn.com/akilar-candyassets/image/110a882c.png"><h2 id="引入图标"><a href="#引入图标" class="headerlink" title="引入图标"></a><a href="#%E5%BC%95%E5%85%A5%E5%9B%BE%E6%A0%87" title="引入图标"></a>引入图标</h2></li>
+</ol>
+<p>官方文档提供的引入方案</p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.iconfont.cn/help/detail?helptype=code">阿里巴巴矢量图标库使用文档</a></p>
+<p><code>unicode</code> 是字体在网页端最原始的应用方式，特点是：</p>
+<ul>
+<li>兼容性最好，支持 <code>ie6+</code>，及所有现代浏览器。</li>
+<li>支持按字体的方式去动态调整图标大小，颜色等等。</li>
+<li>但是因为是字体，所以不支持多色。只能使用平台里单色的图标，就算项目里有多色图标也会自动去色。<blockquote>
+<p>注意：新版 iconfont 支持多色图标，这些多色图标在 unicode 模式下将不能使用，如果有需求建议使用 symbol 的引用方式。</p>
+</blockquote>
+</li>
+</ul>
+<p><strong>unicode 使用步骤如下</strong>：</p>
+<ol>
+<li>第一步：拷贝项目下面生成的 font-face css</li>
+<li>第二步：定义使用 iconfont 的样式 css</li>
+<li>第三步：挑选相应图标并获取字体编码，应用于页面 html</li>
+</ol>
+<p>选用方案简介</p>
+<ol>
+<li>线上引入方案，我使用的是官方文档中最便捷的 <code>font-class</code> 方案。这一方案偶尔会出现图标加载不出的情况。但是便于随时对图标库进行升级，换一下在线链接即可，适合新手使用。最新版本的 iconfont 支持直接在项目设置中开启彩色图标，从而实现直接用 class 添加多彩色图标。</li>
+<li>本地引入方案是基于官方文档的 <code>Unicode</code> 和 <code>font-class</code> 方案原理。<br> 相比于线上引入方案偶尔会出现图标加载不出的情况。本地引入方案则可以说万无一失。但是图标库更新则需要更换包括字体文件在内的诸多内容。</li>
+<li>外挂标签写法基于官方方案的 <code>symbol</code> 引入方案，所以在浏览器支持上有其局限性 <del>IE：别问，问就是老子</del>。但是不得不承认，这一方案是效果最好的。且引入方式也较为简单。<br> 为了书写方便，我将官方较为繁琐的写法封装成了外挂标签 <code>[Tag]</code>，具体写法详见示例。</li>
+<li>fontclass 的彩色图标，为了避免 css 文件过大，官方设置了限制，<strong>单一项目内彩色图标个数上限是 40 个</strong>。总结下来，fontclass 是最适合萌新的方案。而 symbol 引入方案依然是最优解。</li>
+</ol>
+<p>现在的 iconfont 可以在图标库的项目设置里直接打开彩色设置，然后采用 fontclass 的引用方式即可使用多彩图标。但是<strong>单一项目彩色图标上限是 40 个图标</strong>，如果对图标有大量需求而又不想引入过多 css 链接的，则 symbol 依然是最优解。<br><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://npm.elemecdn.com/akilar-candyassets/image/a11217c7.png"><br><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://npm.elemecdn.com/akilar-candyassets/image/110a882c.png"></p>
+<ol>
+<li>找到之前新建的图标项目，选择 Symbol-&gt; 查看在线链接，获取 <code>Symbol.js</code> 的在线链接，并引入。 以 <code>Butterfly</code> 主题为例，在 <code>[Blogroot]\_config.butterfly.yml</code> 的 <code>inject</code> 配置项中填入： diff <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"> inject:</span><br><span class="line"> head:</span><br><span class="line"> bottom:</span><br><span class="line">+       - &lt;script async src=&quot;//at.alicdn.com/t/font_2264842_3izu8i5eoc2.js&quot;&gt;&lt;/script&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+ 此处 <code>async</code> 是异步加载属性，能够减少 HTML 阻塞。</li>
+<li>打开 <code>[Blogroot]\themes\butterfly\source\css\custom.css</code>, 输入以下内容: css <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">svg.icon &#123;</span><br><span class="line"> width: 1em; height: 1em;</span><br><span class="line"> /* width和height定义图标的默认宽度和高度*/</span><br><span class="line"> vertical-align: -0.15em;</span><br><span class="line"> fill: currentColor;</span><br><span class="line"> overflow: hidden;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</li>
+<li>添加外挂标签，在 <code>[Blogroot]\themes\butterfly\scripts\tag\</code> 目录下新建 <code>iconfont.js</code>，打开 <code>[Blogroot]\themes\butterfly\scripts\tag\iconfont.js</code>, 输入： js <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#x27;use strict&#x27;;</span><br><span class="line">function iconFont(args) &#123;</span><br><span class="line"> args = args.join(&#x27; &#x27;).split(&#x27;,&#x27;)</span><br><span class="line"> let p0 = args[0]</span><br><span class="line"> let p1 = args[1]?args[1]:1</span><br><span class="line"> return `&lt;svg class=&quot;icon&quot; style=&quot;width:$&#123;p1&#125;em; height:$&#123;p1&#125;em&quot; aria-hidden=&quot;true&quot;&gt;&lt;use xlink:href=&quot;#$&#123;p0&#125;&quot;&gt;&lt;/use&gt;&lt;/svg&gt;`;</span><br><span class="line">&#125;</span><br><span class="line">hexo.extend.tag.register(&#x27;icon&#x27;,iconFont);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</li>
+<li><code>hexo cl &amp;&amp; hexo g</code> 以后即可使用外挂标签的形式来写入图标了。 markdown <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;% icon icon-rat_zi %&#125;&#123;% icon icon-rat,2 %&#125;</span><br><span class="line">&#123;% icon icon-ox_chou,3 %&#125;&#123;% icon icon-ox,4 %&#125;</span><br><span class="line">&#123;% icon icon-tiger_yin,5 %&#125;&#123;% icon icon-tiger,6 %&#125;</span><br><span class="line">&#123;% icon icon-rabbit_mao,1 %&#125;&#123;% icon icon-rabbit,2 %&#125;</span><br><span class="line">&#123;% icon icon-dragon_chen,3 %&#125;&#123;% icon icon-dragon,4 %&#125;</span><br><span class="line">&#123;% icon icon-snake_si,5 %&#125;&#123;% icon icon-snake,6 %&#125;</span><br><span class="line">&#123;% icon icon-horse_wu %&#125;&#123;% icon icon-horse,2 %&#125;</span><br><span class="line">&#123;% icon icon-goat_wei,3 %&#125;&#123;% icon icon-goat,4 %&#125;</span><br><span class="line">&#123;% icon icon-monkey_shen,5 %&#125;&#123;% icon icon-monkey,6 %&#125;</span><br><span class="line">&#123;% icon icon-rooster_you %&#125;&#123;% icon icon-rooster,2 %&#125;</span><br><span class="line">&#123;% icon icon-dog_xu,3 %&#125;&#123;% icon icon-dog,4 %&#125;</span><br><span class="line">&#123;% icon icon-boar_hai,5 %&#125;&#123;% icon icon-boar,6 %&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>Iconfont Inject</p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://akilar.top/posts/d2ebecef/">https://akilar.top/posts/d2ebecef/</a></p>
+<p>作者</p>
+<p>Akilar</p>
+<p>发布于</p>
+<p>2020-12-12</p>
+<p>更新于</p>
+<p>2022-01-26</p>
+<p>许可协议</p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://creativecommons.org/" title="Creative Commons"></a><a target="_blank" rel="noopener external nofollow noreferrer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0">CC BY-NC-SA 4.0</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://akilar.top/tags/%F0%9F%93%81Hexo/">📁Hexo</a><a target="_blank" rel="noopener external nofollow noreferrer" href="https://akilar.top/tags/%F0%9F%A6%8BButterfly/">🦋Butterfly</a></p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://npm.elemecdn.com/akilar-candyassets/image/cardcode.png" alt="cardcode"></p>
+<p>Invitation</p>
+<p>Akilar</p>
+<p>674527148</p>
+<p>created:03/09/2020</p>
+<p>Welcome to Candyhome</p>
+<p>sitelink</p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://jq.qq.com/?_wv=1027&k=hGNxNGdb">加入群聊【🧊Akilar の糖果屋🍭】</a></p>
+<p>Use this card to join the candyhome and participate in a pleasant discussion together .</p>
+<p>Welcome to Akilar’s candyhome,wish you a nice day .</p>
+<hr>
+<p>评论</p>
+<p>昵称</p>
+<p>邮箱</p>
+<p>网址</p>
+<p>6 条评论</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cravatar.cn/avatar/598d53658f8a4f839796af1174ff90fd?d=mp"></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.ccknbc.cc/"><strong>CC</strong></a> 2022-01-16</p>
+<p>前来学习</p>
+<p> Windows 10</p>
+<p> Chrome 97.0.4692.71</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://thirdqq.qlogo.cn/g?b=sdk&k=xvsHQWV56ciaX8Se08hacDg&s=140&t=1630289758"></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://kindle-deep.github.io/"><strong>Kindle deep</strong></a> 2022-01-15</p>
+<p>2</p>
+<p>好诶！店长采用我的方法了呢！</p>
+<p> Windows 8.1</p>
+<p> Microsoft Edge 97.0.1072.55</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://thirdqq.qlogo.cn/g?b=sdk&k=iajrrTtgAdD4j7AQr4cmBtA&s=140&t=1629214604"></p>
+<p><strong>小狐仙</strong> 2021-10-17</p>
+<p>2</p>
+<p>大佬就是我能完成 hexo cl &amp;&amp; hexo g ，但是图表还是不出来，三种方式我都试过了，还是这样子<br><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://7477-twikoo-4g4ck8bq9f418394-1259097125.tcb.qcloud.la/tk-img/1634484225417-b01be6a9c679434191eb064e84d7d3ac.png" alt="image"></p>
+<p> Windows 10</p>
+<p> Microsoft Edge 94.0.992.50</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://thirdqq.qlogo.cn/g?b=sdk&k=iajrrTtgAdD4j7AQr4cmBtA&s=140&t=1629214604"></p>
+<p><strong>小狐仙</strong> 2021-10-17</p>
+<p>回复 <a href="#18ed0968616c402400702e5236300164">@小狐仙</a> :</p>
+<p>看懂了看懂了</p>
+<p> Windows 10</p>
+<p> Microsoft Edge 94.0.992.50</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cravatar.cn/avatar/71fef429ef339886d8f1a691ec7b5461?d=mp"></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="http://akilar.top/"><strong>Akilar</strong></a> 2021-10-18</p>
+<p>回复 <a href="#18ed0968616c402400702e5236300164">@小狐仙</a> :</p>
+<p>这里是引入的前置方案，如果要把侧边栏的作者卡片下面的社交图标和顶部菜单栏的图标都变成彩色，可以参考糖果屋微调合集里的魔改方案：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://akilar.top/posts/23fdf850/">https://akilar.top/posts/23fdf850/</a></p>
+<p> Windows 10</p>
+<p> Microsoft Edge 94.0.992.50</p>
+<p>展开</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://thirdqq.qlogo.cn/g?b=sdk&k=QIFzkbsqVfdcvNAhoCu2YQ&s=140&t=1593923573"></p>
+<p><strong>路人甲</strong> 2021-08-03</p>
+<p>1 2</p>
+<p>大佬，外挂标签在 markdown 实现了，怎么应用到 social 的 yml 呢</p>
+<p> Windows 10</p>
+<p> Microsoft Edge 92.0.902.62</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cravatar.cn/avatar/d4e7f32f4d361ad752f844a14e9e2a94?d=mp"></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="http://akilar/"><strong>Akilar</strong></a> 店长 2021-08-03</p>
+<p>回复 <a href="#8937eaa96108a0c001d07b0249b9e80b">@路人甲</a> :</p>
+<p>你是想问怎么在 social icon 处也实现多彩图标吧。这篇是前置教程。保证全局引入正常的。关于菜单栏和 social icon 的内容都写在糖果屋微调合集里，需要适当改动 pug 文件。<a target="_blank" rel="noopener external nofollow noreferrer" href="https://akilar.top/posts/23fdf850/#Social%E5%8D%A1%E7%89%87%E5%BD%A9%E8%89%B2%E5%9B%BE%E6%A0%87%E5%BC%95%E5%85%A5">Social 卡片彩色图标引入</a></p>
+<p> Windows 10</p>
+<p> Microsoft Edge 92.0.902.62</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://thirdqq.qlogo.cn/g?b=sdk&k=QIFzkbsqVfdcvNAhoCu2YQ&s=140&t=1593923573"></p>
+<p><strong>路人甲</strong> 2021-08-03</p>
+<p>回复 <a href="#14139e126108a17101fef20b683a7b62">@Akilar</a> :</p>
+<p>感谢大佬，已经实现～</p>
+<p> Windows 10</p>
+<p> Microsoft Edge 92.0.902.62</p>
+<p>展开</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cravatar.cn/avatar/62d8c76b1fd8822cd95efe0abec26b70?d=mp"></p>
+<p><strong>Heo</strong> 2021-04-15</p>
+<p>外挂标签挺不错</p>
+<p> macOS 11.2.3</p>
+<p> Chrome 89.0.4389.90</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cravatar.cn/avatar/bac6871f388af1d9f79586fde6031d96?d=mp"></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="http://ciraos,top/"><strong>青葱博客</strong></a> 2021-02-05</p>
+<p>大佬 tql！！！！</p>
+<p> Windows 10</p>
+<p> Microsoft Edge 88.0.705.56</p>
+<p>Powered by <a target="_blank" rel="noopener external nofollow noreferrer" href="https://twikoo.js.org/">Twikoo</a> v1.5.0</p>
+<p>Attributes</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://npm.elemecdn.com/akilar-candyassets/image/author3.webp" alt="avatar"></p>
+<p>LV.46</p>
+<p>Akilar</p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://akilar.top/archives/">文章<br>456/500</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://akilar.top/tags/">标签<br>62/100</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://akilar.top/categories/">分类<br>6/100</a></p>
+<p><strong>流水幽吟绕耳边，<br>煦风馨语抚心弦，<br>挥臂欲揽冰钩月，<br>银星斟酌醉人涎。</strong></p>
+<p><a id="card-info-btn"></a><a target="_blank" rel="noopener external nofollow noreferrer" href="https://jq.qq.com/?_wv=1027&k=tNuEdliQ">加入糖果屋群聊</a></p>
+<p><a id="card-clock-clockdate"></a>2022-03-30 WED ☀️ 16 *C 💧 45%</p>
+<p><a id="card-clock-time"></a>15:52:10</p>
+<p>218.22.125.18 notfound <a id="card-clock-dackorlight"></a>PM</p>
+<p>目录100</p>
+<ol>
+<li> <a href="#%E7%AE%80%E4%BB%8B">1. 简介</a></li>
+<li> <a href="#%E6%96%B0%E5%BB%BA%E5%9B%BE%E6%A0%87%E9%A1%B9%E7%9B%AE">2. 新建图标项目</a></li>
+<li> <a href="#%E5%BC%95%E5%85%A5%E5%9B%BE%E6%A0%87">3. 引入图标</a></li>
+</ol>
+<p>相关推荐</p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://akilar.top/posts/1b4fa1dd/" title="经典的刀剑神域风格的加载动画。LINK START !"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://akilar.top/assets/linkstart.gif" alt="经典的刀剑神域风格的加载动画。LINK START !"></a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://akilar.top/posts/1b4fa1dd/" title="SAO-UI-PLAN-LINK-START">SAO-UI-PLAN-LINK-START</a>2022-03-28</p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://akilar.top/posts/3b78b69a/" title="给Butterfly魔改的内容添加pjax适配。得益于已经有内置的方法函数，可以快速配置。"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://npm.elemecdn.com/akilar-candyassets/image/cover5.webp" alt="给Butterfly魔改的内容添加pjax适配。得益于已经有内置的方法函数，可以快速配置。"></a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://akilar.top/posts/3b78b69a/" title="Butterfly的Pjax适配方案">Butterfly 的 Pjax 适配方案</a> 2020-11-18</p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://akilar.top/posts/969dffe3/" title="详细讲述如何加速博客静态资源，包括压缩和添加CDN，以及合并资源以减少服务请求次数。"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://npm.elemecdn.com/akilar-candyassets/image/cover2.webp" alt="详细讲述如何加速博客静态资源，包括压缩和添加CDN，以及合并资源以减少服务请求次数。"></a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://akilar.top/posts/969dffe3/" title="Hexo博客静态资源加速">Hexo 博客静态资源加速</a> 2020-12-08</p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://akilar.top/posts/22257072/" title="给博客时间轴年份添加十二生肖图标"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://npm.elemecdn.com/akilar-candyassets/image/cover4.webp" alt="给博客时间轴年份添加十二生肖图标"></a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://akilar.top/posts/22257072/" title="Archive Beautify">Archive Beautify</a>2020-12-11</p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://akilar.top/posts/780a2cea/" title="bilibili，干杯[]~(￣▽￣)~*！给博客添加上萌萌的B站动态banner吧。"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://npm.elemecdn.com/akilar-candyassets/image/cover2.webp" alt="bilibili，干杯[]~(￣▽￣)~*！给博客添加上萌萌的B站动态banner吧。"></a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://akilar.top/posts/780a2cea/" title="Bilibili Dynamic Banner">Bilibili Dynamic Banner</a>2021-01-20</p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://akilar.top/posts/194e1534/" title="将butterfly原本位于文章底部的相关推荐版块改为和最新文章同样布局的侧栏卡片。"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://npm.elemecdn.com/akilar-candyassets/image/cover5.webp" alt="将butterfly原本位于文章底部的相关推荐版块改为和最新文章同样布局的侧栏卡片。"></a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://akilar.top/posts/194e1534/" title="Butterfly布局调整———相关推荐版块侧栏卡片化">Butterfly 布局调整 ——— 相关推荐版块侧栏卡片化</a> 2021-12-15</p>
+<p>©2016 - 2022Akilar</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/%E7%B3%96%E6%9E%9C%E5%B1%8B-%E8%90%A5%E4%B8%9A%E4%B8%AD-6adea8?style=social&logo=cakephp" title="距离百年老店也就差不到一百年~"></p>
+<p>2 YEAR 348 DAYS 15 : 52 : 11</p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://vercel.com/" title="本站默认线路托管于Vercel"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"></a><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/" title="本站项目由Github托管"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"></a><a target="_blank" rel="noopener external nofollow noreferrer" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"></a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://hexo.io/" title="博客框架为Hexo_v6.0.0"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"></a><a target="_blank" rel="noopener external nofollow noreferrer" href="https://butterfly.js.org/" title="主题版本Butterfly_v4.1.0"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"></a><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.jsdelivr.com/" title="本站使用JsDelivr为静态资源提供CDN加速"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"></a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral" title="本网站由又拍云提供CDN加速服务"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"></a><a target="_blank" rel="noopener external nofollow noreferrer" href="https://beian.miit.gov.cn/" title="本站已在工信部备案，备案号浙ICP备-2021026687号"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"></a><a target="_blank" rel="noopener external nofollow noreferrer" href="https://icp.gov.moe/?keyword=20212887" title="本站已加入萌ICP豪华套餐，萌ICP备20212887号"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"></a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://vercel.com/" title="本站默认线路托管于Vercel"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"></a><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/" title="本站项目由Github托管"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"></a><a target="_blank" rel="noopener external nofollow noreferrer" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"></a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://hexo.io/" title="博客框架为Hexo_v6.0.0"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"></a><a target="_blank" rel="noopener external nofollow noreferrer" href="https://butterfly.js.org/" title="主题版本Butterfly_v4.1.0"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"></a><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.jsdelivr.com/" title="本站使用JsDelivr为静态资源提供CDN加速"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"></a></p>
+<p>China-Y - 徐梦圆</p>
+<p>00:00 / 00:00</p>
+<p>纯音乐，请欣赏</p>
+<p>哇，你终于回来了～</p>
+<p><a id="fatkun-drop-panel-close-btn"></a>×</p>
+<p>拖拽到此处</p>
+<p>图片将完成下载</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:978252321@qq.com" rel="external nofollow noreferrer">传礼</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://iwangchuanli.github.io/posts/31337.html">https://iwangchuanli.github.io/posts/31337.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow noreferrer" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://iwangchuanli.github.io" target="_blank">传礼</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img37_UGZvBP.jpeg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/posts/8014.html"><img class="prev-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img33_fnRUqR.jpeg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Hexo博客文章加密 | IT范儿</div></div></a></div><div class="next-post pull-right"><a href="/posts/31909.html"><img class="next-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img40_3hoNj2.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Valine Visitor Tag Beautify | Akilarの糖果屋</div></div></a></div></nav><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div><div id="comment-switch"><span class="first-comment">Valine</span><span class="switch-btn"></span><span class="second-comment">Gitalk</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div><div><div id="gitalk-container"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">Nice to meet you ~</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Iconfont-Inject"><span class="toc-number">1.</span> <span class="toc-text">Iconfont Inject</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%80%E4%BB%8B"><span class="toc-number">1.1.</span> <span class="toc-text">简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B0%E5%BB%BA%E5%9B%BE%E6%A0%87%E9%A1%B9%E7%9B%AE"><span class="toc-number">1.2.</span> <span class="toc-text">新建图标项目</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%95%E5%85%A5%E5%9B%BE%E6%A0%87"><span class="toc-number">1.3.</span> <span class="toc-text">引入图标</span></a></li></ol></li></ol></div></div><div class="card-widget ads-wrap"><a target="_blank" href="https://www.aliyun.com/activity?userCode=dpj8p3hl" rel="external nofollow noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/aliyun_whuCuE.jpg" style="width:100%;height:100%;object-fit:cover;"></a></div></div></div></main><footer id="footer" style="background-image: url('https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img37_UGZvBP.jpeg')"><div id="footer-wrap"><div class="copyright">&copy;2018 - 2022 By 传礼</div><div class="footer_custom_text"><p style="display:inline-flex">本网站由<a href="https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral" rel="external nofollow noreferrer" target="_blank"><img style="width:60px;height:35px;" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/11/又拍云_logo5_O9kNul.png" title="又拍云"/></a>提供CDN加速/云存储服务</p><p><a style="margin-inline:5px" target="_blank" href="https://hexo.io/" rel="external nofollow noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Frame-Hexo-blue?style=flat&logo=hexo" title="博客框架为Hexo"></a><a style="margin-inline:5px" target="_blank" href="https://butterfly.js.org/" rel="external nofollow noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Theme-Butterfly-6513df?style=flat&logo=bitdefender" title="主题采用butterfly"></a><a style="margin-inline:5px" target="_blank" href="https://www.jsdelivr.com/" rel="external nofollow noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/CDN-jsDelivr-orange?style=flat&logo=jsDelivr" title="本站使用JsDelivr为静态资源提供CDN加速"></a><a style="margin-inline:5px" target="_blank" href="https://github.com/" rel="external nofollow noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Source-Github-d021d6?style=flat&logo=GitHub" title="本站项目由Github托管"></a><a style="margin-inline:5px" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Copyright-BY--NC--SA%204.0-d42328?style=flat&logo=Claris" title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可"></a></p></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="chat_btn" type="button" title="聊天"><i class="fas fa-sms"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">本地搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script src="/js/search/local-search.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"><script>function loadValine () {
+  function initValine () {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: 'zHUfFgUbITfMSQGuSPgS2e3C-gzGzoHsz',
+      appKey: 'yPXpeKX8VJxdFRPEsDaqNgEY',
+      avatar: 'wavatar',
+      serverURLs: 'https://zhuffgub.lc-cn-n1-shared.com',
+      emojiMaps: "",
+      path: window.location.pathname,
+      visitor: true,
+      master: '447d56ab3606de5490a2109d3e441219,135d837ea1033c9787dd307e59884d36'.split(','),
+      friends: '5c?????bfe6rfc72a????e268ad3819c'.split(','),
+      tagMeta: '博主,小伙伴,访客'.split(',')
+        
+    }, {"placeholder":"请输入内容～"}))
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/gh/HCLonely/Valine@latest/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !true) {
+  if (true) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script><script>function addGitalkSource () {
+  const ele = document.createElement('link')
+  ele.rel = 'stylesheet'
+  ele.href= 'https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css'
+  document.getElementsByTagName('head')[0].appendChild(ele)
+}
+
+function loadGitalk () {
+  function initGitalk () {
+    var gitalk = new Gitalk(Object.assign({
+      clientID: '052d9d6486112e93fa50',
+      clientSecret: '6fea35bfb7a17521694a95f705683622976d2f53',
+      repo: 'gitalk',
+      owner: 'iwangchuanli',
+      admin: ['iwangchuanli'],
+      id: '15ad368879df00c4fb4839502fe226dc',
+      updateCountCallback: commentCount
+    },null))
+
+    gitalk.render('gitalk-container')
+  }
+
+  if (typeof Gitalk === 'function') initGitalk()
+  else {
+    addGitalkSource()
+    getScript('https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.js').then(initGitalk)
+  }
+}
+
+function commentCount(n){
+  let isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+  if (isCommentCount) {
+    isCommentCount.innerHTML= n
+  }
+}
+
+if ('Valine' === 'Gitalk' || !true) {
+  if (true) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+  else loadGitalk()
+} else {
+  function loadOtherComment () {
+    loadGitalk()
+  }
+}</script></div><div class="aplayer no-destroy" data-id="7355841544" data-server="netease" data-type="playlist" data-fixed="true" data-autoplay="false"> </div><script async src="/js/grayscale.js"></script><script async src="//at.alicdn.com/t/font_1885008_srfhrsykmk.js"></script><script>((window.gitter = {}).chat = {}).options = {
+  disableDefaultChat: true,
+};
+document.addEventListener('gitter-sidecar-ready', (e) => {
+  const GitterChat = e.detail.Chat
+  let chat
+
+  function initGitter () {
+    chat = new GitterChat({
+      room: 'wangchuangli-/community',
+      activationElement: '#chat_btn'
+    });
+  }
+
+  initGitter()
+
+  if (true) {
+    document.addEventListener('pjax:complete', () => {
+      chat.destroy()
+      initGitter()
+    })
+  }
+
+})</script><script src="https://sidecar.gitter.im/dist/sidecar.v1.js" async="async" defer="defer"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/meting@1.2.0/dist/Meting.min.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = ["title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"]):not([href="/music/"]):not([href="/no-pjax/"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.tocScrollFn && window.removeEventListener('scroll', window.tocScrollFn)
+  window.scrollCollect && window.removeEventListener('scroll', scrollCollect)
+
+  typeof preloader === 'object' && preloader.initLoading()
+  document.getElementById('rightside').style.cssText = "opacity: ''; transform: ''"
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+
+  typeof preloader === 'object' && preloader.endLoading()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><!-- hexo injector body_end start --><script data-pjax>
+  function butterfly_swiper_injector_config(){
+    var parent_div_git = document.getElementById('recent-posts');
+    var item_html = '<div class="recent-post-item" style="height: auto;width: 100%"><div class="blog-slider swiper-container-fade swiper-container-horizontal" id="swiper_container"><div class="blog-slider__wrp swiper-wrapper" style="transition-duration: 0ms;"><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" onclick="pjax.loadUrl(&quot;posts/4496.html&quot;);" href="javascript:void(0);" rel="external nofollow noreferrer" alt=""><img width="48" height="48" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img6_L358Nt.jpeg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2018-09-05</span><a class="blog-slider__title" onclick="pjax.loadUrl(&quot;posts/4496.html&quot;);" href="javascript:void(0);" rel="external nofollow noreferrer" alt="">编程系列书单推荐</a><div class="blog-slider__text">再怎么看我也不知道怎么描述它的啦！</div><a class="blog-slider__button" onclick="pjax.loadUrl(&quot;posts/4496.html&quot;);" href="javascript:void(0);" rel="external nofollow noreferrer" alt="">详情       </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" onclick="pjax.loadUrl(&quot;posts/35693.html&quot;);" href="javascript:void(0);" rel="external nofollow noreferrer" alt=""><img width="48" height="48" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img33_fnRUqR.jpeg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2018-11-26</span><a class="blog-slider__title" onclick="pjax.loadUrl(&quot;posts/35693.html&quot;);" href="javascript:void(0);" rel="external nofollow noreferrer" alt="">优秀科技博客订阅</a><div class="blog-slider__text">再怎么看我也不知道怎么描述它的啦！</div><a class="blog-slider__button" onclick="pjax.loadUrl(&quot;posts/35693.html&quot;);" href="javascript:void(0);" rel="external nofollow noreferrer" alt="">详情       </a></div></div></div><div class="blog-slider__pagination swiper-pagination-clickable swiper-pagination-bullets"></div></div></div>';
+    console.log('已挂载butterfly_swiper')
+    parent_div_git.insertAdjacentHTML("afterbegin",item_html)
+    }
+  var elist = 'undefined'.split(',');
+  var cpage = location.pathname;
+  var epage = 'all';
+  var flag = 0;
+
+  for (var i=0;i<elist.length;i++){
+    if (cpage.includes(elist[i])){
+      flag++;
+    }
+  }
+
+  if ((epage ==='all')&&(flag == 0)){
+    butterfly_swiper_injector_config();
+  }
+  else if (epage === cpage){
+    butterfly_swiper_injector_config();
+  }
+  </script><script defer src="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper.min.js"></script><script defer data-pjax src="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper_init.js"></script><!-- hexo injector body_end end --></body></html>

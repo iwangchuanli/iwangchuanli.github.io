@@ -1,0 +1,470 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>Vue Router 手把手教你搭 Vue3 路由 | 传礼</title><meta name="keywords" content="博客,blog,王传礼,java,python,大数据"><meta name="author" content="传礼,978252321@qq.com"><meta name="copyright" content="传礼"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Vue Router 手把手教你搭 Vue3 路由Vue 的单页面应用是基于路由+组件的形式，路由用于设定访问路径，并将路径与组件映射起来。这种形式相对于 a标签超链来说不会重新加载页面，而是在同一个页面中进行路由跳转。 本教程在 Vue3 中手把手教你搭建 Router ，并详细讲解其中的路由原理以及当用户输入错误时，如何路由到 404 页面等方法。请打开你的 Terminal 跟随本教程一起学">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vue Router 手把手教你搭 Vue3 路由">
+<meta property="og:url" content="https://iwangchuanli.github.io/posts/61720.html">
+<meta property="og:site_name" content="传礼">
+<meta property="og:description" content="Vue Router 手把手教你搭 Vue3 路由Vue 的单页面应用是基于路由+组件的形式，路由用于设定访问路径，并将路径与组件映射起来。这种形式相对于 a标签超链来说不会重新加载页面，而是在同一个页面中进行路由跳转。 本教程在 Vue3 中手把手教你搭建 Router ，并详细讲解其中的路由原理以及当用户输入错误时，如何路由到 404 页面等方法。请打开你的 Terminal 跟随本教程一起学">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img19_kf59TQ.png">
+<meta property="article:published_time" content="2022-11-28T07:04:49.781Z">
+<meta property="article:modified_time" content="2022-09-16T00:28:27.000Z">
+<meta property="article:author" content="传礼">
+<meta property="article:tag" content="博客,blog,王传礼,java,python,大数据">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img19_kf59TQ.png"><link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/03/favicons_uH14Fb.gif"><link rel="canonical" href="https://iwangchuanli.github.io/posts/61720"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin=""/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta name="baidu-site-verification" content="qKvGNFZPF9"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?39bd6e37a6e70dc030e6a043a642784e";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: 传礼","link":"链接: ","source":"来源: 传礼","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#121212","position":"bottom-left"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: true,
+  islazyload: true,
+  isAnchor: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Vue Router 手把手教你搭 Vue3 路由',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-09-16 00:28:27'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/custom.css"  media="defer" onload="this.media='all'"><!-- hexo injector head_end start --><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiperstyle.css" media="print" onload="this.media='all'"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.1"><link rel="alternate" href="/atom.xml" title="传礼" type="application/atom+xml">
+</head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/03/photo_NZBQPu.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><div class="data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">511</div></a></div><div class="data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">50</div></a></div><div class="data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">22</div></a></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 归档</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-calendar"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 开发</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/Java"><i class="fa-fw fa fa-music"></i><span> Java</span></a></li><li><a class="site-page child" href="/categories/Python"><i class="fa-fw fa fa-music"></i><span> Python</span></a></li><li><a class="site-page child" href="/categories/VUE"><i class="fa-fw fa fa-music"></i><span> VUE</span></a></li><li><a class="site-page child" href="/categories/MySQL"><i class="fa-fw fa fa-music"></i><span> MySQL</span></a></li><li><a class="site-page child" href="/categories/Redis"><i class="fa-fw fa fa-music"></i><span> Redis</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 架构</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/Spring"><i class="fa-fw fa fa-music"></i><span> Spring</span></a></li><li><a class="site-page child" href="/categories/microServeices"><i class="fa-fw fa fa-music"></i><span> 微服务</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 运维</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/Docker"><i class="fa-fw fa fa-music"></i><span> Docker</span></a></li><li><a class="site-page child" href="/categories/Linux"><i class="fa-fw fa fa-music"></i><span> Linux</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 分享</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/tags/Tools"><i class="fa-fw fa fa-music"></i><span> 工具</span></a></li><li><a class="site-page child" href="/tags/guide"><i class="fa-fw fa fa-music"></i><span> 教程</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 项目</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/tags/Tools"><i class="fa-fw fa fa-music"></i><span> 工具</span></a></li><li><a class="site-page child" href="/tags/guide"><i class="fa-fw fa fa-music"></i><span> 教程</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-heartbeat"></i><span> 娱乐</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/gallery/"><i class="fa-fw fa fa-images"></i><span> 图库</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fa fa-film"></i><span> 电影</span></a></li><li><a class="site-page child" href="/books/"><i class="fa-fw fa fa-book"></i><span> 图书</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 我的</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/artitalk/"><i class="fa-fw fa fa-commenting"></i><span> 说说</span></a></li><li><a class="site-page child" href="/todo/"><i class="fa-fw fa fa-flag"></i><span> TODO</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img19_kf59TQ.png')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">传礼</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 归档</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-calendar"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 开发</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/Java"><i class="fa-fw fa fa-music"></i><span> Java</span></a></li><li><a class="site-page child" href="/categories/Python"><i class="fa-fw fa fa-music"></i><span> Python</span></a></li><li><a class="site-page child" href="/categories/VUE"><i class="fa-fw fa fa-music"></i><span> VUE</span></a></li><li><a class="site-page child" href="/categories/MySQL"><i class="fa-fw fa fa-music"></i><span> MySQL</span></a></li><li><a class="site-page child" href="/categories/Redis"><i class="fa-fw fa fa-music"></i><span> Redis</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 架构</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/Spring"><i class="fa-fw fa fa-music"></i><span> Spring</span></a></li><li><a class="site-page child" href="/categories/microServeices"><i class="fa-fw fa fa-music"></i><span> 微服务</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 运维</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/Docker"><i class="fa-fw fa fa-music"></i><span> Docker</span></a></li><li><a class="site-page child" href="/categories/Linux"><i class="fa-fw fa fa-music"></i><span> Linux</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 分享</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/tags/Tools"><i class="fa-fw fa fa-music"></i><span> 工具</span></a></li><li><a class="site-page child" href="/tags/guide"><i class="fa-fw fa fa-music"></i><span> 教程</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 项目</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/tags/Tools"><i class="fa-fw fa fa-music"></i><span> 工具</span></a></li><li><a class="site-page child" href="/tags/guide"><i class="fa-fw fa fa-music"></i><span> 教程</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-heartbeat"></i><span> 娱乐</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/gallery/"><i class="fa-fw fa fa-images"></i><span> 图库</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fa fa-film"></i><span> 电影</span></a></li><li><a class="site-page child" href="/books/"><i class="fa-fw fa fa-book"></i><span> 图书</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 我的</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/artitalk/"><i class="fa-fw fa fa-commenting"></i><span> 说说</span></a></li><li><a class="site-page child" href="/todo/"><i class="fa-fw fa fa-flag"></i><span> TODO</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Vue Router 手把手教你搭 Vue3 路由</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-11-28T07:04:49.781Z" title="发表于 2022-11-28 07:04:49">2022-11-28</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-09-16T00:28:27.000Z" title="更新于 2022-09-16 00:28:27">2022-09-16</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">2.4k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>8分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Vue Router 手把手教你搭 Vue3 路由"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="Vue-Router-手把手教你搭-Vue3-路由"><a href="#Vue-Router-手把手教你搭-Vue3-路由" class="headerlink" title="Vue Router 手把手教你搭 Vue3 路由"></a>Vue Router 手把手教你搭 Vue3 路由</h1><p>Vue 的单页面应用是基于路由+组件的形式，路由用于设定访问路径，并将路径与组件映射起来。这种形式相对于 a标签超链来说不会重新加载页面，而是在同一个页面中进行路由跳转。</p>
+<p>本教程在 Vue3 中手把手教你搭建 Router ，并详细讲解其中的路由原理以及当用户输入错误时，如何路由到 404 页面等方法。请打开你的 Terminal 跟随本教程一起学习。</p>
+<p>如果你正在搭建后台管理工具，又不想处理前端问题，推荐使用卡拉云，卡拉云是新一代低代码开发工具，可一键接入常见数据库及 API ，无需懂前端，仅需拖拽即可快速搭建属于你自己的后台管理工具，一周工作量缩减至一天，详见本文文末。</p>
+<h2 id="从安装-Vue3-开始"><a href="#从安装-Vue3-开始" class="headerlink" title="从安装 Vue3 开始"></a>从安装 Vue3 开始</h2><p>我们先来安装 Vue3 ，一步一步来：</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">npm install -g @vue/cli</span><br></pre></td></tr></table></figure>
+
+<p>然后我们将创建我们的基本 Vue 3 应用程序。</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">vue create kalacloud-vue-router</span><br></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://kalacloud.com/static/84187c9a7a1576d8455d6bdd98484f34/c83ae/01-vue3-setup.png"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://kalacloud.com/static/84187c9a7a1576d8455d6bdd98484f34/2baf0/01-vue3-setup.webp" alt="vue3-setup" title="vue3-setup"></a></p>
+<p>选择 Vue 3 ，然后会自动帮你创建基于 Vue 3 的项目。</p>
+<p>完成后，我们 <code>cd</code> 到项目目录，接下来我们本教程所有操作都在这个目录下完成。</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">cd kalacloud-vue-router</span><br></pre></td></tr></table></figure>
+
+<p>我们先运行一下看看效果：</p>
+<figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line">npm run serve</span><br></pre></td></tr></table></figure>
+
+<p>在浏览器输入 <code>http://localhost:8080</code> ，可以看到 Vue3已经运行起来了。</p>
+<p>扩展阅读：《<a target="_blank" rel="noopener external nofollow noreferrer" href="https://kalacloud.com/blog/best-drag-drop/">最好用的 6 款 Vue 拖拽组件库推荐</a>》</p>
+<h2 id="安装-Vue-Router-路由"><a href="#安装-Vue-Router-路由" class="headerlink" title="安装 Vue Router 路由"></a><a href="#%E5%AE%89%E8%A3%85-vue-router-%E8%B7%AF%E7%94%B1"></a>安装 Vue Router 路由</h2><p>我们先 Vue Router 安装到刚刚创建的 Vue3 项目中。</p>
+<p>执行以下代码安装 Vue Router：</p>
+<figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line">npm i vue-router@<span class="number">4</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="配置并建立-Vue-Router-路由"><a href="#配置并建立-Vue-Router-路由" class="headerlink" title="配置并建立 Vue Router 路由"></a><a href="#%E9%85%8D%E7%BD%AE%E5%B9%B6%E5%BB%BA%E7%AB%8B-vue-router-%E8%B7%AF%E7%94%B1"></a>配置并建立 Vue Router 路由</h2><p>接着我们配置 Router ，添加配置文件。在 <code>/src</code> 目录下新建 <code>router</code> 文件夹，然后新建 Router 配置文件 <code>index.js</code></p>
+<p>文件位置：/src/router/index.js</p>
+<figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; createWebHistory, createRouter &#125; <span class="keyword">from</span> <span class="string">&quot;vue-router&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="title class_">Home</span> <span class="keyword">from</span> <span class="string">&quot;@/views/Home.vue&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="title class_">About</span> <span class="keyword">from</span> <span class="string">&quot;@/views/About.vue&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> routes = [</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="attr">path</span>: <span class="string">&quot;/&quot;</span>,</span><br><span class="line">    <span class="attr">name</span>: <span class="string">&quot;Home&quot;</span>,</span><br><span class="line">    <span class="attr">component</span>: <span class="title class_">Home</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="attr">path</span>: <span class="string">&quot;/about&quot;</span>,</span><br><span class="line">    <span class="attr">name</span>: <span class="string">&quot;About&quot;</span>,</span><br><span class="line">    <span class="attr">component</span>: <span class="title class_">About</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> router = <span class="title function_">createRouter</span>(&#123;</span><br><span class="line">  <span class="attr">history</span>: <span class="title function_">createWebHistory</span>(),</span><br><span class="line">  routes,</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> router;</span><br></pre></td></tr></table></figure>
+
+<p>在 Router 配置文件中，我们使用一个数组来写 Router 指向的每一个分页面。</p>
+<ul>
+<li><code>path</code> 路由分配的 URL</li>
+<li><code>name</code> 当路由指向此页面时显示的名字</li>
+<li><code>component</code> 路由调用这个页面时加载的组件名</li>
+</ul>
+<p>这段代码的最后是 Router 的主体。我们创建了一个路由，使用了 <code>history</code> 模式。</p>
+<p><code>history</code> 模式是 <code>hash</code> 模式的升级版，主要区别在浏览器链接的显示的不同</p>
+<ul>
+<li>hash 模式：把前端路由路径用 # 号拼接在真实 URL 后面的模式。当 # 后面的路径发生变化时，浏览器不会重新发起请求，而是出发 hashchange 事件。hash 模式链接样式：<code>http://localhost:8080/#/home</code></li>
+<li>history 模式：history API 是 HTML5 的新特性，允许开发者直接更改前端路由。history 模式链接样式：<code>http://localhost:8080/home</code></li>
+</ul>
+<p>扩展阅读：《<a target="_blank" rel="noopener external nofollow noreferrer" href="https://kalacloud.com/blog/vue-draggable-tutorial/">vue.draggable 入门指南 - 手把手教你开发任务看板</a>》</p>
+<h2 id="在-main-js-引入-Router"><a href="#在-main-js-引入-Router" class="headerlink" title="在 main.js 引入 Router"></a><a href="#%E5%9C%A8-mainjs-%E5%BC%95%E5%85%A5-router"></a>在 main.js 引入 Router</h2><p>接下来，我们要在 main.js 文件里引入我们刚刚设置的路由</p>
+<p>文件位置：/src/main.js</p>
+<figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; createApp &#125; <span class="keyword">from</span> <span class="string">&#x27;vue&#x27;</span></span><br><span class="line"><span class="keyword">import</span> <span class="title class_">App</span> <span class="keyword">from</span> <span class="string">&#x27;./App.vue&#x27;</span></span><br><span class="line"><span class="keyword">import</span> router <span class="keyword">from</span> <span class="string">&#x27;./router&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="title function_">createApp</span>(<span class="title class_">App</span>).<span class="title function_">use</span>(router).<span class="title function_">mount</span>(<span class="string">&#x27;#app&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>（特别提示：请使用以上代码全部替换 main.js 内代码，避免与本教程代码不一致）</p>
+<p>扩展阅读：《<a target="_blank" rel="noopener external nofollow noreferrer" href="https://kalacloud.com/blog/best-vue-date-timepicker-components/">最好用的 12 款 Vue Timepicker 时间日期选择器测评推荐</a>》</p>
+<h2 id="在-App-vue-中使用-lt-router-view-gt-和-lt-router-link-gt"><a href="#在-App-vue-中使用-lt-router-view-gt-和-lt-router-link-gt" class="headerlink" title="在 App.vue 中使用&lt;router-view&gt;和&lt;router-link&gt;"></a><a href="#%E5%9C%A8-appvue-%E4%B8%AD%E4%BD%BF%E7%94%A8router-view%E5%92%8Crouter-link"></a>在 App.vue 中使用<code>&lt;router-view&gt;</code>和<code>&lt;router-link&gt;</code></h2><p>App.vue 是项目的主组件，可以理解为项目的入口页面，所有页面都在 App.vue 页之下进行切换。接下来我们要来修改 App.vue ，以适应我们添加的 Router 功能。</p>
+<p>文件位置：/src/App.vue</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div id=&quot;nav&quot;&gt;</span><br><span class="line">      &lt;router-link to=&quot;/&quot;&gt; 首页 &lt;/router-link&gt; |</span><br><span class="line">      &lt;router-link to=&quot;/about&quot;&gt; 关于 &lt;/router-link&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">  &lt;router-view /&gt;</span><br><span class="line">&lt;/template&gt;</span><br></pre></td></tr></table></figure>
+
+<p>（特别提示：请使用以上代码全部替换 App.vue 内代码，避免与本教程代码不一致）</p>
+<ul>
+<li><code>&lt;router-view /&gt;</code>： 这个 <code>/</code> 是承接自路由的容器，所有一级路由都在 <code>/</code> 之后。比如前文我们写的两个页面，/Home 和 /About</li>
+<li><code>&lt;router-link&gt;</code>：在 history 模式下会拦截点击，不让浏览器重新加载页面。</li>
+</ul>
+<p>扩展阅读：《<a target="_blank" rel="noopener external nofollow noreferrer" href="https://kalacloud.com/blog/delivery-tracking-case-study/">订单管理系统(OMS)搭建实战 - 低代码拖拽定制订单管理系统</a>》</p>
+<h2 id="创建页面组件"><a href="#创建页面组件" class="headerlink" title="创建页面组件"></a><a href="#%E5%88%9B%E5%BB%BA%E9%A1%B5%E9%9D%A2%E7%BB%84%E4%BB%B6"></a>创建页面组件</h2><p>接着，我们来创建「首页」和「关于」两个页面组件，这也是本教程中使用路由进行分配的两个组件。我们不把这两个组件放在 components 文件夹中，我们来增加一些难度，新建一个 views 文件夹，然后在这里创建 Home.vue 和 About.vue</p>
+<p>文件位置：/src/views/Home.vue</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;h1&gt;卡拉云是什么？&lt;/h1&gt;</span><br><span class="line">  &lt;a&gt;卡拉云 - 低代码开发工具。&lt;/a&gt;</span><br><span class="line">  &lt;a&gt;无需懂前端，仅需拖拽即可快速搭建属于你的后台管理工具，&lt;/a&gt;&lt;a href=&quot;http://kalacloud.com&quot; target=&quot;_blank&quot;&gt;立即试用卡拉云&lt;/a&gt;</span><br><span class="line">&lt;/template&gt;</span><br></pre></td></tr></table></figure>
+
+<p>文件位置：/src/views/About.vue</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;h1&gt;关于卡拉云&lt;/h1&gt;</span><br><span class="line">&lt;a&gt;卡拉云 - 低代码开发工具。&lt;/a&gt;</span><br><span class="line">  &lt;a&gt;可接入常见的数据库及 API，快速搭建属于你的后台管理工具，一周工作量缩短至数小时，&lt;/a&gt;&lt;a href=&quot;http://kalacloud.com&quot; target=&quot;_blank&quot;&gt;立即试用卡拉云&lt;/a&gt;</span><br><span class="line">&lt;/template&gt;</span><br></pre></td></tr></table></figure>
+
+<p>好，现在我们把项目运行起来看看效果。</p>
+<figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line">npm run serve</span><br></pre></td></tr></table></figure>
+
+<img width="780" height="298" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/02-router_5a28f2a3f2bb44c2a2242953ede88b1b.gif"/>
+
+<p>在浏览器输入 <code>http://localhost:8080</code> 页面正常访问并且无刷新跳转页面。</p>
+<img width="373" height="210" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/home-demo-66b9606d95623721268b76_e4e364ecca5f44d28.gif"/>
+
+<h2 id="不用学前端，就能搭后台？"><a href="#不用学前端，就能搭后台？" class="headerlink" title="不用学前端，就能搭后台？"></a>不用学前端，就能搭后台？</h2><p>试试卡拉云，无需处理任何前端问题，仅需拖拽，即可生成，数天工作量降至 1 小时。</p>
+<p>扩展阅读：《<a target="_blank" rel="noopener external nofollow noreferrer" href="https://kalacloud.com/blog/best-vue-tree-view/">最好用的 7 个 Vue Tree select 树形组件</a>》</p>
+<h2 id="创建-404-页面"><a href="#创建-404-页面" class="headerlink" title="创建 404 页面"></a><a href="#%E5%88%9B%E5%BB%BA-404-%E9%A1%B5%E9%9D%A2"></a>创建 404 页面</h2><p>404 页面比较特殊，它不是用户输入的 URL 所指页面，而是当用户输入的 URL 在路由里完全没有匹配的页面时，才会路由到 404 页面。</p>
+<p>我们修改 Router 配置文件，当没有找到匹配的页面时，路由指向 404 页。</p>
+<p>在 index.js 插入以下代码，文件位置：/src/router/index.js</p>
+<figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">path</span>: <span class="string">&quot;/:catchAll(.*)&quot;</span>,</span><br><span class="line">  <span class="attr">component</span>: <span class="title class_">NotFound</span>,</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>(.*)</code> 是一个正则表达式，如果用户输入的 URL 没有跟任何 Router 中的 <code>path</code> 匹配，那么就会与<code>(.*)</code> 匹配，Router 就会把用户带到 404 页。</li>
+</ul>
+<p>index.js 完整代码如下，请全部替换 index.js 内代码，避免与本教程代码不一致。</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">import &#123; createWebHistory, createRouter &#125; from &quot;vue-router&quot;;</span><br><span class="line">import Home from &quot;@/views/Home.vue&quot;;</span><br><span class="line">import About from &quot;@/views/About.vue&quot;;</span><br><span class="line">import NotFound from &quot;@/views/NotFound.vue&quot;;</span><br><span class="line"></span><br><span class="line">const routes = [</span><br><span class="line">&#123;</span><br><span class="line">  path: &quot;/:catchAll(.*)&quot;,</span><br><span class="line">  component: NotFound,</span><br><span class="line">&#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    path: &quot;/&quot;,</span><br><span class="line">    name: &quot;Home&quot;,</span><br><span class="line">    component: Home,</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    path: &quot;/about&quot;,</span><br><span class="line">    name: &quot;About&quot;,</span><br><span class="line">    component: About,</span><br><span class="line">  &#125;,</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line">const router = createRouter(&#123;</span><br><span class="line">  history: createWebHistory(),</span><br><span class="line">  routes,</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">export default router;</span><br></pre></td></tr></table></figure>
+
+<p>建立好 404 的路由后，我们再来创建 404 错误页面，在 views 文件夹中创建 NotFound.vue</p>
+<p>文件位置：/src/views/NotFound.vue</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;h1&gt; 啊，404 了，没有找到你想要的页面。&lt;/h1&gt;</span><br><span class="line">&lt;/template&gt;</span><br></pre></td></tr></table></figure>
+
+<p>好，接着我们运行项目，看看效果：</p>
+<figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line">npm run serve</span><br></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://kalacloud.com/static/fec7cf150202eb752f4d8b8ae4fed9d3/6951b/03-404.jpg"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://kalacloud.com/static/fec7cf150202eb752f4d8b8ae4fed9d3/9fbc2/03-404.webp" alt="404" title="404"></a></p>
+<p>在浏览器中随便输入一个 URL，类似 <code>http://localhost:8080/asdfasdfasdf</code> 浏览器指向我们刚刚写的 404 页面。</p>
+<p>扩展阅读：《<a target="_blank" rel="noopener external nofollow noreferrer" href="https://kalacloud.com/blog/vue-upload-image-axios/">Vue 搭建带预览的「上传图片」管理后台</a>》</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a><a href="#%E6%80%BB%E7%BB%93"></a>总结</h2><p>本文手把手带领大家搭建了一套简单的 Router 单页面路由。如果你学习前端仅仅是为了接上自己的数据库，快速搭一套根据自己工作流设计的后台管理系统的话，推荐使用卡拉云，卡拉云是一套低代码开发工具，完全不用懂前端，鼠标拖拽，简单直观。</p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://kalacloud.com/static/7e0c9deb1b34f97b8d645310ae75b139/54af7/05-kalacloud.jpg"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://kalacloud.com/static/7e0c9deb1b34f97b8d645310ae75b139/9fbc2/05-kalacloud.webp" alt="kalacloud" title="kalacloud"></a></p>
+<p>上图为使用卡拉云搭建的销售 SaaS Demo，卡拉云内置标签容器，让你轻松在多个页面中切换。无需任何前端技术，直接拖拽组件即可实现。</p>
+<p>卡拉云是新一代低代码开发工具，免安装部署，可一键接入包括 MySQL 在内的常见数据库及 API。可根据自己的工作流，定制开发。无需繁琐的前端开发，只需要简单拖拽，即可快速搭建企业内部工具。<strong>原来三天的开发工作量，使用卡拉云后可缩减至 1 小时，欢迎免费<a target="_blank" rel="noopener external nofollow noreferrer" href="https://kalacloud.com/">试用卡拉云</a>。</strong></p>
+<h2 id="一起交流"><a href="#一起交流" class="headerlink" title="一起交流"></a><a href="#%E4%B8%80%E8%B5%B7%E4%BA%A4%E6%B5%81"></a>一起交流</h2><p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://kalacloud.com/static/866ca0d4c8274bfc3a670eadf4e5de9f/ef245/wechat-jiangchuan.jpg"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://kalacloud.com/static/866ca0d4c8274bfc3a670eadf4e5de9f/01adf/wechat-jiangchuan.webp" alt="wechat-jiangchuan" title="wechat-jiangchuan"></a></p>
+<p>蒋川，卡拉云联合创始人，B 端数据开发。</p>
+<p>如果你有任何问题，欢迎添加微信一起交流。我的微信 HiJiangChuan</p>
+<p>扩展阅读：</p>
+<ul>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://kalacloud.com/blog/best-translation-api/">最好的 5 款翻译 API 接口对比测评</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://kalacloud.com/blog/api-testing-tools/">最好用的七大顶级 API 接口测试工具</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://kalacloud.com/blog/top-5-rich-text-editors-for-react/">最好用的 5 款 React 富文本编辑器</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://kalacloud.com/blog/postman-tutorial/">Postman 使用教程 - 手把手教你 API 接口测试</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://kalacloud.com/blog/free-weather-api/">最好的 6 个免费天气 API 接口对比测评</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://kalacloud.com/blog/paw-tutorial/">PAW 使用教程 - 手把手教你 API 接口测试</a></li>
+</ul>
+<p>本文目录</p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://kalacloud.com/blog/vue-router-tutorial-for-vue-3/#%E4%BB%8E%E5%AE%89%E8%A3%85-vue3-%E5%BC%80%E5%A7%8B">从安装 Vue3 开始</a><a target="_blank" rel="noopener external nofollow noreferrer" href="https://kalacloud.com/blog/vue-router-tutorial-for-vue-3/#%E5%AE%89%E8%A3%85-vue-router-%E8%B7%AF%E7%94%B1">安装 Vue Router 路由</a><a target="_blank" rel="noopener external nofollow noreferrer" href="https://kalacloud.com/blog/vue-router-tutorial-for-vue-3/#%E9%85%8D%E7%BD%AE%E5%B9%B6%E5%BB%BA%E7%AB%8B-vue-router-%E8%B7%AF%E7%94%B1">配置并建立 Vue Router 路由</a><a target="_blank" rel="noopener external nofollow noreferrer" href="https://kalacloud.com/blog/vue-router-tutorial-for-vue-3/#%E5%9C%A8-mainjs-%E5%BC%95%E5%85%A5-router">在 main.js 引入 Router</a><a target="_blank" rel="noopener external nofollow noreferrer" href="https://kalacloud.com/blog/vue-router-tutorial-for-vue-3/#%E5%9C%A8-appvue-%E4%B8%AD%E4%BD%BF%E7%94%A8router-view%E5%92%8Crouter-link">在 App.vue 中使用&lt;router-view&gt;和&lt;router-link&gt;</a><a target="_blank" rel="noopener external nofollow noreferrer" href="https://kalacloud.com/blog/vue-router-tutorial-for-vue-3/#%E5%88%9B%E5%BB%BA%E9%A1%B5%E9%9D%A2%E7%BB%84%E4%BB%B6">创建页面组件</a><a target="_blank" rel="noopener external nofollow noreferrer" href="https://kalacloud.com/blog/vue-router-tutorial-for-vue-3/#%E5%88%9B%E5%BB%BA-404-%E9%A1%B5%E9%9D%A2">创建 404 页面</a><a target="_blank" rel="noopener external nofollow noreferrer" href="https://kalacloud.com/blog/vue-router-tutorial-for-vue-3/#%E6%80%BB%E7%BB%93">总结</a><a target="_blank" rel="noopener external nofollow noreferrer" href="https://kalacloud.com/blog/vue-router-tutorial-for-vue-3/#%E4%B8%80%E8%B5%B7%E4%BA%A4%E6%B5%81">一起交流</a></p>
+<p>© 2022 卡拉云 Built with ❤️ in Beijing</p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://beian.miit.gov.cn/">京ICP备15049164号-9</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://kalacloud.com/friends/">友情链接</a><a target="_blank" rel="noopener external nofollow noreferrer" href="https://kalacloud.com/about/">关于我们</a></p>
+<p><a id="fatkun-drop-panel-close-btn"></a>×</p>
+<p>拖拽到此处</p>
+<p>图片将完成下载</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:978252321@qq.com" rel="external nofollow noreferrer">传礼</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://iwangchuanli.github.io/posts/61720.html">https://iwangchuanli.github.io/posts/61720.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow noreferrer" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://iwangchuanli.github.io" target="_blank">传礼</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img19_kf59TQ.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/posts/14968.html"><img class="prev-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img8_1MHlve.jpeg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">13-Vue-router路由</div></div></a></div><div class="next-post pull-right"><a href="/posts/53368.html"><img class="next-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img37_UGZvBP.jpeg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Vue-router路由</div></div></a></div></nav><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div><div id="comment-switch"><span class="first-comment">Valine</span><span class="switch-btn"></span><span class="second-comment">Gitalk</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div><div><div id="gitalk-container"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">Nice to meet you ~</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Vue-Router-%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E4%BD%A0%E6%90%AD-Vue3-%E8%B7%AF%E7%94%B1"><span class="toc-number">1.</span> <span class="toc-text">Vue Router 手把手教你搭 Vue3 路由</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%8E%E5%AE%89%E8%A3%85-Vue3-%E5%BC%80%E5%A7%8B"><span class="toc-number">1.1.</span> <span class="toc-text">从安装 Vue3 开始</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85-Vue-Router-%E8%B7%AF%E7%94%B1"><span class="toc-number">1.2.</span> <span class="toc-text">安装 Vue Router 路由</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E5%B9%B6%E5%BB%BA%E7%AB%8B-Vue-Router-%E8%B7%AF%E7%94%B1"><span class="toc-number">1.3.</span> <span class="toc-text">配置并建立 Vue Router 路由</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9C%A8-main-js-%E5%BC%95%E5%85%A5-Router"><span class="toc-number">1.4.</span> <span class="toc-text">在 main.js 引入 Router</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9C%A8-App-vue-%E4%B8%AD%E4%BD%BF%E7%94%A8-lt-router-view-gt-%E5%92%8C-lt-router-link-gt"><span class="toc-number">1.5.</span> <span class="toc-text">在 App.vue 中使用&lt;router-view&gt;和&lt;router-link&gt;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E9%A1%B5%E9%9D%A2%E7%BB%84%E4%BB%B6"><span class="toc-number">1.6.</span> <span class="toc-text">创建页面组件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8D%E7%94%A8%E5%AD%A6%E5%89%8D%E7%AB%AF%EF%BC%8C%E5%B0%B1%E8%83%BD%E6%90%AD%E5%90%8E%E5%8F%B0%EF%BC%9F"><span class="toc-number">1.7.</span> <span class="toc-text">不用学前端，就能搭后台？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA-404-%E9%A1%B5%E9%9D%A2"><span class="toc-number">1.8.</span> <span class="toc-text">创建 404 页面</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">1.9.</span> <span class="toc-text">总结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E8%B5%B7%E4%BA%A4%E6%B5%81"><span class="toc-number">1.10.</span> <span class="toc-text">一起交流</span></a></li></ol></li></ol></div></div><div class="card-widget ads-wrap"><a target="_blank" href="https://www.aliyun.com/activity?userCode=dpj8p3hl" rel="external nofollow noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/aliyun_whuCuE.jpg" style="width:100%;height:100%;object-fit:cover;"></a></div></div></div></main><footer id="footer" style="background-image: url('https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img19_kf59TQ.png')"><div id="footer-wrap"><div class="copyright">&copy;2018 - 2022 By 传礼</div><div class="footer_custom_text"><p style="display:inline-flex">本网站由<a href="https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral" rel="external nofollow noreferrer" target="_blank"><img style="width:60px;height:35px;" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/11/又拍云_logo5_O9kNul.png" title="又拍云"/></a>提供CDN加速/云存储服务</p><p><a style="margin-inline:5px" target="_blank" href="https://hexo.io/" rel="external nofollow noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Frame-Hexo-blue?style=flat&logo=hexo" title="博客框架为Hexo"></a><a style="margin-inline:5px" target="_blank" href="https://butterfly.js.org/" rel="external nofollow noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Theme-Butterfly-6513df?style=flat&logo=bitdefender" title="主题采用butterfly"></a><a style="margin-inline:5px" target="_blank" href="https://www.jsdelivr.com/" rel="external nofollow noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/CDN-jsDelivr-orange?style=flat&logo=jsDelivr" title="本站使用JsDelivr为静态资源提供CDN加速"></a><a style="margin-inline:5px" target="_blank" href="https://github.com/" rel="external nofollow noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Source-Github-d021d6?style=flat&logo=GitHub" title="本站项目由Github托管"></a><a style="margin-inline:5px" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Copyright-BY--NC--SA%204.0-d42328?style=flat&logo=Claris" title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可"></a></p></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="chat_btn" type="button" title="聊天"><i class="fas fa-sms"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">本地搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script src="/js/search/local-search.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"><script>function loadValine () {
+  function initValine () {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: 'zHUfFgUbITfMSQGuSPgS2e3C-gzGzoHsz',
+      appKey: 'yPXpeKX8VJxdFRPEsDaqNgEY',
+      avatar: 'wavatar',
+      serverURLs: 'https://zhuffgub.lc-cn-n1-shared.com',
+      emojiMaps: "",
+      path: window.location.pathname,
+      visitor: true,
+      master: '447d56ab3606de5490a2109d3e441219,135d837ea1033c9787dd307e59884d36'.split(','),
+      friends: '5c?????bfe6rfc72a????e268ad3819c'.split(','),
+      tagMeta: '博主,小伙伴,访客'.split(',')
+        
+    }, {"placeholder":"请输入内容～"}))
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/gh/HCLonely/Valine@latest/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !true) {
+  if (true) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script><script>function addGitalkSource () {
+  const ele = document.createElement('link')
+  ele.rel = 'stylesheet'
+  ele.href= 'https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css'
+  document.getElementsByTagName('head')[0].appendChild(ele)
+}
+
+function loadGitalk () {
+  function initGitalk () {
+    var gitalk = new Gitalk(Object.assign({
+      clientID: '052d9d6486112e93fa50',
+      clientSecret: '6fea35bfb7a17521694a95f705683622976d2f53',
+      repo: 'gitalk',
+      owner: 'iwangchuanli',
+      admin: ['iwangchuanli'],
+      id: '0db2b27aa97510d263f9f92da6269348',
+      updateCountCallback: commentCount
+    },null))
+
+    gitalk.render('gitalk-container')
+  }
+
+  if (typeof Gitalk === 'function') initGitalk()
+  else {
+    addGitalkSource()
+    getScript('https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.js').then(initGitalk)
+  }
+}
+
+function commentCount(n){
+  let isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+  if (isCommentCount) {
+    isCommentCount.innerHTML= n
+  }
+}
+
+if ('Valine' === 'Gitalk' || !true) {
+  if (true) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+  else loadGitalk()
+} else {
+  function loadOtherComment () {
+    loadGitalk()
+  }
+}</script></div><div class="aplayer no-destroy" data-id="7355841544" data-server="netease" data-type="playlist" data-fixed="true" data-autoplay="false"> </div><script async src="/js/grayscale.js"></script><script async src="//at.alicdn.com/t/font_1885008_srfhrsykmk.js"></script><script>((window.gitter = {}).chat = {}).options = {
+  disableDefaultChat: true,
+};
+document.addEventListener('gitter-sidecar-ready', (e) => {
+  const GitterChat = e.detail.Chat
+  let chat
+
+  function initGitter () {
+    chat = new GitterChat({
+      room: 'wangchuangli-/community',
+      activationElement: '#chat_btn'
+    });
+  }
+
+  initGitter()
+
+  if (true) {
+    document.addEventListener('pjax:complete', () => {
+      chat.destroy()
+      initGitter()
+    })
+  }
+
+})</script><script src="https://sidecar.gitter.im/dist/sidecar.v1.js" async="async" defer="defer"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/meting@1.2.0/dist/Meting.min.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = ["title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"]):not([href="/music/"]):not([href="/no-pjax/"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.tocScrollFn && window.removeEventListener('scroll', window.tocScrollFn)
+  window.scrollCollect && window.removeEventListener('scroll', scrollCollect)
+
+  typeof preloader === 'object' && preloader.initLoading()
+  document.getElementById('rightside').style.cssText = "opacity: ''; transform: ''"
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+
+  typeof preloader === 'object' && preloader.endLoading()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><!-- hexo injector body_end start --><script data-pjax>
+  function butterfly_swiper_injector_config(){
+    var parent_div_git = document.getElementById('recent-posts');
+    var item_html = '<div class="recent-post-item" style="height: auto;width: 100%"><div class="blog-slider swiper-container-fade swiper-container-horizontal" id="swiper_container"><div class="blog-slider__wrp swiper-wrapper" style="transition-duration: 0ms;"><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" onclick="pjax.loadUrl(&quot;posts/4496.html&quot;);" href="javascript:void(0);" rel="external nofollow noreferrer" alt=""><img width="48" height="48" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img6_L358Nt.jpeg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2018-09-05</span><a class="blog-slider__title" onclick="pjax.loadUrl(&quot;posts/4496.html&quot;);" href="javascript:void(0);" rel="external nofollow noreferrer" alt="">编程系列书单推荐</a><div class="blog-slider__text">再怎么看我也不知道怎么描述它的啦！</div><a class="blog-slider__button" onclick="pjax.loadUrl(&quot;posts/4496.html&quot;);" href="javascript:void(0);" rel="external nofollow noreferrer" alt="">详情       </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" onclick="pjax.loadUrl(&quot;posts/35693.html&quot;);" href="javascript:void(0);" rel="external nofollow noreferrer" alt=""><img width="48" height="48" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img33_fnRUqR.jpeg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2018-11-26</span><a class="blog-slider__title" onclick="pjax.loadUrl(&quot;posts/35693.html&quot;);" href="javascript:void(0);" rel="external nofollow noreferrer" alt="">优秀科技博客订阅</a><div class="blog-slider__text">再怎么看我也不知道怎么描述它的啦！</div><a class="blog-slider__button" onclick="pjax.loadUrl(&quot;posts/35693.html&quot;);" href="javascript:void(0);" rel="external nofollow noreferrer" alt="">详情       </a></div></div></div><div class="blog-slider__pagination swiper-pagination-clickable swiper-pagination-bullets"></div></div></div>';
+    console.log('已挂载butterfly_swiper')
+    parent_div_git.insertAdjacentHTML("afterbegin",item_html)
+    }
+  var elist = 'undefined'.split(',');
+  var cpage = location.pathname;
+  var epage = 'all';
+  var flag = 0;
+
+  for (var i=0;i<elist.length;i++){
+    if (cpage.includes(elist[i])){
+      flag++;
+    }
+  }
+
+  if ((epage ==='all')&&(flag == 0)){
+    butterfly_swiper_injector_config();
+  }
+  else if (epage === cpage){
+    butterfly_swiper_injector_config();
+  }
+  </script><script defer src="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper.min.js"></script><script defer data-pjax src="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper_init.js"></script><!-- hexo injector body_end end --></body></html>

@@ -1,0 +1,631 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>Spring Boot整合Netty 注入Service | 传礼</title><meta name="keywords" content="博客,blog,王传礼,java,python,大数据"><meta name="author" content="传礼,978252321@qq.com"><meta name="copyright" content="传礼"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Spring Boot整合Netty（二）：注入Service1、添加依赖  1.          &lt;!--netty--&gt;    2.          &lt;dependency&gt;    3.              &lt;groupId&gt;io.netty&lt;&#x2F;groupId&gt;    4.              &lt;artifactId&gt;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spring Boot整合Netty 注入Service">
+<meta property="og:url" content="https://iwangchuanli.github.io/posts/38149.html">
+<meta property="og:site_name" content="传礼">
+<meta property="og:description" content="Spring Boot整合Netty（二）：注入Service1、添加依赖  1.          &lt;!--netty--&gt;    2.          &lt;dependency&gt;    3.              &lt;groupId&gt;io.netty&lt;&#x2F;groupId&gt;    4.              &lt;artifactId&gt;">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img3_17WEKf.jpg">
+<meta property="article:published_time" content="2022-11-28T07:04:49.761Z">
+<meta property="article:modified_time" content="2022-08-18T00:51:16.000Z">
+<meta property="article:author" content="传礼">
+<meta property="article:tag" content="博客,blog,王传礼,java,python,大数据">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img3_17WEKf.jpg"><link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/03/favicons_uH14Fb.gif"><link rel="canonical" href="https://iwangchuanli.github.io/posts/38149"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin=""/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta name="baidu-site-verification" content="qKvGNFZPF9"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?39bd6e37a6e70dc030e6a043a642784e";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: 传礼","link":"链接: ","source":"来源: 传礼","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#121212","position":"bottom-left"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: true,
+  islazyload: true,
+  isAnchor: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Spring Boot整合Netty 注入Service',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-08-18 00:51:16'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/custom.css"  media="defer" onload="this.media='all'"><!-- hexo injector head_end start --><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiperstyle.css" media="print" onload="this.media='all'"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.1"><link rel="alternate" href="/atom.xml" title="传礼" type="application/atom+xml">
+</head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/03/photo_NZBQPu.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><div class="data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">511</div></a></div><div class="data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">50</div></a></div><div class="data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">22</div></a></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 归档</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-calendar"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 开发</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/Java"><i class="fa-fw fa fa-music"></i><span> Java</span></a></li><li><a class="site-page child" href="/categories/Python"><i class="fa-fw fa fa-music"></i><span> Python</span></a></li><li><a class="site-page child" href="/categories/VUE"><i class="fa-fw fa fa-music"></i><span> VUE</span></a></li><li><a class="site-page child" href="/categories/MySQL"><i class="fa-fw fa fa-music"></i><span> MySQL</span></a></li><li><a class="site-page child" href="/categories/Redis"><i class="fa-fw fa fa-music"></i><span> Redis</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 架构</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/Spring"><i class="fa-fw fa fa-music"></i><span> Spring</span></a></li><li><a class="site-page child" href="/categories/microServeices"><i class="fa-fw fa fa-music"></i><span> 微服务</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 运维</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/Docker"><i class="fa-fw fa fa-music"></i><span> Docker</span></a></li><li><a class="site-page child" href="/categories/Linux"><i class="fa-fw fa fa-music"></i><span> Linux</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 分享</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/tags/Tools"><i class="fa-fw fa fa-music"></i><span> 工具</span></a></li><li><a class="site-page child" href="/tags/guide"><i class="fa-fw fa fa-music"></i><span> 教程</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 项目</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/tags/Tools"><i class="fa-fw fa fa-music"></i><span> 工具</span></a></li><li><a class="site-page child" href="/tags/guide"><i class="fa-fw fa fa-music"></i><span> 教程</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-heartbeat"></i><span> 娱乐</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/gallery/"><i class="fa-fw fa fa-images"></i><span> 图库</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fa fa-film"></i><span> 电影</span></a></li><li><a class="site-page child" href="/books/"><i class="fa-fw fa fa-book"></i><span> 图书</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 我的</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/artitalk/"><i class="fa-fw fa fa-commenting"></i><span> 说说</span></a></li><li><a class="site-page child" href="/todo/"><i class="fa-fw fa fa-flag"></i><span> TODO</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img3_17WEKf.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">传礼</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 归档</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-calendar"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 开发</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/Java"><i class="fa-fw fa fa-music"></i><span> Java</span></a></li><li><a class="site-page child" href="/categories/Python"><i class="fa-fw fa fa-music"></i><span> Python</span></a></li><li><a class="site-page child" href="/categories/VUE"><i class="fa-fw fa fa-music"></i><span> VUE</span></a></li><li><a class="site-page child" href="/categories/MySQL"><i class="fa-fw fa fa-music"></i><span> MySQL</span></a></li><li><a class="site-page child" href="/categories/Redis"><i class="fa-fw fa fa-music"></i><span> Redis</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 架构</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/Spring"><i class="fa-fw fa fa-music"></i><span> Spring</span></a></li><li><a class="site-page child" href="/categories/microServeices"><i class="fa-fw fa fa-music"></i><span> 微服务</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 运维</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/Docker"><i class="fa-fw fa fa-music"></i><span> Docker</span></a></li><li><a class="site-page child" href="/categories/Linux"><i class="fa-fw fa fa-music"></i><span> Linux</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 分享</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/tags/Tools"><i class="fa-fw fa fa-music"></i><span> 工具</span></a></li><li><a class="site-page child" href="/tags/guide"><i class="fa-fw fa fa-music"></i><span> 教程</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 项目</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/tags/Tools"><i class="fa-fw fa fa-music"></i><span> 工具</span></a></li><li><a class="site-page child" href="/tags/guide"><i class="fa-fw fa fa-music"></i><span> 教程</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-heartbeat"></i><span> 娱乐</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/gallery/"><i class="fa-fw fa fa-images"></i><span> 图库</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fa fa-film"></i><span> 电影</span></a></li><li><a class="site-page child" href="/books/"><i class="fa-fw fa fa-book"></i><span> 图书</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 我的</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/artitalk/"><i class="fa-fw fa fa-commenting"></i><span> 说说</span></a></li><li><a class="site-page child" href="/todo/"><i class="fa-fw fa fa-flag"></i><span> TODO</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Spring Boot整合Netty 注入Service</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-11-28T07:04:49.761Z" title="发表于 2022-11-28 07:04:49">2022-11-28</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-08-18T00:51:16.000Z" title="更新于 2022-08-18 00:51:16">2022-08-18</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">3.5k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>14分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Spring Boot整合Netty 注入Service"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="Spring-Boot整合Netty（二）：注入Service"><a href="#Spring-Boot整合Netty（二）：注入Service" class="headerlink" title="Spring Boot整合Netty（二）：注入Service"></a>Spring Boot整合Netty（二）：注入Service</h1><p>1、添加依赖</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"> 1.          &lt;!--netty--&gt;</span><br><span class="line">    </span><br><span class="line">2.          &lt;dependency&gt;</span><br><span class="line">    </span><br><span class="line">3.              &lt;groupId&gt;io.netty&lt;/groupId&gt;</span><br><span class="line">    </span><br><span class="line">4.              &lt;artifactId&gt;netty-all&lt;/artifactId&gt;</span><br><span class="line">    </span><br><span class="line">5.              &lt;version&gt;4.1.24.Final&lt;/version&gt;</span><br><span class="line">    </span><br><span class="line">6.              &lt;scope&gt;compile&lt;/scope&gt;</span><br><span class="line">    </span><br><span class="line">7.          &lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
+
+<p>2、创建TcpServer</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"> 2.  @Slf4j</span><br><span class="line">    </span><br><span class="line">3.  @Component</span><br><span class="line">    </span><br><span class="line">4.  @Order(value = 1)</span><br><span class="line">    </span><br><span class="line">5.  public class TcpServer implements CommandLineRunner &#123;</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">7.      @Value(&quot;$&#123;netty.ip&#125;&quot;)</span><br><span class="line">    </span><br><span class="line">8.      private String ip;</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">10.     @Value(&quot;$&#123;netty.port&#125;&quot;)</span><br><span class="line">    </span><br><span class="line">11.     private int tcpPort;</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">13.     @Autowired</span><br><span class="line">    </span><br><span class="line">14.     private ProduceOrderService produceOrderService;</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">16.     @Autowired</span><br><span class="line">    </span><br><span class="line">17.     private TestRecordTopService testRecordTopService;</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">19.     @Autowired</span><br><span class="line">    </span><br><span class="line">20.     private TestRecordAllService testRecordAllService;</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">22.     @Autowired</span><br><span class="line">    </span><br><span class="line">23.     private ProduceOrderLogService produceOrderLogService;</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">25.     @Async</span><br><span class="line">    </span><br><span class="line">26.     @Override</span><br><span class="line">    </span><br><span class="line">27.     public void run(String... args) &#123;</span><br><span class="line">    </span><br><span class="line">28.         start(ip, tcpPort);</span><br><span class="line">    </span><br><span class="line">29.     &#125;</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">31.     public void start(String ip, int port) &#123;</span><br><span class="line">    </span><br><span class="line">32.         // master reactor</span><br><span class="line">    </span><br><span class="line">33.         EventLoopGroup bossGroup = new NioEventLoopGroup();</span><br><span class="line">    </span><br><span class="line">34.         // sub reactor</span><br><span class="line">    </span><br><span class="line">35.         EventLoopGroup workGroup = new NioEventLoopGroup();</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">37.         ChannelFuture f;</span><br><span class="line">    </span><br><span class="line">38.         try &#123;</span><br><span class="line">    </span><br><span class="line">39.             // start</span><br><span class="line">    </span><br><span class="line">40.             ServerBootstrap bootstrap = new ServerBootstrap();</span><br><span class="line">    </span><br><span class="line">41.             // install NioEventLoopGroup</span><br><span class="line">    </span><br><span class="line">42.             bootstrap.group(bossGroup, workGroup)</span><br><span class="line">    </span><br><span class="line">43.                     // set channel type NIO</span><br><span class="line">    </span><br><span class="line">44.                     .channel(NioServerSocketChannel.class)</span><br><span class="line">    </span><br><span class="line">45.                     // set connect params</span><br><span class="line">    </span><br><span class="line">46.                     .option(ChannelOption.SO_BACKLOG, 1024)</span><br><span class="line">    </span><br><span class="line">47.                     .childOption(ChannelOption.SO_KEEPALIVE, true)</span><br><span class="line">    </span><br><span class="line">48.                     .childOption(ChannelOption.TCP_NODELAY, true)</span><br><span class="line">    </span><br><span class="line">49.                     // set in/out event handler</span><br><span class="line">    </span><br><span class="line">50.                     .childHandler(new ChannelInitializer&lt;NioSocketChannel&gt;() &#123;</span><br><span class="line">    </span><br><span class="line">51.                         @Override</span><br><span class="line">    </span><br><span class="line">52.                         protected void initChannel(NioSocketChannel ch) &#123;</span><br><span class="line">    </span><br><span class="line">53.                             // 添加分隔符解码器</span><br><span class="line">    </span><br><span class="line">54.                             ch.pipeline().addFirst(new DelimiterBasedFrameDecoder(Integer.MAX_VALUE, Unpooled.copiedBuffer(&quot;&amp;&amp;&quot;.getBytes())));</span><br><span class="line">    </span><br><span class="line">55.                             ch.pipeline().addLast(new TcpMsgOutHandler());</span><br><span class="line">    </span><br><span class="line">56.                             ch.pipeline().addLast(new TcpActiveHandler());</span><br><span class="line">    </span><br><span class="line">57.                             ch.pipeline().addLast(new TcpMsgInHandler(produceOrderService, testRecordTopService, testRecordAllService, produceOrderLogService));</span><br><span class="line">    </span><br><span class="line">58.                         &#125;</span><br><span class="line">    </span><br><span class="line">59.                     &#125;);</span><br><span class="line">    </span><br><span class="line">60.             // bind port</span><br><span class="line">    </span><br><span class="line">61.             f = bootstrap.bind(ip, port).sync();</span><br><span class="line">    </span><br><span class="line">62.             if (f.isSuccess()) &#123;</span><br><span class="line">    </span><br><span class="line">63.                 log.info(&quot;start tcp server success: &#123;&#125;&quot;, port);</span><br><span class="line">    </span><br><span class="line">64.             &#125; else &#123;</span><br><span class="line">    </span><br><span class="line">65.                 log.warn(&quot;start tcp server failed: &#123;&#125;&quot;, f.cause().getMessage());</span><br><span class="line">    </span><br><span class="line">66.             &#125;</span><br><span class="line">    </span><br><span class="line">67.             f.channel().closeFuture().sync();</span><br><span class="line">    </span><br><span class="line">68.         &#125; catch (Exception e) &#123;</span><br><span class="line">    </span><br><span class="line">69.             log.error(&quot;start tcp server error: &#123;&#125;&quot;, e.getMessage());</span><br><span class="line">    </span><br><span class="line">70.         &#125; finally &#123;</span><br><span class="line">    </span><br><span class="line">71.             workGroup.shutdownGracefully();</span><br><span class="line">    </span><br><span class="line">72.             bossGroup.shutdownGracefully();</span><br><span class="line">    </span><br><span class="line">73.         &#125;</span><br><span class="line">    </span><br><span class="line">74.     &#125;</span><br><span class="line">    </span><br><span class="line">75. &#125;</span><br></pre></td></tr></table></figure>
+
+<p>3、<a target="_blank" rel="noopener external nofollow noreferrer" href="https://so.csdn.net/so/search?q=Handler&spm=1001.2101.3001.7020">Handler</a></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">1.  @Slf4j</span><br><span class="line">    </span><br><span class="line">2.  @ChannelHandler.Sharable</span><br><span class="line">    </span><br><span class="line">3.  public class TcpActiveHandler extends ChannelInboundHandlerAdapter &#123;</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">5.      private final static AtomicLong activeCount = new AtomicLong(0);</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">7.      @Override</span><br><span class="line">    </span><br><span class="line">8.      public void channelActive(ChannelHandlerContext ctx) &#123;</span><br><span class="line">    </span><br><span class="line">9.          log.info(&quot;active client count: &#123;&#125;&quot;, activeCount.addAndGet(1));</span><br><span class="line">    </span><br><span class="line">10.     &#125;</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">12.     @Override</span><br><span class="line">    </span><br><span class="line">13.     public void channelInactive(ChannelHandlerContext ctx) &#123;</span><br><span class="line">    </span><br><span class="line">14.         log.info(&quot;active client count: &#123;&#125;&quot;, activeCount.decrementAndGet());</span><br><span class="line">    </span><br><span class="line">15.     &#125;</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">17. &#125;</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">1.  public class TcpMsgOutHandler extends ChannelOutboundHandlerAdapter &#123;</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">3.      @Override</span><br><span class="line">    </span><br><span class="line">4.      public void write(ChannelHandlerContext ctx, Object msg, ChannelPromise promise) &#123;</span><br><span class="line">    </span><br><span class="line">5.          ctx.writeAndFlush(Unpooled.copiedBuffer(((String) msg).getBytes(StandardCharsets.UTF_8)));</span><br><span class="line">    </span><br><span class="line">6.      &#125;</span><br><span class="line">    </span><br><span class="line">7.  &#125;</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://download.csdn.net/download/qq_21003081/83924808">netty+4G DTU<br>zip <img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://csdnimg.cn/release/blogv2/dist/components/img/star.png">0星 <br>超过10%的资源 <br>76KB<br><img width="16" height="16" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/arrowDownWhite_abdeba718edc4a5ab1df0e0fc5ee99fd.png"/><br>下载</a></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"> 2.  @Slf4j</span><br><span class="line">    </span><br><span class="line">3.  public class TcpMsgInHandler extends ChannelInboundHandlerAdapter &#123;</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">5.      private final ProduceOrderService produceOrderService;</span><br><span class="line">    </span><br><span class="line">6.      private final TestRecordTopService testRecordTopService;</span><br><span class="line">    </span><br><span class="line">7.      private final TestRecordAllService testRecordAllService;</span><br><span class="line">    </span><br><span class="line">8.      private final ProduceOrderLogService produceOrderLogService;</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">10.     public TcpMsgInHandler(ProduceOrderService produceOrderService, TestRecordTopService testRecordTopService,</span><br><span class="line">    </span><br><span class="line">11.  TestRecordAllService testRecordAllService,ProduceOrderLogService produceOrderLogService) &#123;</span><br><span class="line">    </span><br><span class="line">12.         this.produceOrderService = produceOrderService;</span><br><span class="line">    </span><br><span class="line">13.         this.testRecordTopService = testRecordTopService;</span><br><span class="line">    </span><br><span class="line">14.         this.testRecordAllService = testRecordAllService;</span><br><span class="line">    </span><br><span class="line">15.         this.produceOrderLogService = produceOrderLogService;</span><br><span class="line">    </span><br><span class="line">16.     &#125;</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">18.     @Override</span><br><span class="line">    </span><br><span class="line">19.     public void channelActive(ChannelHandlerContext ctx) &#123;</span><br><span class="line">    </span><br><span class="line">20.         log.info(&quot;client active: &#123;&#125;&quot;, ctx.channel().remoteAddress());</span><br><span class="line">    </span><br><span class="line">21.     &#125;</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">23.     @Override</span><br><span class="line">    </span><br><span class="line">24.     public void channelInactive(ChannelHandlerContext ctx) &#123;</span><br><span class="line">    </span><br><span class="line">25.         log.info(&quot;client inactive: &#123;&#125;&quot;, ctx.channel().remoteAddress());</span><br><span class="line">    </span><br><span class="line">26.     &#125;</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">28.     @Override</span><br><span class="line">    </span><br><span class="line">29.     public void channelRead(ChannelHandlerContext ctx, Object msg) &#123;</span><br><span class="line">    </span><br><span class="line">30.         ByteBuf byteBuf = (ByteBuf) msg;</span><br><span class="line">    </span><br><span class="line">31.         String readMsg = byteBuf.toString(CharsetUtil.UTF_8);</span><br><span class="line">    </span><br><span class="line">32.         ProduceMsg produceMsg = null;</span><br><span class="line">    </span><br><span class="line">33.         try &#123;</span><br><span class="line">    </span><br><span class="line">34.             produceMsg = JSONObject.parseObject(readMsg, ProduceMsg.class);</span><br><span class="line">    </span><br><span class="line">35.         &#125; catch (Exception e) &#123;</span><br><span class="line">    </span><br><span class="line">36.             log.error(&quot;ProduceMsg 格式化消息失败！&#123;&#125;&quot;, e.getMessage());</span><br><span class="line">    </span><br><span class="line">37.             ctx.write(ERROR_FORMAT_MSG);</span><br><span class="line">    </span><br><span class="line">38.         &#125;</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">40.         if (produceMsg != null) &#123;</span><br><span class="line">    </span><br><span class="line">41.             log.info(&quot;Client Msg: &#123;&#125;&quot;, produceMsg);</span><br><span class="line">    </span><br><span class="line">42.             TestRecordTopVO testRecordTopVO;</span><br><span class="line">    </span><br><span class="line">43.             String msgType = produceMsg.getMsgType();</span><br><span class="line">    </span><br><span class="line">44.             String msgContent = produceMsg.getMsgContent();</span><br><span class="line">    </span><br><span class="line">45.             switch (msgType) &#123;</span><br><span class="line">    </span><br><span class="line">46.                 // 通过IMEI号获取订单信息</span><br><span class="line">    </span><br><span class="line">47.                 case FIND_PRODUCE_ORDER_INFO:</span><br><span class="line">    </span><br><span class="line">48.                     ProduceOrderVO produceOrderVO = produceOrderService.queryProduceOrder(msgContent);</span><br><span class="line">    </span><br><span class="line">49.                     if (produceOrderVO == null) &#123;</span><br><span class="line">    </span><br><span class="line">50.                         ctx.write(ERROR_RECORD_NOT_EXIST);</span><br><span class="line">    </span><br><span class="line">51.                     &#125; else &#123;</span><br><span class="line">    </span><br><span class="line">52.                         ctx.write(JSONObject.toJSONString(produceOrderVO));</span><br><span class="line">    </span><br><span class="line">53.                     &#125;</span><br><span class="line">    </span><br><span class="line">54.                     break;</span><br><span class="line">    </span><br><span class="line">55.                 case SAVE_PRODUCE_DATA:</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">57.                     break;</span><br><span class="line">    </span><br><span class="line">58.                 case SAVE_PRODUCE_LOG:</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">60.                     break;</span><br><span class="line">    </span><br><span class="line">61.                 case PRODUCT_OUTBOUND:</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">63.                     break;</span><br><span class="line">    </span><br><span class="line">64.                 case GET_METER_CODE:</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">66.                     break;</span><br><span class="line">    </span><br><span class="line">67.                 case FIND_PRODUCE_RECORD_BY_IMEI:</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">69.                     break;</span><br><span class="line">    </span><br><span class="line">70.                 case FIND_PRODUCE_RECORD_BY_METER_CODE:</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">72.                     break;</span><br><span class="line">    </span><br><span class="line">73.                 default:</span><br><span class="line">    </span><br><span class="line">74.                     log.error(&quot;消息不存在！&quot;);</span><br><span class="line">    </span><br><span class="line">75.             &#125;</span><br><span class="line">    </span><br><span class="line">76.         &#125;</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">78.     &#125;</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">80.     @Override</span><br><span class="line">    </span><br><span class="line">81.     public void channelReadComplete(ChannelHandlerContext ctx) &#123;</span><br><span class="line">    </span><br><span class="line">82.         ctx.flush();</span><br><span class="line">    </span><br><span class="line">83.     &#125;</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">85.     @Override</span><br><span class="line">    </span><br><span class="line">86.     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) &#123;</span><br><span class="line">    </span><br><span class="line">87.         log.error(&quot;client &#123;&#125; exception: &#123;&#125;&quot;, ctx.channel().remoteAddress(), cause);</span><br><span class="line">    </span><br><span class="line">88.     &#125;</span><br><span class="line">    </span><br><span class="line">89. &#125;</span><br></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/u014608435"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://profile.csdnimg.cn/4/3/3/3_u014608435">L丶cz</a></p>
+<p>关注</p>
+<ul>
+<li><p> <img width="24" height="24" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/newHeart2021White_288f27f4cd24452aafced14053370e43.png"/> <a id="spanCount"></a>0 </p>
+</li>
+<li><img width="24" height="24" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/newUnHeart2021White_a42b7aff52694e5e88f8747abc4c3e.png"/>
+  </li>
+<li><p><img width="24" height="24" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/newComment2021White_7671ab3009344412a01667958509d2.png"/>0</p>
+</li>
+<li><p> <img width="24" height="24" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/newCollectWhite_dada2c81398f420590bab893b9f940bb.png"/> <a id="get-collection"></a>0 </p>
+</li>
+<li><img width="24" height="24" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/newRewardWhite_2caf3138de194df581e7f8488f543848.png"/></li>
+<li><img width="24" height="24" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/newShareWhite_0ef9634067204e478561888308d9b65f.png"/></li>
+</ul>
+<p>专栏目录</p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/weixin_41144975/article/details/99822095"><em>netty</em>无法导入<em>注入</em>Bean问题解决</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/weixin_41144975">weixin_41144975的博客</a></p>
+<p> <img width="14" height="14" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/readCountWhite_e0c4902349c94ffc9a3cee044765f7ae.png"/> 470 </p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/weixin_41144975/article/details/99822095">这个问题和weboscket一样 * 因 <em>Spring**Boot</em> WebSocket 对每个客户端连接都会创建一个 WebSocketServer<em>（</em>@ServerEndpoint 注解对应的<em>）</em> 对象，Bean <em>注入</em>操作会被直接略过，因而手动<em>注入</em>一个全局变量，<em>spring</em>管理的都是单对象，和Websocket 多对象相冲突。 同理 <em>netty</em>也是多对象,<em>spring</em>无法管理 解决方法: 网上出现较…</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/qq_39028580/article/details/96614972">在<em>Netty</em>中<em>注入**Spring</em>成份</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/qq_39028580">石磊的博客</a></p>
+<p> <img width="14" height="14" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/readCountWhite_e0c4902349c94ffc9a3cee044765f7ae.png"/> 781 </p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/qq_39028580/article/details/96614972">在<em>Netty</em>中<em>注入**Spring</em>成份</a></p>
+<p><a id="commentBox"></a></p>
+<p>评论</p>
+<p>写评论</p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/qq_39389954/article/details/121353960"><em>spring</em> <em>boot</em>集成<em>netty**注入</em>bean_阔乐猫的博客</a></p>
+<p>6-6</p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/qq_39389954/article/details/121353960">主要代码 启动<em>netty</em> 解码 要点: 1.再要<em>注入</em>bean的类上加上**@Component** 2.<em>spring</em>默认创建的对像是单例的,所以要使用**@Scope(“prototype”)** 每次获取对象都会创建新的对象,不然<em>netty</em>只能创建一个连接,当创建多个的时候报so …</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/u010046887/article/details/88815130">…无法<em>注入</em>bean的问题解决_shu010的博客_<em>netty</em> <em>注入</em>bean</a></p>
+<p>7-29</p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/u010046887/article/details/88815130">作者在使用<em>netty</em>集成<em>spring**注入</em>调用时普通的@Autowired一直bean<em>注入</em>为null,这里我只是记录针对<em>netty<strong>注入</strong>spring</em>无法<em>注入</em>bean的解决发放,具体底层实现,希望大神不吝赐教 首先上解决代码块,copy过去就可以直接用 …</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/qq_41850449/article/details/103346956"><em>Netty</em>-4 无法依赖<em>注入**Service</em>s</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/qq_41850449">qq_41850449的博客</a></p>
+<p> <img width="14" height="14" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/readCountWhite_e0c4902349c94ffc9a3cee044765f7ae.png"/> 715 </p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/qq_41850449/article/details/103346956">今天博主在写数据库的时候遇到一个问题<em>：</em> @ChannelHandler.Sharable public class TcpHandler extends ChannelInboundHandlerAdapter { @Autowired private FormRepository formRepository; //这个借口<em>注入</em>不来啊！气 @Override public void c…</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/a132445/article/details/114927374">大牛深入讲解！9000字通俗易懂的讲解下<em>Java</em>注解，赶紧学起来</a></p>
+<p> <img width="14" height="14" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/readCountWhite_e0c4902349c94ffc9a3cee044765f7ae.png"/> 179 </p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/a132445/article/details/114927374">前言 在大型系统中，为了减少数据库压力通常会引入缓存机制，一旦引入缓存又很容易造成缓存和数据库数据不一致，导致用户看到的是旧数据。 为了减少数据不一致的情况，更新缓存和数据库的机制显得尤为重要，接下来带领大家踩踩坑。 直击面试 反正我是带着这些问题往下读的 说一下 JVM 运行时数据区吧，都有哪些区？分别是干什么的？ <em>Java</em> 8 的内存分代改进 举例栈溢出的情况？ 调整栈大小，就能保存不出现溢出吗？ 分配的栈内存越大越好吗？ 垃圾回收是否会涉及到虚拟机栈？ 方法中定义的局部变量是否线程安全？ 运行时</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/chanmufeng/article/details/108419750"><em>Netty</em> handler无法进行依赖<em>注入</em>的问题_蝉 沐 风的博客…</a></p>
+<p>5-20</p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/chanmufeng/article/details/108419750">使用<em>Netty</em>作为服务端程序时,遇到handler无法进行依赖<em>注入</em>的问题,代码如下:@Slf4jpublic class <em>Netty</em>ServerHandler extends ChannelInboundHandlerAdapter { //<em>注入</em>失败,获取值为null @Autowired Xx<em>Service</em> xx<em>Service</em>; //…忽略…</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/qq_43318840/article/details/122802446"><em>Netty</em> 为handler<em>注入</em>服务接口_勤奋的Mr.Li的博客</a></p>
+<p>5-8</p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/qq_43318840/article/details/122802446">问题: 在<em>Spring</em>项目中我们总是习惯性的为要交给<em>Spring</em>托管的bean加上类注解@Component/@<em>Service</em>等,然后在使用其的地方使用@AutoWired/@Resource等注解<em>注入</em>实例. 然而<em>Netty</em>的handler是<em>netty</em>启动的时候new出来,并没有交给<em>spring</em> IOC托管,直接用…</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/weixin_39641876/article/details/110091261">@<em>service</em>注解_解决websocket和<em>netty</em>中无法<em>注入**service</em></a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/weixin_39641876">weixin_39641876的博客</a></p>
+<p> <img width="14" height="14" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/readCountWhite_e0c4902349c94ffc9a3cee044765f7ae.png"/> 252 </p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/weixin_39641876/article/details/110091261">首先，目前我的项目是<em>spring**boot</em>+<em>netty</em>，在<em>netty</em>-client中<em>注入</em>了<em>service</em>，但是在调用<em>service</em>的时候一直报null空指针异常。刚开始实验了N次还是无法解决这个问题，以为是自己的写法问题，并没有想到是<em>service</em>无法实例化的问题，后来通过度娘，才找到了解决方法。方法如下<em>：</em>将websocket或者<em>netty</em>交给<em>spring</em>管理(在类上加上 @Component注解)…</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/ren365880/article/details/122506688"><em>Netty</em> Handler无法依赖<em>注入</em> <em>注入**service</em>对象失败</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/ren365880">梦里蓝天</a></p>
+<p> <img width="14" height="14" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/readCountWhite_e0c4902349c94ffc9a3cee044765f7ae.png"/> 317 </p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/ren365880/article/details/122506688">@Component //第一步 加入<em>spring</em>容器 public class FpgaScoketServerHandler extends SimpleChannelInboundHandler&lt;String&gt;{ public static ChannelGroup channelGroup = new DefaultChannelGroup(GlobalEventExecutor.INSTANCE); @Autowired //第<em>二</em>步 把dao加载进来</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/m0_57286622/article/details/117117983">深度解读<em>Netty</em>:自定义组件如何<em>注入**Spring</em>底层的组件_普…</a></p>
+<p>6-3</p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/m0_57286622/article/details/117117983">“<em>Java</em>程序员面试笔试真题库.pdf”(实际上比预期多花了不少精力),包含分布式架构、高可扩展、高性能、高并发、Jvm性能调优、<em>Spring</em>,MyBatis,Nginx源码分析,Redis,ActiveMQ、Mycat、<em>Netty</em>、Kafka、Mysql、Zookeeper、Tomcat、Docker、Dubbo、…</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/weixin_41452575/article/details/111225446"><em>netty<strong>整合</strong>spring**boot</em>无法<em>注入</em>bean的问题</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/weixin_41452575">祥哥</a></p>
+<p> <img width="14" height="14" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/readCountWhite_e0c4902349c94ffc9a3cee044765f7ae.png"/> 482 </p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/weixin_41452575/article/details/111225446">原因分析，是因为没有遵守<em>spring</em>的依赖<em>注入</em>规则，对象不能通过new来实体化 决绝如下<em>：</em> 1. <em>netty</em>的server主类添加@Component注解， 2. handler通过注解<em>注入</em>，不能new 3. handler处理类必须添加@Component注解 …</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/weixin_46768610/article/details/112386902"><em>Spring**Boot</em>+<em>Netty</em>+Websocket<em>整合</em>案例<em>（</em>3分钟实现一个基本的聊天功能<em>）</em></a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/weixin_46768610">程序员闪充宝</a></p>
+<p> <img width="14" height="14" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/readCountWhite_e0c4902349c94ffc9a3cee044765f7ae.png"/> 1403 </p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/weixin_46768610/article/details/112386902">作者<em>：</em>愚公要移山www.toutiao.com/i6775018273139327492/之前使用<em>Spring<strong>boot</strong>整合</em>了websocket，实现了一个后端向前端推送信息的基本小案例，…</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/weixin_33768481/article/details/93903186"><em>Spring</em> <em>Boot</em> + <em>Netty</em> 中 @Autowired, @Value 为空解决</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/weixin_33768481">weixin_33768481的博客</a></p>
+<p> <img width="14" height="14" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/readCountWhite_e0c4902349c94ffc9a3cee044765f7ae.png"/> 487 </p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/weixin_33768481/article/details/93903186">问题描述 使用 <em>Spring</em> <em>Boot</em> + <em>Netty</em> 新建项目时 Handler 中的 @Autowired, @Value 注解的始终为空值 解决方法 @Component // 1. 添加 @Component 注解 public class TestHandler extends ChannelInboundHandlerAdapter { private static Test…</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/xingxiupaioxue/article/details/82498466"><em>Spring**Boot</em>集成<em>Netty</em>时在Handler类中<em>注入**service</em>和dao为null</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/xingxiupaioxue">人生最遗憾的莫过于：轻易地放弃了不该放弃的,固执地坚持了不该坚持的</a></p>
+<p> <img width="14" height="14" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/readCountWhite_e0c4902349c94ffc9a3cee044765f7ae.png"/> 5242 </p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/xingxiupaioxue/article/details/82498466">最近在做一个服务器接收客户端消息，之前一直都只接触web开发，第一次接触服务器开发，接触到<em>Netty</em>，但在<em>Netty</em>的Handler类里<em>注入</em>为null。 public class HttpRequestHandler extends SimpleChannelInboundHandler&lt;FullHttpRequest&gt; { @Autowired private U…</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/qq_39851704/article/details/80392867"><em>spring</em>的@Autowired<em>注入</em>无法实例化<em>service</em>问题解决<em>（**netty</em>处理类无法实例化<em>service**）</em><br>热门推荐</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/qq_39851704">434494584_磊</a></p>
+<p> <img width="14" height="14" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/readCountWhite_e0c4902349c94ffc9a3cee044765f7ae.png"/> 1万+ </p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/qq_39851704/article/details/80392867">首先目前我写的项目是<em>spring**boot</em>+<em>netty</em>，在接收客户端传输的数据时调用<em>service</em>一直报null指针异常  刚开始没有想到是<em>service</em>无法实例化的问题，一直在测试数据方面的问题，后来去群里讨论才知道问题所在  我这里讲的<em>netty</em>接收数据的handler类，但是基本都大同小异  如果我们直接在一个不是controller类的里面<em>注入</em>@Autowired的时候，而且还去调用就会…</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/zhiyi321/article/details/51659572">主动获取<em>spring</em>容器工具类<em>Spring</em>ContextUtil</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/zhiyi321">飞翔中的菜鸟</a></p>
+<p> <img width="14" height="14" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/readCountWhite_e0c4902349c94ffc9a3cee044765f7ae.png"/> 8239 </p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/zhiyi321/article/details/51659572">/** * 获取<em>spring</em>容器，以访问容器中定义的其他bean */ @Component public class <em>Spring</em>ContextUtil implements ApplicationContextAware { // <em>Spring</em>应用上下文环境 @Autowired private ApplicationContext applicationCont</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/TIANTIANDOUNITIAN/article/details/82761395">关于<em>netty</em>中<em>spring</em>对象<em>注入</em>失败的问题</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/TIANTIANDOUNITIAN">TIANTIANDOUNITIAN的博客</a></p>
+<p> <img width="14" height="14" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/readCountWhite_e0c4902349c94ffc9a3cee044765f7ae.png"/> 1553 </p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/TIANTIANDOUNITIAN/article/details/82761395">今天在做项目的时候发现在<em>netty</em>中<em>注入**service</em>失败，百度许久后也找不到答案(@Component,@PostConstruct)未起作用，后灵光一现，发现了问题所在: 如图:         这些地方都必须通过<em>spring**注入</em>才能实现其他依赖<em>注入</em>，之前这里都是采用new的，所以导致<em>spring**注入</em>失败…</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://chanmufeng.blog.csdn.net/article/details/108419750"><em>Netty</em> handler无法进行依赖<em>注入</em>的问题</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/chanmufeng">跑码场</a></p>
+<p> <img width="14" height="14" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/readCountWhite_e0c4902349c94ffc9a3cee044765f7ae.png"/> 867 </p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://chanmufeng.blog.csdn.net/article/details/108419750">使用<em>Netty</em>作为服务端程序时，遇到handler无法进行依赖<em>注入</em>的问题，代码如下<em>：</em> @Slf4j public class <em>Netty</em>ServerHandler extends ChannelInboundHandlerAdapter { //<em>注入</em>失败，获取值为null @Autowired Xx<em>Service</em> xx<em>Service</em>; //……….忽略其他程序 } 解决方法如下及原理如下<em>：</em> @Component //第1步 public class Server</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/woaiwojialanxi/article/details/123807956"><em>Spring</em> <em>Boot</em> <em>整合</em> <em>Netty</em>服务<br>最新发布</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/woaiwojialanxi">woaiwojialanxi的专栏</a></p>
+<p> <img width="14" height="14" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/readCountWhite_e0c4902349c94ffc9a3cee044765f7ae.png"/> 735 </p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/woaiwojialanxi/article/details/123807956"><em>Spring</em> <em>Boot</em> <em>整合</em> <em>Netty</em>服务</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/aresblank/article/details/122377344">【BUG解决】<em>Spring</em> <em>boot</em> 中Handler，Filter<em>注入</em> <em>Service</em>、Repositoy为null</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/aresblank">aresblank的博客</a></p>
+<p> <img width="14" height="14" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/readCountWhite_e0c4902349c94ffc9a3cee044765f7ae.png"/> 286 </p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/aresblank/article/details/122377344">新建 <em>spring</em>BeanUtil.<em>java</em> import org.<em>spring</em>framework.beans.BeansException; import org.<em>spring</em>framework.context.ApplicationContext; import org.<em>spring</em>framework.context.ApplicationContextAware; import org.<em>spring</em>framework.stereotype.Component; /** * @autho.</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/qq_29807745/article/details/82779884"><em>netty</em>学习—-<em>spring<strong>整合</strong>netty</em>无法<em>注入</em>bean的问题解决</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/qq_29807745">8080</a></p>
+<p> <img width="14" height="14" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/readCountWhite_e0c4902349c94ffc9a3cee044765f7ae.png"/> 3735 </p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/qq_29807745/article/details/82779884">作者在使用<em>netty</em>集成<em>spring**注入</em>调用时普通的@Autowired一直bean<em>注入</em>为null,这里我只是记录针对<em>netty<strong>注入</strong>spring</em>无法<em>注入</em>bean的解决发放,具体底层实现,希望大神不吝赐教 首先上解决代码块,copy过去就可以直接用 @Component public class <em>Netty</em>WebSocketServerHandler extends SimpleChannel…</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://yongxin.blog.csdn.net/article/details/121345636"><em>Java</em>使用final构造器<em>注入</em>方式更安全</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/Lance_welcome">蜜桃先生的博客</a></p>
+<p> <img width="14" height="14" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/readCountWhite_e0c4902349c94ffc9a3cee044765f7ae.png"/> 3104 </p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://yongxin.blog.csdn.net/article/details/121345636">普通玩家 private final UserRepository userRepository; public UserResource(UserRepository userRepository) { this.userRepository= userRepository; } 高级玩家 添加在类上 @RequiredArgsConstructor(onConstructor = @__(@Autowired)) final<em>注入</em> private final UserValidator</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/sinat_35938012/article/details/88336639"><em>Netty</em>中注解使用<em>Service</em>或者Mapper</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/sinat_35938012">楊杰的博客</a></p>
+<p> <img width="14" height="14" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/readCountWhite_e0c4902349c94ffc9a3cee044765f7ae.png"/> 2501 </p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/sinat_35938012/article/details/88336639"><em>Spring**Boot</em>搭配<em>Netty</em>使用，在Handler中注解使用<em>Service</em>/Mapper 一直 为null。起初使用 <em>Spring**Boot</em>启动类继承ApplicationContextAware，再写一个静态方法获取Bean来解决。放在服务器上跑了几个小时就出现了问题，好像是该方案造成的。另辟蹊径，再看网上给出的答案，因为 Handler 是 new出来的，不被<em>Spring</em>管理，所以注…</a></p>
+<h3 id="“相关推荐”对你有帮助么？"><a href="#“相关推荐”对你有帮助么？" class="headerlink" title="“相关推荐”对你有帮助么？"></a>“相关推荐”对你有帮助么？</h3><ul>
+<li><img width="24" height="24" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/npsFeel1_37a437c4cc9341a7a574b530628722c6.png"/>
+  
+  非常没帮助</li>
+<li><img width="24" height="24" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/npsFeel2_1d01c2a04c1348faaf1a1fc595b24113.png"/>
+  
+  没帮助</li>
+<li><img width="24" height="24" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/npsFeel3_0b650fb1aee54a919b70a8fb42ab83d3.png"/>
+  
+  一般</li>
+<li><img width="24" height="24" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/npsFeel4_4d99f738913648a3936dab68ef6592b8.png"/>
+  
+  有帮助</li>
+<li><img width="24" height="24" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/npsFeel5_6d92be406a364239bdcc72d64702145a.png"/>
+  
+  非常有帮助</li>
+</ul>
+<p>©️2022 CSDN 皮肤主题：深蓝海洋 设计师：CSDN官方博客 <a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/">返回首页</a></p>
+<ul>
+<li><p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.csdn.net/company/index.html#about">关于我们</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.csdn.net/company/index.html#recruit">招贤纳士</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://marketing.csdn.net/questions/Q2202181741262323995">商务合作</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://marketing.csdn.net/questions/Q2202181748074189855">寻求报道</a></p>
+</li>
+<li><p><img width="16" height="16" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/tel_7d33db46d3684a788bdc474140f110fd.png"/> 400-660-0108</p>
+</li>
+<li><p><img width="16" height="16" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/email_4e8c8023d18e4a79bf9830cd9508a8c1.png"/><a href="mailto:webmaster@csdn.net" rel="external nofollow noreferrer">kefu@csdn.net</a></p>
+</li>
+<li><p><img width="16" height="16" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/cs_6f13f0fd82c74ab38df90bc5a0ab0dab.png"/><a target="_blank" rel="noopener external nofollow noreferrer" href="https://csdn.s2.udesk.cn/im_client/?web_plugin_id=29181">在线客服</a></p>
+</li>
+<li><p>工作时间 8:30-22:00</p>
+</li>
+<li><p><a target="_blank" rel="noopener external nofollow noreferrer" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=11010502030143">公安备案号11010502030143</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener external nofollow noreferrer" href="http://beian.miit.gov.cn/publish/query/indexFirst.action">京ICP备19004658号</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://csdnimg.cn/release/live_fe/culture_license.png">京网文〔2020〕1039-165号</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://csdnimg.cn/cdn/content-toolbar/csdn-ICP.png">经营性网站备案信息</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener external nofollow noreferrer" href="http://www.bjjubao.org/">北京互联网违法和不良信息举报中心</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://download.csdn.net/tutelage/home">家长监护</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener external nofollow noreferrer" href="http://www.cyberpolice.cn/">网络110报警服务</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener external nofollow noreferrer" href="http://www.12377.cn/">中国互联网举报中心</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://chrome.google.com/webstore/detail/csdn%E5%BC%80%E5%8F%91%E8%80%85%E5%8A%A9%E6%89%8B/kfkdboecolemdjodhmhmcibjocfopejo?hl=zh-CN">Chrome商店下载</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/blogdevteam/article/details/126135357">账号管理规范</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.csdn.net/company/index.html#statement">版权与免责声明</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/blogdevteam/article/details/90369522">版权申诉</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://img-home.csdnimg.cn/images/20220705052819.png">出版物许可证</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://img-home.csdnimg.cn/images/20210414021142.jpg">营业执照</a></p>
+</li>
+<li><p>©1999-2022北京创新乐知网络技术有限公司</p>
+</li>
+</ul>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/u014608435"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://profile.csdnimg.cn/4/3/3/3_u014608435"></a></p>
+<p><a id="uid"></a><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/u014608435" title="L丶cz">L丶cz</a></p>
+<p>码龄8年 <a target="_blank" rel="noopener external nofollow noreferrer" href="https://i.csdn.net/#/uc/profile?utm_source=14998968" title="杭州为峰科技技术有限公司"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://csdnimg.cn/identity/enstaf.png"> 杭州为峰科技技术有限公司</a> </p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/u014608435">24<br>原创</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/rank/list/weekly">109万+<br>周排名</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/rank/list/total">17万+<br>总排名</a></p>
+<p>1万+</p>
+<p>访问</p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/blogdevteam/article/details/103478461"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://csdnimg.cn/identity/blog2.png"></a></p>
+<p>等级</p>
+<p>265</p>
+<p>积分</p>
+<p><a id="fan"></a>6</p>
+<p>粉丝</p>
+<p>12</p>
+<p>获赞</p>
+<p>10</p>
+<p>评论</p>
+<p>21</p>
+<p>收藏</p>
+<img width="36" height="36" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/53a3e1cbc8b643cd88e0be2ea68200f7_b11b9796d27246c29.png"/>
+
+<img width="36" height="36" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/fenxiangxuetu_240_166ee7e56f144032863d7c159beae245.png"/>
+
+<img width="36" height="36" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/fengxiangxiaobing_240_aa1d4d85af4942f9aeb0d2f4b660.png"/>
+
+<img width="36" height="36" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/xinxiu_240_66a600b5490a46c2bf97a51d35280aea.png"/>
+
+<img width="36" height="36" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/70592b2299594e37aedcaa91fc52a294_434b0200494744089.png"/>
+
+<img width="36" height="36" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/qixiebiaobing4_240_68f33cb333ae48ebb049f96395abbd2.png"/>
+
+<img width="36" height="36" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/f19b84c244aa4e6d8bf469b4aff1f98c_97709716ea3e4243a.png"/>
+
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://im.csdn.net/chat/u014608435">私信</a></p>
+<p><a id="btnAttent"></a>关注</p>
+<img width="32" height="32" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/csdn-sou_20d4bfd550c94500bd2cd5c37e2d9a1e.png"/>
+
+<h3 id="热门文章"><a href="#热门文章" class="headerlink" title="热门文章"></a>热门文章</h3><ul>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/u014608435/article/details/122028502">电信天翼物联网平台对接应用服务ctWing <img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://csdnimg.cn/release/blogv2/dist/pc/img/readCountWhite.png"> 3421</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/u014608435/article/details/121915294">微服务实战（六）：角色权限控制 <img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://csdnimg.cn/release/blogv2/dist/pc/img/readCountWhite.png"> 1343</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/u014608435/article/details/121939590">Delphi断线重连线程 <img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://csdnimg.cn/release/blogv2/dist/pc/img/readCountWhite.png"> 1128</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/u014608435/article/details/121939285">算法图解（一）：算法简介 <img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://csdnimg.cn/release/blogv2/dist/pc/img/readCountWhite.png"> 1103</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/u014608435/article/details/121979065">Vue实现条码打印、打印回调监听 <img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://csdnimg.cn/release/blogv2/dist/pc/img/readCountWhite.png"> 944</a></li>
+</ul>
+<h3 id="分类专栏"><a href="#分类专栏" class="headerlink" title="分类专栏"></a>分类专栏</h3><ul>
+<li> <a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/u014608435/category_11560429.html"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img-blog.csdnimg.cn/20190918140053667.png?x-oss-process=image/resize,m_fixed,h_64,w_64">  [微信小程序]</a> 1篇</li>
+<li> <a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/u014608435/category_11528928.html"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img-blog.csdnimg.cn/20201014180756923.png?x-oss-process=image/resize,m_fixed,h_64,w_64"> [Java]</a> 6篇</li>
+<li> <a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/u014608435/category_11538084.html"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img-blog.csdnimg.cn/20201014180756925.png?x-oss-process=image/resize,m_fixed,h_64,w_64"> [算法图解，入门]</a> 7篇</li>
+<li> <a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/u014608435/category_11541957.html"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img-blog.csdnimg.cn/20201014180756754.png?x-oss-process=image/resize,m_fixed,h_64,w_64"> [Vue]前端</a> 1篇</li>
+<li> <a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/u014608435/category_11527000.html"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img-blog.csdnimg.cn/20190927151117521.png?x-oss-process=image/resize,m_fixed,h_64,w_64"> [SpringCloud]微服务</a> 6篇</li>
+<li> <a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/u014608435/category_11527526.html"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img-blog.csdnimg.cn/20201014180756918.png?x-oss-process=image/resize,m_fixed,h_64,w_64"> [Delphi]桌面开发</a> 2篇</li>
+<li> <a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/u014608435/category_11532737.html"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img-blog.csdnimg.cn/20201014180756754.png?x-oss-process=image/resize,m_fixed,h_64,w_64"> [工作日常]</a> 1篇</li>
+</ul>
+<img width="12" height="7" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/arrowDownWhite_47a6c4a18f9e4acfbce8107f201c8fbc.png"/>
+
+<h3 id="最新评论"><a href="#最新评论" class="headerlink" title="最新评论"></a>最新评论</h3><ul>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/u014608435/article/details/122028502#comments_19475619">电信天翼物联网平台对接应用服务ctWing</a>  <a target="_blank" rel="noopener external nofollow noreferrer" href="https://zhuyh.blog.csdn.net/">码农阿豪:</a> 好文，已学习</li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/u014608435/article/details/122028502#comments_19475616">电信天翼物联网平台对接应用服务ctWing</a>  <a target="_blank" rel="noopener external nofollow noreferrer" href="https://zhuyh.blog.csdn.net/">码农阿豪:</a> 好文，已学习</li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/u014608435/article/details/122028502#comments_19475614">电信天翼物联网平台对接应用服务ctWing</a>  <a target="_blank" rel="noopener external nofollow noreferrer" href="https://zhuyh.blog.csdn.net/">码农阿豪:</a> 好文，已学习</li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/u014608435/article/details/121939285#comments_19408409">算法图解（一）：算法简介</a>  <a target="_blank" rel="noopener external nofollow noreferrer" href="https://zhuyh.blog.csdn.net/">码农阿豪:</a> 算法对于写出优秀代码特别关键，期待更新</li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/u014608435/article/details/121939590#comments_19408396">Delphi断线重连线程</a>  <a target="_blank" rel="noopener external nofollow noreferrer" href="https://zhuyh.blog.csdn.net/">码农阿豪:</a> 大神</li>
+</ul>
+<h3 id="您愿意向朋友推荐“博客详情页”吗？"><a href="#您愿意向朋友推荐“博客详情页”吗？" class="headerlink" title="您愿意向朋友推荐“博客详情页”吗？"></a>您愿意向朋友推荐“博客详情页”吗？</h3><ul>
+<li><img width="28" height="28" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/npsFeel1_37a437c4cc9341a7a574b530628722c6.png"/>
+  
+  强烈不推荐</li>
+<li><img width="28" height="28" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/npsFeel2_1d01c2a04c1348faaf1a1fc595b24113.png"/>
+  
+  不推荐</li>
+<li><img width="28" height="28" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/npsFeel3_0b650fb1aee54a919b70a8fb42ab83d3.png"/>
+  
+  一般般</li>
+<li><img width="28" height="28" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/npsFeel4_4d99f738913648a3936dab68ef6592b8.png"/>
+  
+  推荐</li>
+<li><img width="28" height="28" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/npsFeel5_6d92be406a364239bdcc72d64702145a.png"/>
+  
+  强烈推荐</li>
+</ul>
+<h3 id="最新文章"><a href="#最新文章" class="headerlink" title="最新文章"></a>最新文章</h3><ul>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/u014608435/article/details/122178532">微信小程序：蓝牙通讯，搜索、发送与接收</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/u014608435/article/details/122028502">电信天翼物联网平台对接应用服务ctWing</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/u014608435/article/details/122005652">算法图解（七）：贪婪算法</a></li>
+</ul>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/u014608435?type=blog&year=2021&month=12">2021年24篇</a></p>
+<p> <img width="24" height="24" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/iconHideSide_24beea40210e4f1e81f46ff602fcd281.png"/><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/iconSideBeta_c8a06184e0af4326a6d1cb9f88dbb4aa.png"> <img width="24" height="24" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/guide_26ca1463c27842299415e2b2cf021f61.png"/><img width="24" height="24" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/kefu_1f30ccc38e984c71b96cbd4ef90c2bdb.png"/>举报</p>
+<p><a id="fatkun-drop-panel-close-btn"></a>×</p>
+<p>拖拽到此处</p>
+<p>图片将完成下载</p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://so.csdn.net/so/search?from=pc_blog_select&q=TcpMsgInHandler"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://csdnimg.cn/release/blogv2/dist/pc/img/articleSearchWhite.png"></a> <img width="18" height="18" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/articleComment1White_c915513473524b60b8c14a916c3e0.png"/></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:978252321@qq.com" rel="external nofollow noreferrer">传礼</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://iwangchuanli.github.io/posts/38149.html">https://iwangchuanli.github.io/posts/38149.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow noreferrer" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://iwangchuanli.github.io" target="_blank">传礼</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img3_17WEKf.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/posts/36251.html"><img class="prev-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img19_kf59TQ.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Spring学习与面试</div></div></a></div><div class="next-post pull-right"><a href="/posts/34340.html"><img class="next-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img6_L358Nt.jpeg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">SpringBoot + Flowable的入门篇</div></div></a></div></nav><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div><div id="comment-switch"><span class="first-comment">Valine</span><span class="switch-btn"></span><span class="second-comment">Gitalk</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div><div><div id="gitalk-container"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">Nice to meet you ~</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Spring-Boot%E6%95%B4%E5%90%88Netty%EF%BC%88%E4%BA%8C%EF%BC%89%EF%BC%9A%E6%B3%A8%E5%85%A5Service"><span class="toc-number">1.</span> <span class="toc-text">Spring Boot整合Netty（二）：注入Service</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%80%9C%E7%9B%B8%E5%85%B3%E6%8E%A8%E8%8D%90%E2%80%9D%E5%AF%B9%E4%BD%A0%E6%9C%89%E5%B8%AE%E5%8A%A9%E4%B9%88%EF%BC%9F"><span class="toc-number">1.0.1.</span> <span class="toc-text">“相关推荐”对你有帮助么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%83%AD%E9%97%A8%E6%96%87%E7%AB%A0"><span class="toc-number">1.0.2.</span> <span class="toc-text">热门文章</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E7%B1%BB%E4%B8%93%E6%A0%8F"><span class="toc-number">1.0.3.</span> <span class="toc-text">分类专栏</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%80%E6%96%B0%E8%AF%84%E8%AE%BA"><span class="toc-number">1.0.4.</span> <span class="toc-text">最新评论</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%82%A8%E6%84%BF%E6%84%8F%E5%90%91%E6%9C%8B%E5%8F%8B%E6%8E%A8%E8%8D%90%E2%80%9C%E5%8D%9A%E5%AE%A2%E8%AF%A6%E6%83%85%E9%A1%B5%E2%80%9D%E5%90%97%EF%BC%9F"><span class="toc-number">1.0.5.</span> <span class="toc-text">您愿意向朋友推荐“博客详情页”吗？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%80%E6%96%B0%E6%96%87%E7%AB%A0"><span class="toc-number">1.0.6.</span> <span class="toc-text">最新文章</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget ads-wrap"><a target="_blank" href="https://www.aliyun.com/activity?userCode=dpj8p3hl" rel="external nofollow noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/aliyun_whuCuE.jpg" style="width:100%;height:100%;object-fit:cover;"></a></div></div></div></main><footer id="footer" style="background-image: url('https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img3_17WEKf.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2018 - 2022 By 传礼</div><div class="footer_custom_text"><p style="display:inline-flex">本网站由<a href="https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral" rel="external nofollow noreferrer" target="_blank"><img style="width:60px;height:35px;" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/11/又拍云_logo5_O9kNul.png" title="又拍云"/></a>提供CDN加速/云存储服务</p><p><a style="margin-inline:5px" target="_blank" href="https://hexo.io/" rel="external nofollow noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Frame-Hexo-blue?style=flat&logo=hexo" title="博客框架为Hexo"></a><a style="margin-inline:5px" target="_blank" href="https://butterfly.js.org/" rel="external nofollow noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Theme-Butterfly-6513df?style=flat&logo=bitdefender" title="主题采用butterfly"></a><a style="margin-inline:5px" target="_blank" href="https://www.jsdelivr.com/" rel="external nofollow noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/CDN-jsDelivr-orange?style=flat&logo=jsDelivr" title="本站使用JsDelivr为静态资源提供CDN加速"></a><a style="margin-inline:5px" target="_blank" href="https://github.com/" rel="external nofollow noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Source-Github-d021d6?style=flat&logo=GitHub" title="本站项目由Github托管"></a><a style="margin-inline:5px" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Copyright-BY--NC--SA%204.0-d42328?style=flat&logo=Claris" title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可"></a></p></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="chat_btn" type="button" title="聊天"><i class="fas fa-sms"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">本地搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script src="/js/search/local-search.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"><script>function loadValine () {
+  function initValine () {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: 'zHUfFgUbITfMSQGuSPgS2e3C-gzGzoHsz',
+      appKey: 'yPXpeKX8VJxdFRPEsDaqNgEY',
+      avatar: 'wavatar',
+      serverURLs: 'https://zhuffgub.lc-cn-n1-shared.com',
+      emojiMaps: "",
+      path: window.location.pathname,
+      visitor: true,
+      master: '447d56ab3606de5490a2109d3e441219,135d837ea1033c9787dd307e59884d36'.split(','),
+      friends: '5c?????bfe6rfc72a????e268ad3819c'.split(','),
+      tagMeta: '博主,小伙伴,访客'.split(',')
+        
+    }, {"placeholder":"请输入内容～"}))
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/gh/HCLonely/Valine@latest/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !true) {
+  if (true) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script><script>function addGitalkSource () {
+  const ele = document.createElement('link')
+  ele.rel = 'stylesheet'
+  ele.href= 'https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css'
+  document.getElementsByTagName('head')[0].appendChild(ele)
+}
+
+function loadGitalk () {
+  function initGitalk () {
+    var gitalk = new Gitalk(Object.assign({
+      clientID: '052d9d6486112e93fa50',
+      clientSecret: '6fea35bfb7a17521694a95f705683622976d2f53',
+      repo: 'gitalk',
+      owner: 'iwangchuanli',
+      admin: ['iwangchuanli'],
+      id: 'd86a3faaeb655846e28f9d73b2285115',
+      updateCountCallback: commentCount
+    },null))
+
+    gitalk.render('gitalk-container')
+  }
+
+  if (typeof Gitalk === 'function') initGitalk()
+  else {
+    addGitalkSource()
+    getScript('https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.js').then(initGitalk)
+  }
+}
+
+function commentCount(n){
+  let isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+  if (isCommentCount) {
+    isCommentCount.innerHTML= n
+  }
+}
+
+if ('Valine' === 'Gitalk' || !true) {
+  if (true) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+  else loadGitalk()
+} else {
+  function loadOtherComment () {
+    loadGitalk()
+  }
+}</script></div><div class="aplayer no-destroy" data-id="7355841544" data-server="netease" data-type="playlist" data-fixed="true" data-autoplay="false"> </div><script async src="/js/grayscale.js"></script><script async src="//at.alicdn.com/t/font_1885008_srfhrsykmk.js"></script><script>((window.gitter = {}).chat = {}).options = {
+  disableDefaultChat: true,
+};
+document.addEventListener('gitter-sidecar-ready', (e) => {
+  const GitterChat = e.detail.Chat
+  let chat
+
+  function initGitter () {
+    chat = new GitterChat({
+      room: 'wangchuangli-/community',
+      activationElement: '#chat_btn'
+    });
+  }
+
+  initGitter()
+
+  if (true) {
+    document.addEventListener('pjax:complete', () => {
+      chat.destroy()
+      initGitter()
+    })
+  }
+
+})</script><script src="https://sidecar.gitter.im/dist/sidecar.v1.js" async="async" defer="defer"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/meting@1.2.0/dist/Meting.min.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = ["title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"]):not([href="/music/"]):not([href="/no-pjax/"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.tocScrollFn && window.removeEventListener('scroll', window.tocScrollFn)
+  window.scrollCollect && window.removeEventListener('scroll', scrollCollect)
+
+  typeof preloader === 'object' && preloader.initLoading()
+  document.getElementById('rightside').style.cssText = "opacity: ''; transform: ''"
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+
+  typeof preloader === 'object' && preloader.endLoading()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><!-- hexo injector body_end start --><script data-pjax>
+  function butterfly_swiper_injector_config(){
+    var parent_div_git = document.getElementById('recent-posts');
+    var item_html = '<div class="recent-post-item" style="height: auto;width: 100%"><div class="blog-slider swiper-container-fade swiper-container-horizontal" id="swiper_container"><div class="blog-slider__wrp swiper-wrapper" style="transition-duration: 0ms;"><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" onclick="pjax.loadUrl(&quot;posts/4496.html&quot;);" href="javascript:void(0);" rel="external nofollow noreferrer" alt=""><img width="48" height="48" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img6_L358Nt.jpeg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2018-09-05</span><a class="blog-slider__title" onclick="pjax.loadUrl(&quot;posts/4496.html&quot;);" href="javascript:void(0);" rel="external nofollow noreferrer" alt="">编程系列书单推荐</a><div class="blog-slider__text">再怎么看我也不知道怎么描述它的啦！</div><a class="blog-slider__button" onclick="pjax.loadUrl(&quot;posts/4496.html&quot;);" href="javascript:void(0);" rel="external nofollow noreferrer" alt="">详情       </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" onclick="pjax.loadUrl(&quot;posts/35693.html&quot;);" href="javascript:void(0);" rel="external nofollow noreferrer" alt=""><img width="48" height="48" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img33_fnRUqR.jpeg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2018-11-26</span><a class="blog-slider__title" onclick="pjax.loadUrl(&quot;posts/35693.html&quot;);" href="javascript:void(0);" rel="external nofollow noreferrer" alt="">优秀科技博客订阅</a><div class="blog-slider__text">再怎么看我也不知道怎么描述它的啦！</div><a class="blog-slider__button" onclick="pjax.loadUrl(&quot;posts/35693.html&quot;);" href="javascript:void(0);" rel="external nofollow noreferrer" alt="">详情       </a></div></div></div><div class="blog-slider__pagination swiper-pagination-clickable swiper-pagination-bullets"></div></div></div>';
+    console.log('已挂载butterfly_swiper')
+    parent_div_git.insertAdjacentHTML("afterbegin",item_html)
+    }
+  var elist = 'undefined'.split(',');
+  var cpage = location.pathname;
+  var epage = 'all';
+  var flag = 0;
+
+  for (var i=0;i<elist.length;i++){
+    if (cpage.includes(elist[i])){
+      flag++;
+    }
+  }
+
+  if ((epage ==='all')&&(flag == 0)){
+    butterfly_swiper_injector_config();
+  }
+  else if (epage === cpage){
+    butterfly_swiper_injector_config();
+  }
+  </script><script defer src="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper.min.js"></script><script defer data-pjax src="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper_init.js"></script><!-- hexo injector body_end end --></body></html>

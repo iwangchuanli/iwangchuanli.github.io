@@ -1,0 +1,561 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>06-CSS盒模型详解 | 传礼</title><meta name="keywords" content="博客,blog,王传礼,java,python,大数据"><meta name="author" content="传礼,978252321@qq.com"><meta name="copyright" content="传礼"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="title: 06-CSS盒模型详解publish: true  盒子模型前言盒子模型，英文即box model。无论是div、span、还是a都是盒子。 但是，图片、表单元素一律看作是文本，它们并不是盒子。这个很好理解，比如说，一张图片里并不能放东西，它自己就是自己的内容。 盒子中的区域一个盒子中主要的属性就5个：width、height、padding、border、margin。如下：">
+<meta property="og:type" content="article">
+<meta property="og:title" content="06-CSS盒模型详解">
+<meta property="og:url" content="https://iwangchuanli.github.io/posts/57112.html">
+<meta property="og:site_name" content="传礼">
+<meta property="og:description" content="title: 06-CSS盒模型详解publish: true  盒子模型前言盒子模型，英文即box model。无论是div、span、还是a都是盒子。 但是，图片、表单元素一律看作是文本，它们并不是盒子。这个很好理解，比如说，一张图片里并不能放东西，它自己就是自己的内容。 盒子中的区域一个盒子中主要的属性就5个：width、height、padding、border、margin。如下：">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img22_700Zcx.jpeg">
+<meta property="article:published_time" content="2022-11-28T07:04:49.765Z">
+<meta property="article:modified_time" content="2022-04-18T09:19:55.000Z">
+<meta property="article:author" content="传礼">
+<meta property="article:tag" content="博客,blog,王传礼,java,python,大数据">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img22_700Zcx.jpeg"><link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/03/favicons_uH14Fb.gif"><link rel="canonical" href="https://iwangchuanli.github.io/posts/57112"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin=""/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta name="baidu-site-verification" content="qKvGNFZPF9"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?39bd6e37a6e70dc030e6a043a642784e";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: 传礼","link":"链接: ","source":"来源: 传礼","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#121212","position":"bottom-left"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: true,
+  islazyload: true,
+  isAnchor: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '06-CSS盒模型详解',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-04-18 09:19:55'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/custom.css"  media="defer" onload="this.media='all'"><!-- hexo injector head_end start --><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiperstyle.css" media="print" onload="this.media='all'"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.1"><link rel="alternate" href="/atom.xml" title="传礼" type="application/atom+xml">
+</head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/03/photo_NZBQPu.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><div class="data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">511</div></a></div><div class="data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">50</div></a></div><div class="data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">22</div></a></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 归档</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-calendar"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 开发</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/Java"><i class="fa-fw fa fa-music"></i><span> Java</span></a></li><li><a class="site-page child" href="/categories/Python"><i class="fa-fw fa fa-music"></i><span> Python</span></a></li><li><a class="site-page child" href="/categories/VUE"><i class="fa-fw fa fa-music"></i><span> VUE</span></a></li><li><a class="site-page child" href="/categories/MySQL"><i class="fa-fw fa fa-music"></i><span> MySQL</span></a></li><li><a class="site-page child" href="/categories/Redis"><i class="fa-fw fa fa-music"></i><span> Redis</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 架构</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/Spring"><i class="fa-fw fa fa-music"></i><span> Spring</span></a></li><li><a class="site-page child" href="/categories/microServeices"><i class="fa-fw fa fa-music"></i><span> 微服务</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 运维</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/Docker"><i class="fa-fw fa fa-music"></i><span> Docker</span></a></li><li><a class="site-page child" href="/categories/Linux"><i class="fa-fw fa fa-music"></i><span> Linux</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 分享</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/tags/Tools"><i class="fa-fw fa fa-music"></i><span> 工具</span></a></li><li><a class="site-page child" href="/tags/guide"><i class="fa-fw fa fa-music"></i><span> 教程</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 项目</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/tags/Tools"><i class="fa-fw fa fa-music"></i><span> 工具</span></a></li><li><a class="site-page child" href="/tags/guide"><i class="fa-fw fa fa-music"></i><span> 教程</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-heartbeat"></i><span> 娱乐</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/gallery/"><i class="fa-fw fa fa-images"></i><span> 图库</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fa fa-film"></i><span> 电影</span></a></li><li><a class="site-page child" href="/books/"><i class="fa-fw fa fa-book"></i><span> 图书</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 我的</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/artitalk/"><i class="fa-fw fa fa-commenting"></i><span> 说说</span></a></li><li><a class="site-page child" href="/todo/"><i class="fa-fw fa fa-flag"></i><span> TODO</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img22_700Zcx.jpeg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">传礼</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 归档</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-calendar"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 开发</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/Java"><i class="fa-fw fa fa-music"></i><span> Java</span></a></li><li><a class="site-page child" href="/categories/Python"><i class="fa-fw fa fa-music"></i><span> Python</span></a></li><li><a class="site-page child" href="/categories/VUE"><i class="fa-fw fa fa-music"></i><span> VUE</span></a></li><li><a class="site-page child" href="/categories/MySQL"><i class="fa-fw fa fa-music"></i><span> MySQL</span></a></li><li><a class="site-page child" href="/categories/Redis"><i class="fa-fw fa fa-music"></i><span> Redis</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 架构</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/Spring"><i class="fa-fw fa fa-music"></i><span> Spring</span></a></li><li><a class="site-page child" href="/categories/microServeices"><i class="fa-fw fa fa-music"></i><span> 微服务</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 运维</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/Docker"><i class="fa-fw fa fa-music"></i><span> Docker</span></a></li><li><a class="site-page child" href="/categories/Linux"><i class="fa-fw fa fa-music"></i><span> Linux</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 分享</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/tags/Tools"><i class="fa-fw fa fa-music"></i><span> 工具</span></a></li><li><a class="site-page child" href="/tags/guide"><i class="fa-fw fa fa-music"></i><span> 教程</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 项目</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/tags/Tools"><i class="fa-fw fa fa-music"></i><span> 工具</span></a></li><li><a class="site-page child" href="/tags/guide"><i class="fa-fw fa fa-music"></i><span> 教程</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-heartbeat"></i><span> 娱乐</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/gallery/"><i class="fa-fw fa fa-images"></i><span> 图库</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fa fa-film"></i><span> 电影</span></a></li><li><a class="site-page child" href="/books/"><i class="fa-fw fa fa-book"></i><span> 图书</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 我的</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/artitalk/"><i class="fa-fw fa fa-commenting"></i><span> 说说</span></a></li><li><a class="site-page child" href="/todo/"><i class="fa-fw fa fa-flag"></i><span> TODO</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">06-CSS盒模型详解</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-11-28T07:04:49.765Z" title="发表于 2022-11-28 07:04:49">2022-11-28</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-04-18T09:19:55.000Z" title="更新于 2022-04-18 09:19:55">2022-04-18</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">2.7k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>9分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="06-CSS盒模型详解"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><hr>
+<p>title: 06-CSS盒模型详解<br>publish: true</p>
+<hr>
+<h2 id="盒子模型"><a href="#盒子模型" class="headerlink" title="盒子模型"></a>盒子模型</h2><h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>盒子模型，英文即box model。无论是div、span、还是a都是盒子。</p>
+<p>但是，图片、表单元素一律看作是文本，它们并不是盒子。这个很好理解，比如说，一张图片里并不能放东西，它自己就是自己的内容。</p>
+<h3 id="盒子中的区域"><a href="#盒子中的区域" class="headerlink" title="盒子中的区域"></a>盒子中的区域</h3><p>一个盒子中主要的属性就5个：width、height、padding、border、margin。如下：</p>
+<ul>
+<li>width和height：<strong>内容</strong>的宽度、高度（不是盒子的宽度、高度）。</li>
+<li>padding：内边距。</li>
+<li>border：边框。</li>
+<li>margin：外边距。</li>
+</ul>
+<p>盒子模型的示意图：</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://img.smyhvae.com/20170727_2128.png"></p>
+<p>代码演示：</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://img.smyhvae.com/20170727_2326.png"></p>
+<p>上面这个盒子，width:200px; height:200px; 但是真实占有的宽高是302*302。 这是因为还要加上padding、border。</p>
+<p>注意：<strong>宽度和真实占有宽度，不是一个概念！</strong>来看下面这例子。</p>
+<h3 id="标准盒模型和IE盒模型"><a href="#标准盒模型和IE盒模型" class="headerlink" title="标准盒模型和IE盒模型"></a>标准盒模型和IE盒模型</h3><blockquote>
+<p>我们目前所学习的知识中，以标准盒子模型为准。</p>
+</blockquote>
+<p>标准盒子模型：</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://img.smyhvae.com/2015-10-03-css-27.jpg"></p>
+<p>IE盒子模型：</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://img.smyhvae.com/2015-10-03-css-30.jpg"></p>
+<p>上图显示：</p>
+<p>在 CSS 盒子模型 (Box Model) 规定了元素处理元素的几种方式：</p>
+<ul>
+<li>width和height：<strong>内容</strong>的宽度、高度（不是盒子的宽度、高度）。</li>
+<li>padding：内边距。</li>
+<li>border：边框。</li>
+<li>margin：外边距。</li>
+</ul>
+<p>CSS盒模型和IE盒模型的区别：</p>
+<ul>
+<li><p>在 <font color="#0000FF"><strong>标准盒子模型</strong></font>中，<font color="#0000FF"><strong>width 和 height 指的是内容区域</strong></font>的宽度和高度。增加内边距、边框和外边距不会影响内容区域的尺寸，但是会增加元素框的总尺寸。</p>
+</li>
+<li><p><font color="#0000FF"><strong>IE盒子模型</strong></font>中，<font color="#0000FF"><strong>width 和 height 指的是内容区域+border+padding</strong></font>的宽度和高度。</p>
+</li>
+</ul>
+<p>注：Android中也有margin和padding的概念，意思是差不多的，如果你会一点Android，应该比较好理解吧。区别在于，Android中没有border这个东西，而且在Android中，margin并不是控件的一部分，我觉得这样做更合理一些，呵呵。</p>
+<h3 id="lt-body-gt-标签也有margin"><a href="#lt-body-gt-标签也有margin" class="headerlink" title="&lt;body&gt;标签也有margin"></a><code>&lt;body&gt;</code>标签也有margin</h3><p><code>&lt;body&gt;</code>标签有必要强调一下。很多人以为<code>&lt;body&gt;</code>标签占据的是整个页面的全部区域，其实是错误的，正确的理解是这样的：整个网页最大的盒子是<code>&lt;document&gt;</code>，即浏览器。而<code>&lt;body&gt;</code>是<code>&lt;document&gt;</code>的儿子。浏览器给<code>&lt;body&gt;</code>默认的margin大小是8个像素，此时<code>&lt;body&gt;</code>占据了整个页面的一大部分区域，而不是全部区域。来看一段代码。</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!doctype <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;Generator&quot;</span> <span class="attr">content</span>=<span class="string">&quot;EditPlus®&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;Author&quot;</span> <span class="attr">content</span>=<span class="string">&quot;&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;Keywords&quot;</span> <span class="attr">content</span>=<span class="string">&quot;&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;Description&quot;</span> <span class="attr">content</span>=<span class="string">&quot;&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"></span><br><span class="line">	<span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">&quot;text/css&quot;</span>&gt;</span><span class="language-css"></span></span><br><span class="line"><span class="language-css"></span></span><br><span class="line"><span class="language-css">		<span class="selector-tag">div</span>&#123;</span></span><br><span class="line"><span class="language-css">			<span class="attribute">width</span>: <span class="number">100px</span>;</span></span><br><span class="line"><span class="language-css">			<span class="attribute">height</span>: <span class="number">100px</span>;</span></span><br><span class="line"><span class="language-css">			<span class="attribute">border</span>: <span class="number">1px</span> solid red;</span></span><br><span class="line"><span class="language-css">			<span class="attribute">padding</span>: <span class="number">20px</span>;</span></span><br><span class="line"><span class="language-css">			<span class="attribute">margin</span>: <span class="number">30px</span>;</span></span><br><span class="line"><span class="language-css">		&#125;</span></span><br><span class="line"><span class="language-css"></span></span><br><span class="line"><span class="language-css">	</span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"></span><br><span class="line"> <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"></span><br><span class="line"> <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line">	<span class="tag">&lt;<span class="name">div</span>&gt;</span>有生之年<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">div</span>&gt;</span>狭路相逢<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"> <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>上面的代码中，我们对div标签设置了边距等信息。打开google浏览器，按住F12，显示效果如下：</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://img.smyhvae.com/20151003_27.png"></p>
+<h2 id="认识width、height"><a href="#认识width、height" class="headerlink" title="认识width、height"></a>认识width、height</h2><p>一定要知道，在前端开发工程师眼中，世界中的一切都是不同的。</p>
+<p>比如说，丈量稿纸，前端开发工程师只会丈量内容宽度：</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://img.smyhvae.com/20170727_2329.png"></p>
+<p>下面这两个盒子，真实占有宽高，都是302*302：</p>
+<p>盒子1：</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.box1</span>&#123;</span><br><span class="line">	<span class="attribute">width</span>: <span class="number">100px</span>;</span><br><span class="line">	<span class="attribute">height</span>: <span class="number">100px</span>;</span><br><span class="line">	<span class="attribute">padding</span>: <span class="number">100px</span>;</span><br><span class="line">	<span class="attribute">border</span>: <span class="number">1px</span> solid red;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>盒子2：</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.box2</span>&#123;</span><br><span class="line">	<span class="attribute">width</span>: <span class="number">250px</span>;</span><br><span class="line">	<span class="attribute">height</span>: <span class="number">250px</span>;</span><br><span class="line">	<span class="attribute">padding</span>: <span class="number">25px</span>;</span><br><span class="line">	<span class="attribute">border</span>: <span class="number">1px</span> solid red;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<p>真实占有宽度 = 左border + 左padding + width + 右padding + 右border</p>
+<p>上面这两个盒子的盒模型图如下：</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://img.smyhvae.com/20170728_0925.png"></p>
+<p><strong>如果想保持一个盒子的真实占有宽度不变，那么加width的时候就要减padding。加padding的时候就要减width</strong>。因为盒子变胖了是灾难性的，这会把别的盒子挤下去。</p>
+<h2 id="认识padding"><a href="#认识padding" class="headerlink" title="认识padding"></a>认识padding</h2><h3 id="padding区域也有颜色"><a href="#padding区域也有颜色" class="headerlink" title="padding区域也有颜色"></a>padding区域也有颜色</h3><p>padding就是内边距。padding的区域有背景颜色，css2.1前提下，并且背景颜色一定和内容区域的相同。也就是说，background-color将填充<strong>所有border以内的区域。</strong></p>
+<p>效果如下：</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://img.smyhvae.com/20170728_1005.png"></p>
+<h3 id="padding有四个方向"><a href="#padding有四个方向" class="headerlink" title="padding有四个方向"></a>padding有四个方向</h3><p>padding是4个方向的，所以我们能够分别描述4个方向的padding。</p>
+<p>方法有两种，第一种写小属性；第二种写综合属性，用空格隔开。</p>
+<p>小属性的写法：</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="attribute">padding-top</span>: <span class="number">30px</span>;</span><br><span class="line"><span class="attribute">padding-right</span>: <span class="number">20px</span>;</span><br><span class="line"><span class="attribute">padding-bottom</span>: <span class="number">40px</span>;</span><br><span class="line"><span class="attribute">padding-left</span>: <span class="number">100px</span>;</span><br></pre></td></tr></table></figure>
+
+<p>综合属性的写法：(上、右、下、左)（顺时针方向，用空格隔开。margin的道理也是一样的）</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="attribute">padding</span>:<span class="number">30px</span> <span class="number">20px</span> <span class="number">40px</span> <span class="number">100px</span>;</span><br></pre></td></tr></table></figure>
+
+<p>如果写了四个值，则顺序为：上、右、下、左。</p>
+<p>如果只写了三个值，则顺序为：上、右、下。??和右一样。</p>
+<p>如果只写了两个值，比如说：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">padding: 30px 40px;</span><br></pre></td></tr></table></figure>
+
+<p>则顺序等价于：30px 40px 30px 40px;</p>
+<p>要懂得，<strong>用小属性层叠大属性</strong>。比如：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">padding: 20px;</span><br><span class="line">padding-left: 30px;</span><br></pre></td></tr></table></figure>
+
+<p>上面的padding对应盒子模型为：</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://img.smyhvae.com/20170728_1039.png"></p>
+<p>下面的写法：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">padding-left: 30px;</span><br><span class="line">padding: 20px;</span><br></pre></td></tr></table></figure>
+
+<p>第一行的小属性无效，因为被第二行的大属性层叠掉了。</p>
+<p>下面的题，会做了，说明你明白了。</p>
+<h3 id="一些题目"><a href="#一些题目" class="headerlink" title="一些题目"></a>一些题目</h3><p><strong>题目1</strong>：说出下面盒子真实占有宽高，并画出盒模型图。</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">div</span>&#123;</span><br><span class="line">	<span class="attribute">width</span>: <span class="number">200px</span>;</span><br><span class="line">	<span class="attribute">height</span>: <span class="number">200px</span>;</span><br><span class="line">	<span class="attribute">padding</span>: <span class="number">10px</span> <span class="number">20px</span> <span class="number">30px</span>;</span><br><span class="line">	<span class="attribute">padding-right</span>: <span class="number">40px</span>;</span><br><span class="line">	<span class="attribute">border</span>: <span class="number">1px</span> solid <span class="number">#000</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>答案：</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://img.smyhvae.com/20170728_1048.png"></p>
+<p><strong>题目2</strong>：说出下面盒子真实占有宽高，并画出盒模型图。</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">div</span>&#123;</span><br><span class="line">	<span class="attribute">width</span>: <span class="number">200px</span>;</span><br><span class="line">	<span class="attribute">height</span>: <span class="number">200px</span>;</span><br><span class="line">	<span class="attribute">padding-left</span>: <span class="number">10px</span>;</span><br><span class="line">	<span class="attribute">padding-right</span>: <span class="number">20px</span>;</span><br><span class="line">	<span class="attribute">padding</span>:<span class="number">40px</span> <span class="number">50px</span> <span class="number">60px</span>;</span><br><span class="line">	<span class="attribute">padding-bottom</span>: <span class="number">30px</span>;</span><br><span class="line">	<span class="attribute">border</span>: <span class="number">1px</span> solid <span class="number">#000</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>答案：</p>
+<p><code>padding-left:10px；</code> 和<code>padding-right:20px;</code> 没用，因为后面的padding大属性，层叠掉了他们。</p>
+<p>盒子模型如下：</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://img.smyhvae.com/20170728_1100.png"></p>
+<p><strong>题目3</strong>：现在给你一个盒子模型图，请写出代码，试着用最最简单的方法写。</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://img.smyhvae.com/20170728_1401.png"></p>
+<p>答案：</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="attribute">width</span>:<span class="number">123px</span>;</span><br><span class="line"><span class="attribute">height</span>:<span class="number">123px</span>;</span><br><span class="line"><span class="attribute">padding</span>:<span class="number">20px</span> <span class="number">40px</span>;</span><br><span class="line"><span class="attribute">border</span>:<span class="number">1px</span> solid red;</span><br></pre></td></tr></table></figure>
+
+<p><strong>题目4</strong>：现在给你一个盒子模型图，请写出代码，试着用最最简单的方法写。</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://img.smyhvae.com/20170728_1402.png"></p>
+<p>答案：</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="attribute">width</span>:<span class="number">123px</span>;</span><br><span class="line"><span class="attribute">height</span>:<span class="number">123px</span>;</span><br><span class="line"><span class="attribute">padding</span>:<span class="number">20px</span>;</span><br><span class="line"><span class="attribute">padding-right</span>:<span class="number">40px</span>;</span><br><span class="line"><span class="attribute">border</span>:<span class="number">1px</span> solid red;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="一些元素，默认带有padding"><a href="#一些元素，默认带有padding" class="headerlink" title="一些元素，默认带有padding"></a>一些元素，默认带有padding</h3><p>一些元素，默认带有<code>padding</code>，比如ul标签。如下：</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://img.smyhvae.com/20170728_1413.png"></p>
+<p>上图显示，不加任何样式的ul，也是有40px的padding-left。</p>
+<p>所以，我们做站的时候，为了便于控制，总是喜欢清除这个默认的padding。</p>
+<p>可以使用<code>*</code>进行清除：</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line">*&#123;</span><br><span class="line">	<span class="attribute">margin</span>: <span class="number">0</span>;</span><br><span class="line">	<span class="attribute">padding</span>: <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p> 但是，<code>*</code>的效率不高，所以我们使用并集选择器，罗列所有的标签（不用背，有专业的清除默认样式的样式表，今后学习）：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,textarea,p,blockquote,th,td&#123;</span><br><span class="line">    margin:0;</span><br><span class="line">    padding:0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="认识border"><a href="#认识border" class="headerlink" title="认识border"></a>认识border</h2><p>border就是边框。边框有三个要素：像素（粗细）、线型、颜色。</p>
+<p>比如：</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="selector-class">.div1</span>&#123;</span><br><span class="line">	<span class="attribute">width</span>: <span class="number">10px</span>;</span><br><span class="line">	<span class="attribute">height</span>: <span class="number">10px</span>;</span><br><span class="line">	<span class="attribute">border</span>: <span class="number">2px</span> solid red;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>颜色如果不写，默认是黑色。另外两个属性如果不写，则无法显示边框。</p>
+<h3 id="border-style"><a href="#border-style" class="headerlink" title="border-style"></a>border-style</h3><p>border的所有的线型如下：（我们可以通过查看<code>CSS参考手册</code>得到）</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://img.smyhvae.com/20170728_1435.png"></p>
+<p>比如<code>border:10px ridge red;</code>这个属性，在chrome和firefox、IE中有细微差别：（因为可以显示出效果，因此并不是兼容性问题，只是有细微差别而已）</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://img.smyhvae.com/20170728_1619.png"></p>
+<p>如果公司里面的设计师是处女座的，追求极高的<strong>页面还原度</strong>，那么不能使用css来制作边框。就要用到图片，就要切图了。</p>
+<p>所以，比较稳定的border-style就几个：solid、dashed、dotted。</p>
+<h3 id="border拆分"><a href="#border拆分" class="headerlink" title="border拆分"></a>border拆分</h3><p>border是一个大综合属性。比如说：</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="attribute">border</span>:<span class="number">1px</span> solid red;</span><br></pre></td></tr></table></figure>
+
+<p>就是把上下左右这四个方向的边框，都设置为 1px 宽度、线型实线、red颜色。</p>
+<p>PS：小技巧：在sublime text中，为了快速输入<code>border:1px solid red;</code>这个属性，可以直接输入<code>bd</code>，然后选第二个后回车。</p>
+<p>border属性是能够被拆开的，有两大种拆开的方式：</p>
+<ul>
+<li><p>（1）按三要素拆开：border-width、border-style、border-color。（一个border属性是由三个小属性综合而成的）</p>
+</li>
+<li><p>（2）按方向拆开：border-top、border-right、border-bottom、border-left。</p>
+</li>
+</ul>
+<p>现在我们明白了：<strong>一个border属性，是由三个小属性综合而成的</strong>。如果某一个小属性后面是空格隔开的多个值，那么就是上右下左的顺序。举例如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">border-width:10px 20px;</span><br><span class="line">border-style:solid dashed dotted;</span><br><span class="line">border-color:red green blue yellow;</span><br></pre></td></tr></table></figure>
+
+<p>效果如下：</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://img.smyhvae.com/20170728_1516.png"></p>
+<p>（1）按三要素拆：</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="attribute">border-width</span>:<span class="number">10px</span>;    //边框宽度</span><br><span class="line"><span class="attribute">border-style</span>:solid;   //线型</span><br><span class="line"><span class="attribute">border-color</span>:red;     //颜色。</span><br></pre></td></tr></table></figure>
+<p>等价于：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">border:10px solid red;</span><br></pre></td></tr></table></figure>
+
+<p>(2)按方向来拆：</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="attribute">border-top</span>:<span class="number">10px</span> solid red;</span><br><span class="line"><span class="attribute">border-right</span>:<span class="number">10px</span> solid red;</span><br><span class="line"><span class="attribute">border-bottom</span>:<span class="number">10px</span> solid red;</span><br><span class="line"><span class="attribute">border-left</span>:<span class="number">10px</span> solid red;</span><br></pre></td></tr></table></figure>
+
+<p>等价于：</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="attribute">border</span>:<span class="number">10px</span> solid red;</span><br></pre></td></tr></table></figure>
+
+<p>（3）按三要素和方向来拆：(就是把每个方向的，每个要素拆开。3*4 = 12)</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="attribute">border-top-width</span>:<span class="number">10px</span>;</span><br><span class="line"><span class="attribute">border-top-style</span>:solid;</span><br><span class="line"><span class="attribute">border-top-color</span>:red;</span><br><span class="line"><span class="attribute">border-right-width</span>:<span class="number">10px</span>;</span><br><span class="line"><span class="attribute">border-right-style</span>:solid;</span><br><span class="line"><span class="attribute">border-right-color</span>:red;</span><br><span class="line"><span class="attribute">border-bottom-width</span>:<span class="number">10px</span>;</span><br><span class="line"><span class="attribute">border-bottom-style</span>:solid;</span><br><span class="line"><span class="attribute">border-bottom-color</span>:red;</span><br><span class="line"><span class="attribute">border-left-width</span>:<span class="number">10px</span>;</span><br><span class="line"><span class="attribute">border-left-style</span>:solid;</span><br><span class="line"><span class="attribute">border-left-color</span>:red;</span><br></pre></td></tr></table></figure>
+
+<p>等价于：</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="attribute">border</span>:<span class="number">10px</span> solid red;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>工作中到底用什么？很简答：什么简单用什么。但要懂得，用小属性层叠大属性。举例如下：</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://img.smyhvae.com/20170728_1606.png"></p>
+<p>为了实现上方效果，写法如下：</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="attribute">border</span>:<span class="number">10px</span> solid red;</span><br><span class="line"><span class="attribute">border-right-color</span>:blue;</span><br></pre></td></tr></table></figure>
+
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://img.smyhvae.com/20170728_1608.png"></p>
+<p>为了实现上方效果，写法如下：</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="attribute">border</span>:<span class="number">10px</span> solid red;</span><br><span class="line"><span class="attribute">border-style</span>:solid dashed;</span><br></pre></td></tr></table></figure>
+
+<p>border可以没有：</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="attribute">border</span>:none;</span><br></pre></td></tr></table></figure>
+
+<p>可以某一条边没有：</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="attribute">border-left</span>: none;</span><br></pre></td></tr></table></figure>
+
+<p>也可以调整左边边框的宽度为0：</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="attribute">border-left-width</span>: <span class="number">0</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="border-image-属性"><a href="#border-image-属性" class="headerlink" title="border-image 属性"></a>border-image 属性</h3><p>比如：</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="attribute">border-image</span>: <span class="built_in">url</span>(<span class="string">.img.png</span>) <span class="number">30</span> round;</span><br></pre></td></tr></table></figure>
+
+<p>这个属性在实际开发中用得不多，暂时忽略。</p>
+<h3 id="举例1：利用-border-属性画一个三角形（小技巧）"><a href="#举例1：利用-border-属性画一个三角形（小技巧）" class="headerlink" title="举例1：利用 border 属性画一个三角形（小技巧）"></a>举例1：利用 border 属性画一个三角形（小技巧）</h3><p>完整代码如下：</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">div</span>&#123;</span><br><span class="line">	<span class="attribute">width</span>: <span class="number">0</span>;</span><br><span class="line">	<span class="attribute">height</span>: <span class="number">0</span>;</span><br><span class="line">	<span class="attribute">border</span>: <span class="number">50px</span> solid transparent;</span><br><span class="line">	<span class="attribute">border-top-color</span>: red;</span><br><span class="line">	<span class="attribute">border-bottom</span>: none;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>步骤如下：</p>
+<p>（1）当我们设置盒子的width和height为0时，此时效果如下：</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://img.smyhvae.com/20170728_1639.png"></p>
+<p>（2）然后将border的底部取消：</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://img.smyhvae.com/20170728_1645.png"></p>
+<p>（3）最后设置border的左边和右边为白色或者<strong>透明</strong>：</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://img.smyhvae.com/20170728_1649.png"></p>
+<p>这样，一个三角形就画好了。</p>
+<h3 id="举例2：利用-border-属性画一个三角形（更推荐的技巧）"><a href="#举例2：利用-border-属性画一个三角形（更推荐的技巧）" class="headerlink" title="举例2：利用 border 属性画一个三角形（更推荐的技巧）"></a>举例2：利用 border 属性画一个三角形（更推荐的技巧）</h3><p>上面的例子1中，画出来的是直角三角形，可如果我想画等边三角形，要怎么做呢？</p>
+<p>完整代码如下：（用 css 画等边三角形）</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.div1</span>&#123;</span><br><span class="line">	<span class="attribute">width</span>: <span class="number">0</span>;</span><br><span class="line">	<span class="attribute">height</span>: <span class="number">0</span>;</span><br><span class="line">	<span class="attribute">border-top</span>: <span class="number">30px</span> solid red;</span><br><span class="line">	<span class="comment">/* 通过改变 border-left 和 border-right 中的像素值，来改变三角形的形状 */</span></span><br><span class="line">	<span class="attribute">border-left</span>: <span class="number">20px</span> solid transparent;</span><br><span class="line">	<span class="attribute">border-right</span>: <span class="number">20px</span> solid transparent;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>效果如下：</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://img.smyhvae.com/20191004_1830.png"></p>
+<p>另外，我们在上方代码的基础之上，再加一个 <code>border-radus: 20px;</code> 就能画出一个扇形。</p>
+<p>关于盒模型的更多内容，请查看本项目的另外一篇文章：《13-前端面试/面试必看/02-CSS盒模型及BFC.md》</p>
+<h2 id="我的公众号"><a href="#我的公众号" class="headerlink" title="我的公众号"></a>我的公众号</h2><p>想学习<strong>更多技能</strong>？不妨关注我的微信公众号：<strong>千古壹号</strong>（id：<code>qianguyihao</code>）。</p>
+<p>扫一扫，你将发现另一个全新的世界，而这将是一场美丽的意外：</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://img.smyhvae.com/20190101.png"></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:978252321@qq.com" rel="external nofollow noreferrer">传礼</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://iwangchuanli.github.io/posts/57112.html">https://iwangchuanli.github.io/posts/57112.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow noreferrer" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://iwangchuanli.github.io" target="_blank">传礼</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img22_700Zcx.jpeg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/posts/4559.html"><img class="prev-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img7_pzkwKv.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">05-DOM操作练习：访问关系的封装</div></div></a></div><div class="next-post pull-right"><a href="/posts/4870.html"><img class="next-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img22_700Zcx.jpeg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">07-DOM操作练习：innerHTML的方式创建元素</div></div></a></div></nav><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div><div id="comment-switch"><span class="first-comment">Valine</span><span class="switch-btn"></span><span class="second-comment">Gitalk</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div><div><div id="gitalk-container"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">Nice to meet you ~</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%92%E5%AD%90%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.</span> <span class="toc-text">盒子模型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9B%92%E5%AD%90%E4%B8%AD%E7%9A%84%E5%8C%BA%E5%9F%9F"><span class="toc-number">1.2.</span> <span class="toc-text">盒子中的区域</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%87%E5%87%86%E7%9B%92%E6%A8%A1%E5%9E%8B%E5%92%8CIE%E7%9B%92%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.3.</span> <span class="toc-text">标准盒模型和IE盒模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#lt-body-gt-%E6%A0%87%E7%AD%BE%E4%B9%9F%E6%9C%89margin"><span class="toc-number">1.4.</span> <span class="toc-text">&lt;body&gt;标签也有margin</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%A4%E8%AF%86width%E3%80%81height"><span class="toc-number">2.</span> <span class="toc-text">认识width、height</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%A4%E8%AF%86padding"><span class="toc-number">3.</span> <span class="toc-text">认识padding</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#padding%E5%8C%BA%E5%9F%9F%E4%B9%9F%E6%9C%89%E9%A2%9C%E8%89%B2"><span class="toc-number">3.1.</span> <span class="toc-text">padding区域也有颜色</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#padding%E6%9C%89%E5%9B%9B%E4%B8%AA%E6%96%B9%E5%90%91"><span class="toc-number">3.2.</span> <span class="toc-text">padding有四个方向</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E4%BA%9B%E9%A2%98%E7%9B%AE"><span class="toc-number">3.3.</span> <span class="toc-text">一些题目</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E4%BA%9B%E5%85%83%E7%B4%A0%EF%BC%8C%E9%BB%98%E8%AE%A4%E5%B8%A6%E6%9C%89padding"><span class="toc-number">3.4.</span> <span class="toc-text">一些元素，默认带有padding</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%A4%E8%AF%86border"><span class="toc-number">4.</span> <span class="toc-text">认识border</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#border-style"><span class="toc-number">4.1.</span> <span class="toc-text">border-style</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#border%E6%8B%86%E5%88%86"><span class="toc-number">4.2.</span> <span class="toc-text">border拆分</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#border-image-%E5%B1%9E%E6%80%A7"><span class="toc-number">4.3.</span> <span class="toc-text">border-image 属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BE%E4%BE%8B1%EF%BC%9A%E5%88%A9%E7%94%A8-border-%E5%B1%9E%E6%80%A7%E7%94%BB%E4%B8%80%E4%B8%AA%E4%B8%89%E8%A7%92%E5%BD%A2%EF%BC%88%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%89"><span class="toc-number">4.4.</span> <span class="toc-text">举例1：利用 border 属性画一个三角形（小技巧）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BE%E4%BE%8B2%EF%BC%9A%E5%88%A9%E7%94%A8-border-%E5%B1%9E%E6%80%A7%E7%94%BB%E4%B8%80%E4%B8%AA%E4%B8%89%E8%A7%92%E5%BD%A2%EF%BC%88%E6%9B%B4%E6%8E%A8%E8%8D%90%E7%9A%84%E6%8A%80%E5%B7%A7%EF%BC%89"><span class="toc-number">4.5.</span> <span class="toc-text">举例2：利用 border 属性画一个三角形（更推荐的技巧）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%88%91%E7%9A%84%E5%85%AC%E4%BC%97%E5%8F%B7"><span class="toc-number">5.</span> <span class="toc-text">我的公众号</span></a></li></ol></div></div><div class="card-widget ads-wrap"><a target="_blank" href="https://www.aliyun.com/activity?userCode=dpj8p3hl" rel="external nofollow noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/aliyun_whuCuE.jpg" style="width:100%;height:100%;object-fit:cover;"></a></div></div></div></main><footer id="footer" style="background-image: url('https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img22_700Zcx.jpeg')"><div id="footer-wrap"><div class="copyright">&copy;2018 - 2022 By 传礼</div><div class="footer_custom_text"><p style="display:inline-flex">本网站由<a href="https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral" rel="external nofollow noreferrer" target="_blank"><img style="width:60px;height:35px;" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/11/又拍云_logo5_O9kNul.png" title="又拍云"/></a>提供CDN加速/云存储服务</p><p><a style="margin-inline:5px" target="_blank" href="https://hexo.io/" rel="external nofollow noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Frame-Hexo-blue?style=flat&logo=hexo" title="博客框架为Hexo"></a><a style="margin-inline:5px" target="_blank" href="https://butterfly.js.org/" rel="external nofollow noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Theme-Butterfly-6513df?style=flat&logo=bitdefender" title="主题采用butterfly"></a><a style="margin-inline:5px" target="_blank" href="https://www.jsdelivr.com/" rel="external nofollow noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/CDN-jsDelivr-orange?style=flat&logo=jsDelivr" title="本站使用JsDelivr为静态资源提供CDN加速"></a><a style="margin-inline:5px" target="_blank" href="https://github.com/" rel="external nofollow noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Source-Github-d021d6?style=flat&logo=GitHub" title="本站项目由Github托管"></a><a style="margin-inline:5px" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Copyright-BY--NC--SA%204.0-d42328?style=flat&logo=Claris" title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可"></a></p></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="chat_btn" type="button" title="聊天"><i class="fas fa-sms"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">本地搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script src="/js/search/local-search.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"><script>function loadValine () {
+  function initValine () {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: 'zHUfFgUbITfMSQGuSPgS2e3C-gzGzoHsz',
+      appKey: 'yPXpeKX8VJxdFRPEsDaqNgEY',
+      avatar: 'wavatar',
+      serverURLs: 'https://zhuffgub.lc-cn-n1-shared.com',
+      emojiMaps: "",
+      path: window.location.pathname,
+      visitor: true,
+      master: '447d56ab3606de5490a2109d3e441219,135d837ea1033c9787dd307e59884d36'.split(','),
+      friends: '5c?????bfe6rfc72a????e268ad3819c'.split(','),
+      tagMeta: '博主,小伙伴,访客'.split(',')
+        
+    }, {"placeholder":"请输入内容～"}))
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/gh/HCLonely/Valine@latest/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !true) {
+  if (true) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script><script>function addGitalkSource () {
+  const ele = document.createElement('link')
+  ele.rel = 'stylesheet'
+  ele.href= 'https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css'
+  document.getElementsByTagName('head')[0].appendChild(ele)
+}
+
+function loadGitalk () {
+  function initGitalk () {
+    var gitalk = new Gitalk(Object.assign({
+      clientID: '052d9d6486112e93fa50',
+      clientSecret: '6fea35bfb7a17521694a95f705683622976d2f53',
+      repo: 'gitalk',
+      owner: 'iwangchuanli',
+      admin: ['iwangchuanli'],
+      id: 'fe1a80232e7657464ae79f287ef69501',
+      updateCountCallback: commentCount
+    },null))
+
+    gitalk.render('gitalk-container')
+  }
+
+  if (typeof Gitalk === 'function') initGitalk()
+  else {
+    addGitalkSource()
+    getScript('https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.js').then(initGitalk)
+  }
+}
+
+function commentCount(n){
+  let isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+  if (isCommentCount) {
+    isCommentCount.innerHTML= n
+  }
+}
+
+if ('Valine' === 'Gitalk' || !true) {
+  if (true) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+  else loadGitalk()
+} else {
+  function loadOtherComment () {
+    loadGitalk()
+  }
+}</script></div><div class="aplayer no-destroy" data-id="7355841544" data-server="netease" data-type="playlist" data-fixed="true" data-autoplay="false"> </div><script async src="/js/grayscale.js"></script><script async src="//at.alicdn.com/t/font_1885008_srfhrsykmk.js"></script><script>((window.gitter = {}).chat = {}).options = {
+  disableDefaultChat: true,
+};
+document.addEventListener('gitter-sidecar-ready', (e) => {
+  const GitterChat = e.detail.Chat
+  let chat
+
+  function initGitter () {
+    chat = new GitterChat({
+      room: 'wangchuangli-/community',
+      activationElement: '#chat_btn'
+    });
+  }
+
+  initGitter()
+
+  if (true) {
+    document.addEventListener('pjax:complete', () => {
+      chat.destroy()
+      initGitter()
+    })
+  }
+
+})</script><script src="https://sidecar.gitter.im/dist/sidecar.v1.js" async="async" defer="defer"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/meting@1.2.0/dist/Meting.min.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = ["title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"]):not([href="/music/"]):not([href="/no-pjax/"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.tocScrollFn && window.removeEventListener('scroll', window.tocScrollFn)
+  window.scrollCollect && window.removeEventListener('scroll', scrollCollect)
+
+  typeof preloader === 'object' && preloader.initLoading()
+  document.getElementById('rightside').style.cssText = "opacity: ''; transform: ''"
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+
+  typeof preloader === 'object' && preloader.endLoading()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><!-- hexo injector body_end start --><script data-pjax>
+  function butterfly_swiper_injector_config(){
+    var parent_div_git = document.getElementById('recent-posts');
+    var item_html = '<div class="recent-post-item" style="height: auto;width: 100%"><div class="blog-slider swiper-container-fade swiper-container-horizontal" id="swiper_container"><div class="blog-slider__wrp swiper-wrapper" style="transition-duration: 0ms;"><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" onclick="pjax.loadUrl(&quot;posts/4496.html&quot;);" href="javascript:void(0);" rel="external nofollow noreferrer" alt=""><img width="48" height="48" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img6_L358Nt.jpeg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2018-09-05</span><a class="blog-slider__title" onclick="pjax.loadUrl(&quot;posts/4496.html&quot;);" href="javascript:void(0);" rel="external nofollow noreferrer" alt="">编程系列书单推荐</a><div class="blog-slider__text">再怎么看我也不知道怎么描述它的啦！</div><a class="blog-slider__button" onclick="pjax.loadUrl(&quot;posts/4496.html&quot;);" href="javascript:void(0);" rel="external nofollow noreferrer" alt="">详情       </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" onclick="pjax.loadUrl(&quot;posts/35693.html&quot;);" href="javascript:void(0);" rel="external nofollow noreferrer" alt=""><img width="48" height="48" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img33_fnRUqR.jpeg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2018-11-26</span><a class="blog-slider__title" onclick="pjax.loadUrl(&quot;posts/35693.html&quot;);" href="javascript:void(0);" rel="external nofollow noreferrer" alt="">优秀科技博客订阅</a><div class="blog-slider__text">再怎么看我也不知道怎么描述它的啦！</div><a class="blog-slider__button" onclick="pjax.loadUrl(&quot;posts/35693.html&quot;);" href="javascript:void(0);" rel="external nofollow noreferrer" alt="">详情       </a></div></div></div><div class="blog-slider__pagination swiper-pagination-clickable swiper-pagination-bullets"></div></div></div>';
+    console.log('已挂载butterfly_swiper')
+    parent_div_git.insertAdjacentHTML("afterbegin",item_html)
+    }
+  var elist = 'undefined'.split(',');
+  var cpage = location.pathname;
+  var epage = 'all';
+  var flag = 0;
+
+  for (var i=0;i<elist.length;i++){
+    if (cpage.includes(elist[i])){
+      flag++;
+    }
+  }
+
+  if ((epage ==='all')&&(flag == 0)){
+    butterfly_swiper_injector_config();
+  }
+  else if (epage === cpage){
+    butterfly_swiper_injector_config();
+  }
+  </script><script defer src="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper.min.js"></script><script defer data-pjax src="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper_init.js"></script><!-- hexo injector body_end end --></body></html>

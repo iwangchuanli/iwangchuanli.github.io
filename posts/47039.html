@@ -1,0 +1,588 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>Linux下Mysql安装（tar安装） - kosamino - 博客园 | 传礼</title><meta name="keywords" content="博客,blog,王传礼,java,python,大数据"><meta name="author" content="传礼,978252321@qq.com"><meta name="copyright" content="传礼"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="首页  新闻  博问  专区  闪存  班级  注册 登录            stackOverFlow   博客园     首页     博问    闪存    新随笔     订阅     管理 随笔 - 361,  文章 - 0,  评论 - 54,  阅读 - 125万 Linux下Mysql安装（tar安装） 1、为数据库创建软件目录以及数据存放目录#mysql软件目录 mk">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux下Mysql安装（tar安装） - kosamino - 博客园">
+<meta property="og:url" content="https://iwangchuanli.github.io/posts/47039.html">
+<meta property="og:site_name" content="传礼">
+<meta property="og:description" content="首页  新闻  博问  专区  闪存  班级  注册 登录            stackOverFlow   博客园     首页     博问    闪存    新随笔     订阅     管理 随笔 - 361,  文章 - 0,  评论 - 54,  阅读 - 125万 Linux下Mysql安装（tar安装） 1、为数据库创建软件目录以及数据存放目录#mysql软件目录 mk">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img11_QkUlco.jpeg">
+<meta property="article:published_time" content="2022-11-28T07:04:49.753Z">
+<meta property="article:modified_time" content="2022-05-23T02:19:53.000Z">
+<meta property="article:author" content="传礼">
+<meta property="article:tag" content="博客,blog,王传礼,java,python,大数据">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img11_QkUlco.jpeg"><link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/03/favicons_uH14Fb.gif"><link rel="canonical" href="https://iwangchuanli.github.io/posts/47039"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin=""/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta name="baidu-site-verification" content="qKvGNFZPF9"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?39bd6e37a6e70dc030e6a043a642784e";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: 传礼","link":"链接: ","source":"来源: 传礼","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#121212","position":"bottom-left"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: true,
+  islazyload: true,
+  isAnchor: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Linux下Mysql安装（tar安装） - kosamino - 博客园',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-05-23 02:19:53'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/custom.css"  media="defer" onload="this.media='all'"><!-- hexo injector head_end start --><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiperstyle.css" media="print" onload="this.media='all'"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.1"><link rel="alternate" href="/atom.xml" title="传礼" type="application/atom+xml">
+</head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/03/photo_NZBQPu.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><div class="data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">511</div></a></div><div class="data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">50</div></a></div><div class="data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">22</div></a></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 归档</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-calendar"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 开发</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/Java"><i class="fa-fw fa fa-music"></i><span> Java</span></a></li><li><a class="site-page child" href="/categories/Python"><i class="fa-fw fa fa-music"></i><span> Python</span></a></li><li><a class="site-page child" href="/categories/VUE"><i class="fa-fw fa fa-music"></i><span> VUE</span></a></li><li><a class="site-page child" href="/categories/MySQL"><i class="fa-fw fa fa-music"></i><span> MySQL</span></a></li><li><a class="site-page child" href="/categories/Redis"><i class="fa-fw fa fa-music"></i><span> Redis</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 架构</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/Spring"><i class="fa-fw fa fa-music"></i><span> Spring</span></a></li><li><a class="site-page child" href="/categories/microServeices"><i class="fa-fw fa fa-music"></i><span> 微服务</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 运维</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/Docker"><i class="fa-fw fa fa-music"></i><span> Docker</span></a></li><li><a class="site-page child" href="/categories/Linux"><i class="fa-fw fa fa-music"></i><span> Linux</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 分享</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/tags/Tools"><i class="fa-fw fa fa-music"></i><span> 工具</span></a></li><li><a class="site-page child" href="/tags/guide"><i class="fa-fw fa fa-music"></i><span> 教程</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 项目</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/tags/Tools"><i class="fa-fw fa fa-music"></i><span> 工具</span></a></li><li><a class="site-page child" href="/tags/guide"><i class="fa-fw fa fa-music"></i><span> 教程</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-heartbeat"></i><span> 娱乐</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/gallery/"><i class="fa-fw fa fa-images"></i><span> 图库</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fa fa-film"></i><span> 电影</span></a></li><li><a class="site-page child" href="/books/"><i class="fa-fw fa fa-book"></i><span> 图书</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 我的</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/artitalk/"><i class="fa-fw fa fa-commenting"></i><span> 说说</span></a></li><li><a class="site-page child" href="/todo/"><i class="fa-fw fa fa-flag"></i><span> TODO</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img11_QkUlco.jpeg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">传礼</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 归档</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-calendar"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 开发</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/Java"><i class="fa-fw fa fa-music"></i><span> Java</span></a></li><li><a class="site-page child" href="/categories/Python"><i class="fa-fw fa fa-music"></i><span> Python</span></a></li><li><a class="site-page child" href="/categories/VUE"><i class="fa-fw fa fa-music"></i><span> VUE</span></a></li><li><a class="site-page child" href="/categories/MySQL"><i class="fa-fw fa fa-music"></i><span> MySQL</span></a></li><li><a class="site-page child" href="/categories/Redis"><i class="fa-fw fa fa-music"></i><span> Redis</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 架构</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/Spring"><i class="fa-fw fa fa-music"></i><span> Spring</span></a></li><li><a class="site-page child" href="/categories/microServeices"><i class="fa-fw fa fa-music"></i><span> 微服务</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 运维</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/Docker"><i class="fa-fw fa fa-music"></i><span> Docker</span></a></li><li><a class="site-page child" href="/categories/Linux"><i class="fa-fw fa fa-music"></i><span> Linux</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 分享</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/tags/Tools"><i class="fa-fw fa fa-music"></i><span> 工具</span></a></li><li><a class="site-page child" href="/tags/guide"><i class="fa-fw fa fa-music"></i><span> 教程</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 项目</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/tags/Tools"><i class="fa-fw fa fa-music"></i><span> 工具</span></a></li><li><a class="site-page child" href="/tags/guide"><i class="fa-fw fa fa-music"></i><span> 教程</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-heartbeat"></i><span> 娱乐</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/gallery/"><i class="fa-fw fa fa-images"></i><span> 图库</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fa fa-film"></i><span> 电影</span></a></li><li><a class="site-page child" href="/books/"><i class="fa-fw fa fa-book"></i><span> 图书</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 我的</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/artitalk/"><i class="fa-fw fa fa-commenting"></i><span> 说说</span></a></li><li><a class="site-page child" href="/todo/"><i class="fa-fw fa fa-flag"></i><span> TODO</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Linux下Mysql安装（tar安装） - kosamino - 博客园</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-11-28T07:04:49.753Z" title="发表于 2022-11-28 07:04:49">2022-11-28</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-05-23T02:19:53.000Z" title="更新于 2022-05-23 02:19:53">2022-05-23</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">2.4k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>9分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Linux下Mysql安装（tar安装） - kosamino - 博客园"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p><a id="top"></a><a target="_blank" rel="noopener external nofollow noreferrer" href="https://developer.aliyun.com/trainingcamp/88b6444d8728476090ac3aa1338179f2?utm_content=g_1000340106"></a></p>
+<ul>
+<li><p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/" title="开发者的网上家园"><img width="76" height="28" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/logo_9fd0537f020e4f0893e14cb341939758.svg"/></a></p>
+</li>
+<li><p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/">首页</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://news.cnblogs.com/">新闻</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://q.cnblogs.com/">博问</a></p>
+</li>
+<li><p><a id="nav_brandzone"></a><a target="_blank" rel="noopener external nofollow noreferrer" href="https://brands.cnblogs.com/huawei">专区</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://ing.cnblogs.com/">闪存</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://edu.cnblogs.com/">班级</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://account.cnblogs.com/signup">注册</a> 登录</p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td><a id="Header1_HeaderTitle"></a><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/jing99/">stackOverFlow</a></td>
+</tr>
+</tbody></table>
+<p><a id="blog_nav_sitehome"></a><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/">博客园</a>     <a id="blog_nav_myhome"></a><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/jing99/">首页</a>     <a target="_blank" rel="noopener external nofollow noreferrer" href="http://q.cnblogs.com/">博问</a>    <a target="_blank" rel="noopener external nofollow noreferrer" href="http://home.cnblogs.com/ing/">闪存</a>    <a id="blog_nav_newpost"></a><a target="_blank" rel="noopener external nofollow noreferrer" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a>     <a id="blog_nav_rss"></a>订阅 <a id="blog_nav_rss_image"></a><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/jing99/rss/"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/xml_0e6b6bc4396b42a49867517a1435c95e.gif" alt="订阅"></a>    <a id="blog_nav_admin"></a><a target="_blank" rel="noopener external nofollow noreferrer" href="https://i.cnblogs.com/">管理</a></p>
+<p>随笔 - 361,  文章 - 0,  评论 - 54,  阅读 - 125万</p>
+<p><a id="cb_post_title_url"></a><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/jing99/p/9684273.html">Linux下Mysql安装（tar安装）</a></p>
+<h3 id="1、为数据库创建软件目录以及数据存放目录"><a href="#1、为数据库创建软件目录以及数据存放目录" class="headerlink" title="1、为数据库创建软件目录以及数据存放目录"></a>1、为数据库创建软件目录以及数据存放目录</h3><p>#mysql软件目录 mkdir /software/ #mysql数据文件目录 mkdir /data/mysql</p>
+<h3 id="2、上传mysql-XXXXXX-tar-gz文件到mysql软件安装目录下："><a href="#2、上传mysql-XXXXXX-tar-gz文件到mysql软件安装目录下：" class="headerlink" title="2、上传mysql-XXXXXX.tar.gz文件到mysql软件安装目录下："></a>2、上传mysql-XXXXXX.tar.gz文件到mysql软件安装目录下：</h3><p>cd /software/<br>tar -zxvf mysql-5.7.21-linux-glibc2.12-x86_64.tar.gz</p>
+<p>　　mysql的tar.gz的安装包可以去官网下载：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://dev.mysql.com/downloads/mysql/%E3%80%82">https://dev.mysql.com/downloads/mysql/。</a></p>
+<h3 id="3、更改解压缩后的文件夹名称"><a href="#3、更改解压缩后的文件夹名称" class="headerlink" title="3、更改解压缩后的文件夹名称"></a>3、更改解压缩后的文件夹名称</h3><p>mv /software/mysql-5.7.21-linux-glibc2.12-x86_64/  /software/mysql</p>
+<h3 id="4、创建mysql用户组和mysql用户"><a href="#4、创建mysql用户组和mysql用户" class="headerlink" title="4、创建mysql用户组和mysql用户"></a>4、创建mysql用户组和mysql用户</h3><p>groupadd mysql<br>useradd -r -g mysql mysql</p>
+<h3 id="5、关联myql用户到mysql用户组中"><a href="#5、关联myql用户到mysql用户组中" class="headerlink" title="5、关联myql用户到mysql用户组中"></a>5、关联myql用户到mysql用户组中</h3><p>chown -R mysql:mysql  /software/mysql/chown -R mysql:mysql  /data/mysql/chown -R mysql  /software/mysql/chown -R mysql  /data/mysql</p>
+<h3 id="6、更改mysql安装文件夹mysql-的权限"><a href="#6、更改mysql安装文件夹mysql-的权限" class="headerlink" title="6、更改mysql安装文件夹mysql/的权限"></a>6、更改mysql安装文件夹mysql/的权限</h3><p>chmod -R 755 /software/mysql/</p>
+<h3 id="7、安装libaio依赖包。"><a href="#7、安装libaio依赖包。" class="headerlink" title="7、安装libaio依赖包。"></a>7、安装libaio依赖包。</h3><p>　　由于我买的腾讯云服务器centos系统自带的有这个依赖包所以不需要安装，不过自带的依赖包会报错，后面介绍解决办法。</p>
+<p>#查询是否暗转libaio依赖包 yum search libaio<br>#如果没安装，可以用下面命令安装 yum install libaio</p>
+<h3 id="8、初始化mysql命令"><a href="#8、初始化mysql命令" class="headerlink" title="8、初始化mysql命令"></a>8、初始化mysql命令</h3><p>cd /software/mysql/bin<br>./mysqld –user=mysql –basedir=/software/mysql –datadir=/data/mysql –initialize</p>
+<p>　　在执行上面命令时特别要注意一行内容：</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/copycode_a8b93ff526ea490dba3d7497dcd0361d.gif" alt="复制代码"></p>
+<p>[Note] A temporary password is generated for root@localhost: <strong>o</strong>*<strong>s#gqh)F4Ck</strong><br>root@localhost: 后面跟的是mysql数据库登录的临时密码，各人安装生成的临时密码不一样<br>#如果初始化时报错如下：<br>error while loading shared libraries: libnuma.so.1: cannot open shared objec<br>#是因为libnuma安装的是32位，我们这里需要64位的，执行下面语句就可以解决 yum install numactl.x86_64<br>#执行完后重新初始化mysql命令</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/copycode_a8b93ff526ea490dba3d7497dcd0361d.gif" alt="复制代码"></p>
+<h3 id="9、启动mysql服务"><a href="#9、启动mysql服务" class="headerlink" title="9、启动mysql服务"></a>9、启动mysql服务</h3><p>sh /software/mysql/support-files/mysql.server start</p>
+<p>　　上面启动mysql服务命令是会报错的，因为没有修改mysql的配置文件，报错内容大致如下：</p>
+<p>./support-files/mysql.server: line 239: my_print_defaults: command not found<br>./support-files/mysql.server: line 259: cd: /usr/local/mysql: No such file or directory<br>Starting MySQL ERROR! Couldn’t find MySQL server (/usr/local/mysql/bin/mysqld_safe)</p>
+<h3 id="10、修改Mysql配置文件"><a href="#10、修改Mysql配置文件" class="headerlink" title="10、修改Mysql配置文件"></a>10、修改Mysql配置文件</h3><p>vim /software/mysql/support-files/mysql.server</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/copycode_a8b93ff526ea490dba3d7497dcd0361d.gif" alt="复制代码"></p>
+<p>if test -z “$basedir”<br>then basedir=/software/mysql<br>bindir=/software/mysql/bin if test -z “$datadir”<br>then datadir=/data/mysql fi sbindir=/software/mysql/bin<br>libexecdir=/software/mysql/bin else bindir=”$basedir/bin”<br>if test -z “$datadir”<br>then datadir=”$basedir/data”<br>fi sbindir=”$basedir/sbin” libexecdir=”$basedir/libexec”<br>fi</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/copycode_a8b93ff526ea490dba3d7497dcd0361d.gif" alt="复制代码"></p>
+<p>　　保存并退出：</p>
+<p>cp /software/mysql/support-files/mysql.server  /etc/init.d/mysqld chmod 755 /etc/init.d/mysqld</p>
+<h3 id="11、修改my-cnf文件"><a href="#11、修改my-cnf文件" class="headerlink" title="11、修改my.cnf文件"></a>11、修改my.cnf文件</h3><p>vi /etc/my.cnf</p>
+<p>　　将下面内容复制替换当前的my.cnf文件中的内容：</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/copycode_a8b93ff526ea490dba3d7497dcd0361d.gif" alt="复制代码"></p>
+<p>[client]<br>no-beep socket =/software/mysql/mysql.sock<br># pipe<br># socket=0.0 port=3306 [mysql]<br>default-character-set=utf8<br>[mysqld]<br>basedir=/software/mysql<br>datadir=/data/mysql<br>port=3306 pid-file=/software/mysql/mysqld.pid<br>#skip-grant-tables<br>skip-name-resolve<br>socket = /software/mysql/mysql.sock<br>character-set-server=utf8<br>default-storage-engine=INNODB<br>explicit_defaults_for_timestamp = true # Server Id.<br>server-id=1 max_connections=2000 query_cache_size=0 table_open_cache=2000 tmp_table_size=246M<br>thread_cache_size=300 #限定用于每个数据库线程的栈大小。默认设置足以满足大多数应用<br>thread_stack = 192k<br>key_buffer_size=512M<br>read_buffer_size=4M<br>read_rnd_buffer_size=32M<br>innodb_data_home_dir = /data/mysql<br>innodb_flush_log_at_trx_commit=0 innodb_log_buffer_size=16M<br>innodb_buffer_pool_size=256M<br>innodb_log_file_size=128M<br>innodb_thread_concurrency=128 innodb_autoextend_increment=1000 innodb_buffer_pool_instances=8 innodb_concurrency_tickets=5000 innodb_old_blocks_time=1000 innodb_open_files=300 innodb_stats_on_metadata=0 innodb_file_per_table=1 innodb_checksum_algorithm=0 back_log=80 flush_time=0 join_buffer_size=128M<br>max_allowed_packet=1024M<br>max_connect_errors=2000 open_files_limit=4161 query_cache_type=0 sort_buffer_size=32M<br>table_definition_cache=1400 binlog_row_event_max_size=8K<br>sync_master_info=10000 sync_relay_log=10000 sync_relay_log_info=10000 #批量插入数据缓存大小，可以有效提高插入效率，默认为8M<br>bulk_insert_buffer_size = 64M<br>interactive_timeout = 120 wait_timeout = 120 log-bin-trust-function-creators=1 sql_mode=NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES<br># include all files from the config directory<br>!includedir /etc/my.cnf.d</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/copycode_a8b93ff526ea490dba3d7497dcd0361d.gif" alt="复制代码"></p>
+<p>　　保存并推出。</p>
+<h3 id="12、启动mysql"><a href="#12、启动mysql" class="headerlink" title="12、启动mysql"></a>12、启动mysql</h3><p>/etc/init.d/mysqld start<br>#或者：<br>systemctl restart mysqld</p>
+<p>　　新版本的安装包会报错，错误内容如下：</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/copycode_a8b93ff526ea490dba3d7497dcd0361d.gif" alt="复制代码"></p>
+<p>Starting MySQL.Logging to ‘/data/mysql/SZY.err’. 2018-07-02T10:09:03.779928Z mysqld_safe The file /usr/local/mysql/bin/mysqld<br>does not exist or is not executable. Please cd to the mysql installation<br>directory and restart this script from there as follows:<br>./bin/mysqld_safe&amp; See <a target="_blank" rel="noopener external nofollow noreferrer" href="http://dev.mysql.com/doc/mysql/en/mysqld-safe.html">http://dev.mysql.com/doc/mysql/en/mysqld-safe.html</a> for more information<br>ERROR! The server quit without updating PID file (/software/mysql/mysqld.pid).</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/copycode_a8b93ff526ea490dba3d7497dcd0361d.gif" alt="复制代码"></p>
+<p>　　因为新版本的mysql安全启动安装包只认/usr/local/mysql这个路径。解决办法：</p>
+<p>　　方法1、建立软连接</p>
+<p>cd /usr/local/mysql ln -s /sofware/mysql/bin/myslqd mysqld</p>
+<p>　　方法2、修改mysqld_safe文件（有强迫症的同学建议这种，我用的这种）</p>
+<p>vim /software/mysql/bin/mysqld_safe<br>#将所有的/usr/local/mysql改为/software/mysql</p>
+<p>　　保存退出。（可以将这个文件拷出来再修改然后替换）</p>
+<h3 id="13、登录mysql"><a href="#13、登录mysql" class="headerlink" title="13、登录mysql"></a>13、登录mysql</h3><p>/software/mysql/bin/mysql -u root –p</p>
+<h3 id="14、输入临时密码。"><a href="#14、输入临时密码。" class="headerlink" title="14、输入临时密码。"></a>14、输入临时密码。</h3><p>　　临时密码就是第8条root@localhost:后面的内容。</p>
+<h3 id="15、修改mysql的登录密码"><a href="#15、修改mysql的登录密码" class="headerlink" title="15、修改mysql的登录密码"></a>15、修改mysql的登录密码</h3><blockquote>
+<p>mysql  set password=password(‘root’); &gt;mysql  grant all privileges on <em>.</em> to root@’%’ identified by ‘root’; &gt;mysql  flush privileges;</p>
+</blockquote>
+<h3 id="16、完成，此时mysql的登录名root-登录密码root"><a href="#16、完成，此时mysql的登录名root-登录密码root" class="headerlink" title="16、完成，此时mysql的登录名root  登录密码root"></a>16、完成，此时mysql的登录名root  登录密码root</h3><p>Stay hungry，stay foolish ！</p>
+<p>分类: <a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/jing99/category/1051594.html">Linux场景应用</a>, <a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/jing99/category/892824.html">MySQL</a></p>
+<p>标签: <a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/jing99/tag/Linux/">Linux</a>, <a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/jing99/tag/MySQL/">MySQL</a>, <a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/jing99/tag/tar/">tar</a></p>
+<p><a id="green_channel_digg"></a>好文要顶 <a id="green_channel_follow"></a>关注我 <a id="green_channel_favorite"></a>收藏该文 <a id="green_channel_weibo"></a><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/icon_weibo_24_967ed02b0d2a4795850db893883080ab.png"><a id="green_channel_wechat"></a><img width="24" height="24" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/wechat_1d8c9c7a16be4b83b98df9268143acdd.png"/></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://home.cnblogs.com/u/jing99/"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/20160928013324_0f747066d1a4425391d6d00cddafb5b5.png"></a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://home.cnblogs.com/u/jing99/">kosamino</a><br><a target="_blank" rel="noopener external nofollow noreferrer" href="https://home.cnblogs.com/u/jing99/followees/">关注 - 32</a><br><a target="_blank" rel="noopener external nofollow noreferrer" href="https://home.cnblogs.com/u/jing99/followers/">粉丝 - 218</a></p>
+<p>+加关注</p>
+<p><a id="digg_count"></a>1</p>
+<p><a id="bury_count"></a>0</p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/jing99/p/9684199.html">«</a> 上一篇： <a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/jing99/p/9684199.html" title="发布于 2018-09-21 00:40">Linux下Mysql安装（RPM安装）</a><br><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/jing99/p/9684276.html">»</a> 下一篇： <a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/jing99/p/9684276.html" title="发布于 2018-09-21 01:24">Host ‘xxx’ is not allowed to connect to this MySQL server</a></p>
+<p>posted on <a id="post-date"></a>2018-09-21 01:13  <a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/jing99/">kosamino</a>  阅读(<a id="post_view_count"></a>18858)  评论(<a id="post_comment_count"></a>1)  <a target="_blank" rel="noopener external nofollow noreferrer" href="https://i.cnblogs.com/EditPosts.aspx?postid=9684273">编辑</a>  收藏  举报</p>
+<p><a id="!comments"></a></p>
+<p><a id="commentform"></a></p>
+<p><a id="lnk_RefreshComments"></a>刷新评论<a href="#">刷新页面</a><a href="#top">返回顶部</a></p>
+<p>登录后才能查看或发表评论，立即 登录 或者 <a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/">逛逛</a> 博客园首页</p>
+<p><strong>编辑推荐：</strong><br>· <a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/deatharthas/p/15409455.html">聊聊 C# 中的 Visitor 模式</a><br>· <a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/springhgui/p/16290803.html">干掉RedisHelper，请这样用分布式缓存</a><br>· <a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/chanmufeng/p/16287696.html">用「闪电侠」的例子解释一下进程和线程</a><br>· <a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/coco1s/p/16283836.html">浅谈逻辑选择器 -- 父选择器它来了！</a><br>· <a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/wucy/p/16281540.html">由C# dynamic是否装箱引发的思考</a></p>
+<p><strong>最新新闻</strong>：<br>· <a target="_blank" rel="noopener external nofollow noreferrer" href="https://news.cnblogs.com/n/721236/">监管出手！又有支付企业被罚超800万</a><br>· <a target="_blank" rel="noopener external nofollow noreferrer" href="https://news.cnblogs.com/n/721235/">B站官方 UWP 应用从微软商店下架：购买记录彻底消失</a><br>· <a target="_blank" rel="noopener external nofollow noreferrer" href="https://news.cnblogs.com/n/721234/">猴痘病毒最新基因测序：温和西非株系，与三年前英国毒株相近</a><br>· <a target="_blank" rel="noopener external nofollow noreferrer" href="https://news.cnblogs.com/n/721231/">苹果公司遭起诉 原告称佩戴苹果耳机导致失聪</a><br>· <a target="_blank" rel="noopener external nofollow noreferrer" href="https://news.cnblogs.com/n/721233/">马斯克：推特收购价将依据真实用户数量决定</a><br>» <a target="_blank" rel="noopener external nofollow noreferrer" href="https://news.cnblogs.com/" title="IT 新闻">更多新闻…</a></p>
+<p>昵称： <a target="_blank" rel="noopener external nofollow noreferrer" href="https://home.cnblogs.com/u/jing99/">kosamino</a><br>园龄： <a target="_blank" rel="noopener external nofollow noreferrer" href="https://home.cnblogs.com/u/jing99/" title="入园时间：2016-08-17">5年9个月</a><br>粉丝： <a target="_blank" rel="noopener external nofollow noreferrer" href="https://home.cnblogs.com/u/jing99/followers/">218</a><br>关注： <a target="_blank" rel="noopener external nofollow noreferrer" href="https://home.cnblogs.com/u/jing99/followees/">32</a></p>
+<p>+加关注</p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://developer.aliyun.com/trainingcamp/88b6444d8728476090ac3aa1338179f2?utm_content=g_1000340106"><img width="280" height="233" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/35695-20220510211751231-24079882_cdebb86fa25246c29.jpg"/></a></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>&lt;</td>
+<td>2022年5月</td>
+<td>&gt;</td>
+</tr>
+</tbody></table>
+<p>日一二三四五六123456789101112131415161718192021222324252627282930311234567891011</p>
+<h3 id="搜索"><a href="#搜索" class="headerlink" title="搜索"></a>搜索</h3><h3 id="常用链接"><a href="#常用链接" class="headerlink" title="常用链接"></a>常用链接</h3><ul>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/jing99/p/" title="我的博客的随笔列表">我的随笔</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/jing99/MyComments.html" title="我的发表过的评论列表">我的评论</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/jing99/OtherPosts.html" title="我评论过的随笔列表">我的参与</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/jing99/comments" title="我的博客的评论列表">最新评论</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/jing99/tag/" title="我的博客的标签列表">我的标签</a></li>
+</ul>
+<h3 id="我的标签"><a href="#我的标签" class="headerlink" title="我的标签"></a>我的标签</h3><ul>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/jing99/tag/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式(29)</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/jing99/tag/MySQL/">MySQL(23)</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/jing99/tag/Linux/">Linux(17)</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/jing99/tag/Linux%E5%91%BD%E4%BB%A4/">Linux命令(16)</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/jing99/tag/tomcat/">tomcat(13)</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/jing99/tag/redis/">redis(13)</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/jing99/tag/mongodb/">mongodb(10)</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/jing99/tag/hashMap/">hashMap(9)</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/jing99/tag/Thread/">Thread(9)</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/jing99/tag/Netty/">Netty(7)</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/jing99/tag/">更多</a></li>
+</ul>
+<h3 id="积分与排名"><a href="#积分与排名" class="headerlink" title="积分与排名"></a>积分与排名</h3><ul>
+<li>积分 - 453563</li>
+<li>排名 - 1253</li>
+</ul>
+<h1 id="随笔分类"><a href="#随笔分类" class="headerlink" title="随笔分类"></a><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/jing99/categories">随笔分类</a></h1><ul>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/jing99/category/1880500.html">docker(2)</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/jing99/category/1873167.html">elasticsearch(3)</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/jing99/category/1880502.html">go(1)</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/jing99/category/1590122.html">IO(6)</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/jing99/category/1013983.html">Java基础(37)</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/jing99/category/1852017.html">JDK特性(3)</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/jing99/category/903455.html">JVM及JVM调优(14)</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/jing99/category/1863846.html">Kafka(4)</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/jing99/category/2142527.html">kubernetes(2)</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/jing99/category/1051594.html">Linux场景应用(35)</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/jing99/category/1118759.html">Linux命令详解(31)</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/jing99/category/1066455.html">MongoDB(11)</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/jing99/category/1764347.html">mybatis(4)</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/jing99/category/892824.html">MySQL(26)</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/jing99/category/1669280.html">Netty(12)</a></li>
+<li>更多</li>
+</ul>
+<h1 id="随笔档案"><a href="#随笔档案" class="headerlink" title="随笔档案"></a>随笔档案</h1><ul>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/jing99/archive/2022/04.html">2022年4月(5)</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/jing99/archive/2021/06.html">2021年6月(1)</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/jing99/archive/2021/04.html">2021年4月(3)</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/jing99/archive/2021/03.html">2021年3月(1)</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/jing99/archive/2021/02.html">2021年2月(1)</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/jing99/archive/2020/11.html">2020年11月(4)</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/jing99/archive/2020/10.html">2020年10月(6)</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/jing99/archive/2020/09.html">2020年9月(3)</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/jing99/archive/2020/07.html">2020年7月(1)</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/jing99/archive/2020/05.html">2020年5月(8)</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/jing99/archive/2020/04.html">2020年4月(20)</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/jing99/archive/2020/03.html">2020年3月(30)</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/jing99/archive/2019/12.html">2019年12月(4)</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/jing99/archive/2019/11.html">2019年11月(7)</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/jing99/archive/2019/10.html">2019年10月(24)</a></li>
+<li>更多</li>
+</ul>
+<h3 id="阅读排行榜"><a href="#阅读排行榜" class="headerlink" title="阅读排行榜"></a><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/jing99/most-viewed">阅读排行榜</a></h3><ul>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/jing99/p/11696192.html">1. SpringCloud之Zuul网关原理及其配置(99242)</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/jing99/p/7904129.html">2. Centos和Redhat的区别与联系(95709)</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/jing99/p/11576133.html">3. SpringCloud之Eureka注册中心原理及其搭建(86920)</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/jing99/p/7057245.html">4. java集合继承关系图(53095)</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/jing99/p/11546559.html">5. SpringBoot定时任务(schedule、quartz)(47876)</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/jing99/p/6947549.html">6. Map、Set、List集合差别及联系详解(36545)</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/jing99/p/5947841.html">7. 死锁产生的原因和解锁的方法(31680)</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/jing99/p/10797230.html">8. Linux软链接创建及删除(31032)</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/jing99/p/11679426.html">9. SpringCloud之RabbitMQ消息队列原理及配置(28748)</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/jing99/p/11769093.html">10. 分布式事务解决方案及实现(27442)</a></li>
+</ul>
+<h3 id="评论排行榜"><a href="#评论排行榜" class="headerlink" title="评论排行榜"></a><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/jing99/most-commented">评论排行榜</a></h3><ul>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/jing99/p/11696192.html">1. SpringCloud之Zuul网关原理及其配置(8)</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/jing99/p/14920120.html">2. 国密SM2加解密Java工具类(附前端VUE代码)(7)</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/jing99/p/11625306.html">3. SpringCloud之Hystrix容错保护原理及配置(4)</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/jing99/p/7057245.html">4. java集合继承关系图(4)</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/jing99/p/11576133.html">5. SpringCloud之Eureka注册中心原理及其搭建(3)</a></li>
+</ul>
+<h3 id="推荐排行榜"><a href="#推荐排行榜" class="headerlink" title="推荐排行榜"></a><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/jing99/most-liked">推荐排行榜</a></h3><ul>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/jing99/p/11696192.html">1. SpringCloud之Zuul网关原理及其配置(35)</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/jing99/p/11576133.html">2. SpringCloud之Eureka注册中心原理及其搭建(11)</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/jing99/p/7057245.html">3. java集合继承关系图(10)</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/jing99/p/11625306.html">4. SpringCloud之Hystrix容错保护原理及配置(7)</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/jing99/p/11546559.html">5. SpringBoot定时任务(schedule、quartz)(7)</a></li>
+</ul>
+<h3 id="最新评论"><a href="#最新评论" class="headerlink" title="最新评论"></a><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/jing99/comments">最新评论</a></h3><ul>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/jing99/p/7895860.html">1. Re:linux命令学习之：systemctl</a></li>
+<li>Is this the dalao???</li>
+<li>–努力努力还是tmd努力</li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/jing99/p/14920120.html">2. Re:国密SM2加解密Java工具类(附前端VUE代码)</a></li>
+<li>我用这种写法，后端加密数据，前端解密数据，结出来的数据为空，您知道什么原因吗</li>
+<li>–gghp</li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/jing99/p/11576133.html">3. Re:SpringCloud之Eureka注册中心原理及其搭建</a></li>
+<li>谢谢博主分享</li>
+<li>–CV大法666</li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/jing99/p/14722697.html">4. Re:可用的在线RTSP流地址</a></li>
+<li>@wangzhaojin 是滴…</li>
+<li>–kosamino</li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/jing99/p/9684273.html">5. Re:Linux下Mysql安装（tar安装）</a></li>
+<li>./mysqld –user=mysql –basedir=/software/mysql –datadir=/data/mysql –initialize 博主有没有遇到初始化mysql的时…</li>
+<li>–简悦Pro</li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/jing99/p/14722697.html">6. Re:可用的在线RTSP流地址</a></li>
+<li>这都是rtmp吧, 不是rtsp</li>
+<li>–wangzhaojin</li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/jing99/p/12723817.html">7. Re:Zookeeper学习之Zab一致性协议</a></li>
+<li>原文： 1、一个事务在 Leader 上提交了，并且过半的 Folower 都响应 Ack 了，但是 Leader 在 Commit 消息发出之前挂了。 2、假设一个事务在 Leader 提出之后，L…</li>
+<li>–李京霖</li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/jing99/p/12723817.html">8. Re:Zookeeper学习之Zab一致性协议</a></li>
+<li>文章中最开始大概说了下zk广播的流程：请求、提议、ack、提交。接下来后面是乱七八糟，请求写成提交、提议写成提交…… 垃圾文章</li>
+<li>–李京霖</li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/jing99/p/14920120.html">9. Re:国密SM2加解密Java工具类(附前端VUE代码)</a></li>
+<li>@彼岸之云 暂时还没有，要是你这边测试了1.6.以上版本，可以一起交流呢，我也是因为项目明确要求国密方案时，临时做的…</li>
+<li>–kosamino</li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/jing99/p/14920120.html">10. Re:国密SM2加解密Java工具类(附前端VUE代码)</a></li>
+<li>@kosamino 你好，发现问题了，你用的jar包是1.56的，我用的是1.61的，1.6以上的版本里好多方法跟1.6以下的版本的方法都不一样了，而我这边必须得用1.6以上的jar包，网上的代码都是…</li>
+<li>–彼岸之云</li>
+</ul>
+<p>Copyright © 2022 kosamino<br><a id="poweredby"></a>Powered by .NET 6 on Kubernetes Powered By<a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/">博客园</a></p>
+<p><a id="fatkun-drop-panel-close-btn"></a>×</p>
+<p>拖拽到此处</p>
+<p>图片将完成下载</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:978252321@qq.com" rel="external nofollow noreferrer">传礼</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://iwangchuanli.github.io/posts/47039.html">https://iwangchuanli.github.io/posts/47039.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow noreferrer" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://iwangchuanli.github.io" target="_blank">传礼</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img11_QkUlco.jpeg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/posts/37391.html"><img class="prev-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img40_3hoNj2.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Linux OpenSSH 升级</div></div></a></div><div class="next-post pull-right"><a href="/posts/46813.html"><img class="next-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img2_qWI50v.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Coding Interview University</div></div></a></div></nav><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div><div id="comment-switch"><span class="first-comment">Valine</span><span class="switch-btn"></span><span class="second-comment">Gitalk</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div><div><div id="gitalk-container"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">Nice to meet you ~</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81%E4%B8%BA%E6%95%B0%E6%8D%AE%E5%BA%93%E5%88%9B%E5%BB%BA%E8%BD%AF%E4%BB%B6%E7%9B%AE%E5%BD%95%E4%BB%A5%E5%8F%8A%E6%95%B0%E6%8D%AE%E5%AD%98%E6%94%BE%E7%9B%AE%E5%BD%95"><span class="toc-number">1.</span> <span class="toc-text">1、为数据库创建软件目录以及数据存放目录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81%E4%B8%8A%E4%BC%A0mysql-XXXXXX-tar-gz%E6%96%87%E4%BB%B6%E5%88%B0mysql%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85%E7%9B%AE%E5%BD%95%E4%B8%8B%EF%BC%9A"><span class="toc-number">2.</span> <span class="toc-text">2、上传mysql-XXXXXX.tar.gz文件到mysql软件安装目录下：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E3%80%81%E6%9B%B4%E6%94%B9%E8%A7%A3%E5%8E%8B%E7%BC%A9%E5%90%8E%E7%9A%84%E6%96%87%E4%BB%B6%E5%A4%B9%E5%90%8D%E7%A7%B0"><span class="toc-number">3.</span> <span class="toc-text">3、更改解压缩后的文件夹名称</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4%E3%80%81%E5%88%9B%E5%BB%BAmysql%E7%94%A8%E6%88%B7%E7%BB%84%E5%92%8Cmysql%E7%94%A8%E6%88%B7"><span class="toc-number">4.</span> <span class="toc-text">4、创建mysql用户组和mysql用户</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5%E3%80%81%E5%85%B3%E8%81%94myql%E7%94%A8%E6%88%B7%E5%88%B0mysql%E7%94%A8%E6%88%B7%E7%BB%84%E4%B8%AD"><span class="toc-number">5.</span> <span class="toc-text">5、关联myql用户到mysql用户组中</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6%E3%80%81%E6%9B%B4%E6%94%B9mysql%E5%AE%89%E8%A3%85%E6%96%87%E4%BB%B6%E5%A4%B9mysql-%E7%9A%84%E6%9D%83%E9%99%90"><span class="toc-number">6.</span> <span class="toc-text">6、更改mysql安装文件夹mysql&#x2F;的权限</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7%E3%80%81%E5%AE%89%E8%A3%85libaio%E4%BE%9D%E8%B5%96%E5%8C%85%E3%80%82"><span class="toc-number">7.</span> <span class="toc-text">7、安装libaio依赖包。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8%E3%80%81%E5%88%9D%E5%A7%8B%E5%8C%96mysql%E5%91%BD%E4%BB%A4"><span class="toc-number">8.</span> <span class="toc-text">8、初始化mysql命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9%E3%80%81%E5%90%AF%E5%8A%A8mysql%E6%9C%8D%E5%8A%A1"><span class="toc-number">9.</span> <span class="toc-text">9、启动mysql服务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10%E3%80%81%E4%BF%AE%E6%94%B9Mysql%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="toc-number">10.</span> <span class="toc-text">10、修改Mysql配置文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#11%E3%80%81%E4%BF%AE%E6%94%B9my-cnf%E6%96%87%E4%BB%B6"><span class="toc-number">11.</span> <span class="toc-text">11、修改my.cnf文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#12%E3%80%81%E5%90%AF%E5%8A%A8mysql"><span class="toc-number">12.</span> <span class="toc-text">12、启动mysql</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#13%E3%80%81%E7%99%BB%E5%BD%95mysql"><span class="toc-number">13.</span> <span class="toc-text">13、登录mysql</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#14%E3%80%81%E8%BE%93%E5%85%A5%E4%B8%B4%E6%97%B6%E5%AF%86%E7%A0%81%E3%80%82"><span class="toc-number">14.</span> <span class="toc-text">14、输入临时密码。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#15%E3%80%81%E4%BF%AE%E6%94%B9mysql%E7%9A%84%E7%99%BB%E5%BD%95%E5%AF%86%E7%A0%81"><span class="toc-number">15.</span> <span class="toc-text">15、修改mysql的登录密码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#16%E3%80%81%E5%AE%8C%E6%88%90%EF%BC%8C%E6%AD%A4%E6%97%B6mysql%E7%9A%84%E7%99%BB%E5%BD%95%E5%90%8Droot-%E7%99%BB%E5%BD%95%E5%AF%86%E7%A0%81root"><span class="toc-number">16.</span> <span class="toc-text">16、完成，此时mysql的登录名root  登录密码root</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%90%9C%E7%B4%A2"><span class="toc-number">17.</span> <span class="toc-text">搜索</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E9%93%BE%E6%8E%A5"><span class="toc-number">18.</span> <span class="toc-text">常用链接</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%88%91%E7%9A%84%E6%A0%87%E7%AD%BE"><span class="toc-number">19.</span> <span class="toc-text">我的标签</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A7%AF%E5%88%86%E4%B8%8E%E6%8E%92%E5%90%8D"><span class="toc-number">20.</span> <span class="toc-text">积分与排名</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%9A%8F%E7%AC%94%E5%88%86%E7%B1%BB"><span class="toc-number"></span> <span class="toc-text">随笔分类</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%9A%8F%E7%AC%94%E6%A1%A3%E6%A1%88"><span class="toc-number"></span> <span class="toc-text">随笔档案</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%98%85%E8%AF%BB%E6%8E%92%E8%A1%8C%E6%A6%9C"><span class="toc-number">1.</span> <span class="toc-text">阅读排行榜</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%84%E8%AE%BA%E6%8E%92%E8%A1%8C%E6%A6%9C"><span class="toc-number">2.</span> <span class="toc-text">评论排行榜</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8E%A8%E8%8D%90%E6%8E%92%E8%A1%8C%E6%A6%9C"><span class="toc-number">3.</span> <span class="toc-text">推荐排行榜</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%80%E6%96%B0%E8%AF%84%E8%AE%BA"><span class="toc-number">4.</span> <span class="toc-text">最新评论</span></a></li></ol></div></div><div class="card-widget ads-wrap"><a target="_blank" href="https://www.aliyun.com/activity?userCode=dpj8p3hl" rel="external nofollow noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/aliyun_whuCuE.jpg" style="width:100%;height:100%;object-fit:cover;"></a></div></div></div></main><footer id="footer" style="background-image: url('https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img11_QkUlco.jpeg')"><div id="footer-wrap"><div class="copyright">&copy;2018 - 2022 By 传礼</div><div class="footer_custom_text"><p style="display:inline-flex">本网站由<a href="https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral" rel="external nofollow noreferrer" target="_blank"><img style="width:60px;height:35px;" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/11/又拍云_logo5_O9kNul.png" title="又拍云"/></a>提供CDN加速/云存储服务</p><p><a style="margin-inline:5px" target="_blank" href="https://hexo.io/" rel="external nofollow noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Frame-Hexo-blue?style=flat&logo=hexo" title="博客框架为Hexo"></a><a style="margin-inline:5px" target="_blank" href="https://butterfly.js.org/" rel="external nofollow noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Theme-Butterfly-6513df?style=flat&logo=bitdefender" title="主题采用butterfly"></a><a style="margin-inline:5px" target="_blank" href="https://www.jsdelivr.com/" rel="external nofollow noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/CDN-jsDelivr-orange?style=flat&logo=jsDelivr" title="本站使用JsDelivr为静态资源提供CDN加速"></a><a style="margin-inline:5px" target="_blank" href="https://github.com/" rel="external nofollow noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Source-Github-d021d6?style=flat&logo=GitHub" title="本站项目由Github托管"></a><a style="margin-inline:5px" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Copyright-BY--NC--SA%204.0-d42328?style=flat&logo=Claris" title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可"></a></p></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="chat_btn" type="button" title="聊天"><i class="fas fa-sms"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">本地搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script src="/js/search/local-search.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"><script>function loadValine () {
+  function initValine () {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: 'zHUfFgUbITfMSQGuSPgS2e3C-gzGzoHsz',
+      appKey: 'yPXpeKX8VJxdFRPEsDaqNgEY',
+      avatar: 'wavatar',
+      serverURLs: 'https://zhuffgub.lc-cn-n1-shared.com',
+      emojiMaps: "",
+      path: window.location.pathname,
+      visitor: true,
+      master: '447d56ab3606de5490a2109d3e441219,135d837ea1033c9787dd307e59884d36'.split(','),
+      friends: '5c?????bfe6rfc72a????e268ad3819c'.split(','),
+      tagMeta: '博主,小伙伴,访客'.split(',')
+        
+    }, {"placeholder":"请输入内容～"}))
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/gh/HCLonely/Valine@latest/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !true) {
+  if (true) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script><script>function addGitalkSource () {
+  const ele = document.createElement('link')
+  ele.rel = 'stylesheet'
+  ele.href= 'https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css'
+  document.getElementsByTagName('head')[0].appendChild(ele)
+}
+
+function loadGitalk () {
+  function initGitalk () {
+    var gitalk = new Gitalk(Object.assign({
+      clientID: '052d9d6486112e93fa50',
+      clientSecret: '6fea35bfb7a17521694a95f705683622976d2f53',
+      repo: 'gitalk',
+      owner: 'iwangchuanli',
+      admin: ['iwangchuanli'],
+      id: '4d9b74b58114be8e894fb722c28bc23c',
+      updateCountCallback: commentCount
+    },null))
+
+    gitalk.render('gitalk-container')
+  }
+
+  if (typeof Gitalk === 'function') initGitalk()
+  else {
+    addGitalkSource()
+    getScript('https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.js').then(initGitalk)
+  }
+}
+
+function commentCount(n){
+  let isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+  if (isCommentCount) {
+    isCommentCount.innerHTML= n
+  }
+}
+
+if ('Valine' === 'Gitalk' || !true) {
+  if (true) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+  else loadGitalk()
+} else {
+  function loadOtherComment () {
+    loadGitalk()
+  }
+}</script></div><div class="aplayer no-destroy" data-id="7355841544" data-server="netease" data-type="playlist" data-fixed="true" data-autoplay="false"> </div><script async src="/js/grayscale.js"></script><script async src="//at.alicdn.com/t/font_1885008_srfhrsykmk.js"></script><script>((window.gitter = {}).chat = {}).options = {
+  disableDefaultChat: true,
+};
+document.addEventListener('gitter-sidecar-ready', (e) => {
+  const GitterChat = e.detail.Chat
+  let chat
+
+  function initGitter () {
+    chat = new GitterChat({
+      room: 'wangchuangli-/community',
+      activationElement: '#chat_btn'
+    });
+  }
+
+  initGitter()
+
+  if (true) {
+    document.addEventListener('pjax:complete', () => {
+      chat.destroy()
+      initGitter()
+    })
+  }
+
+})</script><script src="https://sidecar.gitter.im/dist/sidecar.v1.js" async="async" defer="defer"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/meting@1.2.0/dist/Meting.min.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = ["title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"]):not([href="/music/"]):not([href="/no-pjax/"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.tocScrollFn && window.removeEventListener('scroll', window.tocScrollFn)
+  window.scrollCollect && window.removeEventListener('scroll', scrollCollect)
+
+  typeof preloader === 'object' && preloader.initLoading()
+  document.getElementById('rightside').style.cssText = "opacity: ''; transform: ''"
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+
+  typeof preloader === 'object' && preloader.endLoading()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><!-- hexo injector body_end start --><script data-pjax>
+  function butterfly_swiper_injector_config(){
+    var parent_div_git = document.getElementById('recent-posts');
+    var item_html = '<div class="recent-post-item" style="height: auto;width: 100%"><div class="blog-slider swiper-container-fade swiper-container-horizontal" id="swiper_container"><div class="blog-slider__wrp swiper-wrapper" style="transition-duration: 0ms;"><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" onclick="pjax.loadUrl(&quot;posts/4496.html&quot;);" href="javascript:void(0);" rel="external nofollow noreferrer" alt=""><img width="48" height="48" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img6_L358Nt.jpeg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2018-09-05</span><a class="blog-slider__title" onclick="pjax.loadUrl(&quot;posts/4496.html&quot;);" href="javascript:void(0);" rel="external nofollow noreferrer" alt="">编程系列书单推荐</a><div class="blog-slider__text">再怎么看我也不知道怎么描述它的啦！</div><a class="blog-slider__button" onclick="pjax.loadUrl(&quot;posts/4496.html&quot;);" href="javascript:void(0);" rel="external nofollow noreferrer" alt="">详情       </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" onclick="pjax.loadUrl(&quot;posts/35693.html&quot;);" href="javascript:void(0);" rel="external nofollow noreferrer" alt=""><img width="48" height="48" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img33_fnRUqR.jpeg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2018-11-26</span><a class="blog-slider__title" onclick="pjax.loadUrl(&quot;posts/35693.html&quot;);" href="javascript:void(0);" rel="external nofollow noreferrer" alt="">优秀科技博客订阅</a><div class="blog-slider__text">再怎么看我也不知道怎么描述它的啦！</div><a class="blog-slider__button" onclick="pjax.loadUrl(&quot;posts/35693.html&quot;);" href="javascript:void(0);" rel="external nofollow noreferrer" alt="">详情       </a></div></div></div><div class="blog-slider__pagination swiper-pagination-clickable swiper-pagination-bullets"></div></div></div>';
+    console.log('已挂载butterfly_swiper')
+    parent_div_git.insertAdjacentHTML("afterbegin",item_html)
+    }
+  var elist = 'undefined'.split(',');
+  var cpage = location.pathname;
+  var epage = 'all';
+  var flag = 0;
+
+  for (var i=0;i<elist.length;i++){
+    if (cpage.includes(elist[i])){
+      flag++;
+    }
+  }
+
+  if ((epage ==='all')&&(flag == 0)){
+    butterfly_swiper_injector_config();
+  }
+  else if (epage === cpage){
+    butterfly_swiper_injector_config();
+  }
+  </script><script defer src="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper.min.js"></script><script defer data-pjax src="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper_init.js"></script><!-- hexo injector body_end end --></body></html>

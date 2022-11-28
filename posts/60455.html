@@ -1,0 +1,692 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>07-浮动 | 传礼</title><meta name="keywords" content="博客,blog,王传礼,java,python,大数据"><meta name="author" content="传礼,978252321@qq.com"><meta name="copyright" content="传礼"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="title: 07-浮动publish: true  文本主要内容 标准文档流 标准文档流的特性 行内元素和块级元素 行内元素和块级元素的相互转换   浮动的性质 浮动的清除 浏览器的兼容性问题 浮动中margin相关 关于margin的IE6兼容问题  标准文档流宏观地讲，我们的web页面和photoshop等设计软件有本质的区别：web页面的制作，是个“流”，必须从上而下，像“织毛衣”。而设">
+<meta property="og:type" content="article">
+<meta property="og:title" content="07-浮动">
+<meta property="og:url" content="https://iwangchuanli.github.io/posts/60455.html">
+<meta property="og:site_name" content="传礼">
+<meta property="og:description" content="title: 07-浮动publish: true  文本主要内容 标准文档流 标准文档流的特性 行内元素和块级元素 行内元素和块级元素的相互转换   浮动的性质 浮动的清除 浏览器的兼容性问题 浮动中margin相关 关于margin的IE6兼容问题  标准文档流宏观地讲，我们的web页面和photoshop等设计软件有本质的区别：web页面的制作，是个“流”，必须从上而下，像“织毛衣”。而设">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img10_lLsQAP.jpeg">
+<meta property="article:published_time" content="2022-11-28T07:04:49.765Z">
+<meta property="article:modified_time" content="2022-04-18T09:19:55.000Z">
+<meta property="article:author" content="传礼">
+<meta property="article:tag" content="博客,blog,王传礼,java,python,大数据">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img10_lLsQAP.jpeg"><link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/03/favicons_uH14Fb.gif"><link rel="canonical" href="https://iwangchuanli.github.io/posts/60455"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin=""/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta name="baidu-site-verification" content="qKvGNFZPF9"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?39bd6e37a6e70dc030e6a043a642784e";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: 传礼","link":"链接: ","source":"来源: 传礼","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#121212","position":"bottom-left"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: true,
+  islazyload: true,
+  isAnchor: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '07-浮动',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-04-18 09:19:55'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/custom.css"  media="defer" onload="this.media='all'"><!-- hexo injector head_end start --><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiperstyle.css" media="print" onload="this.media='all'"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.1"><link rel="alternate" href="/atom.xml" title="传礼" type="application/atom+xml">
+</head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/03/photo_NZBQPu.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><div class="data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">511</div></a></div><div class="data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">50</div></a></div><div class="data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">22</div></a></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 归档</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-calendar"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 开发</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/Java"><i class="fa-fw fa fa-music"></i><span> Java</span></a></li><li><a class="site-page child" href="/categories/Python"><i class="fa-fw fa fa-music"></i><span> Python</span></a></li><li><a class="site-page child" href="/categories/VUE"><i class="fa-fw fa fa-music"></i><span> VUE</span></a></li><li><a class="site-page child" href="/categories/MySQL"><i class="fa-fw fa fa-music"></i><span> MySQL</span></a></li><li><a class="site-page child" href="/categories/Redis"><i class="fa-fw fa fa-music"></i><span> Redis</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 架构</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/Spring"><i class="fa-fw fa fa-music"></i><span> Spring</span></a></li><li><a class="site-page child" href="/categories/microServeices"><i class="fa-fw fa fa-music"></i><span> 微服务</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 运维</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/Docker"><i class="fa-fw fa fa-music"></i><span> Docker</span></a></li><li><a class="site-page child" href="/categories/Linux"><i class="fa-fw fa fa-music"></i><span> Linux</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 分享</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/tags/Tools"><i class="fa-fw fa fa-music"></i><span> 工具</span></a></li><li><a class="site-page child" href="/tags/guide"><i class="fa-fw fa fa-music"></i><span> 教程</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 项目</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/tags/Tools"><i class="fa-fw fa fa-music"></i><span> 工具</span></a></li><li><a class="site-page child" href="/tags/guide"><i class="fa-fw fa fa-music"></i><span> 教程</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-heartbeat"></i><span> 娱乐</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/gallery/"><i class="fa-fw fa fa-images"></i><span> 图库</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fa fa-film"></i><span> 电影</span></a></li><li><a class="site-page child" href="/books/"><i class="fa-fw fa fa-book"></i><span> 图书</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 我的</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/artitalk/"><i class="fa-fw fa fa-commenting"></i><span> 说说</span></a></li><li><a class="site-page child" href="/todo/"><i class="fa-fw fa fa-flag"></i><span> TODO</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img10_lLsQAP.jpeg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">传礼</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 归档</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-calendar"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 开发</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/Java"><i class="fa-fw fa fa-music"></i><span> Java</span></a></li><li><a class="site-page child" href="/categories/Python"><i class="fa-fw fa fa-music"></i><span> Python</span></a></li><li><a class="site-page child" href="/categories/VUE"><i class="fa-fw fa fa-music"></i><span> VUE</span></a></li><li><a class="site-page child" href="/categories/MySQL"><i class="fa-fw fa fa-music"></i><span> MySQL</span></a></li><li><a class="site-page child" href="/categories/Redis"><i class="fa-fw fa fa-music"></i><span> Redis</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 架构</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/Spring"><i class="fa-fw fa fa-music"></i><span> Spring</span></a></li><li><a class="site-page child" href="/categories/microServeices"><i class="fa-fw fa fa-music"></i><span> 微服务</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 运维</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/Docker"><i class="fa-fw fa fa-music"></i><span> Docker</span></a></li><li><a class="site-page child" href="/categories/Linux"><i class="fa-fw fa fa-music"></i><span> Linux</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 分享</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/tags/Tools"><i class="fa-fw fa fa-music"></i><span> 工具</span></a></li><li><a class="site-page child" href="/tags/guide"><i class="fa-fw fa fa-music"></i><span> 教程</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 项目</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/tags/Tools"><i class="fa-fw fa fa-music"></i><span> 工具</span></a></li><li><a class="site-page child" href="/tags/guide"><i class="fa-fw fa fa-music"></i><span> 教程</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-heartbeat"></i><span> 娱乐</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/gallery/"><i class="fa-fw fa fa-images"></i><span> 图库</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fa fa-film"></i><span> 电影</span></a></li><li><a class="site-page child" href="/books/"><i class="fa-fw fa fa-book"></i><span> 图书</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 我的</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/artitalk/"><i class="fa-fw fa fa-commenting"></i><span> 说说</span></a></li><li><a class="site-page child" href="/todo/"><i class="fa-fw fa fa-flag"></i><span> TODO</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">07-浮动</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-11-28T07:04:49.765Z" title="发表于 2022-11-28 07:04:49">2022-11-28</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-04-18T09:19:55.000Z" title="更新于 2022-04-18 09:19:55">2022-04-18</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">6.5k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>23分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="07-浮动"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><hr>
+<p>title: 07-浮动<br>publish: true</p>
+<hr>
+<h2 id="文本主要内容"><a href="#文本主要内容" class="headerlink" title="文本主要内容"></a>文本主要内容</h2><ul>
+<li>标准文档流<ul>
+<li>标准文档流的特性</li>
+<li>行内元素和块级元素</li>
+<li>行内元素和块级元素的相互转换</li>
+</ul>
+</li>
+<li>浮动的性质</li>
+<li>浮动的清除</li>
+<li>浏览器的兼容性问题</li>
+<li>浮动中margin相关</li>
+<li>关于margin的IE6兼容问题</li>
+</ul>
+<h2 id="标准文档流"><a href="#标准文档流" class="headerlink" title="标准文档流"></a>标准文档流</h2><p>宏观地讲，我们的web页面和photoshop等设计软件有本质的区别：web页面的制作，是个“流”，必须从上而下，像“织毛衣”。而设计软件，想往哪里画个东西，都能画。</p>
+<h3 id="标准文档流的特性"><a href="#标准文档流的特性" class="headerlink" title="标准文档流的特性"></a>标准文档流的特性</h3><p><strong>（1）空白折叠现象：</strong></p>
+<p>无论多少个空格、换行、tab，都会折叠为一个空格。</p>
+<p>比如，如果我们想让img标签之间没有空隙，必须紧密连接：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;img src=&quot;images/0.jpg&quot; /&gt;&lt;img src=&quot;images/1.jpg&quot; /&gt;&lt;img src=&quot;images/2.jpg&quot; /&gt;</span><br></pre></td></tr></table></figure>
+
+
+<p><strong>（2）高矮不齐，底边对齐：</strong></p>
+<p>举例如下：</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://img.smyhvae.com/20170729_1508_2.png"></p>
+<p><strong>（3）自动换行，一行写不满，换行写。</strong></p>
+<h3 id="行内元素和块级元素"><a href="#行内元素和块级元素" class="headerlink" title="行内元素和块级元素"></a>行内元素和块级元素</h3><p>学习的初期，我们就要知道，标准文档流等级森严。标签分为两种等级：</p>
+<ul>
+<li>行内元素</li>
+<li>块级元素</li>
+</ul>
+<p>我们可以举一个例子，看看块级元素和行内元素的区别：</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://img.smyhvae.com/20170729_1529_2.png"></p>
+<p>上图中可以看到，<code>h1</code>标签是块级元素，占据了整行，<code>span</code>标签是行内元素，只占据内容这一部分。</p>
+<p>现在我们尝试给两个标签设置宽高。效果如下：</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://img.smyhvae.com/20170729_1532_2.png"></p>
+<p>上图中，我们尝试给两个标签设置宽高，但发现，宽高属性只对块级元素<code>h1</code>生效。于是我们可以做出如下总结。</p>
+<p><strong>行内元素和块级元素的区别：</strong>（非常重要）</p>
+<p>行内元素：</p>
+<ul>
+<li>与其他行内元素并排；</li>
+<li>不能设置宽、高。默认的宽度，就是文字的宽度。</li>
+</ul>
+<p>块级元素：</p>
+<ul>
+<li>霸占一行，不能与其他任何元素并列；</li>
+<li>能接受宽、高。如果不设置宽度，那么宽度将默认变为父亲的100%。</li>
+</ul>
+<p><strong>行内元素和块级元素的分类：</strong></p>
+<p>在以前的HTML知识中，我们已经将标签分过类，当时分为了：文本级、容器级。</p>
+<p>从HTML的角度来讲，标签分为：</p>
+<ul>
+<li>文本级标签：p、span、a、b、i、u、em。</li>
+<li>容器级标签：div、h系列、li、dt、dd。</li>
+</ul>
+<blockquote>
+<p>PS：为甚么说p是文本级标签呢？因为p里面只能放文字&amp;图片&amp;表单元素，p里面不能放h和ul，p里面也不能放p。</p>
+</blockquote>
+<p>现在，从CSS的角度讲，CSS的分类和上面的很像，就p不一样：</p>
+<ul>
+<li><p>行内元素：除了p之外，所有的文本级标签，都是行内元素。p是个文本级，但是是个块级元素。</p>
+</li>
+<li><p>块级元素：所有的容器级标签都是块级元素，还有p标签。</p>
+</li>
+</ul>
+<p>我们把上面的分类画一个图，即可一目了然：</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://img.smyhvae.com/20170729_1545.png"></p>
+<h3 id="行内元素和块级元素的相互转换"><a href="#行内元素和块级元素的相互转换" class="headerlink" title="行内元素和块级元素的相互转换"></a>行内元素和块级元素的相互转换</h3><p>我们可以通过<code>display</code>属性将块级元素和行内元素进行相互转换。display即“显示模式”。</p>
+<h4 id="块级元素可以转换为行内元素："><a href="#块级元素可以转换为行内元素：" class="headerlink" title="块级元素可以转换为行内元素："></a>块级元素可以转换为行内元素：</h4><p>一旦，给一个块级元素（比如div）设置：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">display: inline;</span><br></pre></td></tr></table></figure>
+
+<p>那么，这个标签将立即变为行内元素，此时它和一个span无异。inline就是“行内”。也就是说：</p>
+<ul>
+<li>此时这个div不能设置宽度、高度；</li>
+<li>此时这个div可以和别人并排了。</li>
+</ul>
+<p>举例如下：</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://img.smyhvae.com/20170729_1629.png"></p>
+<h4 id="行内元素转换为块级元素："><a href="#行内元素转换为块级元素：" class="headerlink" title="行内元素转换为块级元素："></a>行内元素转换为块级元素：</h4><p>同样的道理，一旦给一个行内元素（比如span）设置：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">display: block;</span><br></pre></td></tr></table></figure>
+
+<p>那么，这个标签将立即变为块级元素，此时它和一个div无异。block”是“块”的意思。也就是说：</p>
+<ul>
+<li>此时这个span能够设置宽度、高度</li>
+<li>此时这个span必须霸占一行了，别人无法和他并排</li>
+<li>如果不设置宽度，将撑满父亲</li>
+</ul>
+<p>举例如下：</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://img.smyhvae.com/20170729_1638.png"></p>
+<p>标准流里面的限制非常多，导致很多页面效果无法实现。如果我们现在就要并排、并且就要设置宽高，那该怎么办呢？办法是：移民！<strong>脱离标准流</strong>！</p>
+<p>css中一共有三种手段，使一个元素脱离标准文档流：</p>
+<ul>
+<li>（1）浮动</li>
+<li>（2）绝对定位</li>
+<li>（3）固定定位</li>
+</ul>
+<p>这便引出我们今天要讲的内容：浮动。</p>
+<h2 id="浮动的性质"><a href="#浮动的性质" class="headerlink" title="浮动的性质"></a>浮动的性质</h2><blockquote>
+<p>浮动是css里面布局用的最多的属性。</p>
+</blockquote>
+<p>现在有两个div，分别设置宽高。我们知道，它们的效果如下：</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://img.smyhvae.com/20170729_1722.png"></p>
+<p>此时，如果给这两个div增加一个浮动属性，比如<code>float: left;</code>，效果如下：</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://img.smyhvae.com/20170729_1723.png"></p>
+<p>这就达到了浮动的效果。此时，两个元素并排了，并且两个元素都能够设置宽度、高度了（这在上一段的标准流中，不能实现）。</p>
+<p>浮动想学好，一定要知道三个性质。接下来讲一讲。</p>
+<h3 id="性质1：浮动的元素脱标"><a href="#性质1：浮动的元素脱标" class="headerlink" title="性质1：浮动的元素脱标"></a>性质1：浮动的元素脱标</h3><p>脱标即脱离标准流。我们来看几个例子。</p>
+<p>证明1：</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://img.smyhvae.com/20170729_2028.png"></p>
+<p>上图中，在默认情况下，两个div标签是上下进行排列的。现在由于float属性让上图中的第一个<code>&lt;div&gt;</code>标签出现了浮动，于是这个标签在另外一个层面上进行排列。而第二个<code>&lt;div&gt;</code>还在自己的层面上遵从标准流进行排列。</p>
+<p>证明2：</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://img.smyhvae.com/20180111_2320.png"></p>
+<p>上图中，span标签在标准流中，是不能设置宽高的（因为是行内元素）。但是，一旦设置为浮动之后，即使不转成块级元素，也能够设置宽高了。</p>
+<p>所以能够证明一件事：<strong>一旦一个元素浮动了，那么，将能够并排了，并且能够设置宽高了。无论它原来是个div还是个span。</strong>所有标签，浮动之后，已经不区分行内、块级了。</p>
+<h3 id="性质2：浮动的元素互相贴靠"><a href="#性质2：浮动的元素互相贴靠" class="headerlink" title="性质2：浮动的元素互相贴靠"></a>性质2：浮动的元素互相贴靠</h3><p>我们来看一个例子就明白了。</p>
+<p>我们给三个div均设置了<code>float: left;</code>属性之后，然后设置宽高。当改变浏览器窗口大小时，可以看到div的贴靠效果：</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://img.smyhvae.com/20170730_1910.gif"></p>
+<p>上图显示，3号如果有足够空间，那么就会靠着2号。如果没有足够的空间，那么会靠着1号大哥。<br>如果没有足够的空间靠着1号大哥，3号自己去贴左墙。</p>
+<p>不过3号自己去贴墙的时候，注意：</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://img.smyhvae.com/20170730_1928.gif"></p>
+<p>上图显示，3号贴左墙的时候，并不会往1号里面挤。</p>
+<p>同样，float还有一个属性值是<code>right</code>，这个和属性值<code>left</code>是对称的。</p>
+<h3 id="性质3：浮动的元素有“字围”效果"><a href="#性质3：浮动的元素有“字围”效果" class="headerlink" title="性质3：浮动的元素有“字围”效果"></a>性质3：浮动的元素有“字围”效果</h3><p>来看一张图就明白了。我们让div浮动，p不浮动。</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://img.smyhvae.com/20170730_2005.png"></p>
+<p>上图中，我们发现：<strong>div挡住了p，但不会挡住p中的文字</strong>，形成“字围”效果。</p>
+<p>总结：<strong>标准流中的文字不会被浮动的盒子遮挡住</strong>。（文字就像水一样）</p>
+<p>关于浮动我们要强调一点，浮动这个东西，为避免混乱，我们在初期一定要遵循一个原则：<strong>永远不是一个东西单独浮动，浮动都是一起浮动，要浮动，大家都浮动。</strong></p>
+<h3 id="性质4：收缩"><a href="#性质4：收缩" class="headerlink" title="性质4：收缩"></a>性质4：收缩</h3><p>收缩：一个浮动的元素，如果没有设置width，那么将自动收缩为内容的宽度（这点非常像行内元素）。</p>
+<p>举例如下：</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://img.smyhvae.com/20170801_1720.png"></p>
+<p>上图中，div本身是块级元素，如果不设置width，它会单独霸占整行；但是，设置div浮动后，它会收缩</p>
+<h3 id="浮动的补充（做网站时注意）"><a href="#浮动的补充（做网站时注意）" class="headerlink" title="浮动的补充（做网站时注意）"></a>浮动的补充（做网站时注意）</h3><p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://img.smyhvae.com/20170731_2248.png"></p>
+<p>上图所示，将para1和para2设置为浮动，它们是div的儿子。此时para1+para2的宽度小于div的宽度。效果如上图所示。可如果设置para1+para2的宽度大于div的宽度，我们会发现，para2掉下来了：</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://img.smyhvae.com/20170731_2252_2.png"></p>
+<h3 id="布置一个作业"><a href="#布置一个作业" class="headerlink" title="布置一个作业"></a>布置一个作业</h3><p>布置一个作业，要求实现下面的效果：</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://img.smyhvae.com/20170801_0858.png"></p>
+<p>为实现上方效果，代码如下：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span> <span class="keyword">PUBLIC</span> <span class="string">&quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot;</span> <span class="string">&quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">xmlns</span>=<span class="string">&quot;http://www.w3.org/1999/xhtml&quot;</span> <span class="attr">xml:lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">&quot;Content-Type&quot;</span> <span class="attr">content</span>=<span class="string">&quot;text/html;charset=UTF-8&quot;</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">&quot;text/css&quot;</span>&gt;</span><span class="language-css"></span></span><br><span class="line"><span class="language-css">		*&#123;</span></span><br><span class="line"><span class="language-css">			<span class="attribute">margin</span>: <span class="number">0</span>;</span></span><br><span class="line"><span class="language-css">			<span class="attribute">padding</span>: <span class="number">0</span>;</span></span><br><span class="line"><span class="language-css">		&#125;</span></span><br><span class="line"><span class="language-css">		<span class="selector-class">.header</span>&#123;</span></span><br><span class="line"><span class="language-css">			<span class="attribute">width</span>: <span class="number">970px</span>;</span></span><br><span class="line"><span class="language-css">			<span class="attribute">height</span>: <span class="number">103px</span>;</span></span><br><span class="line"><span class="language-css">			<span class="comment">/*居中。这个语句的意思是：居中：*/</span></span></span><br><span class="line"><span class="language-css">			<span class="attribute">margin</span>: <span class="number">0</span> auto;</span></span><br><span class="line"><span class="language-css">		&#125;</span></span><br><span class="line"><span class="language-css">		<span class="selector-class">.header</span> <span class="selector-class">.logo</span>&#123;</span></span><br><span class="line"><span class="language-css">			<span class="attribute">float</span>: left;</span></span><br><span class="line"><span class="language-css">			<span class="attribute">width</span>: <span class="number">277px</span>;</span></span><br><span class="line"><span class="language-css">			<span class="attribute">height</span>: <span class="number">103px</span>;</span></span><br><span class="line"><span class="language-css">			<span class="attribute">background-color</span>: red;</span></span><br><span class="line"><span class="language-css">		&#125;</span></span><br><span class="line"><span class="language-css">		<span class="selector-class">.header</span> <span class="selector-class">.language</span>&#123;</span></span><br><span class="line"><span class="language-css">			<span class="attribute">float</span>: right;</span></span><br><span class="line"><span class="language-css">			<span class="attribute">width</span>: <span class="number">137px</span>;</span></span><br><span class="line"><span class="language-css">			<span class="attribute">height</span>: <span class="number">49px</span>;</span></span><br><span class="line"><span class="language-css">			<span class="attribute">background-color</span>: green;</span></span><br><span class="line"><span class="language-css">			<span class="attribute">margin-bottom</span>: <span class="number">8px</span>;</span></span><br><span class="line"><span class="language-css">		&#125;</span></span><br><span class="line"><span class="language-css">		<span class="selector-class">.header</span> <span class="selector-class">.nav</span>&#123;</span></span><br><span class="line"><span class="language-css">			<span class="attribute">float</span>: right;</span></span><br><span class="line"><span class="language-css">			<span class="attribute">width</span>: <span class="number">679px</span>;</span></span><br><span class="line"><span class="language-css">			<span class="attribute">height</span>: <span class="number">46px</span>;</span></span><br><span class="line"><span class="language-css">			<span class="attribute">background-color</span>: green;</span></span><br><span class="line"><span class="language-css">		&#125;</span></span><br><span class="line"><span class="language-css"></span></span><br><span class="line"><span class="language-css">		<span class="selector-class">.content</span>&#123;</span></span><br><span class="line"><span class="language-css">			<span class="attribute">width</span>: <span class="number">970px</span>;</span></span><br><span class="line"><span class="language-css">			<span class="attribute">height</span>: <span class="number">435px</span>;</span></span><br><span class="line"><span class="language-css">			<span class="comment">/*居中，这个语句今天没讲，你照抄，就是居中：*/</span></span></span><br><span class="line"><span class="language-css">			<span class="attribute">margin</span>: <span class="number">0</span> auto;</span></span><br><span class="line"><span class="language-css">			<span class="attribute">margin-top</span>: <span class="number">10px</span>;</span></span><br><span class="line"><span class="language-css">		&#125;</span></span><br><span class="line"><span class="language-css">		<span class="selector-class">.content</span> <span class="selector-class">.banner</span>&#123;</span></span><br><span class="line"><span class="language-css">			<span class="attribute">float</span>: left;</span></span><br><span class="line"><span class="language-css">			<span class="attribute">width</span>: <span class="number">310px</span>;</span></span><br><span class="line"><span class="language-css">			<span class="attribute">height</span>: <span class="number">435px</span>;</span></span><br><span class="line"><span class="language-css">			<span class="attribute">background-color</span>: gold;</span></span><br><span class="line"><span class="language-css">			<span class="attribute">margin-right</span>: <span class="number">10px</span>;</span></span><br><span class="line"><span class="language-css">		&#125;</span></span><br><span class="line"><span class="language-css">		<span class="selector-class">.content</span> <span class="selector-class">.rightPart</span>&#123;</span></span><br><span class="line"><span class="language-css">			<span class="attribute">float</span>: left;</span></span><br><span class="line"><span class="language-css">			<span class="attribute">width</span>: <span class="number">650px</span>;</span></span><br><span class="line"><span class="language-css">			<span class="attribute">height</span>: <span class="number">435px</span>;</span></span><br><span class="line"><span class="language-css">		&#125;</span></span><br><span class="line"><span class="language-css">		<span class="selector-class">.content</span> <span class="selector-class">.rightPart</span> <span class="selector-class">.main</span>&#123;</span></span><br><span class="line"><span class="language-css">			<span class="attribute">width</span>: <span class="number">650px</span>;</span></span><br><span class="line"><span class="language-css">			<span class="attribute">height</span>: <span class="number">400px</span>;</span></span><br><span class="line"><span class="language-css">			<span class="attribute">margin-bottom</span>: <span class="number">10px</span>;</span></span><br><span class="line"><span class="language-css">		&#125;</span></span><br><span class="line"><span class="language-css">		<span class="selector-class">.content</span> <span class="selector-class">.rightPart</span> <span class="selector-class">.links</span>&#123;</span></span><br><span class="line"><span class="language-css">			<span class="attribute">width</span>: <span class="number">650px</span>;</span></span><br><span class="line"><span class="language-css">			<span class="attribute">height</span>: <span class="number">25px</span>;</span></span><br><span class="line"><span class="language-css">			<span class="attribute">background-color</span>: blue;</span></span><br><span class="line"><span class="language-css">		&#125;</span></span><br><span class="line"><span class="language-css">		<span class="selector-class">.content</span> <span class="selector-class">.rightPart</span> <span class="selector-class">.main</span> <span class="selector-class">.news</span>&#123;</span></span><br><span class="line"><span class="language-css">			<span class="attribute">float</span>: left;</span></span><br><span class="line"><span class="language-css">			<span class="attribute">width</span>: <span class="number">450px</span>;</span></span><br><span class="line"><span class="language-css">			<span class="attribute">height</span>: <span class="number">400px</span>;</span></span><br><span class="line"><span class="language-css">		&#125;</span></span><br><span class="line"><span class="language-css">		<span class="selector-class">.content</span> <span class="selector-class">.rightPart</span> <span class="selector-class">.main</span> <span class="selector-class">.hotpic</span>&#123;</span></span><br><span class="line"><span class="language-css">			<span class="attribute">float</span>: left;</span></span><br><span class="line"><span class="language-css">			<span class="attribute">width</span>: <span class="number">190px</span>;</span></span><br><span class="line"><span class="language-css">			<span class="attribute">height</span>: <span class="number">400px</span>;</span></span><br><span class="line"><span class="language-css">			<span class="attribute">background-color</span>: purple;</span></span><br><span class="line"><span class="language-css">			<span class="attribute">margin-left</span>: <span class="number">10px</span>;</span></span><br><span class="line"><span class="language-css">		&#125;</span></span><br><span class="line"><span class="language-css">		<span class="selector-class">.content</span> <span class="selector-class">.rightPart</span> <span class="selector-class">.main</span> <span class="selector-class">.news</span> <span class="selector-class">.news1</span>&#123;</span></span><br><span class="line"><span class="language-css">			<span class="attribute">width</span>: <span class="number">450px</span>;</span></span><br><span class="line"><span class="language-css">			<span class="attribute">height</span>: <span class="number">240px</span>;</span></span><br><span class="line"><span class="language-css">			<span class="attribute">background-color</span>: skyblue;</span></span><br><span class="line"><span class="language-css">			<span class="attribute">margin-bottom</span>: <span class="number">10px</span>;</span></span><br><span class="line"><span class="language-css">		&#125;</span></span><br><span class="line"><span class="language-css">		<span class="selector-class">.content</span> <span class="selector-class">.rightPart</span> <span class="selector-class">.main</span> <span class="selector-class">.news</span> <span class="selector-class">.news2</span>&#123;</span></span><br><span class="line"><span class="language-css">			<span class="attribute">width</span>: <span class="number">450px</span>;</span></span><br><span class="line"><span class="language-css">			<span class="attribute">height</span>: <span class="number">110px</span>;</span></span><br><span class="line"><span class="language-css">			<span class="attribute">background-color</span>: skyblue;</span></span><br><span class="line"><span class="language-css">			<span class="attribute">margin-bottom</span>: <span class="number">10px</span>;</span></span><br><span class="line"><span class="language-css">		&#125;</span></span><br><span class="line"><span class="language-css">		<span class="selector-class">.content</span> <span class="selector-class">.rightPart</span> <span class="selector-class">.main</span> <span class="selector-class">.news</span> <span class="selector-class">.news3</span>&#123;</span></span><br><span class="line"><span class="language-css">			<span class="attribute">width</span>: <span class="number">450px</span>;</span></span><br><span class="line"><span class="language-css">			<span class="attribute">height</span>: <span class="number">30px</span>;</span></span><br><span class="line"><span class="language-css">			<span class="attribute">background-color</span>: skyblue;</span></span><br><span class="line"><span class="language-css">		&#125;</span></span><br><span class="line"><span class="language-css">		<span class="selector-class">.footer</span>&#123;</span></span><br><span class="line"><span class="language-css">			<span class="attribute">width</span>: <span class="number">970px</span>;</span></span><br><span class="line"><span class="language-css">			<span class="attribute">height</span>: <span class="number">35px</span>;</span></span><br><span class="line"><span class="language-css">			<span class="attribute">background-color</span>: pink;</span></span><br><span class="line"><span class="language-css">			<span class="comment">/*没学，就是居中：*/</span></span></span><br><span class="line"><span class="language-css">			<span class="attribute">margin</span>: <span class="number">0</span> auto;</span></span><br><span class="line"><span class="language-css">			<span class="attribute">margin-top</span>: <span class="number">10px</span>;</span></span><br><span class="line"><span class="language-css">		&#125;</span></span><br><span class="line"><span class="language-css">	</span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">	<span class="comment">&lt;!-- 头部 --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;header&quot;</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;logo&quot;</span>&gt;</span>logo<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;language&quot;</span>&gt;</span>语言选择<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;nav&quot;</span>&gt;</span>导航条<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">&lt;!-- 主要内容 --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;content&quot;</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;banner&quot;</span>&gt;</span>大广告<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;rightPart&quot;</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;main&quot;</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;news&quot;</span>&gt;</span></span><br><span class="line">					<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;news1&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">					<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;news2&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">					<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;news3&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;hotpic&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;links&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">&lt;!-- 页尾 --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;footer&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>其实，这个页面的布局是下面这个网站：</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://img.smyhvae.com/20170801_0900.png"></p>
+<h2 id="浮动的清除"><a href="#浮动的清除" class="headerlink" title="浮动的清除"></a>浮动的清除</h2><blockquote>
+<p>这里所说的清除浮动，指的是清除浮动与浮动之间的影响。</p>
+</blockquote>
+<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>通过上面这个例子，我们发现，此例中的网页就是通过浮动实现并排的。</p>
+<p>比如说一个网页有header、content、footer这三部分。就拿content部分来举例，如果设置content的儿子为浮动，但是，这个儿子又是一个全新的标准流，于是儿子的儿子仍然在标准流里。</p>
+<p>从学习浮动的第一天起，我们就要明白，浮动有开始，就要有清除。我们先来做个实验。</p>
+<p>下面这个例子，有两个块级元素div，div没有任何属性，每个div里有li，效果如下：</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://img.smyhvae.com/20170801_2122.png"></p>
+<p>上面这个例子很简单。可如果我们给里面的<code>&lt;li&gt;</code>标签加浮动。效果却成了下面这个样子：</p>
+<p>代码如下：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">&quot;text/css&quot;</span>&gt;</span><span class="language-css"></span></span><br><span class="line"><span class="language-css">		*&#123;</span></span><br><span class="line"><span class="language-css"></span></span><br><span class="line"><span class="language-css">		&#125;</span></span><br><span class="line"><span class="language-css">		<span class="selector-tag">li</span>&#123;</span></span><br><span class="line"><span class="language-css">			<span class="attribute">float</span>: left;</span></span><br><span class="line"><span class="language-css">			<span class="attribute">width</span>: <span class="number">100px</span>;</span></span><br><span class="line"><span class="language-css">			<span class="attribute">height</span>: <span class="number">20px</span>;</span></span><br><span class="line"><span class="language-css">			<span class="attribute">background-color</span>: pink;</span></span><br><span class="line"><span class="language-css"></span></span><br><span class="line"><span class="language-css"></span></span><br><span class="line"><span class="language-css">		&#125;</span></span><br><span class="line"><span class="language-css">	</span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;box1&quot;</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">li</span>&gt;</span>生命壹号1<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">li</span>&gt;</span>生命壹号2<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">li</span>&gt;</span>生命壹号3<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">li</span>&gt;</span>生命壹号4<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;box2&quot;</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">li</span>&gt;</span>许嵩1<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">li</span>&gt;</span>许嵩2<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">li</span>&gt;</span>许嵩3<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">li</span>&gt;</span>许嵩4<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>效果如下：</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://img.smyhvae.com/20170801_2137.png"></p>
+<p>上图中，我们发现：第二组中的第1个li，去贴靠第一组中的最后一个li了（我们本以为这些li会分成两排）。</p>
+<p>这便引出我们要讲的：清除浮动的第一种方式。<br>那该怎么解决呢？</p>
+<h3 id="方法1：给浮动元素的祖先元素加高度"><a href="#方法1：给浮动元素的祖先元素加高度" class="headerlink" title="方法1：给浮动元素的祖先元素加高度"></a>方法1：给浮动元素的祖先元素加高度</h3><p>造成前言中这个现象的根本原因是：li的<strong>父亲div没有设置高度</strong>，导致这两个div的高度均为0px（我们可以通过网页的审查元素进行查看）。div的高度为零，导致不能给自己浮动的孩子，撑起一个容器。</p>
+<p>撑不起一个容器，导致自己的孩子没办法在自己的内部进行正确的浮动。</p>
+<p>好，现在就算给这个div设置高度，可如果div自己的高度小于孩子的高度，也会出现不正常的现象：</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://img.smyhvae.com/20170801_2152.png"></p>
+<p>给div设置一个正确的合适的高度（至少保证高度大于儿子的高度），就可以看到正确的现象：</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://img.smyhvae.com/20170801_2153.png"></p>
+<p><strong>总结：</strong></p>
+<p><strong>如果一个元素要浮动，那么它的祖先元素一定要有高度。</strong></p>
+<p><strong>有高度的盒子，才能关住浮动</strong>。（记住这句过来人的经验之语）</p>
+<p>只要浮动在一个有高度的盒子中，那么这个浮动就不会影响后面的浮动元素。所以就是清除浮动带来的影响了。</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://img.smyhvae.com/20170801_2200.png"></p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://img.smyhvae.com/20170801_2201.png"></p>
+<h3 id="方法2：clear-both"><a href="#方法2：clear-both" class="headerlink" title="方法2：clear:both;"></a>方法2：clear:both;</h3><p>网页制作中，高度height其实很少出现。为什么？因为能被内容撑高！也就是说，刚刚我们讲解的方法1，工作中用得很少。</p>
+<p>那么，能不能不写height，也把浮动清除了呢？也让浮动之间，互不影响呢？</p>
+<p>这个时候，我们可以使用<code>clear:both;</code>这个属性。如下：</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://img.smyhvae.com/20170801_2233.png"></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">clear:both;</span><br></pre></td></tr></table></figure>
+
+<p>clear就是清除，both指的是左浮动、右浮动都要清除。<code>clear:both</code>的意思就是：<strong>不允许左侧和右侧有浮动对象。</strong></p>
+<p>这种方法有一个非常大的、致命的问题，<strong>它所在的标签，margin属性失效了</strong>。读者可以试试看。</p>
+<p>margin失效的本质原因是：上图中的box1和box2，高度为零。</p>
+<h3 id="方法3：隔墙法"><a href="#方法3：隔墙法" class="headerlink" title="方法3：隔墙法"></a>方法3：隔墙法</h3><p>上面这个例子中，为了防止第二个div贴靠到第二个div，我们可以在这两个div中间用一个新的div隔开，然后给这个新的div设置<code>clear: both;</code>属性；同时，既然这个新的div无法设置margin属性，我们可以给它设置height，以达到margin的效果（曲线救国）。这便是隔墙法。</p>
+<p>我们看看例子效果就知道了：</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://img.smyhvae.com/20170802_1109.png"></p>
+<p>上图这个例子就是隔墙法。</p>
+<p><strong>内墙法：</strong></p>
+<p>近些年，有演化出了“内墙法”：</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://img.smyhvae.com/20170802_1123.png"></p>
+<p>上面这个图非常重要，当作内墙法的公式，先记下来。</p>
+<p>为了讲内墙法，我们先记住一句重要的话：<strong>一个父亲是不能被浮动的儿子撑出高度的</strong>。举例如下：</p>
+<p>（1）我们在一个div里放一个有宽高的p，效果如下：（很简单）</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://img.smyhvae.com/20170802_1716.png"></p>
+<p>（2）可如果在此基础之上，给p设置浮动，却发现父亲div没有高度了：</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://img.smyhvae.com/20170802_1730.png"></p>
+<p>（3）此时，我么可以在div的里面放一个div（作为内墙），就可以让父亲div恢复高度：</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://img.smyhvae.com/20170802_1812.png"></p>
+<p>于是，我们采用内墙法解决前言中的问题：</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://img.smyhvae.com/20170802_1834.png"></p>
+<p>与外墙法相比，内墙法的优势（本质区别）在于：内墙法可以给它所在的家撑出宽度（让box1有高）。即：box1的高度可以自适应内容。</p>
+<p>而外墙法，虽然一道墙可以把两个div隔开，但是这两个div没有高，也就是说，无法wrap_content。</p>
+<h3 id="清除浮动方法4：overflow-hidden"><a href="#清除浮动方法4：overflow-hidden" class="headerlink" title="清除浮动方法4：overflow:hidden;"></a>清除浮动方法4：overflow:hidden;</h3><p>我们可以使用如下属性：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">overflow:hidden;</span><br></pre></td></tr></table></figure>
+
+
+<p>overflow即“溢出”， hidden即“隐藏”。这个属性的意思是“溢出隐藏”。顾名思义：所有溢出边框的内容，都要隐藏掉。如下：</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://img.smyhvae.com/20170804_1449.png"></p>
+<p>上图显示，<code>overflow:hidden;</code>的本意是清除溢出到盒子外面的文字。但是，前端开发工程师发现了，它能做偏方。如下：</p>
+<p>一个父亲不能被自己浮动的儿子，撑出高度。但是，只要给父亲加上<code>overflow:hidden</code>; 那么，父亲就能被儿子撑出高了。这是一个偏方。</p>
+<p>举个例子：</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://img.smyhvae.com/20170804_1920.png"></p>
+<p>那么对于前言中的例子，我们同样可以使用这一属性：</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://img.smyhvae.com/20170804_1934.png"></p>
+<h2 id="浮动清除的总结"><a href="#浮动清除的总结" class="headerlink" title="浮动清除的总结"></a>浮动清除的总结</h2><blockquote>
+<p>我们在上一段讲了四种清除浮动的方法，本段来进行一个总结。</p>
+</blockquote>
+<p>浮动的元素，只能被有高度的盒子关住。 也就是说，如果盒子内部有浮动，这个盒子有高，那么妥妥的，浮动不会互相影响。</p>
+<h3 id="1、加高法"><a href="#1、加高法" class="headerlink" title="1、加高法"></a>1、加高法</h3><p>工作上，我们绝对不会给所有的盒子加高度，这是因为麻烦，并且不能适应页面的快速变化。</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span>     //设置height</span><br><span class="line">	<span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span>    //设置height</span><br><span class="line">	<span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+<h3 id="2、clear-both-法"><a href="#2、clear-both-法" class="headerlink" title="2、clear:both;法"></a>2、<code>clear:both;</code>法</h3><p>最简单的清除浮动的方法，就是给盒子增加clear:both；表示自己的内部元素，不受其他盒子的影响。</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span>   //clear:both;</span><br><span class="line">	<span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>浮动确实被清除了，不会互相影响了。但是有一个问题，就是margin失效。两个div之间，没有任何的间隙了。</p>
+<h3 id="3、隔墙法"><a href="#3、隔墙法" class="headerlink" title="3、隔墙法"></a>3、隔墙法</h3><p>在两部分浮动元素中间，建一个墙。隔开两部分浮动，让后面的浮动元素，不去追前面的浮动元素。<br>墙用自己的身体当做了间隙。</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;cl h10&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>我们发现，隔墙法好用，但是第一个div，还是没有高度。如果我们现在想让第一个div，自动根据自己的儿子撑出高度，我们就要想一些“小伎俩”。</p>
+<p>内墙法：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;cl h10&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>内墙法的优点就是，不仅仅能够让后部分的p不去追前部分的p了，并且能把第一个div撑出高度。这样，这个div的背景、边框就能够根据p的高度来撑开了。</p>
+<h3 id="4、overflow-hidden"><a href="#4、overflow-hidden" class="headerlink" title="4、overflow:hidden;"></a>4、<code>overflow:hidden;</code></h3><p>这个属性的本意，就是将所有溢出盒子的内容，隐藏掉。但是，我们发现这个东西能够用于浮动的清除。<br>我们知道，一个父亲，不能被自己浮动的儿子撑出高度，但是，如果这个父亲加上了overflow:hidden；那么这个父亲就能够被浮动的儿子撑出高度了。这个现象，不能解释，就是浏览器的偏方。<br>并且,overflow:hidden;能够让margin生效。</p>
+<p><strong>清除浮动的例子：</strong></p>
+<p>我们现在举个例子，要求实现下图中无序列表部分的效果：</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://img.smyhvae.com/20170804_2321.png"></p>
+<p>对比一下我们讲的四种清除浮动的方法。如果用外墙法，ul中不能插入div标签，因为ul中只能插入li，如果插入li的墙，会浪费语义。如果用内墙法，不美观。综合对比，还是用第四种方法来实现吧，这会让标签显得极其干净整洁：</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://img.smyhvae.com/20170805_1615.png"></p>
+<p>上方代码中，如果没有加<code>overflow:hidden;</code>，那么第二行的li会紧跟着第一行li的后面。</p>
+<h2 id="浏览器的兼容性问题"><a href="#浏览器的兼容性问题" class="headerlink" title="浏览器的兼容性问题"></a>浏览器的兼容性问题</h2><blockquote>
+<p>讲一下上述知识点涉及到的浏览器兼容问题。</p>
+</blockquote>
+<h3 id="兼容性1（微型盒子）"><a href="#兼容性1（微型盒子）" class="headerlink" title="兼容性1（微型盒子）"></a>兼容性1（微型盒子）</h3><p><strong>兼容性的第一条</strong>：IE6不支持小于12px的盒子，任何小于12px的盒子，在IE6中看都大。即：IE 6不支持微型盒子。</p>
+<p>举个例子。我们设置一个height为 5px 、宽度为 200px的盒子，看下在IE 8和 IE 6中的显示效果：</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://img.smyhvae.com/20170805_1726.png"></p>
+<p>解决办法很简单，就是将盒子的字号大小，设置为<strong>小于盒子的高</strong>，比如，如果盒子的高为5px，那就把font-size设置为0px(0px &lt; 5px)。如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">height: 5px;</span><br><span class="line">_font-size: 0px;</span><br></pre></td></tr></table></figure>
+
+<p>我们现在介绍一下浏览器hack。hack就是“黑客”，就是使用浏览器提供的后门，针对某一种浏览器做兼容。</p>
+<p>IE6留了一个<strong>后门</strong>：只要给css属性之前，加上<strong>下划线</strong>，这个属性就是IE6的专有属性。</p>
+<p>比如说，我们给背景颜色这个属性加上下划线，就变成了<code>_background-color: green;</code>。效果如下：</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://img.smyhvae.com/20170805_2026.png"></p>
+<p>于是乎，为了解决微型盒子（即height小于12px）的问题，正确写法：（注意不要忘记下划线）</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">height: 10px;</span><br><span class="line">_font-size:0;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="兼容性2"><a href="#兼容性2" class="headerlink" title="兼容性2"></a>兼容性2</h3><p><strong>兼容性的第二条：</strong>IE6不支持用<code>overflow:hidden;</code>来清除浮动。</p>
+<p>解决办法，以毒攻毒。追加一条：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">_zoom:1;</span><br></pre></td></tr></table></figure>
+
+<p>完整写法：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">overflow: hidden;</span><br><span class="line">_zoom:1;</span><br></pre></td></tr></table></figure>
+
+<p>实际上，<code>_zoom:1;</code>能够触发浏览器hasLayout机制。这个机制，不要深究了，因为只有IE6有。我们只需要让IE6好用，具体的实现机制，可以自行查阅。</p>
+<p>需要强调的是，<code>overflow:hidden;</code>的本意，就是让溢出盒子的border的内容隐藏，这个功能是IE6兼容的。不兼容的是<code>overflow:hidden;</code>清除浮动的时候。</p>
+<p><strong>总结：</strong></p>
+<p>我们刚才学习的两个IE6的兼容问题，都是通过多写一条hack来解决的，这个我们称为伴生属性，即两个属性，要写一起写。</p>
+<p>属性1：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">height:6px;</span><br><span class="line">_font-size:0;</span><br></pre></td></tr></table></figure>
+
+<p>属性2：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">overflow:hidden;</span><br><span class="line">_zoom:1;</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="margin相关"><a href="#margin相关" class="headerlink" title="margin相关"></a>margin相关</h2><blockquote>
+<p>我们来讲一下浮动中和margin相关的知识。</p>
+</blockquote>
+<h3 id="margin塌陷-margin重叠"><a href="#margin塌陷-margin重叠" class="headerlink" title="margin塌陷/margin重叠"></a>margin塌陷/margin重叠</h3><p><strong>标准文档流中，竖直方向的margin不叠加，取</strong>较大的值**作为margin(水平方向的margin是可以叠加的，即水平方向没有塌陷现象)。如下图所示：</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://img.smyhvae.com/20170805_0904.png"></p>
+<p>如果不在标准流，比如盒子都浮动了，那么两个盒子之间是没有塌陷现象的。</p>
+<h3 id="盒子居中margin-0-auto"><a href="#盒子居中margin-0-auto" class="headerlink" title="盒子居中margin:0 auto;"></a>盒子居中<code>margin:0 auto;</code></h3><p>margin的值可以为auto，表示自动。当left、right两个方向都是auto的时候，盒子居中了：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">margin-left: auto;</span><br><span class="line">margin-right: auto;</span><br></pre></td></tr></table></figure>
+
+<p>盒子居中的简写为：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">margin:0 auto;</span><br></pre></td></tr></table></figure>
+
+<p>对上方代码的理解：上下的margin为0，左右的margin都尽可能的大，于是就居中了。</p>
+<p>注意：</p>
+<ul>
+<li>（1）只有标准流的盒子，才能使用<code>margin:0 auto;</code>居中。也就是说，当一个盒子浮动了、绝对定位了、固定定位了，都不能使用margin:0 auto;</li>
+<li>（2）使用<code>margin:0 auto;</code>的盒子，必须有width，有明确的width。（可以这样理解，如果没有明确的witdh，那么它的witdh就是霸占整行，没有意义）</li>
+<li>（3）<code>margin:0 auto;</code>是让盒子居中，不是让盒子里的文本居中。文本的居中，要使用<code>text-align:center;</code></li>
+</ul>
+<p>对上面的第三条总结一下：（非常重要）</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">margin:0 auto;    //让这个div自己在大容器中的水平方向上居中。</span><br><span class="line">text-align: center;  //让这个div内部的文本居中。</span><br></pre></td></tr></table></figure>
+
+<p>顺便普及一下知识，text-align还有：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">text-align:left;     //没啥用，因为默认居左</span><br><span class="line">text-align:right;    //文本居右</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="善于使用父亲的padding，而不是儿子的margin"><a href="#善于使用父亲的padding，而不是儿子的margin" class="headerlink" title="善于使用父亲的padding，而不是儿子的margin"></a>善于使用父亲的padding，而不是儿子的margin</h3><p>我们来看一个奇怪的现象。现在有下面这样一个结构：（div中放一个p）</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;div&gt;</span><br><span class="line">	&lt;p&gt;&lt;/p&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+
+<p>上面的结构中，我们尝试通过给儿子<code>p</code>一个<code>margin-top:50px;</code>的属性，让其与父亲保持50px的上边距。结果却看到了下面的奇怪的现象：</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://img.smyhvae.com/20170806_1537.png"></p>
+<p>此时我们给父亲div加一个border属性，就正常了：</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://img.smyhvae.com/20170806_1544.png"></p>
+<p>如果父亲没有border，那么儿子的margin实际上踹的是“流”，踹的是这“行”。所以，父亲整体也掉下来了。</p>
+<p><strong>margin这个属性，本质上描述的是兄弟和兄弟之间的距离； 最好不要用这个marign表达父子之间的距离。</strong></p>
+<p>所以，如果要表达父子之间的距离，我们一定要善于使用父亲的padding，而不是儿子的margin。</p>
+<h2 id="关于margin的IE6兼容问题"><a href="#关于margin的IE6兼容问题" class="headerlink" title="关于margin的IE6兼容问题"></a>关于margin的IE6兼容问题</h2><h3 id="IE6的双倍margin的bug："><a href="#IE6的双倍margin的bug：" class="headerlink" title="IE6的双倍margin的bug："></a>IE6的双倍margin的bug：</h3><p>当出现连续浮动的元素，携带与浮动方向相同的margin时，队首的元素，会双倍marign。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;ul&gt;</span><br><span class="line">	&lt;li&gt;&lt;/li&gt;</span><br><span class="line">	&lt;li&gt;&lt;/li&gt;</span><br><span class="line">	&lt;li&gt;&lt;/li&gt;</span><br><span class="line">&lt;/ul&gt;</span><br></pre></td></tr></table></figure>
+
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://img.smyhvae.com/20170806_1558.png"></p>
+<p>解决方案：</p>
+<p>（1）使浮动的方向和margin的方向，相反。</p>
+<p>所以，你就会发现，我们特别喜欢，浮动的方向和margin的方向相反。并且，前端开发工程师，把这个当做习惯了。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">float: left;</span><br><span class="line">margin-right: 40px;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>（2）使用hack：（没必要，别惯着这个IE6）</p>
+<p>单独给队首的元素，写一个一半的margin：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;li class=&quot;no1&quot;&gt;&lt;/li&gt;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ul li.no1&#123;</span><br><span class="line">	_margin-left:20px;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>PS：双倍margin的问题，面试经常问哦。</p>
+<h3 id="IE6的3px-bug"><a href="#IE6的3px-bug" class="headerlink" title="IE6的3px bug"></a>IE6的3px bug</h3><p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://img.smyhvae.com/20170806_1616.png"></p>
+<p>解决办法：不用管，因为根本就不允许用儿子踹父亲（即描述父子之间的距离，请用padding，而不是margin）。所以，如果你出现了3px bug，说明你的代码不标准。</p>
+<p>IE6，千万不要跟他死坑、较劲，它不配。 格调要高，我们讲IE6的兼容性问题，就是为了增加面试的成功率，不是为了成为IE6的专家。</p>
+<h2 id="Fireworks和others"><a href="#Fireworks和others" class="headerlink" title="Fireworks和others"></a>Fireworks和others</h2><h3 id="Fireworks"><a href="#Fireworks" class="headerlink" title="Fireworks"></a>Fireworks</h3><p>fireworks是Adobe公司的一个设计软件。功能非常多，我们以后用啥讲啥。Fireworks的默认文件格式是png。</p>
+<p>标尺的快捷键：Ctrl + Alt+ R</p>
+<h3 id="others"><a href="#others" class="headerlink" title="others"></a>others</h3><p>首行缩进两个汉字：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">text-indent: 2em;</span><br></pre></td></tr></table></figure>
+
+<p>上方属性中，单位比较奇怪，叫做em，em就是汉字的一个宽度。indent的意思是缩进。</p>
+<h2 id="我的公众号"><a href="#我的公众号" class="headerlink" title="我的公众号"></a>我的公众号</h2><p>想学习<strong>更多技能</strong>？不妨关注我的微信公众号：<strong>千古壹号</strong>（id：<code>qianguyihao</code>）。</p>
+<p>扫一扫，你将发现另一个全新的世界，而这将是一场美丽的意外：</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://img.smyhvae.com/20190101.png"></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:978252321@qq.com" rel="external nofollow noreferrer">传礼</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://iwangchuanli.github.io/posts/60455.html">https://iwangchuanli.github.io/posts/60455.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow noreferrer" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://iwangchuanli.github.io" target="_blank">传礼</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img10_lLsQAP.jpeg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/posts/4870.html"><img class="prev-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img22_700Zcx.jpeg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">07-DOM操作练习：innerHTML的方式创建元素</div></div></a></div><div class="next-post pull-right"><a href="/posts/49499.html"><img class="next-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img39_3NMH7S.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">08-CSS属性：定位属性</div></div></a></div></nav><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div><div id="comment-switch"><span class="first-comment">Valine</span><span class="switch-btn"></span><span class="second-comment">Gitalk</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div><div><div id="gitalk-container"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">Nice to meet you ~</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E6%9C%AC%E4%B8%BB%E8%A6%81%E5%86%85%E5%AE%B9"><span class="toc-number">1.</span> <span class="toc-text">文本主要内容</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%87%E5%87%86%E6%96%87%E6%A1%A3%E6%B5%81"><span class="toc-number">2.</span> <span class="toc-text">标准文档流</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%87%E5%87%86%E6%96%87%E6%A1%A3%E6%B5%81%E7%9A%84%E7%89%B9%E6%80%A7"><span class="toc-number">2.1.</span> <span class="toc-text">标准文档流的特性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A1%8C%E5%86%85%E5%85%83%E7%B4%A0%E5%92%8C%E5%9D%97%E7%BA%A7%E5%85%83%E7%B4%A0"><span class="toc-number">2.2.</span> <span class="toc-text">行内元素和块级元素</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A1%8C%E5%86%85%E5%85%83%E7%B4%A0%E5%92%8C%E5%9D%97%E7%BA%A7%E5%85%83%E7%B4%A0%E7%9A%84%E7%9B%B8%E4%BA%92%E8%BD%AC%E6%8D%A2"><span class="toc-number">2.3.</span> <span class="toc-text">行内元素和块级元素的相互转换</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9D%97%E7%BA%A7%E5%85%83%E7%B4%A0%E5%8F%AF%E4%BB%A5%E8%BD%AC%E6%8D%A2%E4%B8%BA%E8%A1%8C%E5%86%85%E5%85%83%E7%B4%A0%EF%BC%9A"><span class="toc-number">2.3.1.</span> <span class="toc-text">块级元素可以转换为行内元素：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%A1%8C%E5%86%85%E5%85%83%E7%B4%A0%E8%BD%AC%E6%8D%A2%E4%B8%BA%E5%9D%97%E7%BA%A7%E5%85%83%E7%B4%A0%EF%BC%9A"><span class="toc-number">2.3.2.</span> <span class="toc-text">行内元素转换为块级元素：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B5%AE%E5%8A%A8%E7%9A%84%E6%80%A7%E8%B4%A8"><span class="toc-number">3.</span> <span class="toc-text">浮动的性质</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%A7%E8%B4%A81%EF%BC%9A%E6%B5%AE%E5%8A%A8%E7%9A%84%E5%85%83%E7%B4%A0%E8%84%B1%E6%A0%87"><span class="toc-number">3.1.</span> <span class="toc-text">性质1：浮动的元素脱标</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%A7%E8%B4%A82%EF%BC%9A%E6%B5%AE%E5%8A%A8%E7%9A%84%E5%85%83%E7%B4%A0%E4%BA%92%E7%9B%B8%E8%B4%B4%E9%9D%A0"><span class="toc-number">3.2.</span> <span class="toc-text">性质2：浮动的元素互相贴靠</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%A7%E8%B4%A83%EF%BC%9A%E6%B5%AE%E5%8A%A8%E7%9A%84%E5%85%83%E7%B4%A0%E6%9C%89%E2%80%9C%E5%AD%97%E5%9B%B4%E2%80%9D%E6%95%88%E6%9E%9C"><span class="toc-number">3.3.</span> <span class="toc-text">性质3：浮动的元素有“字围”效果</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%A7%E8%B4%A84%EF%BC%9A%E6%94%B6%E7%BC%A9"><span class="toc-number">3.4.</span> <span class="toc-text">性质4：收缩</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%AE%E5%8A%A8%E7%9A%84%E8%A1%A5%E5%85%85%EF%BC%88%E5%81%9A%E7%BD%91%E7%AB%99%E6%97%B6%E6%B3%A8%E6%84%8F%EF%BC%89"><span class="toc-number">3.5.</span> <span class="toc-text">浮动的补充（做网站时注意）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%83%E7%BD%AE%E4%B8%80%E4%B8%AA%E4%BD%9C%E4%B8%9A"><span class="toc-number">3.6.</span> <span class="toc-text">布置一个作业</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B5%AE%E5%8A%A8%E7%9A%84%E6%B8%85%E9%99%A4"><span class="toc-number">4.</span> <span class="toc-text">浮动的清除</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">4.1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E6%B3%951%EF%BC%9A%E7%BB%99%E6%B5%AE%E5%8A%A8%E5%85%83%E7%B4%A0%E7%9A%84%E7%A5%96%E5%85%88%E5%85%83%E7%B4%A0%E5%8A%A0%E9%AB%98%E5%BA%A6"><span class="toc-number">4.2.</span> <span class="toc-text">方法1：给浮动元素的祖先元素加高度</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E6%B3%952%EF%BC%9Aclear-both"><span class="toc-number">4.3.</span> <span class="toc-text">方法2：clear:both;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E6%B3%953%EF%BC%9A%E9%9A%94%E5%A2%99%E6%B3%95"><span class="toc-number">4.4.</span> <span class="toc-text">方法3：隔墙法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B8%85%E9%99%A4%E6%B5%AE%E5%8A%A8%E6%96%B9%E6%B3%954%EF%BC%9Aoverflow-hidden"><span class="toc-number">4.5.</span> <span class="toc-text">清除浮动方法4：overflow:hidden;</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B5%AE%E5%8A%A8%E6%B8%85%E9%99%A4%E7%9A%84%E6%80%BB%E7%BB%93"><span class="toc-number">5.</span> <span class="toc-text">浮动清除的总结</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81%E5%8A%A0%E9%AB%98%E6%B3%95"><span class="toc-number">5.1.</span> <span class="toc-text">1、加高法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81clear-both-%E6%B3%95"><span class="toc-number">5.2.</span> <span class="toc-text">2、clear:both;法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E3%80%81%E9%9A%94%E5%A2%99%E6%B3%95"><span class="toc-number">5.3.</span> <span class="toc-text">3、隔墙法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4%E3%80%81overflow-hidden"><span class="toc-number">5.4.</span> <span class="toc-text">4、overflow:hidden;</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9A%84%E5%85%BC%E5%AE%B9%E6%80%A7%E9%97%AE%E9%A2%98"><span class="toc-number">6.</span> <span class="toc-text">浏览器的兼容性问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%BC%E5%AE%B9%E6%80%A71%EF%BC%88%E5%BE%AE%E5%9E%8B%E7%9B%92%E5%AD%90%EF%BC%89"><span class="toc-number">6.1.</span> <span class="toc-text">兼容性1（微型盒子）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%BC%E5%AE%B9%E6%80%A72"><span class="toc-number">6.2.</span> <span class="toc-text">兼容性2</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#margin%E7%9B%B8%E5%85%B3"><span class="toc-number">7.</span> <span class="toc-text">margin相关</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#margin%E5%A1%8C%E9%99%B7-margin%E9%87%8D%E5%8F%A0"><span class="toc-number">7.1.</span> <span class="toc-text">margin塌陷&#x2F;margin重叠</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9B%92%E5%AD%90%E5%B1%85%E4%B8%ADmargin-0-auto"><span class="toc-number">7.2.</span> <span class="toc-text">盒子居中margin:0 auto;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%96%84%E4%BA%8E%E4%BD%BF%E7%94%A8%E7%88%B6%E4%BA%B2%E7%9A%84padding%EF%BC%8C%E8%80%8C%E4%B8%8D%E6%98%AF%E5%84%BF%E5%AD%90%E7%9A%84margin"><span class="toc-number">7.3.</span> <span class="toc-text">善于使用父亲的padding，而不是儿子的margin</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E4%BA%8Emargin%E7%9A%84IE6%E5%85%BC%E5%AE%B9%E9%97%AE%E9%A2%98"><span class="toc-number">8.</span> <span class="toc-text">关于margin的IE6兼容问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#IE6%E7%9A%84%E5%8F%8C%E5%80%8Dmargin%E7%9A%84bug%EF%BC%9A"><span class="toc-number">8.1.</span> <span class="toc-text">IE6的双倍margin的bug：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#IE6%E7%9A%843px-bug"><span class="toc-number">8.2.</span> <span class="toc-text">IE6的3px bug</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Fireworks%E5%92%8Cothers"><span class="toc-number">9.</span> <span class="toc-text">Fireworks和others</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Fireworks"><span class="toc-number">9.1.</span> <span class="toc-text">Fireworks</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#others"><span class="toc-number">9.2.</span> <span class="toc-text">others</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%88%91%E7%9A%84%E5%85%AC%E4%BC%97%E5%8F%B7"><span class="toc-number">10.</span> <span class="toc-text">我的公众号</span></a></li></ol></div></div><div class="card-widget ads-wrap"><a target="_blank" href="https://www.aliyun.com/activity?userCode=dpj8p3hl" rel="external nofollow noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/aliyun_whuCuE.jpg" style="width:100%;height:100%;object-fit:cover;"></a></div></div></div></main><footer id="footer" style="background-image: url('https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img10_lLsQAP.jpeg')"><div id="footer-wrap"><div class="copyright">&copy;2018 - 2022 By 传礼</div><div class="footer_custom_text"><p style="display:inline-flex">本网站由<a href="https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral" rel="external nofollow noreferrer" target="_blank"><img style="width:60px;height:35px;" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/11/又拍云_logo5_O9kNul.png" title="又拍云"/></a>提供CDN加速/云存储服务</p><p><a style="margin-inline:5px" target="_blank" href="https://hexo.io/" rel="external nofollow noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Frame-Hexo-blue?style=flat&logo=hexo" title="博客框架为Hexo"></a><a style="margin-inline:5px" target="_blank" href="https://butterfly.js.org/" rel="external nofollow noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Theme-Butterfly-6513df?style=flat&logo=bitdefender" title="主题采用butterfly"></a><a style="margin-inline:5px" target="_blank" href="https://www.jsdelivr.com/" rel="external nofollow noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/CDN-jsDelivr-orange?style=flat&logo=jsDelivr" title="本站使用JsDelivr为静态资源提供CDN加速"></a><a style="margin-inline:5px" target="_blank" href="https://github.com/" rel="external nofollow noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Source-Github-d021d6?style=flat&logo=GitHub" title="本站项目由Github托管"></a><a style="margin-inline:5px" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Copyright-BY--NC--SA%204.0-d42328?style=flat&logo=Claris" title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可"></a></p></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="chat_btn" type="button" title="聊天"><i class="fas fa-sms"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">本地搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script src="/js/search/local-search.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"><script>function loadValine () {
+  function initValine () {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: 'zHUfFgUbITfMSQGuSPgS2e3C-gzGzoHsz',
+      appKey: 'yPXpeKX8VJxdFRPEsDaqNgEY',
+      avatar: 'wavatar',
+      serverURLs: 'https://zhuffgub.lc-cn-n1-shared.com',
+      emojiMaps: "",
+      path: window.location.pathname,
+      visitor: true,
+      master: '447d56ab3606de5490a2109d3e441219,135d837ea1033c9787dd307e59884d36'.split(','),
+      friends: '5c?????bfe6rfc72a????e268ad3819c'.split(','),
+      tagMeta: '博主,小伙伴,访客'.split(',')
+        
+    }, {"placeholder":"请输入内容～"}))
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/gh/HCLonely/Valine@latest/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !true) {
+  if (true) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script><script>function addGitalkSource () {
+  const ele = document.createElement('link')
+  ele.rel = 'stylesheet'
+  ele.href= 'https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css'
+  document.getElementsByTagName('head')[0].appendChild(ele)
+}
+
+function loadGitalk () {
+  function initGitalk () {
+    var gitalk = new Gitalk(Object.assign({
+      clientID: '052d9d6486112e93fa50',
+      clientSecret: '6fea35bfb7a17521694a95f705683622976d2f53',
+      repo: 'gitalk',
+      owner: 'iwangchuanli',
+      admin: ['iwangchuanli'],
+      id: 'f5e61002dcaf666708a9ca7e1cccd396',
+      updateCountCallback: commentCount
+    },null))
+
+    gitalk.render('gitalk-container')
+  }
+
+  if (typeof Gitalk === 'function') initGitalk()
+  else {
+    addGitalkSource()
+    getScript('https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.js').then(initGitalk)
+  }
+}
+
+function commentCount(n){
+  let isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+  if (isCommentCount) {
+    isCommentCount.innerHTML= n
+  }
+}
+
+if ('Valine' === 'Gitalk' || !true) {
+  if (true) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+  else loadGitalk()
+} else {
+  function loadOtherComment () {
+    loadGitalk()
+  }
+}</script></div><div class="aplayer no-destroy" data-id="7355841544" data-server="netease" data-type="playlist" data-fixed="true" data-autoplay="false"> </div><script async src="/js/grayscale.js"></script><script async src="//at.alicdn.com/t/font_1885008_srfhrsykmk.js"></script><script>((window.gitter = {}).chat = {}).options = {
+  disableDefaultChat: true,
+};
+document.addEventListener('gitter-sidecar-ready', (e) => {
+  const GitterChat = e.detail.Chat
+  let chat
+
+  function initGitter () {
+    chat = new GitterChat({
+      room: 'wangchuangli-/community',
+      activationElement: '#chat_btn'
+    });
+  }
+
+  initGitter()
+
+  if (true) {
+    document.addEventListener('pjax:complete', () => {
+      chat.destroy()
+      initGitter()
+    })
+  }
+
+})</script><script src="https://sidecar.gitter.im/dist/sidecar.v1.js" async="async" defer="defer"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/meting@1.2.0/dist/Meting.min.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = ["title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"]):not([href="/music/"]):not([href="/no-pjax/"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.tocScrollFn && window.removeEventListener('scroll', window.tocScrollFn)
+  window.scrollCollect && window.removeEventListener('scroll', scrollCollect)
+
+  typeof preloader === 'object' && preloader.initLoading()
+  document.getElementById('rightside').style.cssText = "opacity: ''; transform: ''"
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+
+  typeof preloader === 'object' && preloader.endLoading()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><!-- hexo injector body_end start --><script data-pjax>
+  function butterfly_swiper_injector_config(){
+    var parent_div_git = document.getElementById('recent-posts');
+    var item_html = '<div class="recent-post-item" style="height: auto;width: 100%"><div class="blog-slider swiper-container-fade swiper-container-horizontal" id="swiper_container"><div class="blog-slider__wrp swiper-wrapper" style="transition-duration: 0ms;"><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" onclick="pjax.loadUrl(&quot;posts/4496.html&quot;);" href="javascript:void(0);" rel="external nofollow noreferrer" alt=""><img width="48" height="48" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img6_L358Nt.jpeg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2018-09-05</span><a class="blog-slider__title" onclick="pjax.loadUrl(&quot;posts/4496.html&quot;);" href="javascript:void(0);" rel="external nofollow noreferrer" alt="">编程系列书单推荐</a><div class="blog-slider__text">再怎么看我也不知道怎么描述它的啦！</div><a class="blog-slider__button" onclick="pjax.loadUrl(&quot;posts/4496.html&quot;);" href="javascript:void(0);" rel="external nofollow noreferrer" alt="">详情       </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" onclick="pjax.loadUrl(&quot;posts/35693.html&quot;);" href="javascript:void(0);" rel="external nofollow noreferrer" alt=""><img width="48" height="48" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img33_fnRUqR.jpeg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2018-11-26</span><a class="blog-slider__title" onclick="pjax.loadUrl(&quot;posts/35693.html&quot;);" href="javascript:void(0);" rel="external nofollow noreferrer" alt="">优秀科技博客订阅</a><div class="blog-slider__text">再怎么看我也不知道怎么描述它的啦！</div><a class="blog-slider__button" onclick="pjax.loadUrl(&quot;posts/35693.html&quot;);" href="javascript:void(0);" rel="external nofollow noreferrer" alt="">详情       </a></div></div></div><div class="blog-slider__pagination swiper-pagination-clickable swiper-pagination-bullets"></div></div></div>';
+    console.log('已挂载butterfly_swiper')
+    parent_div_git.insertAdjacentHTML("afterbegin",item_html)
+    }
+  var elist = 'undefined'.split(',');
+  var cpage = location.pathname;
+  var epage = 'all';
+  var flag = 0;
+
+  for (var i=0;i<elist.length;i++){
+    if (cpage.includes(elist[i])){
+      flag++;
+    }
+  }
+
+  if ((epage ==='all')&&(flag == 0)){
+    butterfly_swiper_injector_config();
+  }
+  else if (epage === cpage){
+    butterfly_swiper_injector_config();
+  }
+  </script><script defer src="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper.min.js"></script><script defer data-pjax src="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper_init.js"></script><!-- hexo injector body_end end --></body></html>

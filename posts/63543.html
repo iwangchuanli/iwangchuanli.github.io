@@ -1,0 +1,657 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>Oracle 使用translate  如何去除中文，单行函数 translate 的用法_Jackie 的博客-CSDN博客_oracle去除中文 | 传礼</title><meta name="keywords" content="博客,blog,王传礼,java,python,大数据"><meta name="author" content="传礼,978252321@qq.com"><meta name="copyright" content="传礼"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="博客 课程 文库·商城 问答 社区 插件 认证 开源  登录&#x2F;注册 会员中心   收藏 动态 创作 Oracle 使用translate 如何去除中文，单行函数 translate 的用法  小砖工 2020-03-03 10:32:12 1060 收藏 3  分类专栏： ORACLE 文章标签： oracle 版权 ORACLE 专栏收录该内容 28 篇文章 0 订阅 订阅专栏  单行函数">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Oracle 使用translate  如何去除中文，单行函数 translate 的用法_Jackie 的博客-CSDN博客_oracle去除中文">
+<meta property="og:url" content="https://iwangchuanli.github.io/posts/63543.html">
+<meta property="og:site_name" content="传礼">
+<meta property="og:description" content="博客 课程 文库·商城 问答 社区 插件 认证 开源  登录&#x2F;注册 会员中心   收藏 动态 创作 Oracle 使用translate 如何去除中文，单行函数 translate 的用法  小砖工 2020-03-03 10:32:12 1060 收藏 3  分类专栏： ORACLE 文章标签： oracle 版权 ORACLE 专栏收录该内容 28 篇文章 0 订阅 订阅专栏  单行函数">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img7_pzkwKv.png">
+<meta property="article:published_time" content="2022-11-28T07:04:49.757Z">
+<meta property="article:modified_time" content="2022-01-17T03:36:35.000Z">
+<meta property="article:author" content="传礼">
+<meta property="article:tag" content="博客,blog,王传礼,java,python,大数据">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img7_pzkwKv.png"><link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/03/favicons_uH14Fb.gif"><link rel="canonical" href="https://iwangchuanli.github.io/posts/63543"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin=""/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta name="baidu-site-verification" content="qKvGNFZPF9"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?39bd6e37a6e70dc030e6a043a642784e";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: 传礼","link":"链接: ","source":"来源: 传礼","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#121212","position":"bottom-left"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: true,
+  islazyload: true,
+  isAnchor: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Oracle 使用translate  如何去除中文，单行函数 translate 的用法_Jackie 的博客-CSDN博客_oracle去除中文',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-01-17 03:36:35'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/custom.css"  media="defer" onload="this.media='all'"><!-- hexo injector head_end start --><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiperstyle.css" media="print" onload="this.media='all'"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.1"><link rel="alternate" href="/atom.xml" title="传礼" type="application/atom+xml">
+</head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/03/photo_NZBQPu.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><div class="data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">511</div></a></div><div class="data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">50</div></a></div><div class="data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">22</div></a></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 归档</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-calendar"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 开发</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/Java"><i class="fa-fw fa fa-music"></i><span> Java</span></a></li><li><a class="site-page child" href="/categories/Python"><i class="fa-fw fa fa-music"></i><span> Python</span></a></li><li><a class="site-page child" href="/categories/VUE"><i class="fa-fw fa fa-music"></i><span> VUE</span></a></li><li><a class="site-page child" href="/categories/MySQL"><i class="fa-fw fa fa-music"></i><span> MySQL</span></a></li><li><a class="site-page child" href="/categories/Redis"><i class="fa-fw fa fa-music"></i><span> Redis</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 架构</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/Spring"><i class="fa-fw fa fa-music"></i><span> Spring</span></a></li><li><a class="site-page child" href="/categories/microServeices"><i class="fa-fw fa fa-music"></i><span> 微服务</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 运维</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/Docker"><i class="fa-fw fa fa-music"></i><span> Docker</span></a></li><li><a class="site-page child" href="/categories/Linux"><i class="fa-fw fa fa-music"></i><span> Linux</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 分享</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/tags/Tools"><i class="fa-fw fa fa-music"></i><span> 工具</span></a></li><li><a class="site-page child" href="/tags/guide"><i class="fa-fw fa fa-music"></i><span> 教程</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 项目</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/tags/Tools"><i class="fa-fw fa fa-music"></i><span> 工具</span></a></li><li><a class="site-page child" href="/tags/guide"><i class="fa-fw fa fa-music"></i><span> 教程</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-heartbeat"></i><span> 娱乐</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/gallery/"><i class="fa-fw fa fa-images"></i><span> 图库</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fa fa-film"></i><span> 电影</span></a></li><li><a class="site-page child" href="/books/"><i class="fa-fw fa fa-book"></i><span> 图书</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 我的</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/artitalk/"><i class="fa-fw fa fa-commenting"></i><span> 说说</span></a></li><li><a class="site-page child" href="/todo/"><i class="fa-fw fa fa-flag"></i><span> TODO</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img7_pzkwKv.png')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">传礼</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 归档</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-calendar"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 开发</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/Java"><i class="fa-fw fa fa-music"></i><span> Java</span></a></li><li><a class="site-page child" href="/categories/Python"><i class="fa-fw fa fa-music"></i><span> Python</span></a></li><li><a class="site-page child" href="/categories/VUE"><i class="fa-fw fa fa-music"></i><span> VUE</span></a></li><li><a class="site-page child" href="/categories/MySQL"><i class="fa-fw fa fa-music"></i><span> MySQL</span></a></li><li><a class="site-page child" href="/categories/Redis"><i class="fa-fw fa fa-music"></i><span> Redis</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 架构</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/Spring"><i class="fa-fw fa fa-music"></i><span> Spring</span></a></li><li><a class="site-page child" href="/categories/microServeices"><i class="fa-fw fa fa-music"></i><span> 微服务</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 运维</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/Docker"><i class="fa-fw fa fa-music"></i><span> Docker</span></a></li><li><a class="site-page child" href="/categories/Linux"><i class="fa-fw fa fa-music"></i><span> Linux</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 分享</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/tags/Tools"><i class="fa-fw fa fa-music"></i><span> 工具</span></a></li><li><a class="site-page child" href="/tags/guide"><i class="fa-fw fa fa-music"></i><span> 教程</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 项目</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/tags/Tools"><i class="fa-fw fa fa-music"></i><span> 工具</span></a></li><li><a class="site-page child" href="/tags/guide"><i class="fa-fw fa fa-music"></i><span> 教程</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-heartbeat"></i><span> 娱乐</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/gallery/"><i class="fa-fw fa fa-images"></i><span> 图库</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fa fa-film"></i><span> 电影</span></a></li><li><a class="site-page child" href="/books/"><i class="fa-fw fa fa-book"></i><span> 图书</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 我的</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/artitalk/"><i class="fa-fw fa fa-commenting"></i><span> 说说</span></a></li><li><a class="site-page child" href="/todo/"><i class="fa-fw fa fa-flag"></i><span> TODO</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Oracle 使用translate  如何去除中文，单行函数 translate 的用法_Jackie 的博客-CSDN博客_oracle去除中文</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-11-28T07:04:49.757Z" title="发表于 2022-11-28 07:04:49">2022-11-28</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-01-17T03:36:35.000Z" title="更新于 2022-01-17 03:36:35">2022-01-17</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">2.8k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>9分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Oracle 使用translate  如何去除中文，单行函数 translate 的用法_Jackie 的博客-CSDN博客_oracle去除中文"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.csdn.net/"><img width="80" height="44" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/20201124032511_d5fb7482234647c888448e6bcfeb7bd5.png"/></a></p>
+<ul>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/">博客</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://edu.csdn.net/">课程</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://mall.csdn.net/">文库·商城</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://ask.csdn.net/">问答</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://bbs.csdn.net/">社区</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://plugin.csdn.net/?utm_source=toolbar">插件</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://ac.csdn.net/landing1/?utm_source=crz_pc_toolbar1">认证</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://git.csdn.net/">开源</a></li>
+</ul>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://passport.csdn.net/account/login">登录/注册</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://mall.csdn.net/vip">会员中心 <img width="14" height="24" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/20210918025138_2e344af5750a44c880de7bc9b6b1b059.gif"/></a> </p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://i.csdn.net/#/user-center/collection-list?type=1">收藏</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blink.csdn.net/">动态</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://mp.csdn.net/">创作</a></p>
+<h1 id="Oracle-使用translate-如何去除中文，单行函数-translate-的用法"><a href="#Oracle-使用translate-如何去除中文，单行函数-translate-的用法" class="headerlink" title="Oracle 使用translate 如何去除中文，单行函数 translate 的用法"></a>Oracle 使用translate 如何去除中文，单行函数 translate 的用法</h1><img width="36" height="32" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/original_453defaf14cb4213923c9a7a1afb6491.png"/>
+
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/weixin_42233789">小砖工</a> 2020-03-03 10:32:12 <img width="24" height="24" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/articleReadEyes_0b7653525260417788d95cab0a4104bd.png"/>1060 <a id="blog_detail_zk_collection"></a><img width="20" height="20" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/tobarCollect_16ae62b498f34ca39b42f616ac377dcd.png"/>收藏 3 </p>
+<p>分类专栏： <a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/weixin_42233789/category_8896458.html">ORACLE</a> 文章标签： <a target="_blank" rel="noopener external nofollow noreferrer" href="https://so.csdn.net/so/search/s.do?q=oracle&t=blog&o=vip&s=&l=&f=&viparticle=">oracle</a></p>
+<p>版权</p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/weixin_42233789/category_8896458.html" title="ORACLE"><img width="34" height="34" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/resize_m_fixed_h_64_w_64_b4d1961a0500434d918378f01.png"/>ORACLE</a> 专栏收录该内容</p>
+<p>28 篇文章 0 订阅</p>
+<p>订阅专栏</p>
+<blockquote>
+<p>单行函数 –&gt; Translate</p>
+</blockquote>
+<p> 举例，代码如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">select translate(&#x27;成龙ABC9TC&#x27;, &#x27;AC&#x27;, &#x27;12&#x27;) test from dual;</span><br></pre></td></tr></table></figure>
+
+<p> 结果如下：</p>
+<p> <img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/20200303100245812_22ddc53c99f04f6892269edd7b7d5450.png"></p>
+<blockquote>
+<p>剔除所有的数字</p>
+</blockquote>
+<p>代码如下</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">select translate(&#x27;成龙B12A2BC9T4C&#x27;, &#x27;a1234567890&#x27;, &#x27;a&#x27;) from dual;</span><br></pre></td></tr></table></figure>
+
+<p>这里的 “a” 必须要有，否则数字会被替换为 “a”</p>
+<img width="962" height="159" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/20200303100927898_bf63563cc3814c35b86f65d56b2ede9d.png"/>
+
+<blockquote>
+<p>剔除所有字母</p>
+</blockquote>
+<p>代码如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">1.  select translate(&#x27;成龙12A2BC9T4C&#x27;,</span><br><span class="line">    </span><br><span class="line">2.                   &#x27;1qwertyuioplkjhgfdsazxcvbnm&#x27; || upper(&#x27;1qwertyuioplkjhgfdsazxcvbnm&#x27;),</span><br><span class="line">    </span><br><span class="line">3.                   &#x27;1&#x27;) test</span><br><span class="line">    </span><br><span class="line">4.    from dual;</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>结果如下：</p>
+<img width="962" height="188" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/watermark_type_ZmFuZ3poZW5naGVpd_5edc5fad6af140e7b.png"/>
+
+<p>同样的，这里所有的字母前的 “1” ， 也是必须要有的</p>
+<blockquote>
+<p>剔除所有的汉字</p>
+</blockquote>
+<p>代码如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">1.  select translate(</span><br><span class="line">    </span><br><span class="line">2.            &#x27;adb123你好TUS90中国人&#x27;,</span><br><span class="line">    </span><br><span class="line">3.            &#x27; &#x27;||translate(&#x27;adb123你好TUS90中国人&#x27;,</span><br><span class="line">    </span><br><span class="line">4.                   &#x27;0123456789abcdefghijklmnopqrstuvwxyz&#x27;||upper(&#x27;abcdefghijklmnopqrstuvwxyz&#x27;), &#x27; &#x27;),</span><br><span class="line">    </span><br><span class="line">5.            &#x27; &#x27;</span><br><span class="line">    </span><br><span class="line">6.         ) test</span><br><span class="line">    </span><br><span class="line">7.    from dual;</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>结果如下：</p>
+<img width="962" height="249" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/watermark_type_ZmFuZ3poZW5naGVpd_e5e8b60fd7574dc3b.png"/>
+
+<blockquote>
+<p>最后，值保留所有汉字</p>
+</blockquote>
+<p>代码如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">1.  select translate(&#x27;adb123TUS90中国人asasd123&#x27;, </span><br><span class="line">    </span><br><span class="line">2.                   &#x27; 0123456789abcdefghijklmnopqrstuvwxyz&#x27;</span><br><span class="line">    </span><br><span class="line">3.                     ||upper(&#x27;abcdefghijklmnopqrstuvwxyz&#x27;), </span><br><span class="line">    </span><br><span class="line">4.                   &#x27; &#x27;) test</span><br><span class="line">    </span><br><span class="line">5.    from dual;</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>执行结果如下：</p>
+<img width="962" height="264" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/watermark_type_ZmFuZ3poZW5naGVpd_e628d746e0dc40c98.png"/>
+
+<p>注意：</p>
+<p>根据Translate 函数的特性，我们也可以将此函数用作判断一个字段是否是纯数字，纯字母或纯中文；</p>
+<p>只需要将转换前后的字段长度做对比，或者判断替换后长度是否为 0 就可以得到，这里不再赘述了。</p>
+<p>在 <a target="_blank" rel="noopener external nofollow noreferrer" href="https://so.csdn.net/so/search?q=Oracle&spm=1001.2101.3001.7020">Oracle</a> 中，也可以使用正则表达式进行判断上述情形，请查看我的其他博客</p>
+<p>^  - ^ …</p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/weixin_42233789"><img width="30" height="30" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/3_weixin_42233789_5509b2970bf84206a458f29b7f811041.jpg"/>小砖工</a></p>
+<p>关注</p>
+<ul>
+<li><p> <img width="24" height="24" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/newHeart2021White_2578056f36144b4f9bcb4381605ee962.png"/> <a id="spanCount"></a>0 </p>
+</li>
+<li><img width="24" height="24" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/newUnHeart2021White_aede5a69a1214b4b9b6990f1c0d2e8.png"/></li>
+<li><p> <a href="#commentBox"><img width="24" height="24" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/newComment2021White_4d646b62fd734543afe9f63dbcdc70.png"/> 0</a> </p>
+</li>
+<li><p> <img width="24" height="24" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/newCollectWhite_8146c6ffe0684ccd93ccebaef16326f0.png"/> <a id="get-collection"></a>3 </p>
+</li>
+<li><img width="24" height="24" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/newRewardWhite_31ec2a456ca747bb80c722fc42fe124d.png"/></li>
+<li><img width="24" height="24" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/newShareWhite_4054d4594ba64393ba7482b96efe0e04.png"/></li>
+</ul>
+<p>专栏目录</p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="http://download.csdn.net/download/lihuarongaini/10573754"><em>oracle</em>中如何判断一个字符串是否含有汉字.pdf</a></p>
+<p>07-31</p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="http://download.csdn.net/download/lihuarongaini/10573754"><em>oracle</em>中如何判断一个字符串是否含有汉字.pdf<em>oracle</em>中如何判断一个字符串是否含有汉字.pdf<em>oracle</em>中如何判断一个字符串是否含有汉字.pdf</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/iteye_20229/article/details/82508650"><em>oracle</em> sql 去掉汉字保留数字或字母</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/iteye_20229">java博客</a></p>
+<p> <img width="14" height="14" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/readCountWhite_cb34725dc4fd4f3182dee7c3d222ad02.png"/> 4424 </p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/iteye_20229/article/details/82508650">一、语法 <em>TRANSLATE</em>(s<em>tr</em>ing,from_s<em>tr</em>,to_s<em>tr</em>) 二、用途 返回将（所有出现的）from_s<em>tr</em>中的每个字符替换为to_s<em>tr</em>中的相应字符以后的s<em>tr</em>ing。<em>TRANSLATE</em>是REPL<em>AC</em>E所提供的功能的一个超集。如果from_s<em>tr</em>比 to_s<em>tr</em>长，那么在 from_s<em>tr</em>中而不在to_s<em>tr</em>中的额外字符将从s<em>tr</em>ing中被删除，因为它们没有相应的替换字符。…</a></p>
+<p><a id="commentBox"></a></p>
+<p><a id="commentsedit"></a></p>
+<img width="30" height="30" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/anonymous-User-img_00f63f4ce0c746b3941983b05c132bf.png"/>
+
+<img width="53" height="18" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/commentFlag_2x_a4bc6eedd76042499fa1d8dad91b8ec7.png"/>
+
+<img width="18" height="18" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/emoticon_a981d9f1b8f644e8814c09c6cdbf8690.png"/>
+
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/weixin_33764069/article/details/116290990"><em>oracle</em> 字符过滤<em>中文</em>,<em>Oracle</em> 过滤特殊字符_冯丹彤的博客</a></p>
+<p>1-1</p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/weixin_33764069/article/details/116290990"><em>oracle</em> 字符过滤<em>中文</em>,<em>Oracle</em> 过滤特殊字符 项目中遇到以下问题。页面传来一个url地址。根据这个url地址去查找记录。 关键是url地址含有特殊字符。如单引号’,地址符&amp;等。 %和_等符号可以不考虑,因为<em>使用</em>的是= 如果<em>使用</em>的是like,那么就要…</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/u013560667/article/details/41575663"><em>ORACLE</em>提取字符串中”汉字”串的解决办法<br>热门推荐</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/u013560667">爱软件-从懂得生活开始。</a></p>
+<p> <img width="14" height="14" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/readCountWhite_cb34725dc4fd4f3182dee7c3d222ad02.png"/> 1万+ </p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/u013560667/article/details/41575663">我在在实际工作中常常要<em>使用</em>去特殊字符的功能，特别是插入到数据库中的数据，我们为了保证数据的质量，往往需要对数据进行清洗，就是去掉特殊字符，我们处理问题的思路是：判断字符串中的每个字符是不是<em>中文</em>，如果是<em>中文</em>，将他们按照顺序连接起来，如果不是，不要。 根据实际业务需求，共有2中解决方案： 方案一： <em>使用</em>数据库自带<em>函数**le</em>ngth,<em>le</em>ngthb。 <em>中文</em>下<em>le</em>ngth返回的是字符个数，<em>中文</em>占1字</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/yzhhchg/article/details/6612191"><em>oracle</em> 处理<em>中文</em>的正则表达式语法</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/yzhhchg">yzhhchg的专栏</a></p>
+<p> <img width="14" height="14" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/readCountWhite_cb34725dc4fd4f3182dee7c3d222ad02.png"/> 1886 </p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/yzhhchg/article/details/6612191">有这么一个需求：如下数据’12abcAbc样****____//FFFFF({[FFFF/!*//&amp;&amp;&amp;732子def’<em>去除</em>数字，字母，汉字以外的所有字符。怎么去？用\u4e00-\u9fa5是一个误导，不信你试试….我是这样写的：se<em>le</em>ct regexp_repl<em>ac</em>e(</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/qq_39365424/article/details/89152553"><em>oracle</em>截取字段以及<em>去除</em>汉字</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/qq_39365424">qq_39365424的博客</a></p>
+<p> <img width="14" height="14" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/readCountWhite_cb34725dc4fd4f3182dee7c3d222ad02.png"/> 4049 </p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/qq_39365424/article/details/89152553">//截取字符串： subs<em>tr</em>(org.org_name,0,i<em>ns**tr</em>(org.org_name,‘钻探’,1,1)-1) as b<em>ran</em>ch_comp_name //<em>去除</em>汉字： <em>translate</em>(org1.org_name,’#’|| <em>translate</em>(org1.org_name,‘abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0…</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/weixin_33704234/article/details/92894704"><em>oracle</em> 正则应用：只取汉字</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/weixin_33704234">weixin_33704234的博客</a></p>
+<p> <img width="14" height="14" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/readCountWhite_cb34725dc4fd4f3182dee7c3d222ad02.png"/> 1975 </p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/weixin_33704234/article/details/92894704">SE<em>LE</em>CT REGEXP_REPL<em>AC</em>E(‘王洪峰您好!公司拟计划于8月5日召开8月份计划会,具体时间另行通知[党政办】’, ‘[a-zA-Z[:digit:][:punct:][:sp<em>ac</em>e:]]’, ‘’) FROM DUAL; 【原文链接】http://www.tsingsong.com/jforum/posts/list/1002.page …</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/iteye_14832/article/details/82489625"><em>Oracle</em> <em>使用<strong>TRANSLATE</strong>函数</em>替换字符串中的字符</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/iteye_14832">he91-com</a></p>
+<p> <img width="14" height="14" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/readCountWhite_cb34725dc4fd4f3182dee7c3d222ad02.png"/> 90 </p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/iteye_14832/article/details/82489625">一个需求，如何将(1234,56789,12345)替换为’1234*56789*12345’? 第一种方式,<em>使用</em>repl<em>ac</em>e: ChenZw&gt; SE<em>LE</em>CT REPL<em>AC</em>E(REPL<em>AC</em>E(REPL<em>AC</em>E(‘(1234,56789,12345)’,’,’,’<em>‘),’(‘,’’’’),’)’,’’’’) FROM DUAL; REPL</em>AC<em>E(REPL</em>AC*E(RE …</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/weixin_33924688/article/details/116326270"><em>oracle</em>怎么去掉汉字,<em>oracle</em> 真么删除里面的汉字？解决方案</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/weixin_33924688">weixin_33924688的博客</a></p>
+<p> <img width="14" height="14" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/readCountWhite_cb34725dc4fd4f3182dee7c3d222ad02.png"/> 291 </p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/weixin_33924688/article/details/116326270">SQL codecre<em>ate</em> tab<em>le</em> tb(area varchar(20))i<em>ns</em>ert into tb values(‘100平方米’)i<em>ns</em>ert into tb values(‘120平方米’)i<em>ns</em>ert into tb values(‘70-80平方米’)go–方法一[吖-咗]se<em>le</em>ct <em>le</em>ft(area,PATINDEX(‘%[吖-做]%’,area)-1) area fr…</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/coolzhi/article/details/83881273"><em>oracle</em>正则表达式如何匹配<em>中文</em></a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/coolzhi">博客已迁移至http://www.laokboke.com</a></p>
+<p> <img width="14" height="14" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/readCountWhite_cb34725dc4fd4f3182dee7c3d222ad02.png"/> 2333 </p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/coolzhi/article/details/83881273">自从<em>oracle</em>10g支持正则表达式以来，受到很多人的喜欢，因为可以通过很少的代码便可以解决很多的问题，例如批量更新等。但对于国内用户来说，可能会遇到一个比较困扰的问题，就是<em>使用</em>在其他很多语言中都可以成功的<em>中文</em>匹配正则表达式，在<em>oracle</em>这里失效了，那到底<em>oracle</em>要怎么才能成功匹配<em>中文</em>呢？         请用\w         按照常规来说，在正则表达式中，匹配<em>中文</em>的…</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/weixin_39461443/article/details/102684234">中英文字符的替换（<em>TRANSLATE**函数</em>的运用）</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/weixin_39461443">沐浴在财神爷扎哥的光辉中。。。</a></p>
+<p> <img width="14" height="14" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/readCountWhite_cb34725dc4fd4f3182dee7c3d222ad02.png"/> 261 </p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/weixin_39461443/article/details/102684234">··· for i in <em>ran</em>ge(65281, 65381): print(chr(i), chr(i-65248)) ···</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/noctis233/article/details/109603797"><em>oracle**去除</em>字段里的汉字</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/noctis233">noctis233的博客</a></p>
+<p> <img width="14" height="14" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/readCountWhite_cb34725dc4fd4f3182dee7c3d222ad02.png"/> 1801 </p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/noctis233/article/details/109603797"><em>oracle**去除</em>字段里的汉字 数据库中某些字段过长，无法导入另一个库，现在规范数据格式 查询 ‘单位电话’ 字段的长度大于15的: se<em>le</em>ct 单位电话 from 库 t where <em>le</em>ngth(单位电话)&gt;15 查询结果中有很多的空格字符，还有人把地址填这的，我傻了 用<em>translate<strong>去除</strong>中文</em> se<em>le</em>ct <em>translate</em>(单位电话,’把字段里的<em>中文</em>复制到这 ‘, ‘0’) from 库 t where <em>le</em>ngth(单位电话)&gt;15 示例 只找到这种办法 如果把 <em>tr</em>a</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/whz110/article/details/83698868"><em>ORACLE</em>中<em>translate</em>的妙用</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/whz110">whz110的专栏</a></p>
+<p> <img width="14" height="14" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/readCountWhite_cb34725dc4fd4f3182dee7c3d222ad02.png"/> 51 </p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/whz110/article/details/83698868">下面是文档中的话   The following st<em>ate</em>ment <em>translate</em>s a lice<em>ns</em>e number. All <em>le</em>t<em>te</em>rs ‘ABC…Z’ are <em>translate</em>d to ‘X’ and all digits ‘012 . . . 9’ are <em>translate</em>d to ‘9’: SE<em>LE</em>CT <em>TRANSLATE</em>(‘2KRW229’, ‘012345…</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/raozhiyong11/article/details/84494144"><em>Oracle</em>中<em>translate</em> <em>函数</em>的<em>使用</em></a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/raozhiyong11">杀破狼！！！</a></p>
+<p> <img width="14" height="14" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/readCountWhite_cb34725dc4fd4f3182dee7c3d222ad02.png"/> 741 </p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/raozhiyong11/article/details/84494144"><em>Oracle</em>中<em>translate</em> <em>函数</em>的<em>使用</em> 实例： se<em>le</em>ct   lmark3, <em>translate</em>( t.lmark3, ‘9876543210’ ||t.lmark3, ‘9876543210’)from line_data_all_t t 1 数学一：51 51 2 数学三：100 100 3 …</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/iteye_4537/article/details/82167180"><em>Oracle</em> PL/SQL 过滤非数字字符</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/iteye_4537">数据库天地</a></p>
+<p> <img width="14" height="14" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/readCountWhite_cb34725dc4fd4f3182dee7c3d222ad02.png"/> 1987 </p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/iteye_4537/article/details/82167180">背景：给同事做了个报表，<em>使用</em>时从EXCEL、网页等向报表中拷贝查询条件（局编）。 用户反映查不出数据——调查后发现用户填的局编带有空格——随手加了<em>TR</em>IM 又有查不出数据的情况——带有全角空格——用Repl<em>ac</em>e替换全角空格 还有查不到，调查发现可能混有换行、EXCEL中神秘的空白符等。 处理：第一反应是让用户粘贴前先转贴到记事本中，“过滤”一下无效字符。简单、有效，但很不友好。 解决：…</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/clscp44862/article/details/100297745"><em>Translate**函数</em>能把字符串中所有汉字替换</a></p>
+<p> <img width="14" height="14" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/readCountWhite_cb34725dc4fd4f3182dee7c3d222ad02.png"/> 200 </p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/clscp44862/article/details/100297745">se<em>le</em>ct repl<em>ac</em>e(<em>translate</em>(‘fas你db我fas他egas’, repl<em>ac</em>e(<em>Translate</em>(‘fas你db我fas他egas’, …</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/u010104750/article/details/52388609"><em>translate**函数</em>的<em>用法</em></a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/u010104750">王飞虎</a></p>
+<p> <img width="14" height="14" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/readCountWhite_cb34725dc4fd4f3182dee7c3d222ad02.png"/> 8417 </p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/u010104750/article/details/52388609"><em>translate</em>(s<em>tr</em>ing,from_s<em>tr</em>,to_s<em>tr</em>)     执行时,<em>translate</em>依次检查s<em>tr</em>ing中的每个字符是否在from_s<em>tr</em>中存在，如果不存在，那么这个s<em>tr</em>ing中的字符直接返回，如果存在，<em>translate</em>会记下这个字符在from_s<em>tr</em>中的位置，然后用to_s<em>tr</em>的同样位置的字符代替s<em>tr</em>ing中的这个字符作业返回结果， 举例如下    SQL&gt; sel</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/weixin_39908462/article/details/116384160"><em>oracle</em>正则表达式去掉,<em>Oracle</em>正则表达式汇集<br>最新发布</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/weixin_39908462">weixin_39908462的博客</a></p>
+<p> <img width="14" height="14" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/readCountWhite_cb34725dc4fd4f3182dee7c3d222ad02.png"/> 46 </p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/weixin_39908462/article/details/116384160"><em>Oracle</em>正则表达式汇集<em>Oracle</em> 10g数据库内建了符合IEEE POSIX (Portab<em>le</em> Ope<em>ra</em>ting Sys<em>te</em>m for Unix)标准的正则表达式。熟练<em>使用</em>正则表达式，可以写出简洁，强大的SQL语句。正则表达式有几个优点优于常见的LIKE操作符和I<em>NS**TR</em>、SUBS<em>TR</em>及REPL<em>AC</em>E <em>函数</em>的。这些传统的SQL <em>函数</em>不便于进行模式匹配。只有LIKE 操作符通过<em>使用</em>%和_字…</a></p>
+<p>©️2021 CSDN 皮肤主题: 大白 设计师:CSDN官方博客 <a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/">返回首页</a></p>
+<ul>
+<li><p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.csdn.net/company/index.html#about">关于我们</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.csdn.net/company/index.html#recruit">招贤纳士</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.csdn.net/company/index.html#advertisement">广告服务</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://plugin.csdn.net/">开发助手</a></p>
+</li>
+<li><p><img width="16" height="16" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/tel_09837963d8054f48bd720ae74620d3ca.png"/>400-660-0108</p>
+</li>
+<li><p><img width="16" height="16" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/email_f288a8fd462347d690b8517c98c82a6c.png"/><a href="mailto:webmaster@csdn.net" rel="external nofollow noreferrer">kefu@csdn.net</a></p>
+</li>
+<li><p><img width="16" height="16" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/cs_8e2941a637174b719d33780c56fdf03d.png"/><a target="_blank" rel="noopener external nofollow noreferrer" href="https://csdn.s2.udesk.cn/im_client/?web_plugin_id=29181">在线客服</a></p>
+</li>
+<li><p>工作时间 8:30-22:00</p>
+</li>
+<li><p><a target="_blank" rel="noopener external nofollow noreferrer" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=11010502030143">公安备案号11010502030143</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener external nofollow noreferrer" href="http://beian.miit.gov.cn/publish/query/indexFirst.action">京ICP备19004658号</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://csdnimg.cn/release/live_fe/culture_license.png">京网文〔2020〕1039-165号</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://csdnimg.cn/cdn/content-toolbar/csdn-ICP.png">经营性网站备案信息</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener external nofollow noreferrer" href="http://www.bjjubao.org/">北京互联网违法和不良信息举报中心</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener external nofollow noreferrer" href="http://www.cyberpolice.cn/">网络110报警服务</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener external nofollow noreferrer" href="http://www.12377.cn/">中国互联网举报中心</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://download.csdn.net/index.php/tutelage/">家长监护</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://chrome.google.com/webstore/detail/csdn%E5%BC%80%E5%8F%91%E8%80%85%E5%8A%A9%E6%89%8B/kfkdboecolemdjodhmhmcibjocfopejo?hl=zh-CN">Chrome商店下载</a></p>
+</li>
+<li><p>©1999-2022北京创新乐知网络技术有限公司</p>
+</li>
+<li><p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.csdn.net/company/index.html#statement">版权与免责声明</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/blogdevteam/article/details/90369522">版权申诉</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://img-home.csdnimg.cn/images/20210414021151.jpg">出版物许可证</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://img-home.csdnimg.cn/images/20210414021142.jpg">营业执照</a></p>
+</li>
+</ul>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/weixin_42233789"><img width="48" height="48" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/3_weixin_42233789_5509b2970bf84206a458f29b7f811041.jpg"/></a></p>
+<p><a id="uid"></a><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/weixin_42233789" title="小砖工">小砖工</a></p>
+<p>码龄4年 <a target="_blank" rel="noopener external nofollow noreferrer" href="https://i.csdn.net/#/uc/profile?utm_source=14998968" title="暂无认证"><img width="12" height="14" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/nocErtification_315e37f2b475486285c553e5dab2a204.png"/> 暂无认证</a> </p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/weixin_42233789">54<br>原创</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/rank/list/weekly">12万+<br>周排名</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/rank/list/total">18万+<br>总排名</a></p>
+<p>11万+</p>
+<p>访问</p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/blogdevteam/article/details/103478461"><img width="22" height="22" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/blog4_b7e22a60b81d4747b1eb51110d0ca177.png"/></a></p>
+<p>等级</p>
+<p>1557</p>
+<p>积分</p>
+<p><a id="fan"></a>16</p>
+<p>粉丝</p>
+<p>56</p>
+<p>获赞</p>
+<p>15</p>
+<p>评论</p>
+<p>234</p>
+<p>收藏</p>
+<img width="36" height="36" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/qiandao3_240_c738f40436c04717bd20b7ec604e5e7f.png"/>
+
+<img width="36" height="36" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/chizhiyiheng_240_f1d15f9248714f15891ae4f357faba44.png"/>
+
+<img width="36" height="36" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/qixiebiaobing3_240_0d9df6a809704a8abaf34234b749372.png"/>
+
+<img width="36" height="36" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src=":/eb5f4eae263a415f976d175d250bec75"/>
+
+<img width="36" height="36" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/yuanli_xinren_240_0a76b69f47ed4fe382ca92e9fd4e63f3.png"/>
+
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://im.csdn.net/chat/weixin_42233789">私信</a></p>
+<p><a id="btnAttent"></a>关注</p>
+<img width="32" height="32" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/csdn-sou_f734275627c043e0a57fd122ab3749be.png"/>
+
+<h3 id="热门文章"><a href="#热门文章" class="headerlink" title="热门文章"></a>热门文章</h3><ul>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/weixin_42233789/article/details/105177103">-bash: ulimit: open files: 无法修改 limit 值: 不允许的操作bash: ulimit: open files: cannot modify limit: 不允许的操作 <img width="14" height="14" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/readCountWhite_cb34725dc4fd4f3182dee7c3d222ad02.png"/> 11568</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/weixin_42233789/article/details/105295781">数据仓库十大主题；TeraData金融数据模型 <img width="14" height="14" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/readCountWhite_cb34725dc4fd4f3182dee7c3d222ad02.png"/> 10342</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/weixin_42233789/article/details/105362550">Linux vi 模式下查找命令 <img width="14" height="14" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/readCountWhite_cb34725dc4fd4f3182dee7c3d222ad02.png"/> 6025</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/weixin_42233789/article/details/105707849">hive 分区表添加，修改，删除字段的坑 <img width="14" height="14" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/readCountWhite_cb34725dc4fd4f3182dee7c3d222ad02.png"/> 4947</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/weixin_42233789/article/details/112692540">Macbook GlobalProtect 连接问题 <img width="14" height="14" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/readCountWhite_cb34725dc4fd4f3182dee7c3d222ad02.png"/> 4918</a></li>
+</ul>
+<h3 id="分类专栏"><a href="#分类专栏" class="headerlink" title="分类专栏"></a>分类专栏</h3><ul>
+<li> <a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/weixin_42233789/category_10173197.html"><img width="28" height="28" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/resize_m_fixed_h_64_w_64_7ff522313dae45b487c4e5a7e.png"/> IDEA 1篇</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/weixin_42233789/category_9957234.html"><img width="28" height="28" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/resize_m_fixed_h_64_w_64_166b49d534ff48a996bc94285.png"/>MySQL 1篇</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/weixin_42233789/category_9867032.html"><img width="28" height="28" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/resize_m_fixed_h_64_w_64_0a31646a18474eeda61c9d780.png"/>数据仓库 4篇</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/weixin_42233789/category_9601387.html"><img width="28" height="28" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/resize_m_fixed_h_64_w_64_fdd63dceac3c4043ac0fb57ea.png"/>LINUX 20篇</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/weixin_42233789/category_9623054.html"><img width="28" height="28" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/resize_m_fixed_h_64_w_64_6ff6a18cf27c445ca01834f72.png"/>Linux错误信息 3篇</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/weixin_42233789/category_9851003.html"><img width="28" height="28" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/resize_m_fixed_h_64_w_64_65867e50b7444d42a182cdb93.png"/>其他 7篇</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/weixin_42233789/category_9754567.html"><img width="28" height="28" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/resize_m_fixed_h_64_w_64_2d6b7ec815a64bdb9eea13e6e.png"/>Python 11篇</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/weixin_42233789/category_9759436.html"><img width="28" height="28" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/resize_m_fixed_h_64_w_64_0c53c016e02a46cc933a3fdb1.png"/>python笔记 7篇</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/weixin_42233789/category_9632658.html"><img width="28" height="28" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/resize_m_fixed_h_64_w_64_b4d1961a0500434d918378f01.png"/>Hadoop 9篇</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/weixin_42233789/category_9632682.html"><img width="28" height="28" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/resize_m_fixed_h_64_w_64_2d6b7ec815a64bdb9eea13e6e.png"/>HIVE 7篇</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/weixin_42233789/category_8896458.html"><img width="28" height="28" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/resize_m_fixed_h_64_w_64_b4d1961a0500434d918378f01.png"/>ORACLE 28篇</a></li>
+</ul>
+<img width="12" height="7" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/arrowDownWhite_b590b55967ea4bf58f84614e53924895.png"/>
+
+<h3 id="最新评论"><a href="#最新评论" class="headerlink" title="最新评论"></a>最新评论</h3><ul>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/weixin_42233789/article/details/112692383#comments_19247704">Mac 退出与卸载 GlobalProtect</a>  <a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/qq_21046355">qq_21046355:</a> 厉害，最后一个方法可以</li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/weixin_42233789/article/details/105734939#comments_19007081">ORACLE 单列多个索引和组合索引的区别详解</a>  <a target="_blank" rel="noopener external nofollow noreferrer" href="https://zhangxiaofan.blog.csdn.net/">JAVA|Mr.Java:</a> Oracle可以参考：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://zhangxiaofan.blog.csdn.net/article/details/114933096">https://zhangxiaofan.blog.csdn.net/article/details/114933096</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/weixin_42233789/article/details/105734939#comments_19006092">ORACLE 单列多个索引和组合索引的区别详解</a>  <a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/qq_41909510">彼将取而代之:</a> 真是浪费时间</li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/weixin_42233789/article/details/105177103#comments_18966800">-bash: ulimit: open files: 无法修改 limit 值: 不允许的操作bash: ulimit: open files: cannot modify limit: 不允许的操作</a>  <a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/weixin_49513468">Mosquito…:</a> limits.conf文件为只读文件怎么办？</li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/weixin_42233789/article/details/105720850#comments_18903256">Linux Redhat7 固定IP地址</a>  <a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/m0_47074608">月与清明:</a> 简明直接，ens33是使用VMware对虚拟机生成的网卡名称，如果使用Virtualbox的话就换了名称了，不过大同小异，网卡名称对应位置都是一样的。</li>
+</ul>
+<h3 id="您愿意向朋友推荐“博客详情页”吗？"><a href="#您愿意向朋友推荐“博客详情页”吗？" class="headerlink" title="您愿意向朋友推荐“博客详情页”吗？"></a>您愿意向朋友推荐“博客详情页”吗？</h3><ul>
+<li><img width="28" height="28" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/npsFeel1_d2a9a24400af453684262bcd61c13aca.png"/>
+  
+  强烈不推荐</li>
+<li><img width="28" height="28" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/npsFeel2_d7a0117dd70845ccb2dc77e83883e9e3.png"/>
+  
+  不推荐</li>
+<li><img width="28" height="28" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/npsFeel3_e91c2348e4284d59845b476818714cdc.png"/>
+  
+  一般般</li>
+<li><img width="28" height="28" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/npsFeel4_acd63d19f7ac453fa171925f538ece19.png"/>
+  
+  推荐</li>
+<li><img width="28" height="28" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/npsFeel5_1f739e8578d646a792ce7ef543bd6bf6.png"/>
+  
+  强烈推荐</li>
+</ul>
+<h3 id="最新文章"><a href="#最新文章" class="headerlink" title="最新文章"></a>最新文章</h3><ul>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/weixin_42233789/article/details/116932775">ER图工具Visual Paradigm下载并设置中文</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/weixin_42233789/article/details/113940566">Oracle、Hive 统计三个月，六个月，九个月，十二个月的平局值</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/weixin_42233789/article/details/113260598">hive 表数据导出到CSV文件</a></li>
+</ul>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/weixin_42233789?type=blog&year=2021&month=05">2021年5篇</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/weixin_42233789?type=blog&year=2020&month=12">2020年66篇</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/weixin_42233789?type=blog&year=2019&month=12">2019年5篇</a></p>
+<img width="0" height="0" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/1.png_p_57_a_707_c_0_k__spm_1001_900ee8fbc0794db2a.png"/>
+
+<p><a id="fatkun-drop-panel-close-btn"></a>×</p>
+<p>拖拽到此处</p>
+<p>图片将完成下载</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:978252321@qq.com" rel="external nofollow noreferrer">传礼</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://iwangchuanli.github.io/posts/63543.html">https://iwangchuanli.github.io/posts/63543.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow noreferrer" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://iwangchuanli.github.io" target="_blank">传礼</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img7_pzkwKv.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/posts/57428.html"><img class="prev-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img36_H3Vi3i.jpeg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">nacos单机版启动方式</div></div></a></div><div class="next-post pull-right"><a href="/posts/34458.html"><img class="next-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img8_1MHlve.jpeg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Oracle 删除重复数据只留一条</div></div></a></div></nav><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div><div id="comment-switch"><span class="first-comment">Valine</span><span class="switch-btn"></span><span class="second-comment">Gitalk</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div><div><div id="gitalk-container"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">Nice to meet you ~</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Oracle-%E4%BD%BF%E7%94%A8translate-%E5%A6%82%E4%BD%95%E5%8E%BB%E9%99%A4%E4%B8%AD%E6%96%87%EF%BC%8C%E5%8D%95%E8%A1%8C%E5%87%BD%E6%95%B0-translate-%E7%9A%84%E7%94%A8%E6%B3%95"><span class="toc-number">1.</span> <span class="toc-text">Oracle 使用translate 如何去除中文，单行函数 translate 的用法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%83%AD%E9%97%A8%E6%96%87%E7%AB%A0"><span class="toc-number">1.0.1.</span> <span class="toc-text">热门文章</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E7%B1%BB%E4%B8%93%E6%A0%8F"><span class="toc-number">1.0.2.</span> <span class="toc-text">分类专栏</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%80%E6%96%B0%E8%AF%84%E8%AE%BA"><span class="toc-number">1.0.3.</span> <span class="toc-text">最新评论</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%82%A8%E6%84%BF%E6%84%8F%E5%90%91%E6%9C%8B%E5%8F%8B%E6%8E%A8%E8%8D%90%E2%80%9C%E5%8D%9A%E5%AE%A2%E8%AF%A6%E6%83%85%E9%A1%B5%E2%80%9D%E5%90%97%EF%BC%9F"><span class="toc-number">1.0.4.</span> <span class="toc-text">您愿意向朋友推荐“博客详情页”吗？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%80%E6%96%B0%E6%96%87%E7%AB%A0"><span class="toc-number">1.0.5.</span> <span class="toc-text">最新文章</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget ads-wrap"><a target="_blank" href="https://www.aliyun.com/activity?userCode=dpj8p3hl" rel="external nofollow noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/aliyun_whuCuE.jpg" style="width:100%;height:100%;object-fit:cover;"></a></div></div></div></main><footer id="footer" style="background-image: url('https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img7_pzkwKv.png')"><div id="footer-wrap"><div class="copyright">&copy;2018 - 2022 By 传礼</div><div class="footer_custom_text"><p style="display:inline-flex">本网站由<a href="https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral" rel="external nofollow noreferrer" target="_blank"><img style="width:60px;height:35px;" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/11/又拍云_logo5_O9kNul.png" title="又拍云"/></a>提供CDN加速/云存储服务</p><p><a style="margin-inline:5px" target="_blank" href="https://hexo.io/" rel="external nofollow noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Frame-Hexo-blue?style=flat&logo=hexo" title="博客框架为Hexo"></a><a style="margin-inline:5px" target="_blank" href="https://butterfly.js.org/" rel="external nofollow noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Theme-Butterfly-6513df?style=flat&logo=bitdefender" title="主题采用butterfly"></a><a style="margin-inline:5px" target="_blank" href="https://www.jsdelivr.com/" rel="external nofollow noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/CDN-jsDelivr-orange?style=flat&logo=jsDelivr" title="本站使用JsDelivr为静态资源提供CDN加速"></a><a style="margin-inline:5px" target="_blank" href="https://github.com/" rel="external nofollow noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Source-Github-d021d6?style=flat&logo=GitHub" title="本站项目由Github托管"></a><a style="margin-inline:5px" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Copyright-BY--NC--SA%204.0-d42328?style=flat&logo=Claris" title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可"></a></p></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="chat_btn" type="button" title="聊天"><i class="fas fa-sms"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">本地搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script src="/js/search/local-search.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"><script>function loadValine () {
+  function initValine () {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: 'zHUfFgUbITfMSQGuSPgS2e3C-gzGzoHsz',
+      appKey: 'yPXpeKX8VJxdFRPEsDaqNgEY',
+      avatar: 'wavatar',
+      serverURLs: 'https://zhuffgub.lc-cn-n1-shared.com',
+      emojiMaps: "",
+      path: window.location.pathname,
+      visitor: true,
+      master: '447d56ab3606de5490a2109d3e441219,135d837ea1033c9787dd307e59884d36'.split(','),
+      friends: '5c?????bfe6rfc72a????e268ad3819c'.split(','),
+      tagMeta: '博主,小伙伴,访客'.split(',')
+        
+    }, {"placeholder":"请输入内容～"}))
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/gh/HCLonely/Valine@latest/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !true) {
+  if (true) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script><script>function addGitalkSource () {
+  const ele = document.createElement('link')
+  ele.rel = 'stylesheet'
+  ele.href= 'https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css'
+  document.getElementsByTagName('head')[0].appendChild(ele)
+}
+
+function loadGitalk () {
+  function initGitalk () {
+    var gitalk = new Gitalk(Object.assign({
+      clientID: '052d9d6486112e93fa50',
+      clientSecret: '6fea35bfb7a17521694a95f705683622976d2f53',
+      repo: 'gitalk',
+      owner: 'iwangchuanli',
+      admin: ['iwangchuanli'],
+      id: '5d21476410048803ddae81ccb975c77d',
+      updateCountCallback: commentCount
+    },null))
+
+    gitalk.render('gitalk-container')
+  }
+
+  if (typeof Gitalk === 'function') initGitalk()
+  else {
+    addGitalkSource()
+    getScript('https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.js').then(initGitalk)
+  }
+}
+
+function commentCount(n){
+  let isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+  if (isCommentCount) {
+    isCommentCount.innerHTML= n
+  }
+}
+
+if ('Valine' === 'Gitalk' || !true) {
+  if (true) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+  else loadGitalk()
+} else {
+  function loadOtherComment () {
+    loadGitalk()
+  }
+}</script></div><div class="aplayer no-destroy" data-id="7355841544" data-server="netease" data-type="playlist" data-fixed="true" data-autoplay="false"> </div><script async src="/js/grayscale.js"></script><script async src="//at.alicdn.com/t/font_1885008_srfhrsykmk.js"></script><script>((window.gitter = {}).chat = {}).options = {
+  disableDefaultChat: true,
+};
+document.addEventListener('gitter-sidecar-ready', (e) => {
+  const GitterChat = e.detail.Chat
+  let chat
+
+  function initGitter () {
+    chat = new GitterChat({
+      room: 'wangchuangli-/community',
+      activationElement: '#chat_btn'
+    });
+  }
+
+  initGitter()
+
+  if (true) {
+    document.addEventListener('pjax:complete', () => {
+      chat.destroy()
+      initGitter()
+    })
+  }
+
+})</script><script src="https://sidecar.gitter.im/dist/sidecar.v1.js" async="async" defer="defer"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/meting@1.2.0/dist/Meting.min.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = ["title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"]):not([href="/music/"]):not([href="/no-pjax/"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.tocScrollFn && window.removeEventListener('scroll', window.tocScrollFn)
+  window.scrollCollect && window.removeEventListener('scroll', scrollCollect)
+
+  typeof preloader === 'object' && preloader.initLoading()
+  document.getElementById('rightside').style.cssText = "opacity: ''; transform: ''"
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+
+  typeof preloader === 'object' && preloader.endLoading()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><!-- hexo injector body_end start --><script data-pjax>
+  function butterfly_swiper_injector_config(){
+    var parent_div_git = document.getElementById('recent-posts');
+    var item_html = '<div class="recent-post-item" style="height: auto;width: 100%"><div class="blog-slider swiper-container-fade swiper-container-horizontal" id="swiper_container"><div class="blog-slider__wrp swiper-wrapper" style="transition-duration: 0ms;"><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" onclick="pjax.loadUrl(&quot;posts/4496.html&quot;);" href="javascript:void(0);" rel="external nofollow noreferrer" alt=""><img width="48" height="48" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img6_L358Nt.jpeg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2018-09-05</span><a class="blog-slider__title" onclick="pjax.loadUrl(&quot;posts/4496.html&quot;);" href="javascript:void(0);" rel="external nofollow noreferrer" alt="">编程系列书单推荐</a><div class="blog-slider__text">再怎么看我也不知道怎么描述它的啦！</div><a class="blog-slider__button" onclick="pjax.loadUrl(&quot;posts/4496.html&quot;);" href="javascript:void(0);" rel="external nofollow noreferrer" alt="">详情       </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" onclick="pjax.loadUrl(&quot;posts/35693.html&quot;);" href="javascript:void(0);" rel="external nofollow noreferrer" alt=""><img width="48" height="48" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img33_fnRUqR.jpeg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2018-11-26</span><a class="blog-slider__title" onclick="pjax.loadUrl(&quot;posts/35693.html&quot;);" href="javascript:void(0);" rel="external nofollow noreferrer" alt="">优秀科技博客订阅</a><div class="blog-slider__text">再怎么看我也不知道怎么描述它的啦！</div><a class="blog-slider__button" onclick="pjax.loadUrl(&quot;posts/35693.html&quot;);" href="javascript:void(0);" rel="external nofollow noreferrer" alt="">详情       </a></div></div></div><div class="blog-slider__pagination swiper-pagination-clickable swiper-pagination-bullets"></div></div></div>';
+    console.log('已挂载butterfly_swiper')
+    parent_div_git.insertAdjacentHTML("afterbegin",item_html)
+    }
+  var elist = 'undefined'.split(',');
+  var cpage = location.pathname;
+  var epage = 'all';
+  var flag = 0;
+
+  for (var i=0;i<elist.length;i++){
+    if (cpage.includes(elist[i])){
+      flag++;
+    }
+  }
+
+  if ((epage ==='all')&&(flag == 0)){
+    butterfly_swiper_injector_config();
+  }
+  else if (epage === cpage){
+    butterfly_swiper_injector_config();
+  }
+  </script><script defer src="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper.min.js"></script><script defer data-pjax src="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper_init.js"></script><!-- hexo injector body_end end --></body></html>

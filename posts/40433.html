@@ -1,0 +1,440 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>ftp服务器搭建(离线安装vsftpd) | 传礼</title><meta name="keywords" content="博客,blog,王传礼,java,python,大数据"><meta name="author" content="传礼,978252321@qq.com"><meta name="copyright" content="传礼"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="ftp服务器搭建(离线安装vsftpd)，配置1.下载vsftp:http:&#x2F;&#x2F;rpmfind.net&#x2F;linux&#x2F;rpm2html&#x2F;search.php?query&#x3D;vsftpd(x86-64)   2.检查是否已经安装了vsftp  rpm -qa | grep vsftpd 如果没有提示则说明没有安装 如果提示版本号则说明已经安装 3.安装vsftpd-3.0.2-22.el7.x86_64">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ftp服务器搭建(离线安装vsftpd)">
+<meta property="og:url" content="https://iwangchuanli.github.io/posts/40433.html">
+<meta property="og:site_name" content="传礼">
+<meta property="og:description" content="ftp服务器搭建(离线安装vsftpd)，配置1.下载vsftp:http:&#x2F;&#x2F;rpmfind.net&#x2F;linux&#x2F;rpm2html&#x2F;search.php?query&#x3D;vsftpd(x86-64)   2.检查是否已经安装了vsftp  rpm -qa | grep vsftpd 如果没有提示则说明没有安装 如果提示版本号则说明已经安装 3.安装vsftpd-3.0.2-22.el7.x86_64">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img9_NzXXV0.jpeg">
+<meta property="article:published_time" content="2022-11-28T07:04:49.753Z">
+<meta property="article:modified_time" content="2022-08-18T06:18:52.000Z">
+<meta property="article:author" content="传礼">
+<meta property="article:tag" content="博客,blog,王传礼,java,python,大数据">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img9_NzXXV0.jpeg"><link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/03/favicons_uH14Fb.gif"><link rel="canonical" href="https://iwangchuanli.github.io/posts/40433"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin=""/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta name="baidu-site-verification" content="qKvGNFZPF9"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?39bd6e37a6e70dc030e6a043a642784e";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: 传礼","link":"链接: ","source":"来源: 传礼","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#121212","position":"bottom-left"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: true,
+  islazyload: true,
+  isAnchor: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'ftp服务器搭建(离线安装vsftpd)',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-08-18 06:18:52'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/custom.css"  media="defer" onload="this.media='all'"><!-- hexo injector head_end start --><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiperstyle.css" media="print" onload="this.media='all'"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.1"><link rel="alternate" href="/atom.xml" title="传礼" type="application/atom+xml">
+</head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/03/photo_NZBQPu.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><div class="data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">511</div></a></div><div class="data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">50</div></a></div><div class="data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">22</div></a></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 归档</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-calendar"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 开发</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/Java"><i class="fa-fw fa fa-music"></i><span> Java</span></a></li><li><a class="site-page child" href="/categories/Python"><i class="fa-fw fa fa-music"></i><span> Python</span></a></li><li><a class="site-page child" href="/categories/VUE"><i class="fa-fw fa fa-music"></i><span> VUE</span></a></li><li><a class="site-page child" href="/categories/MySQL"><i class="fa-fw fa fa-music"></i><span> MySQL</span></a></li><li><a class="site-page child" href="/categories/Redis"><i class="fa-fw fa fa-music"></i><span> Redis</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 架构</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/Spring"><i class="fa-fw fa fa-music"></i><span> Spring</span></a></li><li><a class="site-page child" href="/categories/microServeices"><i class="fa-fw fa fa-music"></i><span> 微服务</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 运维</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/Docker"><i class="fa-fw fa fa-music"></i><span> Docker</span></a></li><li><a class="site-page child" href="/categories/Linux"><i class="fa-fw fa fa-music"></i><span> Linux</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 分享</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/tags/Tools"><i class="fa-fw fa fa-music"></i><span> 工具</span></a></li><li><a class="site-page child" href="/tags/guide"><i class="fa-fw fa fa-music"></i><span> 教程</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 项目</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/tags/Tools"><i class="fa-fw fa fa-music"></i><span> 工具</span></a></li><li><a class="site-page child" href="/tags/guide"><i class="fa-fw fa fa-music"></i><span> 教程</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-heartbeat"></i><span> 娱乐</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/gallery/"><i class="fa-fw fa fa-images"></i><span> 图库</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fa fa-film"></i><span> 电影</span></a></li><li><a class="site-page child" href="/books/"><i class="fa-fw fa fa-book"></i><span> 图书</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 我的</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/artitalk/"><i class="fa-fw fa fa-commenting"></i><span> 说说</span></a></li><li><a class="site-page child" href="/todo/"><i class="fa-fw fa fa-flag"></i><span> TODO</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img9_NzXXV0.jpeg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">传礼</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 归档</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-calendar"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 开发</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/Java"><i class="fa-fw fa fa-music"></i><span> Java</span></a></li><li><a class="site-page child" href="/categories/Python"><i class="fa-fw fa fa-music"></i><span> Python</span></a></li><li><a class="site-page child" href="/categories/VUE"><i class="fa-fw fa fa-music"></i><span> VUE</span></a></li><li><a class="site-page child" href="/categories/MySQL"><i class="fa-fw fa fa-music"></i><span> MySQL</span></a></li><li><a class="site-page child" href="/categories/Redis"><i class="fa-fw fa fa-music"></i><span> Redis</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 架构</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/Spring"><i class="fa-fw fa fa-music"></i><span> Spring</span></a></li><li><a class="site-page child" href="/categories/microServeices"><i class="fa-fw fa fa-music"></i><span> 微服务</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 运维</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/Docker"><i class="fa-fw fa fa-music"></i><span> Docker</span></a></li><li><a class="site-page child" href="/categories/Linux"><i class="fa-fw fa fa-music"></i><span> Linux</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 分享</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/tags/Tools"><i class="fa-fw fa fa-music"></i><span> 工具</span></a></li><li><a class="site-page child" href="/tags/guide"><i class="fa-fw fa fa-music"></i><span> 教程</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 项目</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/tags/Tools"><i class="fa-fw fa fa-music"></i><span> 工具</span></a></li><li><a class="site-page child" href="/tags/guide"><i class="fa-fw fa fa-music"></i><span> 教程</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-heartbeat"></i><span> 娱乐</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/gallery/"><i class="fa-fw fa fa-images"></i><span> 图库</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fa fa-film"></i><span> 电影</span></a></li><li><a class="site-page child" href="/books/"><i class="fa-fw fa fa-book"></i><span> 图书</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 我的</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/artitalk/"><i class="fa-fw fa fa-commenting"></i><span> 说说</span></a></li><li><a class="site-page child" href="/todo/"><i class="fa-fw fa fa-flag"></i><span> TODO</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">ftp服务器搭建(离线安装vsftpd)</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-11-28T07:04:49.753Z" title="发表于 2022-11-28 07:04:49">2022-11-28</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-08-18T06:18:52.000Z" title="更新于 2022-08-18 06:18:52">2022-08-18</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">3k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>12分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="ftp服务器搭建(离线安装vsftpd)"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="ftp服务器搭建-离线安装vsftpd-，配置"><a href="#ftp服务器搭建-离线安装vsftpd-，配置" class="headerlink" title="ftp服务器搭建(离线安装vsftpd)，配置"></a><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/UncleWang001/p/9948150.html">ftp服务器搭建(离线安装vsftpd)，配置</a></h1><p>1.下载vsftp:<a target="_blank" rel="noopener external nofollow noreferrer" href="http://rpmfind.net/linux/rpm2html/search.php?query=vsftpd(x86-64)">http://rpmfind.net/linux/rpm2html/search.php?query=vsftpd(x86-64)</a></p>
+<img width="980" height="91" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/1468106-20181111111502921-159288_89c189a957864db5a.png"/>
+
+<p>2.检查是否已经安装了vsftp</p>
+<p> rpm -qa | grep vsftpd<br> 如果没有提示则说明没有安装<br> 如果提示版本号则说明已经安装</p>
+<p>3.安装vsftpd-3.0.2-22.el7.x86_64.rpm</p>
+<p>离线安装<br>rpm -ivh vsftpd-3.0.2-22.el7.x86_64.rpm  在线安装<br>yum install -y vsftp<br>安装过程可能会报错：</p>
+<p>[root@yjy-pt01 vsftpd]# rpm -ivh vsftpd-3.0.2-22.el7.x86_64.rpm<br> warning: vsftpd-3.0.2-22.el7.x86_64.rpm: Header V3 RSA/SHA256 Signature, key ID f4a80eb5: NOKEY<br> error: Failed dependencies:<br> libc.so.6(GLIBC_2.14)(64bit) is needed by vsftpd-3.0.2-22.el7.x86_64<br> libc.so.6(GLIBC_2.15)(64bit) is needed by vsftpd-3.0.2-22.el7.x86_64</p>
+<p>解决：安装相关依赖<br>rpm -ivh libcap-2.16-5.5.el6.x86_64.rpm<br>rpm -ivh libcap-devel-2.16-5.5.el6.x86_64.rpm</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/copycode_75ab51dc5c2245179f8003be1ebc19a5.gif" alt="复制代码"></p>
+<p>4.检查是否安装成功</p>
+<p>[root@yjy-pt03 local]# rpm -qa | grep vsftpd<br>vsftpd-2.2.2-24.el6.x86_64                            //出现版本号，说明安装成功</p>
+<h1 id="5-配置，这里只说能让你的ftp跑起来的配置，详细原理可以点击查看这里"><a href="#5-配置，这里只说能让你的ftp跑起来的配置，详细原理可以点击查看这里" class="headerlink" title="5.配置，这里只说能让你的ftp跑起来的配置，详细原理可以点击查看这里"></a>5.配置，这里只说能让你的ftp跑起来的配置，<a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/Confession/p/6813227.html">详细原理可以点击查看这里</a></h1><h3 id="5-0-开启vsftpd的两个端口-20-21"><a href="#5-0-开启vsftpd的两个端口-20-21" class="headerlink" title="5.0 开启vsftpd的两个端口 20,21"></a>5.0 开启vsftpd的两个端口 20,21</h3><p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/copycode_75ab51dc5c2245179f8003be1ebc19a5.gif" alt="复制代码"></p>
+<p>开启<br># iptables -I INPUT -i eth0 -p tcp –dport 20 -j ACCEPT<br># iptables -I OUTPUT -o eth0 -p tcp –sport 20 -j ACCEPT<br>保存<br># /etc/rc.d/init.d/iptables save<br>重启防火墙<br># service iptables restart</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/copycode_75ab51dc5c2245179f8003be1ebc19a5.gif" alt="复制代码"></p>
+<h3 id="5-1-创建两个系统用户"><a href="#5-1-创建两个系统用户" class="headerlink" title="5.1 创建两个系统用户"></a>5.1 创建两个系统用户</h3><p>1.因为vsftpd默认的宿主用户是root，不符合安全性要求，所以将新建立的vsftpd服务的宿主用户的shell改为“ /sbin/nologin意思是禁止登录系统 ”：</p>
+<p>useradd vsftpd -s /sbin/nologin            //系统用户  vsftpd  主要是提供一个默认宿主</p>
+<p>2.建立vsftpd虚拟宿主用户:</p>
+<p>useradd virtusers  -s /sbin/nologin        //系统用户  virtusers  本文主要讲虚拟用户登录，这相当于我们的虚拟用户组</p>
+<p>此次主要介绍虚拟用户，顾名思义虚拟用户在系统中是不纯在的，它们集体寄托于方才创建的“virtusers”用户，那么这个用户就相当于一个虚拟用户组了，因为这个用户的权限将影响到后续讲到的虚拟用户。</p>
+<h3 id="5-2-配置vsftpd的主要配置文件vsftpd-conf"><a href="#5-2-配置vsftpd的主要配置文件vsftpd-conf" class="headerlink" title="5.2 配置vsftpd的主要配置文件vsftpd.conf"></a>5.2 配置vsftpd的主要配置文件vsftpd.conf</h3><p>1.养成备份的好习惯</p>
+<p>cp /etc/vsftpd/vsftpd.conf /etc/vsftpd/vsftpd.backup.conf</p>
+<p>2.vim /etc/vsftpd/vsftpd.conf</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/copycode_75ab51dc5c2245179f8003be1ebc19a5.gif" alt="复制代码"></p>
+<p>#默认的根目录为</p>
+<p>#local_root=/var/ftp</p>
+<p>#设置为NO代表不允许匿名<br>anonymous_enable=NO</p>
+<p>#设定本地用户可以访问，主要是虚拟宿主用户，如果设为NO那么所欲虚拟用户将无法访问。<br>local_enable=YES</p>
+<p>#可以进行写的操作<br>write_enable=YES</p>
+<p>#设定上传文件的权限掩码<br>local_umask=022 #禁止匿名用户上传<br>anon_upload_enable=NO</p>
+<p>#禁止匿名用户建立目录<br>anon_mkdir_write_enable=NO</p>
+<p># 设定开启目录标语功能<br>dirmessage_enable=YES</p>
+<p># 设定开启日志记录功能<br>xferlog_enable=YES</p>
+<p>#设定端口20进行数据连接<br>connect_from_port_20=YES</p>
+<p>#设定禁止上传文件更改宿主<br>chown_uploads=NO</p>
+<p>#设定vsftpd服务日志保存路劲。注意：改文件默认不纯在，需手动touch，且由于这里更改了vsftpd服务的宿主用户为手动建立的vsftpd，则必<br>须注意给予该用户对日志的读取权限否则服务启动失败。<br>xferlog_file=/var/log/vsftpd.log      //这个文件在后面步骤中会提及</p>
+<p>#设定日志使用标准的记录格式<br>xferlog_std_format=YES</p>
+<p>#设定空闲链接超时时间，这里使用默认/秒。<br>#idle_session_timeout=600</p>
+<p>#设定最大连接传输时间，这里使用默认，将具体数值留给每个用户具体制定，默认120/秒<br>data_connection_timeout=3600 #设定支撑vsftpd服务的宿主用户为手动建立的vsftpd用户。注意：一旦更改宿主用户，需一起与该服务相关的读写文件的读写赋权问题.<br>nopriv_user=vsftpd</p>
+<p>#设定支持异步传输的功能<br>#async_abor_enable=YES</p>
+<p>#设置vsftpd的登陆标语<br>ftpd_banner=hello 欢迎登陆</p>
+<p>#是否将所有用户限制在主目录,YES为启用 NO禁用.(该项默认值是NO,即在安装vsftpd后不做配置的话，ftp用户是可以向上切换到要目录之外的)<br>chroot_local_user=NO //如果设置成YE会导致你用java代码创建文件夹时失败，因为他被限制在了宿主目录<br>#禁止用户登出自己的ftp主目录<br>chroot_list_enable=NO</p>
+<p>#禁止用户登陆ftp后使用ls -R 命令。该命令会对服务器性能造成巨大开销，如果该项运行当多个用户使用该命令会对服务器造成威胁。<br>ls_recurse_enable=NO</p>
+<p>#设定vsftpd服务工作在standalone模式下。所谓standalone模式就是该服务拥有自己的守护进程，在ps -A可以看出vsftpd的守护进程名。如果<br>不想工作在standalone模式下，可以选择SuperDaemon模式，注释掉即可，在该模式下vsftpd将没有自己的守护进程，而是由超级守护进程Xinetd全权代理，&gt;与此同时，vsftpd服务的许多功能，将得不到实现。<br>listen=YES</p>
+<p>#设定userlist_file中的用户将不能使用ftp<br>userlist_enable=YES</p>
+<p>#设定pam服务下的vsftpd验证配置文件名。因此，PAM验证将参考/etc/pam.d/下的vsftpd文件配置。<br>pam_service_name=vsftpd</p>
+<p>#设定支持TCPwrappers<br>tcp_wrappers=YES</p>
+<p>#################################################以下是关于虚拟用户支持的重要配置项目，默认.conf配置文件中是不包含这些项目的，需手动添加。<br>#启用虚拟用户功能<br>guest_enable=YES</p>
+<p>#指定虚拟的宿主用户<br>guest_username=virtusers    //virtusers就是我们上面创建的系统用户，作为我们的虚拟用户组使用</p>
+<p>#设定虚拟用户的权限符合他们的宿主用户<br>virtual_use_local_privs=YES<br>#设定虚拟用户个人vsftp的配置文件存放路劲。这个被指定的目录里，将被存放每个虚拟用户个性的配置文件，注意的地方是：配置文件名必须 和虚拟用户名相同。<br>user_config_dir=/etc/vsftpd/vconf           //这是个目录，是为每一个虚拟用户配置单独的权限使用，这里我们主要配置每个用户的单独根目录<br>#开启每个虚拟用户有独立的根目录<br>chroot_local_user=YES<br>#禁止反向域名解析，若是没有添加这个参数可能会出现用户登陆较慢，或则客户链接不上ftp的现象<br>reverse_lookup_enable=NO</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/copycode_75ab51dc5c2245179f8003be1ebc19a5.gif" alt="复制代码"></p>
+<h3 id="5-3-建立vsftpd的日志文件，并更改属主为vsftpd的服务宿主用户"><a href="#5-3-建立vsftpd的日志文件，并更改属主为vsftpd的服务宿主用户" class="headerlink" title="5.3.建立vsftpd的日志文件，并更改属主为vsftpd的服务宿主用户"></a>5.3.建立vsftpd的日志文件，并更改属主为vsftpd的服务宿主用户</h3><p>//上线配置文件中配置的日志目录<br>touch /var/log/vsftpd.log</p>
+<p>chown vsftpd.vsftpd /var/log/vsftpd.log</p>
+<h3 id="5-4-配置虚拟用户"><a href="#5-4-配置虚拟用户" class="headerlink" title="5.4 配置虚拟用户"></a>5.4 <strong>配置虚拟用户</strong></h3><p>1.建立虚拟用户配置文件的存放路径 【这个路径就是上面配置文件末尾配置的路径】</p>
+<p>mkdir /etc/vsftpd/vconf/</p>
+<p>2.)建立一个虚拟用户名单文件，用来记录虚拟用户的账号和密码,格式为：一行用户名，一行密码。不要有空格</p>
+<p>vim /opt/vsftp/passwd</p>
+<p>test 123456 test1 654321</p>
+<p>3.生成虚拟用户数据文件</p>
+<p>db_load -T -t hash -f   /opt/vsftp/passwd  /opt/vsftp/passwd.db</p>
+<p><strong>需要注意的是，以后对虚拟用户的增删操作完之后需要再次执行上述命令，使其生成新的数据文件。</strong></p>
+<h3 id="5-5设置PAM验证文件，并制定虚拟用户数据库文件进行读取"><a href="#5-5设置PAM验证文件，并制定虚拟用户数据库文件进行读取" class="headerlink" title="5.5设置PAM验证文件，并制定虚拟用户数据库文件进行读取"></a><strong>5.5<strong><strong>设置PAM验证文件，并制定虚拟用户数据库文件进行读取</strong></strong></strong></h3><p>1.操作前记得备份的好习惯</p>
+<p>cp /etc/pam.d/vsftpd   /etc/pam.d/vsftpd.backup</p>
+<p>2.查看我已经配置的文件：cat /etc/pam.d/vsftpd   红色部分为新增，可以看到目录就是我们配置的用户名密码</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/copycode_75ab51dc5c2245179f8003be1ebc19a5.gif" alt="复制代码"></p>
+<p>#%PAM-1.0 #####32位系统配置<br>#auth    sufficient /lib/security/pam_userdb.so     db=/etc/vsftpd/xnpasswd<br>#account sufficient /lib/security/pam_userdb.so     db=/etc/vsftpd/xnpasswd<br>#####64位系统配置<br>auth    sufficient /lib64/security/pam_userdb.so     db=/opt/vsftp/passwd<br>account sufficient      /lib64/security/pam_userdb.so     db=/opt/vsftp/passwd</p>
+<p>#以上两条是手动添加的，内容是对虚拟用户的安全和帐户权限进行验证。<br>#这里的auth是指对用户的用户名口令进行验证。<br>#这里的accout是指对用户的帐户有哪些权限哪些限制进行验证。<br>auth       required     pam_listfile.so item=user sense=deny file=/etc/vsftpd/ftpusers onerr=succeed<br>auth       required     pam_shells.so<br>auth       include      system-auth<br>account    include      system-auth<br>session    include      system-auth<br>session    required     pam_loginuid.so</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/copycode_75ab51dc5c2245179f8003be1ebc19a5.gif" alt="复制代码"></p>
+<h3 id="5-6-为每一个虚拟账户配置专属配置文件"><a href="#5-6-为每一个虚拟账户配置专属配置文件" class="headerlink" title="5.6 为每一个虚拟账户配置专属配置文件"></a>5.6 为每一个虚拟账户配置专属配置文件</h3><p>1.我是直接copy的主配置文件然后改的，内容如下</p>
+<p>vim /etc/vsftpd/vconf/test   //注意文件名 test与passwd中用户名要保持一致</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/copycode_75ab51dc5c2245179f8003be1ebc19a5.gif" alt="复制代码"></p>
+<p># Example config file /etc/vsftpd/vsftpd.conf<br>#<br># The default compiled in settings are fairly paranoid. This sample file<br># loosens things up a bit, to make the ftp daemon more usable.<br># Please see vsftpd.conf.5 for all compiled in defaults.<br>#<br># READ THIS: This example file is NOT an exhaustive list of vsftpd options.<br># Please read the vsftpd.conf.5 manual page to get a full idea of vsftpd’s<br># capabilities.<br>#<br># Allow anonymous FTP? (Beware - allowed by default if you comment this out).<br>local_root=/opt/vsftpd/file //这里是我配置的test用户的根目录<br>anonymous_enable=NO<br>#<br># Uncomment this to allow local users to log in.<br>local_enable=YES<br>#<br># Uncomment this to enable any form of FTP write command.<br>write_enable=YES<br>#<br># Default umask for local users is 077. You may wish to change this to 022,<br># if your users expect that (022 is used by most other ftpd’s)<br>local_umask=022 #<br># Uncomment this to allow the anonymous FTP user to upload files. This only<br># has an effect if the above global write enable is activated. Also, you will<br># obviously need to create a directory writable by the FTP user.<br>anon_upload_enable=NO<br>#<br># Uncomment this if you want the anonymous FTP user to be able to create<br># new directories.<br>anon_mkdir_write_enable=NO<br>#anno_other_writer_enable=YES<br>#<br># Activate directory messages - messages given to remote users when they<br># go into a certain directory.<br>#dirmessage_enable=YES<br>#<br># The target log file can be vsftpd_log_file or xferlog_file.<br># This depends on setting xferlog_std_format parameter<br>#xferlog_enable=YES<br>#<br># Make sure PORT transfer connections originate from port 20 (ftp-data).<br>#connect_from_port_20=YES<br>#<br># If you want, you can arrange for uploaded anonymous files to be owned by<br># a different user. Note! Using “root” for uploaded files is not<br># recommended!<br>#chown_uploads=NO<br>#chown_username=whoever<br>#<br># The name of log file when xferlog_enable=YES and xferlog_std_format=YES<br># WARNING - changing this filename affects /etc/logrotate.d/vsftpd.log<br>#xferlog_file=/var/log/vsftpd.log<br>#<br># Switches between logging into vsftpd_log_file and xferlog_file files.<br># NO writes to vsftpd_log_file, YES to xferlog_file<br>#xferlog_std_format=YES<br>#<br># You may change the default value for timing out an idle session.<br>#idle_session_timeout=600<br>#<br># You may change the default value for timing out a data connection.<br>#data_connection_timeout=120<br>#<br># It is recommended that you define on your system a unique user which the<br># ftp server can use as a totally isolated and unprivileged user.<br>#nopriv_user=vsftpd<br>#<br># Enable this and the server will recognise asynchronous ABOR requests. Not<br># recommended for security (the code is non-trivial). Not enabling it,<br># however, may confuse older FTP clients.<br>async_abor_enable=YES<br>#<br># By default the server will pretend to allow ASCII mode but in fact ignore<br># the request. Turn on the below options to have the server actually do ASCII<br># mangling on files when in ASCII mode.<br># Beware that on some FTP servers, ASCII support allows a denial of service<br># attack (DoS) via the command “SIZE /big/file” in ASCII mode. vsftpd<br># predicted this attack and has always been safe, reporting the size of the<br># raw file.<br># ASCII mangling is a horrible feature of the protocol.<br>#ascii_upload_enable=YES<br>#ascii_download_enable=YES<br>#<br># You may fully customise the login banner string:<br>#ftpd_banner=Welcome to blah FTP service.<br>#<br># You may specify a file of disallowed anonymous e-mail addresses. Apparently<br># useful for combatting certain DoS attacks.<br>#deny_email_enable=YES<br># (default follows)<br>#banned_email_file=/etc/vsftpd/banned_emails<br>#<br># You may specify an explicit list of local users to chroot() to their home<br># directory. If chroot_local_user is YES, then this list becomes a list of<br># users to NOT chroot().<br>#chroot_local_user=NO<br>#chroot_list_enable=NO<br># (default follows)<br>#chroot_list_file=/etc/vsftpd/chroot_list<br>#<br># You may activate the “-R” option to the builtin ls. This is disabled by<br># default to avoid remote users being able to cause excessive I/O on large<br># sites. However, some broken FTP clients such as “ncftp” and “mirror” assume<br># the presence of the “-R” option, so there is a strong case for enabling it.<br>#ls_recurse_enable=YES<br>#<br># When “listen” directive is enabled, vsftpd runs in standalone mode and<br># listens on IPv4 sockets. This directive cannot be used in conjunction<br># with the listen_ipv6 directive.<br>#listen=YES<br>#<br># This directive enables listening on IPv6 sockets. To listen on IPv4 and IPv6<br># sockets, you must run two copies of vsftpd with two configuration files.<br># Make sure, that one of the listen options is commented !!<br>#listen_ipv6=YES</p>
+<p>#pam_service_name=vsftpd<br>#userlist_enable=YES<br>#tcp_wrappers=YES</p>
+<p>#guest_enable=YES<br>#guest_username=virtusers<br>#virtual_use_local_privs=YES<br>#reverse_lookup_enable=NO</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/copycode_75ab51dc5c2245179f8003be1ebc19a5.gif" alt="复制代码"></p>
+<h3 id="2-建立虚拟用户的仓库目录并更改相应属主-组且赋予相应权限"><a href="#2-建立虚拟用户的仓库目录并更改相应属主-组且赋予相应权限" class="headerlink" title="2.建立虚拟用户的仓库目录并更改相应属主/组且赋予相应权限"></a>2.<strong>建立虚拟用户的仓库目录并更改相应属主/组且赋予相应权限</strong></h3><p>mkdir -p /opt/vsftpd/file    //这就是5.6中local_root=/opt/vsftpd/file 配置的根目录</p>
+<p>chown virtusers:virtusers /opt/vsftpd/file<br>chmod 755 /opt/vsftpd/file</p>
+<h3 id="3-随便建立个文件方便后续检测是否安装成功："><a href="#3-随便建立个文件方便后续检测是否安装成功：" class="headerlink" title="3.随便建立个文件方便后续检测是否安装成功："></a><strong>3.随便建立个文件方便后续检测是否安装成功：</strong></h3><p>touch  /opt/vsftpd/file/abc</p>
+<h3 id="5-7重启"><a href="#5-7重启" class="headerlink" title="5.7重启"></a>5.7重启</h3><p>service vsftpd restart</p>
+<p>其他命令</p>
+<p>#开启<br>service vsftpd start<br>#停止<br>service vsftpd stop<br>#重启<br>service vsftpd restart</p>
+<p> 6.测试</p>
+<p>打开文件夹输入地址</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/1468106-20181116132702708-107620_91e14bf9648b4d98b.png"></p>
+<p>会提示你登录，或则右击登录</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/1468106-20181116132921702-857326_842399cab997479ab.png"></p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/1468106-20181116132940685-105029_47168ac3be094291a.png"></p>
+<p>就可以看到你的文件夹了</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:978252321@qq.com" rel="external nofollow noreferrer">传礼</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://iwangchuanli.github.io/posts/40433.html">https://iwangchuanli.github.io/posts/40433.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow noreferrer" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://iwangchuanli.github.io" target="_blank">传礼</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img9_NzXXV0.jpeg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/posts/6724.html"><img class="prev-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img33_fnRUqR.jpeg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Linux离线一键安装ftp服务shell脚本</div></div></a></div><div class="next-post pull-right"><a href="/posts/59671.html"><img class="next-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img7_pzkwKv.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">使VSFTPD Ftp Server同时支持IPv4和IPv6网络 - 问剑杂谈</div></div></a></div></nav><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div><div id="comment-switch"><span class="first-comment">Valine</span><span class="switch-btn"></span><span class="second-comment">Gitalk</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div><div><div id="gitalk-container"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">Nice to meet you ~</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#ftp%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%90%AD%E5%BB%BA-%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85vsftpd-%EF%BC%8C%E9%85%8D%E7%BD%AE"><span class="toc-number">1.</span> <span class="toc-text">ftp服务器搭建(离线安装vsftpd)，配置</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-%E9%85%8D%E7%BD%AE%EF%BC%8C%E8%BF%99%E9%87%8C%E5%8F%AA%E8%AF%B4%E8%83%BD%E8%AE%A9%E4%BD%A0%E7%9A%84ftp%E8%B7%91%E8%B5%B7%E6%9D%A5%E7%9A%84%E9%85%8D%E7%BD%AE%EF%BC%8C%E8%AF%A6%E7%BB%86%E5%8E%9F%E7%90%86%E5%8F%AF%E4%BB%A5%E7%82%B9%E5%87%BB%E6%9F%A5%E7%9C%8B%E8%BF%99%E9%87%8C"><span class="toc-number">2.</span> <span class="toc-text">5.配置，这里只说能让你的ftp跑起来的配置，详细原理可以点击查看这里</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-0-%E5%BC%80%E5%90%AFvsftpd%E7%9A%84%E4%B8%A4%E4%B8%AA%E7%AB%AF%E5%8F%A3-20-21"><span class="toc-number">2.0.1.</span> <span class="toc-text">5.0 开启vsftpd的两个端口 20,21</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1-%E5%88%9B%E5%BB%BA%E4%B8%A4%E4%B8%AA%E7%B3%BB%E7%BB%9F%E7%94%A8%E6%88%B7"><span class="toc-number">2.0.2.</span> <span class="toc-text">5.1 创建两个系统用户</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2-%E9%85%8D%E7%BD%AEvsftpd%E7%9A%84%E4%B8%BB%E8%A6%81%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6vsftpd-conf"><span class="toc-number">2.0.3.</span> <span class="toc-text">5.2 配置vsftpd的主要配置文件vsftpd.conf</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-3-%E5%BB%BA%E7%AB%8Bvsftpd%E7%9A%84%E6%97%A5%E5%BF%97%E6%96%87%E4%BB%B6%EF%BC%8C%E5%B9%B6%E6%9B%B4%E6%94%B9%E5%B1%9E%E4%B8%BB%E4%B8%BAvsftpd%E7%9A%84%E6%9C%8D%E5%8A%A1%E5%AE%BF%E4%B8%BB%E7%94%A8%E6%88%B7"><span class="toc-number">2.0.4.</span> <span class="toc-text">5.3.建立vsftpd的日志文件，并更改属主为vsftpd的服务宿主用户</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-4-%E9%85%8D%E7%BD%AE%E8%99%9A%E6%8B%9F%E7%94%A8%E6%88%B7"><span class="toc-number">2.0.5.</span> <span class="toc-text">5.4 配置虚拟用户</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-5%E8%AE%BE%E7%BD%AEPAM%E9%AA%8C%E8%AF%81%E6%96%87%E4%BB%B6%EF%BC%8C%E5%B9%B6%E5%88%B6%E5%AE%9A%E8%99%9A%E6%8B%9F%E7%94%A8%E6%88%B7%E6%95%B0%E6%8D%AE%E5%BA%93%E6%96%87%E4%BB%B6%E8%BF%9B%E8%A1%8C%E8%AF%BB%E5%8F%96"><span class="toc-number">2.0.6.</span> <span class="toc-text">5.5设置PAM验证文件，并制定虚拟用户数据库文件进行读取</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-6-%E4%B8%BA%E6%AF%8F%E4%B8%80%E4%B8%AA%E8%99%9A%E6%8B%9F%E8%B4%A6%E6%88%B7%E9%85%8D%E7%BD%AE%E4%B8%93%E5%B1%9E%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="toc-number">2.0.7.</span> <span class="toc-text">5.6 为每一个虚拟账户配置专属配置文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%BB%BA%E7%AB%8B%E8%99%9A%E6%8B%9F%E7%94%A8%E6%88%B7%E7%9A%84%E4%BB%93%E5%BA%93%E7%9B%AE%E5%BD%95%E5%B9%B6%E6%9B%B4%E6%94%B9%E7%9B%B8%E5%BA%94%E5%B1%9E%E4%B8%BB-%E7%BB%84%E4%B8%94%E8%B5%8B%E4%BA%88%E7%9B%B8%E5%BA%94%E6%9D%83%E9%99%90"><span class="toc-number">2.0.8.</span> <span class="toc-text">2.建立虚拟用户的仓库目录并更改相应属主&#x2F;组且赋予相应权限</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E9%9A%8F%E4%BE%BF%E5%BB%BA%E7%AB%8B%E4%B8%AA%E6%96%87%E4%BB%B6%E6%96%B9%E4%BE%BF%E5%90%8E%E7%BB%AD%E6%A3%80%E6%B5%8B%E6%98%AF%E5%90%A6%E5%AE%89%E8%A3%85%E6%88%90%E5%8A%9F%EF%BC%9A"><span class="toc-number">2.0.9.</span> <span class="toc-text">3.随便建立个文件方便后续检测是否安装成功：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-7%E9%87%8D%E5%90%AF"><span class="toc-number">2.0.10.</span> <span class="toc-text">5.7重启</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget ads-wrap"><a target="_blank" href="https://www.aliyun.com/activity?userCode=dpj8p3hl" rel="external nofollow noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/aliyun_whuCuE.jpg" style="width:100%;height:100%;object-fit:cover;"></a></div></div></div></main><footer id="footer" style="background-image: url('https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img9_NzXXV0.jpeg')"><div id="footer-wrap"><div class="copyright">&copy;2018 - 2022 By 传礼</div><div class="footer_custom_text"><p style="display:inline-flex">本网站由<a href="https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral" rel="external nofollow noreferrer" target="_blank"><img style="width:60px;height:35px;" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/11/又拍云_logo5_O9kNul.png" title="又拍云"/></a>提供CDN加速/云存储服务</p><p><a style="margin-inline:5px" target="_blank" href="https://hexo.io/" rel="external nofollow noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Frame-Hexo-blue?style=flat&logo=hexo" title="博客框架为Hexo"></a><a style="margin-inline:5px" target="_blank" href="https://butterfly.js.org/" rel="external nofollow noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Theme-Butterfly-6513df?style=flat&logo=bitdefender" title="主题采用butterfly"></a><a style="margin-inline:5px" target="_blank" href="https://www.jsdelivr.com/" rel="external nofollow noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/CDN-jsDelivr-orange?style=flat&logo=jsDelivr" title="本站使用JsDelivr为静态资源提供CDN加速"></a><a style="margin-inline:5px" target="_blank" href="https://github.com/" rel="external nofollow noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Source-Github-d021d6?style=flat&logo=GitHub" title="本站项目由Github托管"></a><a style="margin-inline:5px" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Copyright-BY--NC--SA%204.0-d42328?style=flat&logo=Claris" title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可"></a></p></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="chat_btn" type="button" title="聊天"><i class="fas fa-sms"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">本地搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script src="/js/search/local-search.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"><script>function loadValine () {
+  function initValine () {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: 'zHUfFgUbITfMSQGuSPgS2e3C-gzGzoHsz',
+      appKey: 'yPXpeKX8VJxdFRPEsDaqNgEY',
+      avatar: 'wavatar',
+      serverURLs: 'https://zhuffgub.lc-cn-n1-shared.com',
+      emojiMaps: "",
+      path: window.location.pathname,
+      visitor: true,
+      master: '447d56ab3606de5490a2109d3e441219,135d837ea1033c9787dd307e59884d36'.split(','),
+      friends: '5c?????bfe6rfc72a????e268ad3819c'.split(','),
+      tagMeta: '博主,小伙伴,访客'.split(',')
+        
+    }, {"placeholder":"请输入内容～"}))
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/gh/HCLonely/Valine@latest/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !true) {
+  if (true) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script><script>function addGitalkSource () {
+  const ele = document.createElement('link')
+  ele.rel = 'stylesheet'
+  ele.href= 'https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css'
+  document.getElementsByTagName('head')[0].appendChild(ele)
+}
+
+function loadGitalk () {
+  function initGitalk () {
+    var gitalk = new Gitalk(Object.assign({
+      clientID: '052d9d6486112e93fa50',
+      clientSecret: '6fea35bfb7a17521694a95f705683622976d2f53',
+      repo: 'gitalk',
+      owner: 'iwangchuanli',
+      admin: ['iwangchuanli'],
+      id: '7409de6c973e63e60eaf2201fd2346b9',
+      updateCountCallback: commentCount
+    },null))
+
+    gitalk.render('gitalk-container')
+  }
+
+  if (typeof Gitalk === 'function') initGitalk()
+  else {
+    addGitalkSource()
+    getScript('https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.js').then(initGitalk)
+  }
+}
+
+function commentCount(n){
+  let isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+  if (isCommentCount) {
+    isCommentCount.innerHTML= n
+  }
+}
+
+if ('Valine' === 'Gitalk' || !true) {
+  if (true) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+  else loadGitalk()
+} else {
+  function loadOtherComment () {
+    loadGitalk()
+  }
+}</script></div><div class="aplayer no-destroy" data-id="7355841544" data-server="netease" data-type="playlist" data-fixed="true" data-autoplay="false"> </div><script async src="/js/grayscale.js"></script><script async src="//at.alicdn.com/t/font_1885008_srfhrsykmk.js"></script><script>((window.gitter = {}).chat = {}).options = {
+  disableDefaultChat: true,
+};
+document.addEventListener('gitter-sidecar-ready', (e) => {
+  const GitterChat = e.detail.Chat
+  let chat
+
+  function initGitter () {
+    chat = new GitterChat({
+      room: 'wangchuangli-/community',
+      activationElement: '#chat_btn'
+    });
+  }
+
+  initGitter()
+
+  if (true) {
+    document.addEventListener('pjax:complete', () => {
+      chat.destroy()
+      initGitter()
+    })
+  }
+
+})</script><script src="https://sidecar.gitter.im/dist/sidecar.v1.js" async="async" defer="defer"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/meting@1.2.0/dist/Meting.min.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = ["title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"]):not([href="/music/"]):not([href="/no-pjax/"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.tocScrollFn && window.removeEventListener('scroll', window.tocScrollFn)
+  window.scrollCollect && window.removeEventListener('scroll', scrollCollect)
+
+  typeof preloader === 'object' && preloader.initLoading()
+  document.getElementById('rightside').style.cssText = "opacity: ''; transform: ''"
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+
+  typeof preloader === 'object' && preloader.endLoading()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><!-- hexo injector body_end start --><script data-pjax>
+  function butterfly_swiper_injector_config(){
+    var parent_div_git = document.getElementById('recent-posts');
+    var item_html = '<div class="recent-post-item" style="height: auto;width: 100%"><div class="blog-slider swiper-container-fade swiper-container-horizontal" id="swiper_container"><div class="blog-slider__wrp swiper-wrapper" style="transition-duration: 0ms;"><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" onclick="pjax.loadUrl(&quot;posts/4496.html&quot;);" href="javascript:void(0);" rel="external nofollow noreferrer" alt=""><img width="48" height="48" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img6_L358Nt.jpeg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2018-09-05</span><a class="blog-slider__title" onclick="pjax.loadUrl(&quot;posts/4496.html&quot;);" href="javascript:void(0);" rel="external nofollow noreferrer" alt="">编程系列书单推荐</a><div class="blog-slider__text">再怎么看我也不知道怎么描述它的啦！</div><a class="blog-slider__button" onclick="pjax.loadUrl(&quot;posts/4496.html&quot;);" href="javascript:void(0);" rel="external nofollow noreferrer" alt="">详情       </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" onclick="pjax.loadUrl(&quot;posts/35693.html&quot;);" href="javascript:void(0);" rel="external nofollow noreferrer" alt=""><img width="48" height="48" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img33_fnRUqR.jpeg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2018-11-26</span><a class="blog-slider__title" onclick="pjax.loadUrl(&quot;posts/35693.html&quot;);" href="javascript:void(0);" rel="external nofollow noreferrer" alt="">优秀科技博客订阅</a><div class="blog-slider__text">再怎么看我也不知道怎么描述它的啦！</div><a class="blog-slider__button" onclick="pjax.loadUrl(&quot;posts/35693.html&quot;);" href="javascript:void(0);" rel="external nofollow noreferrer" alt="">详情       </a></div></div></div><div class="blog-slider__pagination swiper-pagination-clickable swiper-pagination-bullets"></div></div></div>';
+    console.log('已挂载butterfly_swiper')
+    parent_div_git.insertAdjacentHTML("afterbegin",item_html)
+    }
+  var elist = 'undefined'.split(',');
+  var cpage = location.pathname;
+  var epage = 'all';
+  var flag = 0;
+
+  for (var i=0;i<elist.length;i++){
+    if (cpage.includes(elist[i])){
+      flag++;
+    }
+  }
+
+  if ((epage ==='all')&&(flag == 0)){
+    butterfly_swiper_injector_config();
+  }
+  else if (epage === cpage){
+    butterfly_swiper_injector_config();
+  }
+  </script><script defer src="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper.min.js"></script><script defer data-pjax src="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper_init.js"></script><!-- hexo injector body_end end --></body></html>

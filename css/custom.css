@@ -1,0 +1,186 @@
+/* 暗黑 */
+[data-theme="dark"]
+  #aside-content .card-widget{
+      background: rgba(0, 0, 0, 0.5)!important;
+    }
+[data-theme="dark"]
+ div#post{
+    background: rgba(0, 0, 0, 0.5)!important;
+    }
+/* 阅读 */
+.read-mode #aside-content .card-widget{
+        background: rgba(158, 204, 171, 0.5)!important;
+      }
+.read-mode div#post{
+      background: rgba(158, 204, 171, 0.5)!important;
+      }
+/* 暗黑 阅读*/
+[data-theme="dark"]
+  .read-mode #aside-content .card-widget{
+        background: rgba(0, 0, 0, 0.5)!important;
+        color: #ffffff;
+      }
+[data-theme="dark"]  
+  .read-mode div#post{
+      background: rgba(0, 0, 0, 0.5)!important;
+      color: #ffffff;
+      }
+
+/* 图片模糊渐变清晰 */
+/*10s为加载动画的时间，1为加载动画的次数，ease-in-out为动画效果*/
+#page-header,
+#web_bg {
+    -webkit-animation: imgblur 2s 1 ease-in-out;
+    animation: imgblur 2s 1 ease-in-out;
+}
+@keyframes imgblur {
+  0% {
+    filter: blur(5px);
+  }
+  100% {
+    filter: blur(0px);
+  }
+}
+/*适配使用-webkit内核的浏览器 */
+@-webkit-keyframes imgblur {
+  0% {
+    -webkit-filter: blur(5px);
+  }
+  100% {
+    -webkit-filter: blur(0px);
+  }
+}
+
+/* 阿里巴巴图标 */
+svg.icon {
+    width: 1em; height: 1em;
+    /* width和height定义图标的默认宽度和高度*/
+    vertical-align: -0.15em;
+    fill: currentColor;
+    overflow: hidden;
+ }
+.iconfont {
+    font-family: "iconfont" !important;
+    font-size: 3em;
+    /* 可以定义图标大小 */
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+/* 若已经在项目设置中勾选了彩色选项，则无需再定义图标颜色*/
+.icon-xinhao:before {
+  color: #85c3de;
+}
+/* post挂件 */
+svg.icon.festival-decoration {
+    width: 3em;
+    height: 3em;
+    left: 2em;
+    margin-bottom: -3em;
+    display: block;
+    z-index: 100;
+    position: relative;
+    -webkit-animation: sway 1s infinite ease-in-out alternate;
+    animation: sway 1s infinite ease-in-out alternate;
+}
+@-webkit-keyframes sway {
+  0% {
+    -webkit-transform: rotate(20deg);
+    transform-origin: center top;
+  }
+  100% {
+    -webkit-transform: rotate(-20deg);
+    transform-origin: center top;
+  }
+}
+@keyframes sway {
+  0% {
+    transform: rotate(20deg);
+    transform-origin: center top;
+  }
+  100% {
+    transform: rotate(-20deg);
+    transform-origin: center top;
+  }
+}
+
+
+/* 文章页H1-H6图标样式效果 */
+h1::before, h2::before, h3::before, h4::before, h5::before, h6::before {
+  -webkit-animation: ccc 1.6s linear infinite ;
+  animation: ccc 1.6s linear infinite ;
+}
+@-webkit-keyframes ccc {
+  0% {
+      -webkit-transform: rotate(0deg);
+      transform: rotate(0deg)
+  }
+  to {
+      -webkit-transform: rotate(-1turn);
+      transform: rotate(-1turn)
+  }
+}
+@keyframes ccc {
+  0% {
+      -webkit-transform: rotate(0deg);
+      transform: rotate(0deg)
+  }
+  to {
+      -webkit-transform: rotate(-1turn);
+      transform: rotate(-1turn)
+  }
+}
+/* 小风车颜色、大小修改 */
+#content-inner.layout h1::before {
+  color: #ef50a8 ;
+  margin-left: -1.55rem;
+  font-size: 1.3rem;
+  margin-top: -0.23rem;
+}
+#content-inner.layout h2::before {
+  color: #fb7061 ;
+  margin-left: -1.35rem;
+  font-size: 1.1rem;
+  margin-top: -0.12rem;
+}
+#content-inner.layout h3::before {
+  color: #ffbf00 ;
+  margin-left: -1.22rem;
+  font-size: 0.95rem;
+  margin-top: -0.09rem;
+}
+#content-inner.layout h4::before {
+  color: #a9e000 ;
+  margin-left: -1.05rem;
+  font-size: 0.8rem;
+  margin-top: -0.09rem;
+}
+#content-inner.layout h5::before {
+  color: #57c850 ;
+  margin-left: -0.9rem;
+  font-size: 0.7rem;
+  margin-top: 0.0rem;
+}
+#content-inner.layout h6::before {
+  color: #5ec1e0 ;
+  margin-left: -0.9rem;
+  font-size: 0.66rem;
+  margin-top: 0.0rem;
+}
+/* 鼠标碰到小风车转速变慢及变色 */
+#content-inner.layout h1:hover, #content-inner.layout h2:hover, #content-inner.layout h3:hover, #content-inner.layout h4:hover, #content-inner.layout h5:hover, #content-inner.layout h6:hover {
+  color: #49b1f5 ;
+}
+#content-inner.layout h1:hover::before, #content-inner.layout h2:hover::before, #content-inner.layout h3:hover::before, #content-inner.layout h4:hover::before, #content-inner.layout h5:hover::before, #content-inner.layout h6:hover::before {
+  color: #49b1f5 ;
+  -webkit-animation: ccc 3.2s linear infinite ;
+  animation: ccc 3.2s linear infinite ;
+}
+/* 页面设置icon转动速度调整 */
+#rightside_config i.fas.fa-cog.fa-spin {
+  animation: fa-spin 5s linear infinite ;
+}
+/* 图片下的说明文字居中 */
+.jg-caption{
+  text-align: center !important;
+}

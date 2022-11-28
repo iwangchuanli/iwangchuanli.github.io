@@ -1,0 +1,506 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>PostgreSQL - 查询表结构和索引信息 | 传礼</title><meta name="keywords" content="博客,blog,王传礼,java,python,大数据"><meta name="author" content="传礼,978252321@qq.com"><meta name="copyright" content="传礼"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="PostgreSQL - 查询表结构和索引信息前言PostgreSQL的表一般都是建立在public这个schema下的，假如现在有个数据表t_student，可以用以下几种方式来查询表结构和索引信息。 使用\d元命令查看表字段信息和索引信息在cmd界面使用psql连接db后，输入\d加上表名即可： &#96;\d t_student&#96;   通过系统数据字典查询表结构&#96;selectcol.table_sc">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PostgreSQL - 查询表结构和索引信息">
+<meta property="og:url" content="https://iwangchuanli.github.io/posts/49552.html">
+<meta property="og:site_name" content="传礼">
+<meta property="og:description" content="PostgreSQL - 查询表结构和索引信息前言PostgreSQL的表一般都是建立在public这个schema下的，假如现在有个数据表t_student，可以用以下几种方式来查询表结构和索引信息。 使用\d元命令查看表字段信息和索引信息在cmd界面使用psql连接db后，输入\d加上表名即可： &#96;\d t_student&#96;   通过系统数据字典查询表结构&#96;selectcol.table_sc">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img10_lLsQAP.jpeg">
+<meta property="article:published_time" content="2022-11-28T07:04:49.761Z">
+<meta property="article:modified_time" content="2022-04-15T08:34:00.000Z">
+<meta property="article:author" content="传礼">
+<meta property="article:tag" content="博客,blog,王传礼,java,python,大数据">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img10_lLsQAP.jpeg"><link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/03/favicons_uH14Fb.gif"><link rel="canonical" href="https://iwangchuanli.github.io/posts/49552"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin=""/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta name="baidu-site-verification" content="qKvGNFZPF9"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?39bd6e37a6e70dc030e6a043a642784e";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: 传礼","link":"链接: ","source":"来源: 传礼","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#121212","position":"bottom-left"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: true,
+  islazyload: true,
+  isAnchor: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'PostgreSQL - 查询表结构和索引信息',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-04-15 08:34:00'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/custom.css"  media="defer" onload="this.media='all'"><!-- hexo injector head_end start --><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiperstyle.css" media="print" onload="this.media='all'"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.1"><link rel="alternate" href="/atom.xml" title="传礼" type="application/atom+xml">
+</head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/03/photo_NZBQPu.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><div class="data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">511</div></a></div><div class="data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">50</div></a></div><div class="data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">22</div></a></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 归档</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-calendar"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 开发</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/Java"><i class="fa-fw fa fa-music"></i><span> Java</span></a></li><li><a class="site-page child" href="/categories/Python"><i class="fa-fw fa fa-music"></i><span> Python</span></a></li><li><a class="site-page child" href="/categories/VUE"><i class="fa-fw fa fa-music"></i><span> VUE</span></a></li><li><a class="site-page child" href="/categories/MySQL"><i class="fa-fw fa fa-music"></i><span> MySQL</span></a></li><li><a class="site-page child" href="/categories/Redis"><i class="fa-fw fa fa-music"></i><span> Redis</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 架构</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/Spring"><i class="fa-fw fa fa-music"></i><span> Spring</span></a></li><li><a class="site-page child" href="/categories/microServeices"><i class="fa-fw fa fa-music"></i><span> 微服务</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 运维</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/Docker"><i class="fa-fw fa fa-music"></i><span> Docker</span></a></li><li><a class="site-page child" href="/categories/Linux"><i class="fa-fw fa fa-music"></i><span> Linux</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 分享</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/tags/Tools"><i class="fa-fw fa fa-music"></i><span> 工具</span></a></li><li><a class="site-page child" href="/tags/guide"><i class="fa-fw fa fa-music"></i><span> 教程</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 项目</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/tags/Tools"><i class="fa-fw fa fa-music"></i><span> 工具</span></a></li><li><a class="site-page child" href="/tags/guide"><i class="fa-fw fa fa-music"></i><span> 教程</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-heartbeat"></i><span> 娱乐</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/gallery/"><i class="fa-fw fa fa-images"></i><span> 图库</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fa fa-film"></i><span> 电影</span></a></li><li><a class="site-page child" href="/books/"><i class="fa-fw fa fa-book"></i><span> 图书</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 我的</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/artitalk/"><i class="fa-fw fa fa-commenting"></i><span> 说说</span></a></li><li><a class="site-page child" href="/todo/"><i class="fa-fw fa fa-flag"></i><span> TODO</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img10_lLsQAP.jpeg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">传礼</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 归档</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-calendar"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 开发</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/Java"><i class="fa-fw fa fa-music"></i><span> Java</span></a></li><li><a class="site-page child" href="/categories/Python"><i class="fa-fw fa fa-music"></i><span> Python</span></a></li><li><a class="site-page child" href="/categories/VUE"><i class="fa-fw fa fa-music"></i><span> VUE</span></a></li><li><a class="site-page child" href="/categories/MySQL"><i class="fa-fw fa fa-music"></i><span> MySQL</span></a></li><li><a class="site-page child" href="/categories/Redis"><i class="fa-fw fa fa-music"></i><span> Redis</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 架构</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/Spring"><i class="fa-fw fa fa-music"></i><span> Spring</span></a></li><li><a class="site-page child" href="/categories/microServeices"><i class="fa-fw fa fa-music"></i><span> 微服务</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 运维</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/Docker"><i class="fa-fw fa fa-music"></i><span> Docker</span></a></li><li><a class="site-page child" href="/categories/Linux"><i class="fa-fw fa fa-music"></i><span> Linux</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 分享</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/tags/Tools"><i class="fa-fw fa fa-music"></i><span> 工具</span></a></li><li><a class="site-page child" href="/tags/guide"><i class="fa-fw fa fa-music"></i><span> 教程</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 项目</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/tags/Tools"><i class="fa-fw fa fa-music"></i><span> 工具</span></a></li><li><a class="site-page child" href="/tags/guide"><i class="fa-fw fa fa-music"></i><span> 教程</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-heartbeat"></i><span> 娱乐</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/gallery/"><i class="fa-fw fa fa-images"></i><span> 图库</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fa fa-film"></i><span> 电影</span></a></li><li><a class="site-page child" href="/books/"><i class="fa-fw fa fa-book"></i><span> 图书</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 我的</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/artitalk/"><i class="fa-fw fa fa-commenting"></i><span> 说说</span></a></li><li><a class="site-page child" href="/todo/"><i class="fa-fw fa fa-flag"></i><span> TODO</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">PostgreSQL - 查询表结构和索引信息</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-11-28T07:04:49.761Z" title="发表于 2022-11-28 07:04:49">2022-11-28</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-04-15T08:34:00.000Z" title="更新于 2022-04-15 08:34:00">2022-04-15</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.2k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>4分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="PostgreSQL - 查询表结构和索引信息"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="PostgreSQL-查询表结构和索引信息"><a href="#PostgreSQL-查询表结构和索引信息" class="headerlink" title="PostgreSQL - 查询表结构和索引信息"></a>PostgreSQL - 查询表结构和索引信息</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a><a id="t0"></a><a id="_0"></a>前言</h2><p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://so.csdn.net/so/search?q=PostgreSQL&spm=1001.2101.3001.7020">PostgreSQL</a>的表一般都是建立在public这个schema下的，假如现在有个数据表<code>t_student</code>，可以用以下几种方式来查询表结构和<a target="_blank" rel="noopener external nofollow noreferrer" href="https://so.csdn.net/so/search?q=%E7%B4%A2%E5%BC%95&spm=1001.2101.3001.7020">索引</a>信息。</p>
+<h2 id="使用-d元命令查看表字段信息和索引信息"><a href="#使用-d元命令查看表字段信息和索引信息" class="headerlink" title="使用\d元命令查看表字段信息和索引信息"></a><a id="t1"></a><a id="d_4"></a>使用\d元命令查看表<a target="_blank" rel="noopener external nofollow noreferrer" href="https://so.csdn.net/so/search?q=%E5%AD%97%E6%AE%B5&spm=1001.2101.3001.7020">字段</a>信息和索引信息</h2><p>在<a target="_blank" rel="noopener external nofollow noreferrer" href="https://so.csdn.net/so/search?q=cmd&spm=1001.2101.3001.7020">cmd</a>界面使用psql连接db后，输入\d加上表名即可：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">`\d t_student` </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="通过系统数据字典查询表结构"><a href="#通过系统数据字典查询表结构" class="headerlink" title="通过系统数据字典查询表结构"></a><a id="t2"></a><a id="_11"></a>通过系统<a target="_blank" rel="noopener external nofollow noreferrer" href="https://so.csdn.net/so/search?q=%E6%95%B0%E6%8D%AE%E5%AD%97%E5%85%B8&spm=1001.2101.3001.7020">数据字典</a>查询表结构</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">`select</span><br><span class="line">col.table_schema,</span><br><span class="line">col.table_name,</span><br><span class="line">col.ordinal_position,</span><br><span class="line">col.column_name,</span><br><span class="line">col.data_type,</span><br><span class="line">col.character_maximum_length,</span><br><span class="line">col.numeric_precision,</span><br><span class="line">col.numeric_scale,</span><br><span class="line">col.is_nullable,</span><br><span class="line">col.column_default,</span><br><span class="line">des.description</span><br><span class="line">from</span><br><span class="line">information_schema.columns col left join pg_description des on</span><br><span class="line">col.table_name::regclass = des.objoid</span><br><span class="line">and col.ordinal_position = des.objsubid</span><br><span class="line">where</span><br><span class="line">table_schema = &#x27;public&#x27;</span><br><span class="line">and table_name = &#x27;t_student&#x27;</span><br><span class="line">order by</span><br><span class="line">ordinal_position;` </span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>或者简单点：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">`select * from information_schema.columns</span><br><span class="line">where table_schema=&#x27;public&#x27; and table_name=&#x27;t_student&#x27;;` </span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="通过系统数据字典查询索引信息"><a href="#通过系统数据字典查询索引信息" class="headerlink" title="通过系统数据字典查询索引信息"></a><a id="t3"></a><a id="_44"></a>通过系统数据字典查询索引信息</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">`select</span><br><span class="line">A.SCHEMANAME,</span><br><span class="line">A.TABLENAME,</span><br><span class="line">A.INDEXNAME,</span><br><span class="line">A.TABLESPACE,</span><br><span class="line">A.INDEXDEF,</span><br><span class="line">B.AMNAME,</span><br><span class="line">C.INDEXRELID,</span><br><span class="line">C.INDNATTS,</span><br><span class="line">C.INDISUNIQUE,</span><br><span class="line">C.INDISPRIMARY,</span><br><span class="line">C.INDISCLUSTERED,</span><br><span class="line">D.DESCRIPTION</span><br><span class="line">from</span><br><span class="line">PG_AM B left join PG_CLASS F on</span><br><span class="line">B.OID = F.RELAM left join PG_STAT_ALL_INDEXES E on</span><br><span class="line">F.OID = E.INDEXRELID left join PG_INDEX C on</span><br><span class="line">E.INDEXRELID = C.INDEXRELID left outer join PG_DESCRIPTION D on</span><br><span class="line">C.INDEXRELID = D.OBJOID,</span><br><span class="line">PG_INDEXES A</span><br><span class="line">where</span><br><span class="line">A.SCHEMANAME = E.SCHEMANAME</span><br><span class="line">and A.TABLENAME = E.RELNAME</span><br><span class="line">and A.INDEXNAME = E.INDEXRELNAME</span><br><span class="line">and E.SCHEMANAME = &#x27;public&#x27;</span><br><span class="line">and E.RELNAME = &#x27;t_student&#x27;;` </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="查询所有的表名"><a href="#查询所有的表名" class="headerlink" title="查询所有的表名"></a><a id="t4"></a><a id="_75"></a>查询所有的表名</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">`select</span><br><span class="line">n.nspname,</span><br><span class="line">relname</span><br><span class="line">from</span><br><span class="line">pg_class c,</span><br><span class="line">pg_namespace n</span><br><span class="line">where</span><br><span class="line">c.relnamespace = n.oid</span><br><span class="line">and nspname = &#x27;public&#x27;</span><br><span class="line">and relkind = &#x27;r&#x27;</span><br><span class="line">order by</span><br><span class="line">relname;` </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="可视化工具DBeaver"><a href="#可视化工具DBeaver" class="headerlink" title="可视化工具DBeaver"></a><a id="t5"></a><a id="DBeaver_92"></a>可视化工具DBeaver</h2><p>对于上述的<a target="_blank" rel="noopener external nofollow noreferrer" href="https://so.csdn.net/so/search?q=sql&spm=1001.2101.3001.7020">sql</a>语句只需要修改要查询的table name，可以根据需要自行修改想要查询的column。如果是通过DBeaver来连接数据库，还可以直接在当前的数据库实例下打开schema里的public选项，接着选中table，选中你想查看的表，可以很直观地看到该表的各种信息：column、index等等。</p>
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a><a id="t6"></a><a id="_96"></a>参考链接</h2><ul>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="http://francs3.blog.163.com/blog/static/4057672720130591027828/">PostgreSQL：如何查询表的字段信息？</a></li>
+</ul>
+<p>文章知识点与官方知识档案匹配，可进一步学习相关知识</p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://bbs.csdn.net/skill/pg/pg-ee5c6d4a073b45a7995ba351ab9de46e">PostgreSQL技能树</a><a target="_blank" rel="noopener external nofollow noreferrer" href="https://bbs.csdn.net/skill/pg/pg-ee5c6d4a073b45a7995ba351ab9de46e">查询数据</a><a target="_blank" rel="noopener external nofollow noreferrer" href="https://bbs.csdn.net/skill/pg/pg-ee5c6d4a073b45a7995ba351ab9de46e">psql</a></p>
+<ul>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=11010502030143">公安备案号11010502030143</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="http://beian.miit.gov.cn/publish/query/indexFirst.action">京ICP备19004658号</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://csdnimg.cn/release/live_fe/culture_license.png">京网文〔2020〕1039-165号</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://csdnimg.cn/cdn/content-toolbar/csdn-ICP.png">经营性网站备案信息</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="http://www.bjjubao.org/">北京互联网违法和不良信息举报中心</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://download.csdn.net/tutelage/home">家长监护</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="http://www.cyberpolice.cn/">网络110报警服务</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="http://www.12377.cn/">中国互联网举报中心</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://chrome.google.com/webstore/detail/csdn%E5%BC%80%E5%8F%91%E8%80%85%E5%8A%A9%E6%89%8B/kfkdboecolemdjodhmhmcibjocfopejo?hl=zh-CN">Chrome商店下载</a></li>
+<li>©1999-2022北京创新乐知网络技术有限公司</li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.csdn.net/company/index.html#statement">版权与免责声明</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/blogdevteam/article/details/90369522">版权申诉</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://img-home.csdnimg.cn/images/20210414021151.jpg">出版物许可证</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://img-home.csdnimg.cn/images/20210414021142.jpg">营业执照</a></li>
+</ul>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://lewky.blog.csdn.net/"><img width="48" height="48" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/3_lewky_liu_d7237ef70b4f4d97b2e767f6de9c0b26.jpg"/></a></p>
+<p><a id="uid"></a><a target="_blank" rel="noopener external nofollow noreferrer" href="https://lewky.blog.csdn.net/" title="雨临Lewis">雨临Lewis</a> <img width="46" height="20" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/expertNew_0e151263115f4ca0beab29d21e07a55f.png"/></p>
+<p>码龄5年 <a target="_blank" rel="noopener external nofollow noreferrer" href="https://i.csdn.net/#/uc/profile?utm_source=14998968" title="暂无认证"><img width="12" height="14" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/nocErtification_5bb664c32b2a42ca8d4d3210fc3a3b03.png"/> 暂无认证</a> </p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://lewky.blog.csdn.net/">195<br>原创</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/rank/list/weekly">1万+<br>周排名</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/rank/list/total">133万+<br>总排名</a></p>
+<p>151万+</p>
+<p>访问</p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/blogdevteam/article/details/103478461"><img width="22" height="22" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/blog7_dffa7d8dcf0a4817ada9de2c2b43604a.png"/></a></p>
+<p>等级</p>
+<p>1万+</p>
+<p>积分</p>
+<p><a id="fan"></a>437</p>
+<p>粉丝</p>
+<p>447</p>
+<p>获赞</p>
+<p>209</p>
+<p>评论</p>
+<p>1113</p>
+<p>收藏</p>
+<img width="36" height="36" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/github_240_dd452decef2b452b9a262063530c14db.png"/>
+
+<img width="36" height="36" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/qiandao1_240_0a52a859d85b4949a2047fe55ca7ffe5.png"/>
+
+<img width="36" height="36" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/zhuanlandaren_240_bdf490a32aa044e9bec14cb81ae1df60.png"/>
+
+<img width="36" height="36" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/chizhiyiheng_240_0d509d3fd80349c2a661b902ed8460c1.png"/>
+
+<img width="36" height="36" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/1024_240_ca58f09272094016b8d8e07ad1edd8c1.png"/>
+
+<img width="36" height="36" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/qixiebiaobing2_240_1610c3cac69a4a56b0625ae101ccfe5.png"/>
+
+<img width="36" height="36" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/fenxiangzongshi_240_f166009da7e040878638e01e016794.png"/>
+
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://im.csdn.net/chat/lewky_liu">私信</a></p>
+<p><a id="btnAttent"></a>关注</p>
+<img width="32" height="32" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/csdn-sou_991fea6948cb402dad4f6dc6d790da21.png"/>
+
+<h3 id="文心雕龙"><a href="#文心雕龙" class="headerlink" title="文心雕龙"></a>文心雕龙</h3><h2 id="☞-My-Blog"><a href="#☞-My-Blog" class="headerlink" title="☞ My Blog"></a><a target="_blank" rel="noopener external nofollow noreferrer" href="https://lewky.cn/">☞ My Blog</a></h2><h2 id="Github-☜"><a href="#Github-☜" class="headerlink" title="Github ☜"></a><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/lewky">Github ☜</a></h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">/***</span><br><span class="line"> *             ,%%%%%%%%,</span><br><span class="line"> *           ,%%/\%%%%/\%%</span><br><span class="line"> *          ,%%%\c &quot;&quot; J/%%%</span><br><span class="line"> * %.       %%%%/ o  o \%%%</span><br><span class="line"> * `%%.     %%%%    _  |%%%</span><br><span class="line"> *  `%%     `%%%%(__Y__)%%&#x27;</span><br><span class="line"> *  //       ;%%%%`\-/%%%&#x27;</span><br><span class="line"> * ((       /  `%%%%%%%&#x27;</span><br><span class="line"> *  \\    .&#x27;          |</span><br><span class="line"> *   \\  /       \  | |</span><br><span class="line"> *    \\/         ) | |</span><br><span class="line"> *     \         /_ | |__</span><br><span class="line"> *     (___________))))))) </span><br><span class="line"> * -------------攻城狮--------------</span><br><span class="line"> */</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="热门文章"><a href="#热门文章" class="headerlink" title="热门文章"></a>热门文章</h3><ul>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://lewky.blog.csdn.net/article/details/78138381">Maven(一)如何用Eclipse创建一个Maven项目 <img width="14" height="14" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/readCountWhite_547ad0ed79a34c98a71abfbeed976968.png"/> 134019</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://lewky.blog.csdn.net/article/details/78536439">cmd - 如何在bat文件中调用另一个bat文件 <img width="14" height="14" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/readCountWhite_547ad0ed79a34c98a71abfbeed976968.png"/> 80618</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://lewky.blog.csdn.net/article/details/78166080">Java高并发秒杀API(四)之高并发优化 <img width="14" height="14" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/readCountWhite_547ad0ed79a34c98a71abfbeed976968.png"/> 36090</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://lewky.blog.csdn.net/article/details/81369556">PostgreSQL - 修改默认端口号 <img width="14" height="14" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/readCountWhite_547ad0ed79a34c98a71abfbeed976968.png"/> 32707</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://lewky.blog.csdn.net/article/details/87959839">Windows下完全卸载node.js并安装node.js的多版本管理工具nvm-windows <img width="14" height="14" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/readCountWhite_547ad0ed79a34c98a71abfbeed976968.png"/> 29810</a></li>
+</ul>
+<h3 id="分类专栏"><a href="#分类专栏" class="headerlink" title="分类专栏"></a>分类专栏</h3><ul>
+<li> <a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/lewky_liu/category_9277594.html"><img width="28" height="28" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/1_2549d33b9f6240a9bea9d07ee7c90258.jpg"/> Java高并发秒杀API 5篇</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/lewky_liu/category_9278768.html"><img width="28" height="28" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/1_0a47d26b8cf54b52b28e16551aa4fba5.jpg"/>Hexo瞎折腾系列 3篇</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/lewky_liu/category_9280139.html"><img width="28" height="28" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/resize_m_fixed_h_64_w_64_0ab5c2f4780846e29b47d5f84.jpg"/>ELK系列(Elasticsearch+Logstash+Kibana) 5篇</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/lewky_liu/category_7067276.html"><img width="28" height="28" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/resize_m_fixed_h_64_w_64_a244e758946645c5bbf315a48.png"/>Java 26篇</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/lewky_liu/category_8554558.html"><img width="28" height="28" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/resize_m_fixed_h_64_w_64_d58ad8bf2a0d4ca78578fc233.png"/>三天两题 8篇</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/lewky_liu/category_6835249.html"><img width="28" height="28" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/resize_m_fixed_h_64_w_64_efcdf7a0dc0742419effb7ebb.png"/>JavaWeb 12篇</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/lewky_liu/category_7063419.html"><img width="28" height="28" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/resize_m_fixed_h_64_w_64_9394b025ca9e4c5d826326404.png"/>Java相关框架 26篇</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/lewky_liu/category_7304584.html"><img width="28" height="28" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/resize_m_fixed_h_64_w_64_abd253dee8384d08b40efc011.png"/>工作记录 15篇</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/lewky_liu/category_7209198.html"><img width="28" height="28" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/resize_m_fixed_h_64_w_64_d58ad8bf2a0d4ca78578fc233.png"/>项目笔记 8篇</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/lewky_liu/category_7503733.html"><img width="28" height="28" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/resize_m_fixed_h_64_w_64_3b0a85e332a14e7882d4d01c6.png"/>代码规范 5篇</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/lewky_liu/category_7199459.html"><img width="28" height="28" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/resize_m_fixed_h_64_w_64_9394b025ca9e4c5d826326404.png"/>前端 17篇</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/lewky_liu/category_8233165.html"><img width="28" height="28" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/resize_m_fixed_h_64_w_64_abd253dee8384d08b40efc011.png"/>前端框架 1篇</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/lewky_liu/category_7624092.html"><img width="28" height="28" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/resize_m_fixed_h_64_w_64_b665929fc4b04d388f4ebbc7a.png"/>Hexo 4篇</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/lewky_liu/category_7141374.html"><img width="28" height="28" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/resize_m_fixed_h_64_w_64_1e67f6dd1b794077ae9da9f0f.png"/>中间件 7篇</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/lewky_liu/category_7199713.html"><img width="28" height="28" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/resize_m_fixed_h_64_w_64_3b0a85e332a14e7882d4d01c6.png"/>数据库 39篇</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/lewky_liu/category_7026736.html"><img width="28" height="28" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/resize_m_fixed_h_64_w_64_a244e758946645c5bbf315a48.png"/>IDE工具 26篇</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/lewky_liu/category_7147088.html"><img width="28" height="28" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/resize_m_fixed_h_64_w_64_97530d2601b54aea9145e8f4f.png"/>版本控制工具 9篇</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/lewky_liu/category_7212859.html"><img width="28" height="28" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/resize_m_fixed_h_64_w_64_9394b025ca9e4c5d826326404.png"/>依赖管理工具 17篇</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/lewky_liu/category_7206156.html"><img width="28" height="28" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/resize_m_fixed_h_64_w_64_a244e758946645c5bbf315a48.png"/>计算机 22篇</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/lewky_liu/category_7199327.html"><img width="28" height="28" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/resize_m_fixed_h_64_w_64_7a1127fd8bb8426c9517ce9b0.png"/>常用软件 5篇</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/lewky_liu/category_7184663.html"><img width="28" height="28" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/resize_m_fixed_h_64_w_64_3c66c6b8a051447586101f1b8.png"/>笔试面试 1篇</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/lewky_liu/category_8479995.html"><img width="28" height="28" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/resize_m_fixed_h_64_w_64_e523abc0c1b74131a515fa6a3.png"/>其他 2篇</a></li>
+</ul>
+<img width="12" height="7" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/arrowDownWhite_8e3bca8306d74a9882e7c744d4420e09.png"/>
+
+<h3 id="最新评论"><a href="#最新评论" class="headerlink" title="最新评论"></a>最新评论</h3><ul>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://lewky.blog.csdn.net/article/details/86698206#comments_19919223">Eclipse - 安装了jd-eclipse插件后依然无法反编译类文件</a>  <a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/JauneChing">沨沙:</a> 3.6.2 helios</li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://lewky.blog.csdn.net/article/details/86698206#comments_19918740">Eclipse - 安装了jd-eclipse插件后依然无法反编译类文件</a>  <a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/JauneChing">沨沙:</a> 确实不行，我的是3.7版本的eclipse，没有class File Editor</li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://lewky.blog.csdn.net/article/details/109322686#comments_19904899">Maven无法下载2.1.7.js7版本的itext依赖</a>  <a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/YYZ_Obsessiveness">吉了个吉:</a> 简单高效的解决方式。</li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://lewky.blog.csdn.net/article/details/87959839#comments_19822708">Windows下完全卸载node.js并安装node.js的多版本管理工具nvm-windows</a>  <a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/cookie_xq">敲代码协会跑堂:</a> 注意把nvm下到没有空格和中文的路径，非系统盘也可；然后nvm use报错试试用管理员权限打开cmd再操作~</li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://lewky.blog.csdn.net/article/details/79273308#comments_19423875">PostgreSQL - null和’’的区别与判断以及COALESCE函数</a>  <a target="_blank" rel="noopener external nofollow noreferrer" href="https://lewky.blog.csdn.net/">雨临Lewis:</a> 。。高版本我不知道有没有，至少pg11里有，这两个不是一个同一个意义，如果ddl里有设置default null自然初始值就是null。至于存空字符串，代码逻辑里最后往db里存了个空字符串很正常</li>
+</ul>
+<h3 id="您愿意向朋友推荐“博客详情页”吗？"><a href="#您愿意向朋友推荐“博客详情页”吗？" class="headerlink" title="您愿意向朋友推荐“博客详情页”吗？"></a>您愿意向朋友推荐“博客详情页”吗？</h3><ul>
+<li><img width="28" height="28" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/npsFeel1_26998ed905d849d38c2a286fd840666b.png"/>
+  
+  强烈不推荐</li>
+<li><img width="28" height="28" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/npsFeel2_da1b0f2aef514810be774807c615ea85.png"/>
+  
+  不推荐</li>
+<li><img width="28" height="28" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/npsFeel3_6d7eb03aaf2b4e8da892c059e422f1ed.png"/>
+  
+  一般般</li>
+<li><img width="28" height="28" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/npsFeel4_2c4e484a29464feb8228c70b68efdefd.png"/>
+  
+  推荐</li>
+<li><img width="28" height="28" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/npsFeel5_75ff59b2966c43fa91ada4d8c7742686.png"/>
+  
+  强烈推荐</li>
+</ul>
+<h3 id="最新文章"><a href="#最新文章" class="headerlink" title="最新文章"></a>最新文章</h3><ul>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://lewky.blog.csdn.net/article/details/109322686">Maven无法下载2.1.7.js7版本的itext依赖</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://lewky.blog.csdn.net/article/details/103077674">PostgreSQL - 如何杀死被锁死的进程</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://lewky.blog.csdn.net/article/details/103059943">SQL - where条件里的!=会过滤值为null的数据</a></li>
+</ul>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://lewky.blog.csdn.net/?type=blog&year=2020&month=10">2020年1篇</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://lewky.blog.csdn.net/?type=blog&year=2019&month=11">2019年42篇</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://lewky.blog.csdn.net/?type=blog&year=2018&month=12">2018年113篇</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://lewky.blog.csdn.net/?type=blog&year=2017&month=12">2017年79篇</a></p>
+<h3 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h3><ol>
+<li> <a href="#t0">前言</a></li>
+<li> <a href="#t1">使用\d元命令查看表字段信息和索引信息</a></li>
+<li> <a href="#t2">通过系统数据字典查询表结构</a></li>
+<li> <a href="#t3">通过系统数据字典查询索引信息</a></li>
+<li> <a href="#t4">查询所有的表名</a></li>
+<li> <a href="#t5">可视化工具DBeaver</a></li>
+<li> <a href="#t6">参考链接</a></li>
+</ol>
+<p> <img width="24" height="24" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/guide_d5e4a82971bd41bcab7eaab8deb690a4.png"/> <img width="24" height="24" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/kefu_bfae784214d649b79f22d71f5e23c734.png"/>举报 <img width="24" height="24" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/fanhuidingbucopy_5a58dff25fd74a64b659a1a48ffb9229.png"/></p>
+<p><a id="fatkun-drop-panel-close-btn"></a>×</p>
+<p>拖拽到此处</p>
+<p>图片将完成下载</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:978252321@qq.com" rel="external nofollow noreferrer">传礼</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://iwangchuanli.github.io/posts/49552.html">https://iwangchuanli.github.io/posts/49552.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow noreferrer" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://iwangchuanli.github.io" target="_blank">传礼</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img10_lLsQAP.jpeg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/posts/41895.html"><img class="prev-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img38_bzTtYG.jpeg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">分布式</div></div></a></div><div class="next-post pull-right"><a href="/posts/27192.html"><img class="next-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img6_L358Nt.jpeg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">PostgreSQL ./configure问题</div></div></a></div></nav><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div><div id="comment-switch"><span class="first-comment">Valine</span><span class="switch-btn"></span><span class="second-comment">Gitalk</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div><div><div id="gitalk-container"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">Nice to meet you ~</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#PostgreSQL-%E6%9F%A5%E8%AF%A2%E8%A1%A8%E7%BB%93%E6%9E%84%E5%92%8C%E7%B4%A2%E5%BC%95%E4%BF%A1%E6%81%AF"><span class="toc-number">1.</span> <span class="toc-text">PostgreSQL - 查询表结构和索引信息</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-d%E5%85%83%E5%91%BD%E4%BB%A4%E6%9F%A5%E7%9C%8B%E8%A1%A8%E5%AD%97%E6%AE%B5%E4%BF%A1%E6%81%AF%E5%92%8C%E7%B4%A2%E5%BC%95%E4%BF%A1%E6%81%AF"><span class="toc-number">1.2.</span> <span class="toc-text">使用\d元命令查看表字段信息和索引信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%9A%E8%BF%87%E7%B3%BB%E7%BB%9F%E6%95%B0%E6%8D%AE%E5%AD%97%E5%85%B8%E6%9F%A5%E8%AF%A2%E8%A1%A8%E7%BB%93%E6%9E%84"><span class="toc-number">1.3.</span> <span class="toc-text">通过系统数据字典查询表结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%9A%E8%BF%87%E7%B3%BB%E7%BB%9F%E6%95%B0%E6%8D%AE%E5%AD%97%E5%85%B8%E6%9F%A5%E8%AF%A2%E7%B4%A2%E5%BC%95%E4%BF%A1%E6%81%AF"><span class="toc-number">1.4.</span> <span class="toc-text">通过系统数据字典查询索引信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E8%AF%A2%E6%89%80%E6%9C%89%E7%9A%84%E8%A1%A8%E5%90%8D"><span class="toc-number">1.5.</span> <span class="toc-text">查询所有的表名</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%AF%E8%A7%86%E5%8C%96%E5%B7%A5%E5%85%B7DBeaver"><span class="toc-number">1.6.</span> <span class="toc-text">可视化工具DBeaver</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E9%93%BE%E6%8E%A5"><span class="toc-number">1.7.</span> <span class="toc-text">参考链接</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E5%BF%83%E9%9B%95%E9%BE%99"><span class="toc-number">1.7.1.</span> <span class="toc-text">文心雕龙</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E2%98%9E-My-Blog"><span class="toc-number">1.8.</span> <span class="toc-text">☞ My Blog</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Github-%E2%98%9C"><span class="toc-number">1.9.</span> <span class="toc-text">Github ☜</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%83%AD%E9%97%A8%E6%96%87%E7%AB%A0"><span class="toc-number">1.9.1.</span> <span class="toc-text">热门文章</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E7%B1%BB%E4%B8%93%E6%A0%8F"><span class="toc-number">1.9.2.</span> <span class="toc-text">分类专栏</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%80%E6%96%B0%E8%AF%84%E8%AE%BA"><span class="toc-number">1.9.3.</span> <span class="toc-text">最新评论</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%82%A8%E6%84%BF%E6%84%8F%E5%90%91%E6%9C%8B%E5%8F%8B%E6%8E%A8%E8%8D%90%E2%80%9C%E5%8D%9A%E5%AE%A2%E8%AF%A6%E6%83%85%E9%A1%B5%E2%80%9D%E5%90%97%EF%BC%9F"><span class="toc-number">1.9.4.</span> <span class="toc-text">您愿意向朋友推荐“博客详情页”吗？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%80%E6%96%B0%E6%96%87%E7%AB%A0"><span class="toc-number">1.9.5.</span> <span class="toc-text">最新文章</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9B%AE%E5%BD%95"><span class="toc-number">1.9.6.</span> <span class="toc-text">目录</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget ads-wrap"><a target="_blank" href="https://www.aliyun.com/activity?userCode=dpj8p3hl" rel="external nofollow noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/aliyun_whuCuE.jpg" style="width:100%;height:100%;object-fit:cover;"></a></div></div></div></main><footer id="footer" style="background-image: url('https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img10_lLsQAP.jpeg')"><div id="footer-wrap"><div class="copyright">&copy;2018 - 2022 By 传礼</div><div class="footer_custom_text"><p style="display:inline-flex">本网站由<a href="https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral" rel="external nofollow noreferrer" target="_blank"><img style="width:60px;height:35px;" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/11/又拍云_logo5_O9kNul.png" title="又拍云"/></a>提供CDN加速/云存储服务</p><p><a style="margin-inline:5px" target="_blank" href="https://hexo.io/" rel="external nofollow noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Frame-Hexo-blue?style=flat&logo=hexo" title="博客框架为Hexo"></a><a style="margin-inline:5px" target="_blank" href="https://butterfly.js.org/" rel="external nofollow noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Theme-Butterfly-6513df?style=flat&logo=bitdefender" title="主题采用butterfly"></a><a style="margin-inline:5px" target="_blank" href="https://www.jsdelivr.com/" rel="external nofollow noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/CDN-jsDelivr-orange?style=flat&logo=jsDelivr" title="本站使用JsDelivr为静态资源提供CDN加速"></a><a style="margin-inline:5px" target="_blank" href="https://github.com/" rel="external nofollow noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Source-Github-d021d6?style=flat&logo=GitHub" title="本站项目由Github托管"></a><a style="margin-inline:5px" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Copyright-BY--NC--SA%204.0-d42328?style=flat&logo=Claris" title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可"></a></p></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="chat_btn" type="button" title="聊天"><i class="fas fa-sms"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">本地搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script src="/js/search/local-search.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"><script>function loadValine () {
+  function initValine () {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: 'zHUfFgUbITfMSQGuSPgS2e3C-gzGzoHsz',
+      appKey: 'yPXpeKX8VJxdFRPEsDaqNgEY',
+      avatar: 'wavatar',
+      serverURLs: 'https://zhuffgub.lc-cn-n1-shared.com',
+      emojiMaps: "",
+      path: window.location.pathname,
+      visitor: true,
+      master: '447d56ab3606de5490a2109d3e441219,135d837ea1033c9787dd307e59884d36'.split(','),
+      friends: '5c?????bfe6rfc72a????e268ad3819c'.split(','),
+      tagMeta: '博主,小伙伴,访客'.split(',')
+        
+    }, {"placeholder":"请输入内容～"}))
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/gh/HCLonely/Valine@latest/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !true) {
+  if (true) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script><script>function addGitalkSource () {
+  const ele = document.createElement('link')
+  ele.rel = 'stylesheet'
+  ele.href= 'https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css'
+  document.getElementsByTagName('head')[0].appendChild(ele)
+}
+
+function loadGitalk () {
+  function initGitalk () {
+    var gitalk = new Gitalk(Object.assign({
+      clientID: '052d9d6486112e93fa50',
+      clientSecret: '6fea35bfb7a17521694a95f705683622976d2f53',
+      repo: 'gitalk',
+      owner: 'iwangchuanli',
+      admin: ['iwangchuanli'],
+      id: '19f8cca9b0ffe1b3afb087692ab61d60',
+      updateCountCallback: commentCount
+    },null))
+
+    gitalk.render('gitalk-container')
+  }
+
+  if (typeof Gitalk === 'function') initGitalk()
+  else {
+    addGitalkSource()
+    getScript('https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.js').then(initGitalk)
+  }
+}
+
+function commentCount(n){
+  let isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+  if (isCommentCount) {
+    isCommentCount.innerHTML= n
+  }
+}
+
+if ('Valine' === 'Gitalk' || !true) {
+  if (true) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+  else loadGitalk()
+} else {
+  function loadOtherComment () {
+    loadGitalk()
+  }
+}</script></div><div class="aplayer no-destroy" data-id="7355841544" data-server="netease" data-type="playlist" data-fixed="true" data-autoplay="false"> </div><script async src="/js/grayscale.js"></script><script async src="//at.alicdn.com/t/font_1885008_srfhrsykmk.js"></script><script>((window.gitter = {}).chat = {}).options = {
+  disableDefaultChat: true,
+};
+document.addEventListener('gitter-sidecar-ready', (e) => {
+  const GitterChat = e.detail.Chat
+  let chat
+
+  function initGitter () {
+    chat = new GitterChat({
+      room: 'wangchuangli-/community',
+      activationElement: '#chat_btn'
+    });
+  }
+
+  initGitter()
+
+  if (true) {
+    document.addEventListener('pjax:complete', () => {
+      chat.destroy()
+      initGitter()
+    })
+  }
+
+})</script><script src="https://sidecar.gitter.im/dist/sidecar.v1.js" async="async" defer="defer"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/meting@1.2.0/dist/Meting.min.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = ["title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"]):not([href="/music/"]):not([href="/no-pjax/"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.tocScrollFn && window.removeEventListener('scroll', window.tocScrollFn)
+  window.scrollCollect && window.removeEventListener('scroll', scrollCollect)
+
+  typeof preloader === 'object' && preloader.initLoading()
+  document.getElementById('rightside').style.cssText = "opacity: ''; transform: ''"
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+
+  typeof preloader === 'object' && preloader.endLoading()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><!-- hexo injector body_end start --><script data-pjax>
+  function butterfly_swiper_injector_config(){
+    var parent_div_git = document.getElementById('recent-posts');
+    var item_html = '<div class="recent-post-item" style="height: auto;width: 100%"><div class="blog-slider swiper-container-fade swiper-container-horizontal" id="swiper_container"><div class="blog-slider__wrp swiper-wrapper" style="transition-duration: 0ms;"><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" onclick="pjax.loadUrl(&quot;posts/4496.html&quot;);" href="javascript:void(0);" rel="external nofollow noreferrer" alt=""><img width="48" height="48" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img6_L358Nt.jpeg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2018-09-05</span><a class="blog-slider__title" onclick="pjax.loadUrl(&quot;posts/4496.html&quot;);" href="javascript:void(0);" rel="external nofollow noreferrer" alt="">编程系列书单推荐</a><div class="blog-slider__text">再怎么看我也不知道怎么描述它的啦！</div><a class="blog-slider__button" onclick="pjax.loadUrl(&quot;posts/4496.html&quot;);" href="javascript:void(0);" rel="external nofollow noreferrer" alt="">详情       </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" onclick="pjax.loadUrl(&quot;posts/35693.html&quot;);" href="javascript:void(0);" rel="external nofollow noreferrer" alt=""><img width="48" height="48" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img33_fnRUqR.jpeg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2018-11-26</span><a class="blog-slider__title" onclick="pjax.loadUrl(&quot;posts/35693.html&quot;);" href="javascript:void(0);" rel="external nofollow noreferrer" alt="">优秀科技博客订阅</a><div class="blog-slider__text">再怎么看我也不知道怎么描述它的啦！</div><a class="blog-slider__button" onclick="pjax.loadUrl(&quot;posts/35693.html&quot;);" href="javascript:void(0);" rel="external nofollow noreferrer" alt="">详情       </a></div></div></div><div class="blog-slider__pagination swiper-pagination-clickable swiper-pagination-bullets"></div></div></div>';
+    console.log('已挂载butterfly_swiper')
+    parent_div_git.insertAdjacentHTML("afterbegin",item_html)
+    }
+  var elist = 'undefined'.split(',');
+  var cpage = location.pathname;
+  var epage = 'all';
+  var flag = 0;
+
+  for (var i=0;i<elist.length;i++){
+    if (cpage.includes(elist[i])){
+      flag++;
+    }
+  }
+
+  if ((epage ==='all')&&(flag == 0)){
+    butterfly_swiper_injector_config();
+  }
+  else if (epage === cpage){
+    butterfly_swiper_injector_config();
+  }
+  </script><script defer src="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper.min.js"></script><script defer data-pjax src="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper_init.js"></script><!-- hexo injector body_end end --></body></html>

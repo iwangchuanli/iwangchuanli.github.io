@@ -1,0 +1,682 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>08-运算符 | 传礼</title><meta name="keywords" content="博客,blog,王传礼,java,python,大数据"><meta name="author" content="传礼,978252321@qq.com"><meta name="copyright" content="传礼"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="title: 08-运算符publish: true  我们在本文件夹的第 02 篇里讲到了JS中变量的概念，本篇文章讲一下运算符和表达式。 运算符的定义和分类运算符的定义运算符：也叫操作符，是一种符号。通过运算符可以对一个或多个值进行运算，并获取运算结果。 表达式：由数字、运算符、变量的组合（组成的式子）。 表达式最终都会有一个运算结果，我们将这个结果称为表达式的返回值。 比如：+、*、&#x2F;、(">
+<meta property="og:type" content="article">
+<meta property="og:title" content="08-运算符">
+<meta property="og:url" content="https://iwangchuanli.github.io/posts/49135.html">
+<meta property="og:site_name" content="传礼">
+<meta property="og:description" content="title: 08-运算符publish: true  我们在本文件夹的第 02 篇里讲到了JS中变量的概念，本篇文章讲一下运算符和表达式。 运算符的定义和分类运算符的定义运算符：也叫操作符，是一种符号。通过运算符可以对一个或多个值进行运算，并获取运算结果。 表达式：由数字、运算符、变量的组合（组成的式子）。 表达式最终都会有一个运算结果，我们将这个结果称为表达式的返回值。 比如：+、*、&#x2F;、(">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img15_wiXTy2.jpeg">
+<meta property="article:published_time" content="2022-11-28T07:04:49.773Z">
+<meta property="article:modified_time" content="2022-04-18T09:19:56.000Z">
+<meta property="article:author" content="传礼">
+<meta property="article:tag" content="博客,blog,王传礼,java,python,大数据">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img15_wiXTy2.jpeg"><link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/03/favicons_uH14Fb.gif"><link rel="canonical" href="https://iwangchuanli.github.io/posts/49135"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin=""/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta name="baidu-site-verification" content="qKvGNFZPF9"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?39bd6e37a6e70dc030e6a043a642784e";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: 传礼","link":"链接: ","source":"来源: 传礼","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#121212","position":"bottom-left"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: true,
+  islazyload: true,
+  isAnchor: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '08-运算符',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-04-18 09:19:56'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/custom.css"  media="defer" onload="this.media='all'"><!-- hexo injector head_end start --><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiperstyle.css" media="print" onload="this.media='all'"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.1"><link rel="alternate" href="/atom.xml" title="传礼" type="application/atom+xml">
+</head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/03/photo_NZBQPu.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><div class="data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">511</div></a></div><div class="data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">50</div></a></div><div class="data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">22</div></a></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 归档</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-calendar"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 开发</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/Java"><i class="fa-fw fa fa-music"></i><span> Java</span></a></li><li><a class="site-page child" href="/categories/Python"><i class="fa-fw fa fa-music"></i><span> Python</span></a></li><li><a class="site-page child" href="/categories/VUE"><i class="fa-fw fa fa-music"></i><span> VUE</span></a></li><li><a class="site-page child" href="/categories/MySQL"><i class="fa-fw fa fa-music"></i><span> MySQL</span></a></li><li><a class="site-page child" href="/categories/Redis"><i class="fa-fw fa fa-music"></i><span> Redis</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 架构</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/Spring"><i class="fa-fw fa fa-music"></i><span> Spring</span></a></li><li><a class="site-page child" href="/categories/microServeices"><i class="fa-fw fa fa-music"></i><span> 微服务</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 运维</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/Docker"><i class="fa-fw fa fa-music"></i><span> Docker</span></a></li><li><a class="site-page child" href="/categories/Linux"><i class="fa-fw fa fa-music"></i><span> Linux</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 分享</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/tags/Tools"><i class="fa-fw fa fa-music"></i><span> 工具</span></a></li><li><a class="site-page child" href="/tags/guide"><i class="fa-fw fa fa-music"></i><span> 教程</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 项目</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/tags/Tools"><i class="fa-fw fa fa-music"></i><span> 工具</span></a></li><li><a class="site-page child" href="/tags/guide"><i class="fa-fw fa fa-music"></i><span> 教程</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-heartbeat"></i><span> 娱乐</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/gallery/"><i class="fa-fw fa fa-images"></i><span> 图库</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fa fa-film"></i><span> 电影</span></a></li><li><a class="site-page child" href="/books/"><i class="fa-fw fa fa-book"></i><span> 图书</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 我的</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/artitalk/"><i class="fa-fw fa fa-commenting"></i><span> 说说</span></a></li><li><a class="site-page child" href="/todo/"><i class="fa-fw fa fa-flag"></i><span> TODO</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img15_wiXTy2.jpeg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">传礼</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 归档</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-calendar"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 开发</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/Java"><i class="fa-fw fa fa-music"></i><span> Java</span></a></li><li><a class="site-page child" href="/categories/Python"><i class="fa-fw fa fa-music"></i><span> Python</span></a></li><li><a class="site-page child" href="/categories/VUE"><i class="fa-fw fa fa-music"></i><span> VUE</span></a></li><li><a class="site-page child" href="/categories/MySQL"><i class="fa-fw fa fa-music"></i><span> MySQL</span></a></li><li><a class="site-page child" href="/categories/Redis"><i class="fa-fw fa fa-music"></i><span> Redis</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 架构</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/Spring"><i class="fa-fw fa fa-music"></i><span> Spring</span></a></li><li><a class="site-page child" href="/categories/microServeices"><i class="fa-fw fa fa-music"></i><span> 微服务</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 运维</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/Docker"><i class="fa-fw fa fa-music"></i><span> Docker</span></a></li><li><a class="site-page child" href="/categories/Linux"><i class="fa-fw fa fa-music"></i><span> Linux</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 分享</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/tags/Tools"><i class="fa-fw fa fa-music"></i><span> 工具</span></a></li><li><a class="site-page child" href="/tags/guide"><i class="fa-fw fa fa-music"></i><span> 教程</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 项目</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/tags/Tools"><i class="fa-fw fa fa-music"></i><span> 工具</span></a></li><li><a class="site-page child" href="/tags/guide"><i class="fa-fw fa fa-music"></i><span> 教程</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-heartbeat"></i><span> 娱乐</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/gallery/"><i class="fa-fw fa fa-images"></i><span> 图库</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fa fa-film"></i><span> 电影</span></a></li><li><a class="site-page child" href="/books/"><i class="fa-fw fa fa-book"></i><span> 图书</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 我的</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/artitalk/"><i class="fa-fw fa fa-commenting"></i><span> 说说</span></a></li><li><a class="site-page child" href="/todo/"><i class="fa-fw fa fa-flag"></i><span> TODO</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">08-运算符</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-11-28T07:04:49.773Z" title="发表于 2022-11-28 07:04:49">2022-11-28</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-04-18T09:19:56.000Z" title="更新于 2022-04-18 09:19:56">2022-04-18</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">3.8k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>13分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="08-运算符"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><hr>
+<p>title: 08-运算符<br>publish: true</p>
+<hr>
+<p>我们在本文件夹的第 02 篇里讲到了JS中<strong>变量</strong>的概念，本篇文章讲一下<strong>运算符</strong>和表达式。</p>
+<h2 id="运算符的定义和分类"><a href="#运算符的定义和分类" class="headerlink" title="运算符的定义和分类"></a>运算符的定义和分类</h2><h3 id="运算符的定义"><a href="#运算符的定义" class="headerlink" title="运算符的定义"></a>运算符的定义</h3><p><strong>运算符</strong>：也叫操作符，是一种符号。通过运算符可以对一个或多个值进行运算，并获取运算结果。</p>
+<p><strong>表达式</strong>：由数字、运算符、变量的组合（组成的式子）。</p>
+<p>表达式最终都会有一个运算结果，我们将这个结果称为表达式的<strong>返回值</strong>。</p>
+<p>比如：<code>+</code>、<code>*</code>、<code>/</code>、<code>(</code> 都是<strong>运算符</strong>，而<code>（3+5）/2</code>则是<strong>表达式</strong>。</p>
+<p>比如：typeof 就是运算符，可以来获得一个值的类型。它会将该值的类型以<strong>字符串</strong>的形式返回，返回值可以是 number、string、boolean、undefined、object。</p>
+<h3 id="运算符的分类"><a href="#运算符的分类" class="headerlink" title="运算符的分类"></a>运算符的分类</h3><p>JS 中的运算符，分类如下：</p>
+<ul>
+<li><p>算数运算符</p>
+</li>
+<li><p>自增/自减运算符</p>
+</li>
+<li><p>一元运算符</p>
+</li>
+<li><p>逻辑运算符</p>
+</li>
+<li><p>赋值运算符</p>
+</li>
+<li><p>比较运算符</p>
+</li>
+<li><p>三元运算符（条件运算符）</p>
+</li>
+</ul>
+<p>下面来逐一讲解。</p>
+<h2 id="算数运算符"><a href="#算数运算符" class="headerlink" title="算数运算符"></a>算数运算符</h2><p><strong>算术运算符</strong>：用于执行两个变量或值的算术运算。</p>
+<p>常见的算数运算符有以下几种：</p>
+<table>
+<thead>
+<tr>
+<th align="left">运算符</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">+</td>
+<td align="center">加、字符串连接</td>
+</tr>
+<tr>
+<td align="left">-</td>
+<td align="center">减</td>
+</tr>
+<tr>
+<td align="left">*</td>
+<td align="center">乘</td>
+</tr>
+<tr>
+<td align="left">/</td>
+<td align="center">除</td>
+</tr>
+<tr>
+<td align="left">%</td>
+<td align="center">获取余数（取余、取模）</td>
+</tr>
+</tbody></table>
+<p><strong>求余的举例</strong>：</p>
+<p>假设用户输入345，怎么分别得到3、4、5这三个数呢？</p>
+<p><strong>答案</strong>：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">得到3的方法：345 除以100，得到3.45然后取整，得到3。即：parseInt(345/100)</span><br><span class="line"></span><br><span class="line">得到4的方法：345 除以100，余数是45，除以10，得到4.5，取整。即：parseInt(345 % 100 / 10)</span><br><span class="line"></span><br><span class="line">得到5的方法：345 除以10，余数就是5。即：345 % 10</span><br></pre></td></tr></table></figure>
+
+<h3 id="算数运算符的运算规则"><a href="#算数运算符的运算规则" class="headerlink" title="算数运算符的运算规则"></a>算数运算符的运算规则</h3><p>（1）先算乘除、后算加减。</p>
+<p>（2）小括号<code>( )</code>：能够影响计算顺序，且可以嵌套。没有中括号、没有大括号，只有小括号。</p>
+<p>（3）百分号：取余。只关心余数。</p>
+<p>举例1：(取余)</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">3</span> % <span class="number">5</span>);</span><br></pre></td></tr></table></figure>
+
+<p>输出结果为3。</p>
+<p>举例2：（注意运算符的优先级）</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">1</span> + <span class="number">2</span> * <span class="number">3</span> % <span class="number">4</span> / <span class="number">3</span>;</span><br></pre></td></tr></table></figure>
+
+<p>结果分析：</p>
+<p>原式 =  1 + 6 % 4 / 3 = 1 + 2 / 3 = 1.66666666666666</p>
+<p><strong>补充</strong>：关于算数运算符的注意事项，详见上一篇文章里的“<strong>数据类型转换</strong>”的知识点。</p>
+<h3 id="浮点数运算的精度问题"><a href="#浮点数运算的精度问题" class="headerlink" title="浮点数运算的精度问题"></a>浮点数运算的精度问题</h3><p>浮点数值的最高精度是 17 位小数，但在进行算术计算时，会丢失精度，导致计算不够准确。比如：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">0.1</span> + <span class="number">0.2</span>); <span class="comment">// 运算结果不是 0.3，而是 0.30000000000000004</span></span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">0.07</span> * <span class="number">100</span>); <span class="comment">// 运算结果不是 7，而是 7.000000000000001</span></span><br></pre></td></tr></table></figure>
+
+<p>因此，<strong>不要直接判断两个浮点数是否相等</strong>。</p>
+<h2 id="自增和自减"><a href="#自增和自减" class="headerlink" title="自增和自减"></a>自增和自减</h2><h3 id="自增"><a href="#自增" class="headerlink" title="自增 ++"></a>自增 <code>++</code></h3><p>自增分成两种：<code>a++</code>和<code>++a</code>。</p>
+<p>（1）一个变量自增以后，原变量的值会<strong>立即</strong>自增1。也就是说，无论是 <code>a++</code> 还是<code>++a</code>，都会立即使原变量的值自增1。</p>
+<p>（2）<strong>我们要注意的是</strong>：<code>a</code>是变量，而<code>a++</code>和<code>++a</code>是<strong>表达式</strong>。</p>
+<p>那这两种自增，有啥区别呢？区别是：<code>a++</code> 和 <code>++a</code>的值不同：（也就是说，表达式的值不同）</p>
+<ul>
+<li><p><code>a++</code>这个表达式的值等于原变量的值（a自增前的值）。你可以这样理解：先把 a 的值赋值给表达式，然后 a 再自增。</p>
+</li>
+<li><p><code>++a</code>这个表达式的值等于新值 （a自增后的值）。 你可以这样理解：a 先自增，然后再把自增后的值赋值给表达式。</p>
+</li>
+</ul>
+<h3 id="自减"><a href="#自减" class="headerlink" title="自减 -- "></a>自减 <code>-- </code></h3><p>原理同上。</p>
+<p>开发时，大多使用后置的自增/自减，并且代码独占一行，例如：<code>num++</code>，或者 <code>num--</code>。</p>
+<h3 id="代码举例"><a href="#代码举例" class="headerlink" title="代码举例"></a>代码举例</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> n1 = <span class="number">10</span>;</span><br><span class="line"><span class="keyword">var</span> n2 = <span class="number">20</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> result1 = n1++;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(n1); <span class="comment">// 11</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(result1); <span class="comment">// 10</span></span><br><span class="line"></span><br><span class="line">result = ++n1;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(n1); <span class="comment">//12</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(result); <span class="comment">//12</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> result2 = n2--;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(n2); <span class="comment">// 19</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(result2); <span class="comment">// 20</span></span><br><span class="line"></span><br><span class="line">result2 = --n2;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(n2); <span class="comment">// 18</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(result2); <span class="comment">// 18</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="一元运算符"><a href="#一元运算符" class="headerlink" title="一元运算符"></a>一元运算符</h2><p>一元运算符，只需要一个操作数。</p>
+<p>常见的一元运算符如下。</p>
+<h3 id="typeof"><a href="#typeof" class="headerlink" title="typeof"></a>typeof</h3><p>typeof就是典型的一元运算符，因为后面只跟一个操作数。</p>
+<p>举例如下：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="string">&#x27;123&#x27;</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="keyword">typeof</span> a); <span class="comment">// 打印结果：string</span></span><br></pre></td></tr></table></figure>
+
+
+<h3 id="正号"><a href="#正号" class="headerlink" title="正号 +"></a>正号 <code>+</code></h3><p>（1）正号不会对数字产生任何影响。比如说，<code>2</code>和<code>+2</code>是一样的。</p>
+<p>（2）我们可以对一个其他的数据类型使用<code>+</code>，来将其转换为number【重要的小技巧】。比如：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="literal">true</span>;</span><br><span class="line">a = +a;   <span class="comment">// 注意这行代码的一元运算符操作</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;a：&#x27;</span> + a);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="keyword">typeof</span> a);</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;-----------------&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> b = <span class="string">&#x27;18&#x27;</span>;</span><br><span class="line">b = +b;   <span class="comment">// 注意这行代码的一元运算符操作</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;b：&#x27;</span> + b);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="keyword">typeof</span> b);</span><br></pre></td></tr></table></figure>
+
+<p>打印结果：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">a：1</span><br><span class="line">number</span><br><span class="line"></span><br><span class="line">-----------------</span><br><span class="line"></span><br><span class="line">b：18</span><br><span class="line">number</span><br></pre></td></tr></table></figure>
+
+<h3 id="负号"><a href="#负号" class="headerlink" title="负号 -"></a>负号 <code>-</code></h3><p>负号可以对数字进行取反。</p>
+<h2 id="逻辑运算符"><a href="#逻辑运算符" class="headerlink" title="逻辑运算符"></a>逻辑运算符</h2><p>逻辑运算符有三个：</p>
+<ul>
+<li><p><code>&amp;&amp;</code>     与（且）：两个都为真，结果才为真。</p>
+</li>
+<li><p><code>||</code>    或：只要有一个是真，结果就是真。</p>
+</li>
+<li><p><code>!</code>        非：对一个布尔值进行取反。</p>
+</li>
+</ul>
+<p>注意：能参与逻辑运算的，都是布尔值。</p>
+<p><strong>连比的写法：</strong></p>
+<p>来看看逻辑运算符连比的写法。</p>
+<p>举例1：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">3</span> &lt; <span class="number">2</span> &amp;&amp; <span class="number">2</span> &lt; <span class="number">4</span>);</span><br></pre></td></tr></table></figure>
+
+<p>输出结果为false。</p>
+<p>举例2：（判断一个人的年龄是否在18~65岁之间）</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> a = <span class="title function_">prompt</span>(<span class="string">&#x27;请输入您的年龄&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (a &gt;= <span class="number">18</span> &amp;&amp; a &lt; <span class="number">65</span>) &#123;</span><br><span class="line">	<span class="title function_">alert</span>(<span class="string">&#x27;可以上班&#x27;</span>);</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">	<span class="title function_">alert</span>(<span class="string">&#x27;准备退休&#x27;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>PS：上面的<code>a&gt;=18 &amp;&amp; a&lt;= 65</code>千万别想当然地写成<code> 18&lt;= a &lt;= 65</code>，没有这种语法。</p>
+<h3 id="非布尔值的与或运算【重要】"><a href="#非布尔值的与或运算【重要】" class="headerlink" title="非布尔值的与或运算【重要】"></a>非布尔值的与或运算【重要】</h3><blockquote>
+<p>之所以重要，是因为在实际开发中，我们经常用这种代码做容错处理或者兜底处理。</p>
+</blockquote>
+<p>非布尔值进行<strong>与或运算</strong>时，会先将其转换为布尔值，然后再运算，但返回结果是<strong>原值</strong>。比如说：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> result = <span class="number">5</span> &amp;&amp; <span class="number">6</span>; <span class="comment">// 运算过程：true &amp;&amp; true;</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;result：&#x27;</span> + result); <span class="comment">// 打印结果：6（也就是说最后面的那个值。）</span></span><br></pre></td></tr></table></figure>
+
+<p>上方代码可以看到，虽然运算过程为布尔值的运算，但返回结果是原值。</p>
+<p>那么，返回结果是哪个原值呢？我们来看一下。</p>
+<p><strong>与运算</strong>的返回结果：（以多个非布尔值的运算为例）</p>
+<ul>
+<li><p>如果第一个值为false，则执行第一条语句，并直接返回第一个值；不会再往后执行。</p>
+</li>
+<li><p>如果第一个值为true，则继续执行第二条语句，并返回第二个值（如果所有的值都为true，则返回的是最后一个值）。</p>
+</li>
+</ul>
+<p><strong>或运算</strong>的返回结果：（以多个非布尔值的运算为例）</p>
+<ul>
+<li><p>如果第一个值为true，则执行第一条语句，并直接返回第一个值；不会再往后执行。</p>
+</li>
+<li><p>如果第一个值为false，则继续执行第二条语句，并返回第二个值（（如果所有的值都为false，则返回的是最后一个值）。</p>
+</li>
+</ul>
+<p>实际开发中，我们经常是这样来做「容错处理」的：</p>
+<p>当前端成功调用一个接口后，返回的数据为 result 对象。这个时候，我们用变量 a 来接收 result 里的图片资源。通常的写法是这样的：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> (result.<span class="property">resultCode</span> == <span class="number">0</span>) &#123;</span><br><span class="line">	<span class="keyword">var</span> a = result &amp;&amp; result.<span class="property">data</span> &amp;&amp; result.<span class="property">data</span>.<span class="property">imgUrl</span> || <span class="string">&#x27;http://img.smyhvae.com/20160401_01.jpg&#x27;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>上方代码的意思是，获取返回结果中的<code>result.data.imgUrl</code>这个图片资源；如果返回结果中没有 <code>result.data.imgUrl</code> 这个字段，就用 <code>http://img.smyhvae.com/20160401_01.jpg</code> 作为<strong>兜底</strong>图片。这种写法，在实际开发中经常用到。</p>
+<h3 id="非布尔值的-运算"><a href="#非布尔值的-运算" class="headerlink" title="非布尔值的 !  运算"></a>非布尔值的 <code>!</code>  运算</h3><p>非布尔值进行<strong>非运算</strong>时，会先将其转换为布尔值，然后再运算，但返回结果是<strong>布尔值</strong>。</p>
+<p>举例：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> a = <span class="number">10</span>;</span><br><span class="line">a = !a</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a);  <span class="comment">// false</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="keyword">typeof</span> a); <span class="comment">// boolean</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="短路运算的妙用【重要】"><a href="#短路运算的妙用【重要】" class="headerlink" title="短路运算的妙用【重要】"></a>短路运算的妙用【重要】</h3><blockquote>
+<p>下方举例中的写法技巧，在实际开发中，经常用到。这种写法，是一种很好的「容错、容灾、降级」方案，需要多看几遍。</p>
+</blockquote>
+<p>1、JS中的<code>&amp;&amp;</code>属于<strong>短路</strong>的与：</p>
+<ul>
+<li><p>如果第一个值为false，则不会执行后面的内容。</p>
+</li>
+<li><p>如果第一个值为 true，则继续执行第二条语句，并返回第二个值。</p>
+</li>
+</ul>
+<p>举例：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> a1 = <span class="string">&#x27;qianguyihao&#x27;</span>;</span><br><span class="line"><span class="comment">//第一个值为true，会继续执行后面的内容</span></span><br><span class="line">a1 &amp;&amp; <span class="title function_">alert</span>(<span class="string">&#x27;看 a1 出不出来&#x27;</span>); <span class="comment">// 可以弹出 alert 框</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> a2 = <span class="literal">undefined</span>;</span><br><span class="line"><span class="comment">//第一个值为false，不会继续执行后面的内容</span></span><br><span class="line">a2 &amp;&amp; <span class="title function_">alert</span>(<span class="string">&#x27;看 a2 出不出来&#x27;</span>); <span class="comment">// 不会弹出 alert 框</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>2、JS中的<code>||</code>属于<strong>短路</strong>的或：</p>
+<ul>
+<li><p>如果第一个值为true，则不会执行后面的内容。</p>
+</li>
+<li><p>如果第一个值为 false，则继续执行第二条语句，并返回第二个值。</p>
+</li>
+</ul>
+<p>举例：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> result; <span class="comment">// 请求接口时，后台返回的内容</span></span><br><span class="line"><span class="keyword">let</span> errorMsg = <span class="string">&#x27;&#x27;</span>; <span class="comment">// 前端的文案提示</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (result &amp;&amp; result.<span class="property">retCode</span> != <span class="number">0</span>) &#123;</span><br><span class="line">	<span class="comment">// 接口返回异常码时</span></span><br><span class="line">	errorMsg = result.<span class="property">msg</span> || <span class="string">&#x27;活动太火爆，请稍后再试&#x27;</span>; <span class="comment">// 文案提示信息，优先用 接口返回的msg字段，其次用 &#x27;活动太火爆，请稍后再试&#x27; 这个文案兜底。</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (!result) &#123;</span><br><span class="line">	<span class="comment">// 接口挂掉时</span></span><br><span class="line">	errorMsg = <span class="string">&#x27;网络异常，请稍后再试&#x27;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="赋值运算符"><a href="#赋值运算符" class="headerlink" title="赋值运算符"></a>赋值运算符</h2><p>可以将符号右侧的值赋值给符号左侧的变量。</p>
+<p>举例：</p>
+<ul>
+<li><p><code>=</code> 直接赋值。比如 <code>var a = 5</code></p>
+</li>
+<li><p><code>+=</code>。a += 5 等价于 a = a + 5</p>
+</li>
+<li><p><code>-=</code>。a -= 5 等价于 a = a - 5</p>
+</li>
+<li><p><code>*=</code>。a *= 5 等价于 a = a * 5</p>
+</li>
+<li><p><code>/=</code>。a /= 5 等价于 a = a / 5</p>
+</li>
+<li><p><code>%=</code>。a %= 5 等价于 a = a % 5</p>
+</li>
+</ul>
+<h2 id="比较运算符"><a href="#比较运算符" class="headerlink" title="比较运算符"></a>比较运算符</h2><p>比较运算符可以比较两个值之间的大小关系，如果关系成立它会返回true，如果关系不成立则返回false。</p>
+<p>比较运算符有很多种，比如：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&gt;	大于号</span><br><span class="line">&lt;	小于号</span><br><span class="line">&gt;= 	大于或等于</span><br><span class="line">&lt;=  小于或等于</span><br><span class="line">== 	等于</span><br><span class="line">=== 全等于</span><br><span class="line">!=	不等于</span><br><span class="line">!== 不全等于</span><br></pre></td></tr></table></figure>
+
+<p><strong>比较运算符，得到的结果都是布尔值：要么是true，要么是false</strong>。</p>
+<p>举例如下：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> result = <span class="number">5</span> &gt; <span class="number">10</span>; <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="非数值的比较"><a href="#非数值的比较" class="headerlink" title="非数值的比较"></a>非数值的比较</h3><p>（1）对于非数值进行比较时，会将其转换为数字然后再比较。</p>
+<p>举例如下：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">1</span> &gt; <span class="literal">true</span>); <span class="comment">//false</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">1</span> &gt;= <span class="literal">true</span>); <span class="comment">//true</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">1</span> &gt; <span class="string">&quot;0&quot;</span>); <span class="comment">//true</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//console.log(10 &gt; null); //true</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//任何值和NaN做任何比较都是false</span></span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">10</span> &lt;= <span class="string">&quot;hello&quot;</span>); <span class="comment">//false</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="literal">true</span> &gt; <span class="literal">false</span>); <span class="comment">//true</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>（2）特殊情况：如果符号两侧的值都是字符串时，<strong>不会</strong>将其转换为数字进行比较。比较两个字符串时，比较的是字符串的<strong>Unicode编码</strong>。【非常重要，这里是个大坑，很容易踩到】</p>
+<p>比较字符编码时，是一位一位进行比较。如果两位一样，则比较下一位。</p>
+<p>比如说，当你尝试去比较<code>&quot;123&quot;</code>和<code>&quot;56&quot;</code>这两个字符串时，你会发现，字符串”56”竟然比字符串”123”要大（因为 5 比 1 大）。也就是说，下面这样代码的打印结果，其实是true:（这个我们一定要注意，在日常开发中，很容易忽视）</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 比较两个字符串时，比较的是字符串的字符编码，所以可能会得到不可预期的结果</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;56&quot;</span> &gt; <span class="string">&quot;123&quot;</span>);  <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>因此</strong>：当我们在比较两个字符串型的数字时，<strong>一定一定要先转型</strong>再比较大小，比如 <code>parseInt()</code>。</p>
+<p>（3）任何值和NaN做任何比较都是false。</p>
+<h3 id="符号的强调"><a href="#符号的强调" class="headerlink" title="==符号的强调"></a><code>==</code>符号的强调</h3><p>注意<code>==</code>这个符号，它是<strong>判断是否等于</strong>，而不是赋值。</p>
+<p>（1）<code>== </code>这个符号，还可以验证字符串是否相同。例如：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;我爱你中国&quot;</span> == <span class="string">&quot;我爱你中国&quot;</span>);		<span class="comment">// 输出结果为true</span></span><br></pre></td></tr></table></figure>
+
+<p>（2）<code>== </code>这个符号并不严谨，会做隐式转换，将不同的数据类型，<strong>转为相同类型</strong>进行比较（大部分情况下，都是转换为数字）。例如：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;6&quot;</span> == <span class="number">6</span>);		<span class="comment">// 打印结果：true。这里的字符串&quot;6&quot;会先转换为数字6，然后再进行比较</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="literal">true</span> == <span class="string">&quot;1&quot;</span>);   <span class="comment">// 打印结果：true</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">0</span> == -<span class="number">0</span>);       <span class="comment">// 打印结果：true</span></span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="literal">null</span> == <span class="number">0</span>);   <span class="comment">// 打印结果：false</span></span><br></pre></td></tr></table></figure>
+
+<p>（3）undefined 衍生自 null，所以这两个值做相等判断时，会返回true。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="literal">undefined</span> == <span class="literal">null</span>);  <span class="comment">//打印结果：true。</span></span><br></pre></td></tr></table></figure>
+
+<p>（4）NaN不和任何值相等，包括他本身。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">NaN</span> == <span class="title class_">NaN</span>); <span class="comment">//false</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">NaN</span> === <span class="title class_">NaN</span>); <span class="comment">//false</span></span><br></pre></td></tr></table></figure>
+
+<p>问题：那如果我想判断  b的值是否为NaN，该怎么办呢？</p>
+<p>答案：可以通过isNaN()函数来判断一个值是否是NaN。举例：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="built_in">isNaN</span>(b));</span><br></pre></td></tr></table></figure>
+
+<p>如上方代码所示，如果 b 为 NaN，则返回true；否则返回false。</p>
+<h3 id="全等符号的强调"><a href="#全等符号的强调" class="headerlink" title="===全等符号的强调"></a><code>===</code>全等符号的强调</h3><p><strong>全等在比较时，不会做类型转换</strong>。如果要保证<strong>绝对等于（完全等于）</strong>，我们就要用三个等号<code>===</code>。例如：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;6&quot;</span> === <span class="number">6</span>);		<span class="comment">//false</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">6</span> === <span class="number">6</span>);		<span class="comment">//true</span></span><br></pre></td></tr></table></figure>
+
+<p>上述内容分析出：</p>
+<ul>
+<li><p><code>==</code>两个等号，不严谨，”6”和6是true。</p>
+</li>
+<li><p><code>===</code>三个等号，严谨，”6”和6是false。</p>
+</li>
+</ul>
+<p>另外还有：**<code>==</code>的反面是<code>!=</code>，<code>===</code>的反面是<code>!==</code>**。例如：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">3</span> != <span class="number">8</span>);	<span class="comment">//true</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">3</span> != <span class="string">&quot;3&quot;</span>);	<span class="comment">//false，因为3==&quot;3&quot;是true，所以反过来就是false。</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">3</span> !== <span class="string">&quot;3&quot;</span>);	<span class="comment">//true，应为3===&quot;3&quot;是false，所以反过来是true。</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="三元运算符"><a href="#三元运算符" class="headerlink" title="三元运算符"></a>三元运算符</h2><p>三元运算符也叫条件运算符。</p>
+<p>语法：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">条件表达式 ? 语句1 : 语句2;</span><br></pre></td></tr></table></figure>
+
+<p><strong>执行的流程</strong>：</p>
+<p>条件运算符在执行时，首先对条件表达式进行求值：</p>
+<ul>
+<li><p>如果该值为true，则执行语句1，并返回执行结果</p>
+</li>
+<li><p>如果该值为false，则执行语句2，并返回执行结果</p>
+</li>
+</ul>
+<p>如果条件的表达式的求值结果是一个非布尔值，会将其转换为布尔值然后再运算。</p>
+<h2 id="运算符的优先级"><a href="#运算符的优先级" class="headerlink" title="运算符的优先级"></a>运算符的优先级</h2><p>运算符的优先级如下：（优先级从高到低）</p>
+<ul>
+<li><p><code>.</code>、<code>[]</code>、<code>new</code></p>
+</li>
+<li><p><code>()</code></p>
+</li>
+<li><p><code>++</code>、<code>--</code></p>
+</li>
+<li><p><code>!</code>、<code>~</code>、<code>+</code>（单目）、<code>-</code>（单目）、<code>typeof</code>、<code>void</code>、<code>delete</code></p>
+</li>
+<li><p><code>%</code>、<code>*</code>、<code>/</code></p>
+</li>
+<li><p><code>+</code>（双目）、<code>-</code>（双目）</p>
+</li>
+<li><p><code>&lt;&lt;</code>、<code>&gt;&gt;</code>、<code>&gt;&gt;&gt;</code></p>
+</li>
+<li><p>关系运算符：<code>&lt;</code>、<code>&lt;=</code>、<code>&gt;</code>、<code>&gt;=</code></p>
+</li>
+<li><p><code>==</code>、<code>!==</code>、<code>===</code>、<code>!==</code></p>
+</li>
+<li><p><code>&amp;</code></p>
+</li>
+<li><p><code>^</code></p>
+</li>
+<li><p><code>|</code></p>
+</li>
+<li><p><code>&amp;&amp;</code></p>
+</li>
+<li><p><code>||</code></p>
+</li>
+<li><p><code>?:</code></p>
+</li>
+<li><p><code>=</code>、<code>+=</code>、<code>-=</code>、<code>*=</code>、<code>/=</code>、<code>%=</code>、<code>&lt;&lt;=</code>、<code>&gt;&gt;=</code>、<code>&gt;&gt;&gt;=</code>、<code>&amp;=</code>、<code>^=</code>、<code>|=</code></p>
+</li>
+<li><p><code>,</code></p>
+</li>
+</ul>
+<p>注意：逻辑与 <code>&amp;&amp;</code> 比逻辑或 <code>||</code> 的优先级更高。</p>
+<p>备注：你在实际写代码的时候，如果不清楚哪个优先级更高，可以把括号运用上。</p>
+<h2 id="Unicode-编码"><a href="#Unicode-编码" class="headerlink" title="Unicode 编码"></a>Unicode 编码</h2><blockquote>
+<p>这一段中，我们来讲引申的内容：Unicode编码的使用。</p>
+</blockquote>
+<p>各位同学可以先在网上查一下“Unicode 编码表”。</p>
+<p>1、在字符串中可以使用转义字符输入Unicode编码。格式如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">\u四位编码</span><br></pre></td></tr></table></figure>
+
+<p>举例如下：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;\u2600&quot;</span>);  <span class="comment">// 这里的 2600 采用的是16进制</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;\u2602&quot;</span>);  <span class="comment">// 这里的 2602 采用的是16进制。</span></span><br></pre></td></tr></table></figure>
+
+<p>打印结果：</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://img.smyhvae.com/20181222_1218.png"></p>
+<p>2、我们还可以在 HTML 网页中使用Unicode编码。格式如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&amp;#四位编码;</span><br></pre></td></tr></table></figure>
+
+<p>PS：我们知道，Unicode编码采用的是16进制，但是，这里的编码需要使用10进制。</p>
+<p>举例如下：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">h1</span> <span class="attr">style</span>=<span class="string">&quot;font-size: 100px;&quot;</span>&gt;</span><span class="symbol">&amp;#9860;</span><span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>打印结果：</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://img.smyhvae.com/20181222_1226.png"></p>
+<h2 id="我的公众号"><a href="#我的公众号" class="headerlink" title="我的公众号"></a>我的公众号</h2><p>想学习<strong>更多技能</strong>？不妨关注我的微信公众号：<strong>千古壹号</strong>。</p>
+<p>扫一扫，你将发现另一个全新的世界，而这将是一场美丽的意外：</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.smyhvae.com/20200102.png"></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:978252321@qq.com" rel="external nofollow noreferrer">传礼</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://iwangchuanli.github.io/posts/49135.html">https://iwangchuanli.github.io/posts/49135.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow noreferrer" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://iwangchuanli.github.io" target="_blank">传礼</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img15_wiXTy2.jpeg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/posts/5616.html"><img class="prev-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img18_JzIWdl.jpeg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">08-宏任务和微任务</div></div></a></div><div class="next-post pull-right"><a href="/posts/51050.html"><img class="next-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img9_NzXXV0.jpeg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">09-Promise应用举例</div></div></a></div></nav><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div><div id="comment-switch"><span class="first-comment">Valine</span><span class="switch-btn"></span><span class="second-comment">Gitalk</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div><div><div id="gitalk-container"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">Nice to meet you ~</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%90%E7%AE%97%E7%AC%A6%E7%9A%84%E5%AE%9A%E4%B9%89%E5%92%8C%E5%88%86%E7%B1%BB"><span class="toc-number">1.</span> <span class="toc-text">运算符的定义和分类</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%90%E7%AE%97%E7%AC%A6%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="toc-number">1.1.</span> <span class="toc-text">运算符的定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%90%E7%AE%97%E7%AC%A6%E7%9A%84%E5%88%86%E7%B1%BB"><span class="toc-number">1.2.</span> <span class="toc-text">运算符的分类</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%97%E6%95%B0%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="toc-number">2.</span> <span class="toc-text">算数运算符</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AE%97%E6%95%B0%E8%BF%90%E7%AE%97%E7%AC%A6%E7%9A%84%E8%BF%90%E7%AE%97%E8%A7%84%E5%88%99"><span class="toc-number">2.1.</span> <span class="toc-text">算数运算符的运算规则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%AE%E7%82%B9%E6%95%B0%E8%BF%90%E7%AE%97%E7%9A%84%E7%B2%BE%E5%BA%A6%E9%97%AE%E9%A2%98"><span class="toc-number">2.2.</span> <span class="toc-text">浮点数运算的精度问题</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%87%AA%E5%A2%9E%E5%92%8C%E8%87%AA%E5%87%8F"><span class="toc-number">3.</span> <span class="toc-text">自增和自减</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%87%AA%E5%A2%9E"><span class="toc-number">3.1.</span> <span class="toc-text">自增 ++</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%87%AA%E5%87%8F"><span class="toc-number">3.2.</span> <span class="toc-text">自减 -- </span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E4%B8%BE%E4%BE%8B"><span class="toc-number">3.3.</span> <span class="toc-text">代码举例</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E5%85%83%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="toc-number">4.</span> <span class="toc-text">一元运算符</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#typeof"><span class="toc-number">4.1.</span> <span class="toc-text">typeof</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AD%A3%E5%8F%B7"><span class="toc-number">4.2.</span> <span class="toc-text">正号 +</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B4%9F%E5%8F%B7"><span class="toc-number">4.3.</span> <span class="toc-text">负号 -</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%BB%E8%BE%91%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="toc-number">5.</span> <span class="toc-text">逻辑运算符</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9D%9E%E5%B8%83%E5%B0%94%E5%80%BC%E7%9A%84%E4%B8%8E%E6%88%96%E8%BF%90%E7%AE%97%E3%80%90%E9%87%8D%E8%A6%81%E3%80%91"><span class="toc-number">5.1.</span> <span class="toc-text">非布尔值的与或运算【重要】</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9D%9E%E5%B8%83%E5%B0%94%E5%80%BC%E7%9A%84-%E8%BF%90%E7%AE%97"><span class="toc-number">5.2.</span> <span class="toc-text">非布尔值的 !  运算</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9F%AD%E8%B7%AF%E8%BF%90%E7%AE%97%E7%9A%84%E5%A6%99%E7%94%A8%E3%80%90%E9%87%8D%E8%A6%81%E3%80%91"><span class="toc-number">5.3.</span> <span class="toc-text">短路运算的妙用【重要】</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B5%8B%E5%80%BC%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="toc-number">6.</span> <span class="toc-text">赋值运算符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AF%94%E8%BE%83%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="toc-number">7.</span> <span class="toc-text">比较运算符</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9D%9E%E6%95%B0%E5%80%BC%E7%9A%84%E6%AF%94%E8%BE%83"><span class="toc-number">7.1.</span> <span class="toc-text">非数值的比较</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%A6%E5%8F%B7%E7%9A%84%E5%BC%BA%E8%B0%83"><span class="toc-number">7.2.</span> <span class="toc-text">&#x3D;&#x3D;符号的强调</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%A8%E7%AD%89%E7%AC%A6%E5%8F%B7%E7%9A%84%E5%BC%BA%E8%B0%83"><span class="toc-number">7.3.</span> <span class="toc-text">&#x3D;&#x3D;&#x3D;全等符号的强调</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E5%85%83%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="toc-number">8.</span> <span class="toc-text">三元运算符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%90%E7%AE%97%E7%AC%A6%E7%9A%84%E4%BC%98%E5%85%88%E7%BA%A7"><span class="toc-number">9.</span> <span class="toc-text">运算符的优先级</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Unicode-%E7%BC%96%E7%A0%81"><span class="toc-number">10.</span> <span class="toc-text">Unicode 编码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%88%91%E7%9A%84%E5%85%AC%E4%BC%97%E5%8F%B7"><span class="toc-number">11.</span> <span class="toc-text">我的公众号</span></a></li></ol></div></div><div class="card-widget ads-wrap"><a target="_blank" href="https://www.aliyun.com/activity?userCode=dpj8p3hl" rel="external nofollow noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/aliyun_whuCuE.jpg" style="width:100%;height:100%;object-fit:cover;"></a></div></div></div></main><footer id="footer" style="background-image: url('https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img15_wiXTy2.jpeg')"><div id="footer-wrap"><div class="copyright">&copy;2018 - 2022 By 传礼</div><div class="footer_custom_text"><p style="display:inline-flex">本网站由<a href="https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral" rel="external nofollow noreferrer" target="_blank"><img style="width:60px;height:35px;" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/11/又拍云_logo5_O9kNul.png" title="又拍云"/></a>提供CDN加速/云存储服务</p><p><a style="margin-inline:5px" target="_blank" href="https://hexo.io/" rel="external nofollow noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Frame-Hexo-blue?style=flat&logo=hexo" title="博客框架为Hexo"></a><a style="margin-inline:5px" target="_blank" href="https://butterfly.js.org/" rel="external nofollow noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Theme-Butterfly-6513df?style=flat&logo=bitdefender" title="主题采用butterfly"></a><a style="margin-inline:5px" target="_blank" href="https://www.jsdelivr.com/" rel="external nofollow noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/CDN-jsDelivr-orange?style=flat&logo=jsDelivr" title="本站使用JsDelivr为静态资源提供CDN加速"></a><a style="margin-inline:5px" target="_blank" href="https://github.com/" rel="external nofollow noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Source-Github-d021d6?style=flat&logo=GitHub" title="本站项目由Github托管"></a><a style="margin-inline:5px" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Copyright-BY--NC--SA%204.0-d42328?style=flat&logo=Claris" title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可"></a></p></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="chat_btn" type="button" title="聊天"><i class="fas fa-sms"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">本地搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script src="/js/search/local-search.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"><script>function loadValine () {
+  function initValine () {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: 'zHUfFgUbITfMSQGuSPgS2e3C-gzGzoHsz',
+      appKey: 'yPXpeKX8VJxdFRPEsDaqNgEY',
+      avatar: 'wavatar',
+      serverURLs: 'https://zhuffgub.lc-cn-n1-shared.com',
+      emojiMaps: "",
+      path: window.location.pathname,
+      visitor: true,
+      master: '447d56ab3606de5490a2109d3e441219,135d837ea1033c9787dd307e59884d36'.split(','),
+      friends: '5c?????bfe6rfc72a????e268ad3819c'.split(','),
+      tagMeta: '博主,小伙伴,访客'.split(',')
+        
+    }, {"placeholder":"请输入内容～"}))
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/gh/HCLonely/Valine@latest/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !true) {
+  if (true) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script><script>function addGitalkSource () {
+  const ele = document.createElement('link')
+  ele.rel = 'stylesheet'
+  ele.href= 'https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css'
+  document.getElementsByTagName('head')[0].appendChild(ele)
+}
+
+function loadGitalk () {
+  function initGitalk () {
+    var gitalk = new Gitalk(Object.assign({
+      clientID: '052d9d6486112e93fa50',
+      clientSecret: '6fea35bfb7a17521694a95f705683622976d2f53',
+      repo: 'gitalk',
+      owner: 'iwangchuanli',
+      admin: ['iwangchuanli'],
+      id: 'f33259acd1b08e2c899f45079aa30a46',
+      updateCountCallback: commentCount
+    },null))
+
+    gitalk.render('gitalk-container')
+  }
+
+  if (typeof Gitalk === 'function') initGitalk()
+  else {
+    addGitalkSource()
+    getScript('https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.js').then(initGitalk)
+  }
+}
+
+function commentCount(n){
+  let isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+  if (isCommentCount) {
+    isCommentCount.innerHTML= n
+  }
+}
+
+if ('Valine' === 'Gitalk' || !true) {
+  if (true) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+  else loadGitalk()
+} else {
+  function loadOtherComment () {
+    loadGitalk()
+  }
+}</script></div><div class="aplayer no-destroy" data-id="7355841544" data-server="netease" data-type="playlist" data-fixed="true" data-autoplay="false"> </div><script async src="/js/grayscale.js"></script><script async src="//at.alicdn.com/t/font_1885008_srfhrsykmk.js"></script><script>((window.gitter = {}).chat = {}).options = {
+  disableDefaultChat: true,
+};
+document.addEventListener('gitter-sidecar-ready', (e) => {
+  const GitterChat = e.detail.Chat
+  let chat
+
+  function initGitter () {
+    chat = new GitterChat({
+      room: 'wangchuangli-/community',
+      activationElement: '#chat_btn'
+    });
+  }
+
+  initGitter()
+
+  if (true) {
+    document.addEventListener('pjax:complete', () => {
+      chat.destroy()
+      initGitter()
+    })
+  }
+
+})</script><script src="https://sidecar.gitter.im/dist/sidecar.v1.js" async="async" defer="defer"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/meting@1.2.0/dist/Meting.min.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = ["title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"]):not([href="/music/"]):not([href="/no-pjax/"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.tocScrollFn && window.removeEventListener('scroll', window.tocScrollFn)
+  window.scrollCollect && window.removeEventListener('scroll', scrollCollect)
+
+  typeof preloader === 'object' && preloader.initLoading()
+  document.getElementById('rightside').style.cssText = "opacity: ''; transform: ''"
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+
+  typeof preloader === 'object' && preloader.endLoading()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><!-- hexo injector body_end start --><script data-pjax>
+  function butterfly_swiper_injector_config(){
+    var parent_div_git = document.getElementById('recent-posts');
+    var item_html = '<div class="recent-post-item" style="height: auto;width: 100%"><div class="blog-slider swiper-container-fade swiper-container-horizontal" id="swiper_container"><div class="blog-slider__wrp swiper-wrapper" style="transition-duration: 0ms;"><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" onclick="pjax.loadUrl(&quot;posts/4496.html&quot;);" href="javascript:void(0);" rel="external nofollow noreferrer" alt=""><img width="48" height="48" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img6_L358Nt.jpeg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2018-09-05</span><a class="blog-slider__title" onclick="pjax.loadUrl(&quot;posts/4496.html&quot;);" href="javascript:void(0);" rel="external nofollow noreferrer" alt="">编程系列书单推荐</a><div class="blog-slider__text">再怎么看我也不知道怎么描述它的啦！</div><a class="blog-slider__button" onclick="pjax.loadUrl(&quot;posts/4496.html&quot;);" href="javascript:void(0);" rel="external nofollow noreferrer" alt="">详情       </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" onclick="pjax.loadUrl(&quot;posts/35693.html&quot;);" href="javascript:void(0);" rel="external nofollow noreferrer" alt=""><img width="48" height="48" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img33_fnRUqR.jpeg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2018-11-26</span><a class="blog-slider__title" onclick="pjax.loadUrl(&quot;posts/35693.html&quot;);" href="javascript:void(0);" rel="external nofollow noreferrer" alt="">优秀科技博客订阅</a><div class="blog-slider__text">再怎么看我也不知道怎么描述它的啦！</div><a class="blog-slider__button" onclick="pjax.loadUrl(&quot;posts/35693.html&quot;);" href="javascript:void(0);" rel="external nofollow noreferrer" alt="">详情       </a></div></div></div><div class="blog-slider__pagination swiper-pagination-clickable swiper-pagination-bullets"></div></div></div>';
+    console.log('已挂载butterfly_swiper')
+    parent_div_git.insertAdjacentHTML("afterbegin",item_html)
+    }
+  var elist = 'undefined'.split(',');
+  var cpage = location.pathname;
+  var epage = 'all';
+  var flag = 0;
+
+  for (var i=0;i<elist.length;i++){
+    if (cpage.includes(elist[i])){
+      flag++;
+    }
+  }
+
+  if ((epage ==='all')&&(flag == 0)){
+    butterfly_swiper_injector_config();
+  }
+  else if (epage === cpage){
+    butterfly_swiper_injector_config();
+  }
+  </script><script defer src="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper.min.js"></script><script defer data-pjax src="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper_init.js"></script><!-- hexo injector body_end end --></body></html>

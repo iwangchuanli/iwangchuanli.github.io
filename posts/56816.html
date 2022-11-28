@@ -1,0 +1,625 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title> Commons-net FTPClient completePendingCommand()经常使程序死掉的原因分析以及解决方式_清风一池水的博客-CSDN博客 | 传礼</title><meta name="keywords" content="博客,blog,王传礼,java,python,大数据"><meta name="author" content="传礼,978252321@qq.com"><meta name="copyright" content="传礼"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Commons-net FTPClient completePendingCommand()经常使程序死掉的原因分析以及解决方式commons-net的FTPClient，在使用public InputStream retrieveFileStream(String remote) 方法时需要特别注意，在调用这个接口后，一定要手动close掉返回的InputStream，然后再调用complete">
+<meta property="og:type" content="article">
+<meta property="og:title" content=" Commons-net FTPClient completePendingCommand()经常使程序死掉的原因分析以及解决方式_清风一池水的博客-CSDN博客">
+<meta property="og:url" content="https://iwangchuanli.github.io/posts/56816.html">
+<meta property="og:site_name" content="传礼">
+<meta property="og:description" content="Commons-net FTPClient completePendingCommand()经常使程序死掉的原因分析以及解决方式commons-net的FTPClient，在使用public InputStream retrieveFileStream(String remote) 方法时需要特别注意，在调用这个接口后，一定要手动close掉返回的InputStream，然后再调用complete">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img13_CspVvh.jpeg">
+<meta property="article:published_time" content="2022-11-28T07:04:49.753Z">
+<meta property="article:modified_time" content="2022-08-19T00:44:59.000Z">
+<meta property="article:author" content="传礼">
+<meta property="article:tag" content="博客,blog,王传礼,java,python,大数据">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img13_CspVvh.jpeg"><link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/03/favicons_uH14Fb.gif"><link rel="canonical" href="https://iwangchuanli.github.io/posts/56816"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin=""/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta name="baidu-site-verification" content="qKvGNFZPF9"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?39bd6e37a6e70dc030e6a043a642784e";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: 传礼","link":"链接: ","source":"来源: 传礼","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#121212","position":"bottom-left"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: true,
+  islazyload: true,
+  isAnchor: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: ' Commons-net FTPClient completePendingCommand()经常使程序死掉的原因分析以及解决方式_清风一池水的博客-CSDN博客',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-08-19 00:44:59'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/custom.css"  media="defer" onload="this.media='all'"><!-- hexo injector head_end start --><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiperstyle.css" media="print" onload="this.media='all'"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.1"><link rel="alternate" href="/atom.xml" title="传礼" type="application/atom+xml">
+</head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/03/photo_NZBQPu.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><div class="data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">511</div></a></div><div class="data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">50</div></a></div><div class="data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">22</div></a></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 归档</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-calendar"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 开发</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/Java"><i class="fa-fw fa fa-music"></i><span> Java</span></a></li><li><a class="site-page child" href="/categories/Python"><i class="fa-fw fa fa-music"></i><span> Python</span></a></li><li><a class="site-page child" href="/categories/VUE"><i class="fa-fw fa fa-music"></i><span> VUE</span></a></li><li><a class="site-page child" href="/categories/MySQL"><i class="fa-fw fa fa-music"></i><span> MySQL</span></a></li><li><a class="site-page child" href="/categories/Redis"><i class="fa-fw fa fa-music"></i><span> Redis</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 架构</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/Spring"><i class="fa-fw fa fa-music"></i><span> Spring</span></a></li><li><a class="site-page child" href="/categories/microServeices"><i class="fa-fw fa fa-music"></i><span> 微服务</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 运维</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/Docker"><i class="fa-fw fa fa-music"></i><span> Docker</span></a></li><li><a class="site-page child" href="/categories/Linux"><i class="fa-fw fa fa-music"></i><span> Linux</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 分享</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/tags/Tools"><i class="fa-fw fa fa-music"></i><span> 工具</span></a></li><li><a class="site-page child" href="/tags/guide"><i class="fa-fw fa fa-music"></i><span> 教程</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 项目</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/tags/Tools"><i class="fa-fw fa fa-music"></i><span> 工具</span></a></li><li><a class="site-page child" href="/tags/guide"><i class="fa-fw fa fa-music"></i><span> 教程</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-heartbeat"></i><span> 娱乐</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/gallery/"><i class="fa-fw fa fa-images"></i><span> 图库</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fa fa-film"></i><span> 电影</span></a></li><li><a class="site-page child" href="/books/"><i class="fa-fw fa fa-book"></i><span> 图书</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 我的</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/artitalk/"><i class="fa-fw fa fa-commenting"></i><span> 说说</span></a></li><li><a class="site-page child" href="/todo/"><i class="fa-fw fa fa-flag"></i><span> TODO</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img13_CspVvh.jpeg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">传礼</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 归档</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-calendar"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 开发</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/Java"><i class="fa-fw fa fa-music"></i><span> Java</span></a></li><li><a class="site-page child" href="/categories/Python"><i class="fa-fw fa fa-music"></i><span> Python</span></a></li><li><a class="site-page child" href="/categories/VUE"><i class="fa-fw fa fa-music"></i><span> VUE</span></a></li><li><a class="site-page child" href="/categories/MySQL"><i class="fa-fw fa fa-music"></i><span> MySQL</span></a></li><li><a class="site-page child" href="/categories/Redis"><i class="fa-fw fa fa-music"></i><span> Redis</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 架构</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/Spring"><i class="fa-fw fa fa-music"></i><span> Spring</span></a></li><li><a class="site-page child" href="/categories/microServeices"><i class="fa-fw fa fa-music"></i><span> 微服务</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 运维</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/Docker"><i class="fa-fw fa fa-music"></i><span> Docker</span></a></li><li><a class="site-page child" href="/categories/Linux"><i class="fa-fw fa fa-music"></i><span> Linux</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 分享</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/tags/Tools"><i class="fa-fw fa fa-music"></i><span> 工具</span></a></li><li><a class="site-page child" href="/tags/guide"><i class="fa-fw fa fa-music"></i><span> 教程</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 项目</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/tags/Tools"><i class="fa-fw fa fa-music"></i><span> 工具</span></a></li><li><a class="site-page child" href="/tags/guide"><i class="fa-fw fa fa-music"></i><span> 教程</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-heartbeat"></i><span> 娱乐</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/gallery/"><i class="fa-fw fa fa-images"></i><span> 图库</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fa fa-film"></i><span> 电影</span></a></li><li><a class="site-page child" href="/books/"><i class="fa-fw fa fa-book"></i><span> 图书</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 我的</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/artitalk/"><i class="fa-fw fa fa-commenting"></i><span> 说说</span></a></li><li><a class="site-page child" href="/todo/"><i class="fa-fw fa fa-flag"></i><span> TODO</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title"> Commons-net FTPClient completePendingCommand()经常使程序死掉的原因分析以及解决方式_清风一池水的博客-CSDN博客</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-11-28T07:04:49.753Z" title="发表于 2022-11-28 07:04:49">2022-11-28</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-08-19T00:44:59.000Z" title="更新于 2022-08-19 00:44:59">2022-08-19</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">2.4k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>8分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=" Commons-net FTPClient completePendingCommand()经常使程序死掉的原因分析以及解决方式_清风一池水的博客-CSDN博客"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="Commons-net-FTPClient-completePendingCommand-经常使程序死掉的原因分析以及解决方式"><a href="#Commons-net-FTPClient-completePendingCommand-经常使程序死掉的原因分析以及解决方式" class="headerlink" title="Commons-net FTPClient completePendingCommand()经常使程序死掉的原因分析以及解决方式"></a>Commons-net FTPClient completePendingCommand()经常使程序死掉的原因分析以及解决方式</h1><p>commons-net的FTPClient，在使用public InputStream retrieveFileStream(String remote)</p>
+<p>方法时需要特别注意，在调用这个接口后，一定要手动close掉返回的InputStream，然后再调用completePendingCommand方法，若不是按照这个顺序，则不对，伪代码：</p>
+<ol start="2">
+<li>InputStream is = ftpClient.retrieveFileStream(remote);is.close();ftpClient.completePendingCommand();</li>
+</ol>
+<p>retrieveFileStream的API文档说的有点罗嗦，还可以使用下列方法来替换上述使用方式</p>
+<p>使用一个中间文件来做一个转接，这种方式比上述方法的好处就是自己容易控制，不容易出问题。伪代码如下：</p>
+<ol start="2">
+<li>File localFile = new File(localPath, localFileName);OutputStream output = new FileOutputStream(localFile);ftpClient.retrieveFile(remoteFileName, output);output.close();InputStream input = new FileInputStream(localFile);</li>
+</ol>
+<p>关于原因这里有比较具体的分析: <a target="_blank" rel="noopener external nofollow noreferrer" href="http://marc.info/?l=jakarta-commons-user&amp;m=110443645016720&amp;w=2">http://marc.info/?l=jakarta-commons-user&amp;m=110443645016720&amp;w=2</a></p>
+<p>简单来说：completePendingCommand()会一直在等FTP Server返回226 Transfer complete，但是FTP Server只有在接受到InputStream执行close方法时，才会返回。所以先要执行close方法</p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/wangjian5748"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://profile.csdnimg.cn/C/E/7/3_wangjian5748">清风一池水</a></p>
+<p>关注</p>
+<ul>
+<li><p> <img width="24" height="24" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/newHeart2021White_94579c75d14d418a855d70d0307647cb.png"/> <a id="spanCount"></a>1 </p>
+</li>
+<li><img width="24" height="24" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/newUnHeart2021White_1abac936750e4ef184cde005124137.png"/>
+  </li>
+<li><p><img width="24" height="24" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/newComment2021White_d9a95dab7b0e4194bf685779c16660.png"/>0</p>
+</li>
+<li><p> <img width="24" height="24" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/newCollectWhite_389a21b005204259a0b7853a5a06e71b.png"/> <a id="get-collection"></a>5 </p>
+</li>
+<li><img width="24" height="24" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/newRewardWhite_59a8ae8627954d5b9b7196f843ea60c0.png"/></li>
+<li><img width="24" height="24" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/newShareWhite_4fd3d75f4d1046febfcd38ddf3daa7cb.png"/></li>
+</ul>
+<p>专栏目录</p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/chulaizhadao521147/article/details/105977833"><em>FTPClient</em>中<em>使</em>用<em>completePendingCommand</em>方法时之踩坑</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/chulaizhadao521147">小郝哥的博客</a></p>
+<p> <img width="14" height="14" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/readCountWhite_55b955b9619c4e14ae29c57a9fc996ba.png"/> 1703 </p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/chulaizhadao521147/article/details/105977833"><em>FTPClient</em>中<em>使</em>用<em>completePendingCommand</em>方法之坑 现象：<em>completePendingCommand</em>方法假<em>死</em>，导致请求一直没有返回参数，最终导致超时 <em>使</em>用过程：在<em>使</em>用<em>FTPClient**的</em>时候，用到了<em>ftpClient</em>.retrieveFileStream*(<em>fileName</em>)<em>方法，一切正常</em>的*话，会返回文件流inputStream, <em>complete**Pending</em>Comma…</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/NN_nan/article/details/85065616"><em>FTPClient</em></a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/NN_nan">树洞树洞-单纯记录</a></p>
+<p> <img width="14" height="14" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/readCountWhite_55b955b9619c4e14ae29c57a9fc996ba.png"/> 1595 </p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/NN_nan/article/details/85065616">扫描ftp目录判断文件是否存在 import java.io.IOException; import java.io.InputStream; import org.apache.<em>commons</em>.<em>net</em>.ftp.<em>FTPClient</em>; import org.apache.<em>commons</em>.<em>net</em>.ftp.<em>FTPClient</em>Config; public class Test { pub…</a></p>
+<p><a id="commentBox"></a></p>
+<p>评论</p>
+<p>写评论</p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/iteye_2903/article/details/81857040"><em>Commons</em>*-<strong>net* <em>FTPClient</em> *completePendingCommand</strong>(**)*<em>经常</em>…</a></p>
+<p>6-10</p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/iteye_2903/article/details/81857040">简单来说:<em>completePendingCommand</em>*(**)*会一直在等FTP <em>Server</em>返回226 Transfer <em>complete</em>,但是FTP <em>Server</em>只有在接受到InputStream执行close方法时,才会返回。所以先要执行close方法 本文来自CSDN博客,转载请标明出处:http://blog.csdn.<em>net</em>/wangjian…</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/weixin_32452447/article/details/114863927">java apache <em>commons</em> <em>net</em>_java – apache <em>commons</em> <em>net</em> – <em>completependingcommand</em>返回false</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/weixin_32452447">weixin_32452447的博客</a></p>
+<p> <img width="14" height="14" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/readCountWhite_55b955b9619c4e14ae29c57a9fc996ba.png"/> 126 </p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/weixin_32452447/article/details/114863927">我正在<em>使</em>用apache <em>commons</em>网络库从FTP服务器获取文件.我不需要下载整个文件,只是为了读取标题来确定文件大小.我用来做这个<em>的</em>库是metadata extractor问题是,当我调用client.<em>completePendingCommand</em><em>(**)<em>时,它总是返回false – 但是日期变量是正确打印</em>的</em>.我问过元数据提取器<em>的</em>开发人员,他不知道为什么返回false.有人有解释吗？我不确定是否可以…</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/huanggang028/article/details/41446707"><em>使</em>用Apache <em>Commons</em> <em>Net</em> <em>API</em>实现FTP上传下载过程中<em>的</em>坑点</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/huanggang028">黄刚的技术博客</a></p>
+<p> <img width="14" height="14" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/readCountWhite_55b955b9619c4e14ae29c57a9fc996ba.png"/> 1万+ </p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/huanggang028/article/details/41446707">最近项目需要实现FTP上传、下载功能，采用了Apache <em>Commons</em> <em>Net</em> <em>API</em>。代码很快就完成了，但由于对相关<em>API**使</em>用场景不是很熟悉，走了一些弯路，抽一点时间做一下总结。 A）主动被动模式选择：FTP主动模式和被动模式<em>的</em>详细介绍可以参考（http://blog.csdn.<em>net</em>/huanggang028/article/details/41248663）。大概意思就是主动模式是客户端</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/weixin_39654286/article/details/94733313">ftp下载完成后卡在<em>ftpClient</em>.<em>completePendingCommand</em>*(**)*；</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/weixin_39654286">weixin_39654286的博客</a></p>
+<p> <img width="14" height="14" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/readCountWhite_55b955b9619c4e14ae29c57a9fc996ba.png"/> 6373 </p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/weixin_39654286/article/details/94733313">下载完成后，若有 boolean upNewStatus = <em>ftpClient</em>.<em>completePendingCommand</em><em>(**)</em>;，到此会停住不往下执行，必须重启，否则不会往下执行 * There are a few <em>FTPClient</em> methods that do not <em>complete</em> the * entire sequence of FTP <em>command</em>s to…</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/baidu_33497625/article/details/51024374"><em>FTPClient</em> 处理多个文件时注意添加<em>completePendingCommand</em><br>热门推荐</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/baidu_33497625">憨厚博客</a></p>
+<p> <img width="14" height="14" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/readCountWhite_55b955b9619c4e14ae29c57a9fc996ba.png"/> 1万+ </p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/baidu_33497625/article/details/51024374">//楼主之前做一个项目对接，要求用到操作ftp文件等功能，主要遇到<em>的</em>问题是当要遍历文件夹里<em>的</em>文件时或者下载所有文件时，如果没有<em>使</em>用<em>completePendingCommand</em><em>(**)<em>这方//法，则只能处理一个文件，在处理第二个文件</em>的</em>时候（即第二次调用retrieveFileStream*(<strong>)<em>方法</em>的<em>时候）返回null。//所以处理第二个文件前，必须</em>使<em>用</em>completePendingCommand**(</strong>)*方法</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/weixin_38972910/article/details/120768498">ftp<em>的**completePendingCommand</em>方法<br>最新发布</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/weixin_38972910">weixin_38972910的博客</a></p>
+<p> <img width="14" height="14" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/readCountWhite_55b955b9619c4e14ae29c57a9fc996ba.png"/> 387 </p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/weixin_38972910/article/details/120768498">该方法 <em>ftpClient</em>.<em>completePendingCommand</em><em>(**)</em>; 不可多加或者漏加，否则会导致<em>程序</em>卡<em>死</em></a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/yang1vip/article/details/83666842"><em>commons</em>*-*<em>net</em> <em>FTPClient</em> <em>API</em>存取设计</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/yang1vip">狂奔 Lion</a></p>
+<p> <img width="14" height="14" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/readCountWhite_55b955b9619c4e14ae29c57a9fc996ba.png"/> 68 </p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/yang1vip/article/details/83666842">文件系统无非就是文件<em>的</em>存取和组织结构。 访问一个文件系统<em>的**API</em>也应该是写，读，定位方法（Pathname?/URI?） <em>FTPClient</em>针对文件<em>的</em>保存和获取各提供了两个方法，分别是： [code=”java”]public boolean storeFile*(<em><em>String</em> remote, InputStream local</em>)* public <em>Output</em>Stream storeFil…</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/aotun7642/article/details/102438077"><em>FTPClient</em>中<em>使</em>用<em>completePendingCommand</em>方法注意事项</a></p>
+<p> <img width="14" height="14" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/readCountWhite_55b955b9619c4e14ae29c57a9fc996ba.png"/> 727 </p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/aotun7642/article/details/102438077">方法介绍： * There are a few <em>FTPClient</em> methods that do not <em>complete</em> the * entire sequence of FTP <em>command</em>s to <em>complete</em> a transaction. These * <em>command</em>s require some action by the pro…</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/weixin_33739541/article/details/85843961">Linux下不同服务器间数据传输</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/weixin_33739541">weixin_33739541的博客</a></p>
+<p> <img width="14" height="14" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/readCountWhite_55b955b9619c4e14ae29c57a9fc996ba.png"/> 148 </p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/weixin_33739541/article/details/85843961">因为工作<em>原因</em>，需要<em>经常</em>在不同<em>的</em>服务器见进行文件传输，特别是大文件<em>的</em>传输，因此对linux下不同服务器间数据传输命令和工具进行了研究和总结。主要是rcp,scp,rsync,ftp,sftp,lftp,wget,curl。 rcprcp不是一种安全<em>的**的</em>传输文件<em>的**方式</em>，rcp通过rsh（rsh见下面）来执行远程命令，要<em>使</em>用rcp必须经过一些配置，现在rcp已经被scp取代了，常用scp来进行文件传输。…</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/book_zhouzb/article/details/83364642"><em>使</em>用apache <em>commons</em> 2.0 <em>net</em>组件开发ftp上传大文件<em>使**程序</em>假<em>死</em></a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/book_zhouzb">软件开发随记</a></p>
+<p> <img width="14" height="14" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/readCountWhite_55b955b9619c4e14ae29c57a9fc996ba.png"/> 234 </p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/book_zhouzb/article/details/83364642">最近<em>使</em>用apache上面<em>的**commons</em> 2.0开发ftp<em>使</em>用过程中，因为涉及到大文件<em>的</em>长时间传输，在最后<em>经常</em>导致<em>程序**死掉</em>，不知道大家有没有办法<em>解决</em>。 其中传文件<em>的</em>代码如下： [code=”java”]/** * 上传文件到服务器,新上传和断点续传 * @param remoteFile 远程文件名，在上传之前已经将服务器工作目录做了改变 * @par…</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/iteye_18961/article/details/81832535"><em>commons</em> <em>net</em> 下<em>的<strong>FTPClient</strong>使</em>用时<em>的</em>一些小问题</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/iteye_18961">iteye_18961的博客</a></p>
+<p> <img width="14" height="14" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/readCountWhite_55b955b9619c4e14ae29c57a9fc996ba.png"/> 570 </p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/iteye_18961/article/details/81832535">原始发表时间：2009*-<em>08</em>-<em>20       <em>FTPClient</em>上传文件时，必须先关闭在服务器上打开</em>的<em>输出流对象，而后再等待命令结束后登出，否则会丢失文件</em>的<em>最后部分。     另外，想避免乱码，得用</em>FTPClient* <em>的</em> setControlEncoding 方法来设置编码，不过这仅仅是针对文件内容而言，传输<em>的</em>文件名称如果有中文<em>的</em>话，还是得进行转码。     下面黑体字 标识了…</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/iteye_20622/article/details/81969802">关于FTP<em>程序</em>接收文件<em>的</em>问题</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/iteye_20622">buliedian</a></p>
+<p> <img width="14" height="14" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/readCountWhite_55b955b9619c4e14ae29c57a9fc996ba.png"/> 77 </p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/iteye_20622/article/details/81969802">写有一个ftp值守<em>程序</em>，收取FTP目录中<em>的</em>文件。 发现一个很怪<em>的</em>问题：总是接收失败。从服务器发送<em>的</em>字节数看。1440和2880长度是常见<em>的</em>。我令文件<em>的</em>长度恰好是1440或者2880<em>的</em>整数倍，均是失败<em>的</em>多。后不断调试发现。当文件<em>的</em>体积是1440或者2880加上1440<em>的</em>一半稍多时。文件<em>的</em>体积恰好。每次命令发出，都能一次成功接收。比如我现在用<em>的</em>文件体积是2880+1440/2+10=3610，测试良…</a></p>
+<h3 id="“相关推荐”对你有帮助么？"><a href="#“相关推荐”对你有帮助么？" class="headerlink" title="“相关推荐”对你有帮助么？"></a>“相关推荐”对你有帮助么？</h3><ul>
+<li><img width="24" height="24" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/npsFeel1_4c8ab3947fd44ae0b305038b887cec8b.png"/>
+  
+  非常没帮助</li>
+<li><img width="24" height="24" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/npsFeel2_9b7acd82096a48f6adce59ead58ccb88.png"/>
+  
+  没帮助</li>
+<li><img width="24" height="24" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/npsFeel3_e6a1cc671eff44d190c5cc01fdb82828.png"/>
+  
+  一般</li>
+<li><img width="24" height="24" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/npsFeel4_60b444df234f42b897fe4fc75d3bcd1d.png"/>
+  
+  有帮助</li>
+<li><img width="24" height="24" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/npsFeel5_806038f37ba5473f821d97b8bb42b162.png"/>
+  
+  非常有帮助</li>
+</ul>
+<p>©️2022 CSDN 皮肤主题：大白 设计师：CSDN官方博客 <a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/">返回首页</a></p>
+<ul>
+<li><p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.csdn.net/company/index.html#about">关于我们</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.csdn.net/company/index.html#recruit">招贤纳士</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://marketing.csdn.net/questions/Q2202181741262323995">商务合作</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://marketing.csdn.net/questions/Q2202181748074189855">寻求报道</a></p>
+</li>
+<li><p><img width="16" height="16" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/tel_b567163c9f8649c78fe2e20e410ace33.png"/> 400-660-0108</p>
+</li>
+<li><p><img width="16" height="16" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/email_6029403f7fcf4d3693db53b9efcf9ca5.png"/><a href="mailto:webmaster@csdn.net" rel="external nofollow noreferrer">kefu@csdn.net</a></p>
+</li>
+<li><p><img width="16" height="16" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/cs_30e013e70738465cb2799e41fe0e7f8f.png"/><a target="_blank" rel="noopener external nofollow noreferrer" href="https://csdn.s2.udesk.cn/im_client/?web_plugin_id=29181">在线客服</a></p>
+</li>
+<li><p>工作时间 8:30-22:00</p>
+</li>
+<li><p><a target="_blank" rel="noopener external nofollow noreferrer" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=11010502030143">公安备案号11010502030143</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener external nofollow noreferrer" href="http://beian.miit.gov.cn/publish/query/indexFirst.action">京ICP备19004658号</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://csdnimg.cn/release/live_fe/culture_license.png">京网文〔2020〕1039-165号</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://csdnimg.cn/cdn/content-toolbar/csdn-ICP.png">经营性网站备案信息</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener external nofollow noreferrer" href="http://www.bjjubao.org/">北京互联网违法和不良信息举报中心</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://download.csdn.net/tutelage/home">家长监护</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener external nofollow noreferrer" href="http://www.cyberpolice.cn/">网络110报警服务</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener external nofollow noreferrer" href="http://www.12377.cn/">中国互联网举报中心</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://chrome.google.com/webstore/detail/csdn%E5%BC%80%E5%8F%91%E8%80%85%E5%8A%A9%E6%89%8B/kfkdboecolemdjodhmhmcibjocfopejo?hl=zh-CN">Chrome商店下载</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/blogdevteam/article/details/126135357">账号管理规范</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.csdn.net/company/index.html#statement">版权与免责声明</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/blogdevteam/article/details/90369522">版权申诉</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://img-home.csdnimg.cn/images/20220705052819.png">出版物许可证</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://img-home.csdnimg.cn/images/20210414021142.jpg">营业执照</a></p>
+</li>
+<li><p>©1999-2022北京创新乐知网络技术有限公司</p>
+</li>
+</ul>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/wangjian5748"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://profile.csdnimg.cn/C/E/7/3_wangjian5748"></a></p>
+<p><a id="uid"></a><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/wangjian5748" title="清风一池水">清风一池水</a></p>
+<p>码龄18年 <a target="_blank" rel="noopener external nofollow noreferrer" href="https://i.csdn.net/#/uc/profile?utm_source=14998968" title="暂无认证"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://csdnimg.cn/identity/nocErtification.png"> 暂无认证</a> </p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/wangjian5748">191<br>原创</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/rank/list/weekly">6万+<br>周排名</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/rank/list/total">173万+<br>总排名</a></p>
+<p>97万+</p>
+<p>访问</p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/blogdevteam/article/details/103478461"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://csdnimg.cn/identity/blog7.png"></a></p>
+<p>等级</p>
+<p>1万+</p>
+<p>积分</p>
+<p><a id="fan"></a>457</p>
+<p>粉丝</p>
+<p>51</p>
+<p>获赞</p>
+<p>114</p>
+<p>评论</p>
+<p>46</p>
+<p>收藏</p>
+<img width="36" height="36" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/github_240_d49f4844a69e4674b75da076e6a87578.png"/>
+
+<img width="36" height="36" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/02d34b42a3ee476fb50850304ab67017_e7505fd95bab471bb.png"/>
+
+<img width="36" height="36" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/qixiebiaobing4_240_f5e5ce8032944876aac166112850902.png"/>
+
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://im.csdn.net/chat/wangjian5748">私信</a></p>
+<p><a id="btnAttent"></a>关注</p>
+<img width="32" height="32" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/csdn-sou_4ceadc39a97647e2abf15f70b9052a4e.png"/>
+
+<h3 id="热门文章"><a href="#热门文章" class="headerlink" title="热门文章"></a>热门文章</h3><ul>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/wangjian5748/article/details/577797">关于UnsupportedOperationException异常 <img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://csdnimg.cn/release/blogv2/dist/pc/img/readCountWhite.png"> 123303</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/wangjian5748/article/details/1223455">使用import简化spring的配置文件 <img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://csdnimg.cn/release/blogv2/dist/pc/img/readCountWhite.png"> 77769</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/wangjian5748/article/details/3346720">PreparedStatement的setNull <img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://csdnimg.cn/release/blogv2/dist/pc/img/readCountWhite.png"> 30541</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/wangjian5748/article/details/3404619">Commons-net FTPClient completePendingCommand()经常使程序死掉的原因分析以及解决方式 <img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://csdnimg.cn/release/blogv2/dist/pc/img/readCountWhite.png"> 25241</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/wangjian5748/article/details/7061620">给HTML下拉框选项添加背景色 <img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://csdnimg.cn/release/blogv2/dist/pc/img/readCountWhite.png"> 21322</a></li>
+</ul>
+<h3 id="分类专栏"><a href="#分类专栏" class="headerlink" title="分类专栏"></a>分类专栏</h3><ul>
+<li> <a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/wangjian5748/category_11797733.html"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img-blog.csdnimg.cn/20201014180756916.png?x-oss-process=image/resize,m_fixed,h_64,w_64">  Substrate</a> 1篇</li>
+<li> <a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/wangjian5748/category_11786726.html"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img-blog.csdnimg.cn/20201014180756918.png?x-oss-process=image/resize,m_fixed,h_64,w_64"> Rust语言</a> 1篇</li>
+<li> <a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/wangjian5748/category_247908.html"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img-blog.csdnimg.cn/20201014180756923.png?x-oss-process=image/resize,m_fixed,h_64,w_64"> ajax</a> 8篇</li>
+<li> <a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/wangjian5748/category_624282.html"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img-blog.csdnimg.cn/20201014180756927.png?x-oss-process=image/resize,m_fixed,h_64,w_64"> css</a> 1篇</li>
+<li> <a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/wangjian5748/category_169798.html"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img-blog.csdnimg.cn/20201014180756738.png?x-oss-process=image/resize,m_fixed,h_64,w_64"> DataBase</a> 15篇</li>
+<li> <a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/wangjian5748/category_190216.html"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img-blog.csdnimg.cn/20201014180756757.png?x-oss-process=image/resize,m_fixed,h_64,w_64"> Eclipse</a> 4篇</li>
+<li> <a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/wangjian5748/category_354856.html"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img-blog.csdnimg.cn/20201014180756757.png?x-oss-process=image/resize,m_fixed,h_64,w_64"> extremecomponents</a> 2篇</li>
+<li> <a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/wangjian5748/category_24383.html"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img-blog.csdnimg.cn/20201014180756927.png?x-oss-process=image/resize,m_fixed,h_64,w_64"> GUI</a> </li>
+<li> <a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/wangjian5748/category_169756.html"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img-blog.csdnimg.cn/20201014180756757.png?x-oss-process=image/resize,m_fixed,h_64,w_64"> Hibernate</a> 33篇</li>
+<li> <a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/wangjian5748/category_624283.html"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img-blog.csdnimg.cn/20201014180756927.png?x-oss-process=image/resize,m_fixed,h_64,w_64"> http</a> 1篇</li>
+<li> <a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/wangjian5748/category_24379.html"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img-blog.csdnimg.cn/20201014180756724.png?x-oss-process=image/resize,m_fixed,h_64,w_64"> J2EE</a> 13篇</li>
+<li> <a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/wangjian5748/category_171565.html"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img-blog.csdnimg.cn/20201014180756925.png?x-oss-process=image/resize,m_fixed,h_64,w_64"> Java Article</a> 35篇</li>
+<li> <a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/wangjian5748/category_624281.html"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img-blog.csdnimg.cn/20201014180756928.png?x-oss-process=image/resize,m_fixed,h_64,w_64"> javascript</a> 2篇</li>
+<li> <a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/wangjian5748/category_618404.html"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img-blog.csdnimg.cn/20201014180756925.png?x-oss-process=image/resize,m_fixed,h_64,w_64"> LDAP</a> </li>
+<li> <a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/wangjian5748/category_210723.html"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img-blog.csdnimg.cn/20201014180756927.png?x-oss-process=image/resize,m_fixed,h_64,w_64"> others</a> 4篇</li>
+<li> <a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/wangjian5748/category_618394.html"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img-blog.csdnimg.cn/20201014180756913.png?x-oss-process=image/resize,m_fixed,h_64,w_64"> Portal&amp;Portlet</a> 1篇</li>
+<li> <a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/wangjian5748/category_110982.html"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img-blog.csdnimg.cn/20201014180756927.png?x-oss-process=image/resize,m_fixed,h_64,w_64"> Python</a> 2篇</li>
+<li> <a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/wangjian5748/category_172123.html"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img-blog.csdnimg.cn/20201014180756927.png?x-oss-process=image/resize,m_fixed,h_64,w_64"> Reading</a> </li>
+<li> <a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/wangjian5748/category_110983.html"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img-blog.csdnimg.cn/20201014180756927.png?x-oss-process=image/resize,m_fixed,h_64,w_64"> Regular Expression</a> 2篇</li>
+<li> <a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/wangjian5748/category_169822.html"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img-blog.csdnimg.cn/20201014180756927.png?x-oss-process=image/resize,m_fixed,h_64,w_64"> Ruby</a> 2篇</li>
+<li> <a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/wangjian5748/category_219409.html"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img-blog.csdnimg.cn/20201014180756928.png?x-oss-process=image/resize,m_fixed,h_64,w_64"> Software Engineering</a> 2篇</li>
+<li> <a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/wangjian5748/category_169799.html"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img-blog.csdnimg.cn/20201014180756724.png?x-oss-process=image/resize,m_fixed,h_64,w_64"> Spring Framework</a> 12篇</li>
+<li> <a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/wangjian5748/category_181067.html"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img-blog.csdnimg.cn/20201014180756930.png?x-oss-process=image/resize,m_fixed,h_64,w_64"> struts</a> 4篇</li>
+<li> <a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/wangjian5748/category_183534.html"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img-blog.csdnimg.cn/20201014180756913.png?x-oss-process=image/resize,m_fixed,h_64,w_64"> struts2/webwork2</a> 11篇</li>
+<li> <a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/wangjian5748/category_617818.html"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img-blog.csdnimg.cn/20201014180756738.png?x-oss-process=image/resize,m_fixed,h_64,w_64"> Tivoli</a> 2篇</li>
+<li> <a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/wangjian5748/category_169086.html"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img-blog.csdnimg.cn/20201014180756918.png?x-oss-process=image/resize,m_fixed,h_64,w_64"> Version Control</a> 2篇</li>
+<li> <a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/wangjian5748/category_24380.html"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img-blog.csdnimg.cn/20201014180756922.png?x-oss-process=image/resize,m_fixed,h_64,w_64"> web programming</a> 4篇</li>
+<li> <a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/wangjian5748/category_172811.html"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img-blog.csdnimg.cn/20201014180756927.png?x-oss-process=image/resize,m_fixed,h_64,w_64"> Web(html,javascript,css,http)</a> 10篇</li>
+<li> <a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/wangjian5748/category_303090.html"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img-blog.csdnimg.cn/20201014180756926.png?x-oss-process=image/resize,m_fixed,h_64,w_64"> weblogic</a> 1篇</li>
+<li> <a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/wangjian5748/category_24381.html"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img-blog.csdnimg.cn/20201014180756928.png?x-oss-process=image/resize,m_fixed,h_64,w_64"> weblogic server</a> 3篇</li>
+<li> <a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/wangjian5748/category_860359.html"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img-blog.csdnimg.cn/20201014180756724.png?x-oss-process=image/resize,m_fixed,h_64,w_64"> Flex</a> 1篇</li>
+<li> <a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/wangjian5748/category_949724.html"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img-blog.csdnimg.cn/20201014180756925.png?x-oss-process=image/resize,m_fixed,h_64,w_64"> Web(html</a> 4篇</li>
+<li> <a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/wangjian5748/category_1637639.html"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img-blog.csdnimg.cn/20201014180756724.png?x-oss-process=image/resize,m_fixed,h_64,w_64"> mac</a> 2篇</li>
+<li> <a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/wangjian5748/category_6251139.html"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img-blog.csdnimg.cn/20201014180756724.png?x-oss-process=image/resize,m_fixed,h_64,w_64"> Mybatis</a> 1篇</li>
+<li> <a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/wangjian5748/category_6301252.html"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img-blog.csdnimg.cn/20201014180756919.png?x-oss-process=image/resize,m_fixed,h_64,w_64"> parallels</a> 1篇</li>
+<li> <a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/wangjian5748/category_6301253.html"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img-blog.csdnimg.cn/20201014180756916.png?x-oss-process=image/resize,m_fixed,h_64,w_64"> ubuntu</a> 1篇</li>
+</ul>
+<img width="12" height="7" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/arrowDownWhite_7c258765e6b84ff28c25414182b83347.png"/>
+
+<h3 id="最新评论"><a href="#最新评论" class="headerlink" title="最新评论"></a>最新评论</h3><ul>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/wangjian5748/article/details/1342458#comments_19552092">hibernte中用criteria实现not in功能的方法</a>  <a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/mjcays">sole.mjc:</a> 我用这个操作 ， 查询不出来数据</li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/wangjian5748/article/details/1537614#comments_15161345">javascript可以直接比较时间字符串的大小</a>  <a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/weixin_44220976">Y Shy:</a> 实际上比较的不是时间，而是从左到右逐位数字进行比较——如果比到最后还找不到大小不同的数字，则返回相等</li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/wangjian5748/article/details/3346720#comments_13380697">PreparedStatement的setNull</a>  <a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/qq_40182366">狐狸100:</a> 如果不讲求速度，直接setObject是最为方便的</li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/wangjian5748/article/details/1342458#comments_12861255">hibernte中用criteria实现not in功能的方法</a>  <a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/yoyoseng">yyaosen:</a> 扯淡</li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/wangjian5748/article/details/1537614#comments_10329339">javascript可以直接比较时间字符串的大小</a>  <a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/j717273419">东东小屋:</a> “2019-08-07” &gt; “2019-8-06” false</li>
+</ul>
+<h3 id="您愿意向朋友推荐“博客详情页”吗？"><a href="#您愿意向朋友推荐“博客详情页”吗？" class="headerlink" title="您愿意向朋友推荐“博客详情页”吗？"></a>您愿意向朋友推荐“博客详情页”吗？</h3><ul>
+<li><img width="28" height="28" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/npsFeel1_4c8ab3947fd44ae0b305038b887cec8b.png"/>
+  
+  强烈不推荐</li>
+<li><img width="28" height="28" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/npsFeel2_9b7acd82096a48f6adce59ead58ccb88.png"/>
+  
+  不推荐</li>
+<li><img width="28" height="28" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/npsFeel3_e6a1cc671eff44d190c5cc01fdb82828.png"/>
+  
+  一般般</li>
+<li><img width="28" height="28" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/npsFeel4_60b444df234f42b897fe4fc75d3bcd1d.png"/>
+  
+  推荐</li>
+<li><img width="28" height="28" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/npsFeel5_806038f37ba5473f821d97b8bb42b162.png"/>
+  
+  强烈推荐</li>
+</ul>
+<h3 id="最新文章"><a href="#最新文章" class="headerlink" title="最新文章"></a>最新文章</h3><ul>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/wangjian5748/article/details/124530076">Build the Substrate Kitties Chain（中文翻译）</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/wangjian5748/article/details/124446771">Rust中模式守卫与@绑定的互换</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/wangjian5748/article/details/51852698">Parallels 10(v10.40) ubuntu desktop 14.04.4 无法安装Parallels tools</a></li>
+</ul>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/wangjian5748?type=blog&year=2022&month=05">2022年2篇</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/wangjian5748?type=blog&year=2016&month=07">2016年2篇</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/wangjian5748?type=blog&year=2014&month=10">2014年3篇</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/wangjian5748?type=blog&year=2013&month=09">2013年4篇</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/wangjian5748?type=blog&year=2012&month=09">2012年2篇</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/wangjian5748?type=blog&year=2011&month=12">2011年8篇</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/wangjian5748?type=blog&year=2010&month=07">2010年7篇</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/wangjian5748?type=blog&year=2009&month=12">2009年14篇</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/wangjian5748?type=blog&year=2008&month=12">2008年16篇</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/wangjian5748?type=blog&year=2007&month=12">2007年47篇</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/wangjian5748?type=blog&year=2006&month=12">2006年82篇</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/wangjian5748?type=blog&year=2005&month=06">2005年1篇</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/wangjian5748?type=blog&year=2004&month=07">2004年16篇</a></p>
+<p> <img width="24" height="24" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/iconHideSide_b73272d2f1104ee7a892b9d0e1ded11a.png"/><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/iconSideBeta_1ff3279dcb34490c9fa184d817ad8082.png"> <img width="24" height="24" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/guide_2ef7ea89d1ed4bacb8f634e3a9b2bc90.png"/><img width="24" height="24" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../_resources/kefu_9ed9c4144e9f4de596d669829da9bc50.png"/>举报</p>
+<p><a id="fatkun-drop-panel-close-btn"></a>×</p>
+<p>拖拽到此处</p>
+<p>图片将完成下载</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:978252321@qq.com" rel="external nofollow noreferrer">传礼</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://iwangchuanli.github.io/posts/56816.html">https://iwangchuanli.github.io/posts/56816.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow noreferrer" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://iwangchuanli.github.io" target="_blank">传礼</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img13_CspVvh.jpeg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/posts/35889.html"><img class="prev-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img40_3hoNj2.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">k8s部署jar包_利用Kubernetes(K8S)部署JAVA项目</div></div></a></div><div class="next-post pull-right"><a href="/posts/63409.html"><img class="next-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img13_CspVvh.jpeg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">FTP 日志配置及查看</div></div></a></div></nav><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div><div id="comment-switch"><span class="first-comment">Valine</span><span class="switch-btn"></span><span class="second-comment">Gitalk</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div><div><div id="gitalk-container"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">Nice to meet you ~</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Commons-net-FTPClient-completePendingCommand-%E7%BB%8F%E5%B8%B8%E4%BD%BF%E7%A8%8B%E5%BA%8F%E6%AD%BB%E6%8E%89%E7%9A%84%E5%8E%9F%E5%9B%A0%E5%88%86%E6%9E%90%E4%BB%A5%E5%8F%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E5%BC%8F"><span class="toc-number">1.</span> <span class="toc-text">Commons-net FTPClient completePendingCommand()经常使程序死掉的原因分析以及解决方式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%80%9C%E7%9B%B8%E5%85%B3%E6%8E%A8%E8%8D%90%E2%80%9D%E5%AF%B9%E4%BD%A0%E6%9C%89%E5%B8%AE%E5%8A%A9%E4%B9%88%EF%BC%9F"><span class="toc-number">1.0.1.</span> <span class="toc-text">“相关推荐”对你有帮助么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%83%AD%E9%97%A8%E6%96%87%E7%AB%A0"><span class="toc-number">1.0.2.</span> <span class="toc-text">热门文章</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E7%B1%BB%E4%B8%93%E6%A0%8F"><span class="toc-number">1.0.3.</span> <span class="toc-text">分类专栏</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%80%E6%96%B0%E8%AF%84%E8%AE%BA"><span class="toc-number">1.0.4.</span> <span class="toc-text">最新评论</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%82%A8%E6%84%BF%E6%84%8F%E5%90%91%E6%9C%8B%E5%8F%8B%E6%8E%A8%E8%8D%90%E2%80%9C%E5%8D%9A%E5%AE%A2%E8%AF%A6%E6%83%85%E9%A1%B5%E2%80%9D%E5%90%97%EF%BC%9F"><span class="toc-number">1.0.5.</span> <span class="toc-text">您愿意向朋友推荐“博客详情页”吗？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%80%E6%96%B0%E6%96%87%E7%AB%A0"><span class="toc-number">1.0.6.</span> <span class="toc-text">最新文章</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget ads-wrap"><a target="_blank" href="https://www.aliyun.com/activity?userCode=dpj8p3hl" rel="external nofollow noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/aliyun_whuCuE.jpg" style="width:100%;height:100%;object-fit:cover;"></a></div></div></div></main><footer id="footer" style="background-image: url('https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img13_CspVvh.jpeg')"><div id="footer-wrap"><div class="copyright">&copy;2018 - 2022 By 传礼</div><div class="footer_custom_text"><p style="display:inline-flex">本网站由<a href="https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral" rel="external nofollow noreferrer" target="_blank"><img style="width:60px;height:35px;" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/11/又拍云_logo5_O9kNul.png" title="又拍云"/></a>提供CDN加速/云存储服务</p><p><a style="margin-inline:5px" target="_blank" href="https://hexo.io/" rel="external nofollow noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Frame-Hexo-blue?style=flat&logo=hexo" title="博客框架为Hexo"></a><a style="margin-inline:5px" target="_blank" href="https://butterfly.js.org/" rel="external nofollow noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Theme-Butterfly-6513df?style=flat&logo=bitdefender" title="主题采用butterfly"></a><a style="margin-inline:5px" target="_blank" href="https://www.jsdelivr.com/" rel="external nofollow noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/CDN-jsDelivr-orange?style=flat&logo=jsDelivr" title="本站使用JsDelivr为静态资源提供CDN加速"></a><a style="margin-inline:5px" target="_blank" href="https://github.com/" rel="external nofollow noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Source-Github-d021d6?style=flat&logo=GitHub" title="本站项目由Github托管"></a><a style="margin-inline:5px" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Copyright-BY--NC--SA%204.0-d42328?style=flat&logo=Claris" title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可"></a></p></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="chat_btn" type="button" title="聊天"><i class="fas fa-sms"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">本地搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script src="/js/search/local-search.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"><script>function loadValine () {
+  function initValine () {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: 'zHUfFgUbITfMSQGuSPgS2e3C-gzGzoHsz',
+      appKey: 'yPXpeKX8VJxdFRPEsDaqNgEY',
+      avatar: 'wavatar',
+      serverURLs: 'https://zhuffgub.lc-cn-n1-shared.com',
+      emojiMaps: "",
+      path: window.location.pathname,
+      visitor: true,
+      master: '447d56ab3606de5490a2109d3e441219,135d837ea1033c9787dd307e59884d36'.split(','),
+      friends: '5c?????bfe6rfc72a????e268ad3819c'.split(','),
+      tagMeta: '博主,小伙伴,访客'.split(',')
+        
+    }, {"placeholder":"请输入内容～"}))
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/gh/HCLonely/Valine@latest/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !true) {
+  if (true) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script><script>function addGitalkSource () {
+  const ele = document.createElement('link')
+  ele.rel = 'stylesheet'
+  ele.href= 'https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css'
+  document.getElementsByTagName('head')[0].appendChild(ele)
+}
+
+function loadGitalk () {
+  function initGitalk () {
+    var gitalk = new Gitalk(Object.assign({
+      clientID: '052d9d6486112e93fa50',
+      clientSecret: '6fea35bfb7a17521694a95f705683622976d2f53',
+      repo: 'gitalk',
+      owner: 'iwangchuanli',
+      admin: ['iwangchuanli'],
+      id: '49d3c22443240e711f99c0f76d71b2b7',
+      updateCountCallback: commentCount
+    },null))
+
+    gitalk.render('gitalk-container')
+  }
+
+  if (typeof Gitalk === 'function') initGitalk()
+  else {
+    addGitalkSource()
+    getScript('https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.js').then(initGitalk)
+  }
+}
+
+function commentCount(n){
+  let isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+  if (isCommentCount) {
+    isCommentCount.innerHTML= n
+  }
+}
+
+if ('Valine' === 'Gitalk' || !true) {
+  if (true) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+  else loadGitalk()
+} else {
+  function loadOtherComment () {
+    loadGitalk()
+  }
+}</script></div><div class="aplayer no-destroy" data-id="7355841544" data-server="netease" data-type="playlist" data-fixed="true" data-autoplay="false"> </div><script async src="/js/grayscale.js"></script><script async src="//at.alicdn.com/t/font_1885008_srfhrsykmk.js"></script><script>((window.gitter = {}).chat = {}).options = {
+  disableDefaultChat: true,
+};
+document.addEventListener('gitter-sidecar-ready', (e) => {
+  const GitterChat = e.detail.Chat
+  let chat
+
+  function initGitter () {
+    chat = new GitterChat({
+      room: 'wangchuangli-/community',
+      activationElement: '#chat_btn'
+    });
+  }
+
+  initGitter()
+
+  if (true) {
+    document.addEventListener('pjax:complete', () => {
+      chat.destroy()
+      initGitter()
+    })
+  }
+
+})</script><script src="https://sidecar.gitter.im/dist/sidecar.v1.js" async="async" defer="defer"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/meting@1.2.0/dist/Meting.min.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = ["title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"]):not([href="/music/"]):not([href="/no-pjax/"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.tocScrollFn && window.removeEventListener('scroll', window.tocScrollFn)
+  window.scrollCollect && window.removeEventListener('scroll', scrollCollect)
+
+  typeof preloader === 'object' && preloader.initLoading()
+  document.getElementById('rightside').style.cssText = "opacity: ''; transform: ''"
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+
+  typeof preloader === 'object' && preloader.endLoading()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><!-- hexo injector body_end start --><script data-pjax>
+  function butterfly_swiper_injector_config(){
+    var parent_div_git = document.getElementById('recent-posts');
+    var item_html = '<div class="recent-post-item" style="height: auto;width: 100%"><div class="blog-slider swiper-container-fade swiper-container-horizontal" id="swiper_container"><div class="blog-slider__wrp swiper-wrapper" style="transition-duration: 0ms;"><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" onclick="pjax.loadUrl(&quot;posts/4496.html&quot;);" href="javascript:void(0);" rel="external nofollow noreferrer" alt=""><img width="48" height="48" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img6_L358Nt.jpeg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2018-09-05</span><a class="blog-slider__title" onclick="pjax.loadUrl(&quot;posts/4496.html&quot;);" href="javascript:void(0);" rel="external nofollow noreferrer" alt="">编程系列书单推荐</a><div class="blog-slider__text">再怎么看我也不知道怎么描述它的啦！</div><a class="blog-slider__button" onclick="pjax.loadUrl(&quot;posts/4496.html&quot;);" href="javascript:void(0);" rel="external nofollow noreferrer" alt="">详情       </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" onclick="pjax.loadUrl(&quot;posts/35693.html&quot;);" href="javascript:void(0);" rel="external nofollow noreferrer" alt=""><img width="48" height="48" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img33_fnRUqR.jpeg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2018-11-26</span><a class="blog-slider__title" onclick="pjax.loadUrl(&quot;posts/35693.html&quot;);" href="javascript:void(0);" rel="external nofollow noreferrer" alt="">优秀科技博客订阅</a><div class="blog-slider__text">再怎么看我也不知道怎么描述它的啦！</div><a class="blog-slider__button" onclick="pjax.loadUrl(&quot;posts/35693.html&quot;);" href="javascript:void(0);" rel="external nofollow noreferrer" alt="">详情       </a></div></div></div><div class="blog-slider__pagination swiper-pagination-clickable swiper-pagination-bullets"></div></div></div>';
+    console.log('已挂载butterfly_swiper')
+    parent_div_git.insertAdjacentHTML("afterbegin",item_html)
+    }
+  var elist = 'undefined'.split(',');
+  var cpage = location.pathname;
+  var epage = 'all';
+  var flag = 0;
+
+  for (var i=0;i<elist.length;i++){
+    if (cpage.includes(elist[i])){
+      flag++;
+    }
+  }
+
+  if ((epage ==='all')&&(flag == 0)){
+    butterfly_swiper_injector_config();
+  }
+  else if (epage === cpage){
+    butterfly_swiper_injector_config();
+  }
+  </script><script defer src="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper.min.js"></script><script defer data-pjax src="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper_init.js"></script><!-- hexo injector body_end end --></body></html>

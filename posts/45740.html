@@ -1,0 +1,484 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>工具技巧 | 传礼</title><meta name="keywords" content="博客,blog,王传礼,java,python,大数据"><meta name="author" content="传礼,978252321@qq.com"><meta name="copyright" content="传礼"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="工具技巧MyEclipse myeclipse一直停留在Loading workbench界面上的处理办法 eclipse导入新的maven项目时，pom.xml第一行报错解决办法 快速生成Getter&#x2F;Setter注释模板 myeclipse未正常关闭导致启动失败 javax.servlet.jsp.JspException找不到 eclipse2018发布项目  IntelliJ IDEA 设">
+<meta property="og:type" content="article">
+<meta property="og:title" content="工具技巧">
+<meta property="og:url" content="https://iwangchuanli.github.io/posts/45740.html">
+<meta property="og:site_name" content="传礼">
+<meta property="og:description" content="工具技巧MyEclipse myeclipse一直停留在Loading workbench界面上的处理办法 eclipse导入新的maven项目时，pom.xml第一行报错解决办法 快速生成Getter&#x2F;Setter注释模板 myeclipse未正常关闭导致启动失败 javax.servlet.jsp.JspException找不到 eclipse2018发布项目  IntelliJ IDEA 设">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img12_dEurxP.jpeg">
+<meta property="article:published_time" content="2022-11-28T07:04:49.749Z">
+<meta property="article:modified_time" content="2022-04-18T01:41:31.000Z">
+<meta property="article:author" content="传礼">
+<meta property="article:tag" content="博客,blog,王传礼,java,python,大数据">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img12_dEurxP.jpeg"><link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/03/favicons_uH14Fb.gif"><link rel="canonical" href="https://iwangchuanli.github.io/posts/45740"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin=""/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta name="baidu-site-verification" content="qKvGNFZPF9"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?39bd6e37a6e70dc030e6a043a642784e";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: 传礼","link":"链接: ","source":"来源: 传礼","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#121212","position":"bottom-left"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: true,
+  islazyload: true,
+  isAnchor: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '工具技巧',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-04-18 01:41:31'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/custom.css"  media="defer" onload="this.media='all'"><!-- hexo injector head_end start --><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiperstyle.css" media="print" onload="this.media='all'"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.1"><link rel="alternate" href="/atom.xml" title="传礼" type="application/atom+xml">
+</head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/03/photo_NZBQPu.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><div class="data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">511</div></a></div><div class="data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">50</div></a></div><div class="data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">22</div></a></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 归档</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-calendar"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 开发</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/Java"><i class="fa-fw fa fa-music"></i><span> Java</span></a></li><li><a class="site-page child" href="/categories/Python"><i class="fa-fw fa fa-music"></i><span> Python</span></a></li><li><a class="site-page child" href="/categories/VUE"><i class="fa-fw fa fa-music"></i><span> VUE</span></a></li><li><a class="site-page child" href="/categories/MySQL"><i class="fa-fw fa fa-music"></i><span> MySQL</span></a></li><li><a class="site-page child" href="/categories/Redis"><i class="fa-fw fa fa-music"></i><span> Redis</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 架构</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/Spring"><i class="fa-fw fa fa-music"></i><span> Spring</span></a></li><li><a class="site-page child" href="/categories/microServeices"><i class="fa-fw fa fa-music"></i><span> 微服务</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 运维</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/Docker"><i class="fa-fw fa fa-music"></i><span> Docker</span></a></li><li><a class="site-page child" href="/categories/Linux"><i class="fa-fw fa fa-music"></i><span> Linux</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 分享</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/tags/Tools"><i class="fa-fw fa fa-music"></i><span> 工具</span></a></li><li><a class="site-page child" href="/tags/guide"><i class="fa-fw fa fa-music"></i><span> 教程</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 项目</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/tags/Tools"><i class="fa-fw fa fa-music"></i><span> 工具</span></a></li><li><a class="site-page child" href="/tags/guide"><i class="fa-fw fa fa-music"></i><span> 教程</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-heartbeat"></i><span> 娱乐</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/gallery/"><i class="fa-fw fa fa-images"></i><span> 图库</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fa fa-film"></i><span> 电影</span></a></li><li><a class="site-page child" href="/books/"><i class="fa-fw fa fa-book"></i><span> 图书</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 我的</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/artitalk/"><i class="fa-fw fa fa-commenting"></i><span> 说说</span></a></li><li><a class="site-page child" href="/todo/"><i class="fa-fw fa fa-flag"></i><span> TODO</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img12_dEurxP.jpeg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">传礼</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 归档</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-calendar"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 开发</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/Java"><i class="fa-fw fa fa-music"></i><span> Java</span></a></li><li><a class="site-page child" href="/categories/Python"><i class="fa-fw fa fa-music"></i><span> Python</span></a></li><li><a class="site-page child" href="/categories/VUE"><i class="fa-fw fa fa-music"></i><span> VUE</span></a></li><li><a class="site-page child" href="/categories/MySQL"><i class="fa-fw fa fa-music"></i><span> MySQL</span></a></li><li><a class="site-page child" href="/categories/Redis"><i class="fa-fw fa fa-music"></i><span> Redis</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 架构</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/Spring"><i class="fa-fw fa fa-music"></i><span> Spring</span></a></li><li><a class="site-page child" href="/categories/microServeices"><i class="fa-fw fa fa-music"></i><span> 微服务</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 运维</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/Docker"><i class="fa-fw fa fa-music"></i><span> Docker</span></a></li><li><a class="site-page child" href="/categories/Linux"><i class="fa-fw fa fa-music"></i><span> Linux</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 分享</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/tags/Tools"><i class="fa-fw fa fa-music"></i><span> 工具</span></a></li><li><a class="site-page child" href="/tags/guide"><i class="fa-fw fa fa-music"></i><span> 教程</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 项目</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/tags/Tools"><i class="fa-fw fa fa-music"></i><span> 工具</span></a></li><li><a class="site-page child" href="/tags/guide"><i class="fa-fw fa fa-music"></i><span> 教程</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-heartbeat"></i><span> 娱乐</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/gallery/"><i class="fa-fw fa fa-images"></i><span> 图库</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fa fa-film"></i><span> 电影</span></a></li><li><a class="site-page child" href="/books/"><i class="fa-fw fa fa-book"></i><span> 图书</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 我的</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/artitalk/"><i class="fa-fw fa fa-commenting"></i><span> 说说</span></a></li><li><a class="site-page child" href="/todo/"><i class="fa-fw fa fa-flag"></i><span> TODO</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">工具技巧</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-11-28T07:04:49.749Z" title="发表于 2022-11-28 07:04:49">2022-11-28</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-04-18T01:41:31.000Z" title="更新于 2022-04-18 01:41:31">2022-04-18</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.1k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>3分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="工具技巧"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="工具技巧"><a href="#工具技巧" class="headerlink" title="工具技巧"></a>工具技巧</h2><h3 id="MyEclipse"><a href="#MyEclipse" class="headerlink" title="MyEclipse"></a>MyEclipse</h3><ul>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/mHeartbeats/notes/issues/1">myeclipse一直停留在Loading workbench界面上的处理办法</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/mHeartbeats/notes/issues/6">eclipse导入新的maven项目时，pom.xml第一行报错解决办法</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/mHeartbeats/notes/issues/7">快速生成Getter/Setter注释模板</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/mHeartbeats/notes/issues/10">myeclipse未正常关闭导致启动失败</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/mHeartbeats/notes/issues/32">javax.servlet.jsp.JspException找不到</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/mHeartbeats/notes/issues/33">eclipse2018发布项目</a></li>
+</ul>
+<h3 id="IntelliJ-IDEA"><a href="#IntelliJ-IDEA" class="headerlink" title="IntelliJ IDEA"></a>IntelliJ IDEA</h3><ul>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/mHeartbeats/notes/issues/11">设置 IDEA 中的 Tab 键为 4 个空格</a> </li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/mHeartbeats/notes/issues/12">IntelliJ IDEA设置统一编码utf-8</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/mHeartbeats/notes/issues/26">IEDA 项目中的五种目录类型</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/mHeartbeats/notes/issues/36">Intellij Idea Spring Boot 热部署</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/mHeartbeats/notes/issues/83">Idea 导入多个maven项目 #83</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/mHeartbeats/notes/issues/84">Intellij IDEA神器使用技巧 #84</a></li>
+</ul>
+<h3 id="VSCode"><a href="#VSCode" class="headerlink" title="VSCode"></a>VSCode</h3><ul>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/mHeartbeats/notes/issues/71">Vue代码格式化 #71</a></li>
+<li>[VSCode优质插件整理]</li>
+</ul>
+<h3 id="插件"><a href="#插件" class="headerlink" title="插件"></a>插件</h3><ul>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/mHeartbeats/notes/issues/8">IntelliJ IDEA 的 Java 热部署插件激活</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/mHeartbeats/notes/issues/23">Maven安装与环境配置（Windows）</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/mHeartbeats/notes/issues/27">idea热部署内存溢出：java.lang.OutOfMemoryError</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/mHeartbeats/notes/issues/87">JRebel 破解最新办法 #87</a></li>
+</ul>
+<h3 id="项目打包发布"><a href="#项目打包发布" class="headerlink" title="项目打包发布"></a>项目打包发布</h3><ul>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="http://www.hangge.com/blog/cache/detail_2101.html">Cordova - 打包Vue项目的详细步骤（将Vue.js项目编译成App）</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="http://www.ruanyifeng.com/blog/2019/02/npx.html">npx使用教程——阮一峰博客</a></li>
+</ul>
+<h3 id="项目环境搭建"><a href="#项目环境搭建" class="headerlink" title="项目环境搭建"></a>项目环境搭建</h3><ul>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="http://www.hangge.com/blog/cache/detail_1294.html">Android - Windows下开发环境的搭建（附：编写运行一个简单样例）</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/mHeartbeats/notes/issues/81">前端包管理工具常见问题汇总 #81</a></li>
+</ul>
+<h3 id="代码规范类插件"><a href="#代码规范类插件" class="headerlink" title="代码规范类插件"></a>代码规范类插件</h3><ul>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/mHeartbeats/notes/issues/62">Eslint常用校验规则 #62</a></li>
+</ul>
+<h3 id="团队协作"><a href="#团队协作" class="headerlink" title="团队协作"></a>团队协作</h3><ul>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/mHeartbeats/notes/issues/77">Git忽略规则及 .gitignore 规则不生效的解决办法 #77</a></li>
+</ul>
+<h3 id="数据可视化"><a href="#数据可视化" class="headerlink" title="数据可视化"></a>数据可视化</h3><h4 id="echarts踩坑"><a href="#echarts踩坑" class="headerlink" title="echarts踩坑"></a>echarts踩坑</h4><ul>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/mHeartbeats/notes/issues/41">echarts饼图label文字重叠问题</a></li>
+</ul>
+<h2 id="编程语言"><a href="#编程语言" class="headerlink" title="编程语言"></a>编程语言</h2><h3 id="javaScript"><a href="#javaScript" class="headerlink" title="javaScript"></a>javaScript</h3><ul>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/pokerLife/notes/blob/master/js-skills.md">JavaScript 编码技巧整理</a></li>
+<li><a href="">相等比较中使用 Object.is()</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/mHeartbeats/notes/issues/28">js jquery获取元素个数、字符数量,数据个数等</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/mHeartbeats/notes/issues/29">js数组操作，数组处理，数组对象，数组分割split，连接成字符串join，字符串转为数组</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/mHeartbeats/notes/issues/46">es6变量解构赋值的用途</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/mHeartbeats/notes/issues/54">Promise 必知必会（十道题）</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/mHeartbeats/notes/issues/55">常用Map和Set操作速记 #55</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="http://geocld.github.io/2016/03/10/javascript_plugin/">原生JavaScript插件编写指南</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="http://www.ruanyifeng.com/blog/2009/09/find_element_s_position_using_javascript.html">用Javascript获取页面元素的位置-阮一峰</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="http://www.ruanyifeng.com/blog/2014/03/undefined-vs-null.html">undefined与null的区别-阮一峰</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/mHeartbeats/notes/issues/64">JavaScript类数组对象 #64</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/mHeartbeats/notes/issues/65">if(variable) ToBoolean 转换规则 #65</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/mHeartbeats/notes/issues/66">类型转换之「抽象值操作」 #66</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/mHeartbeats/notes/issues/68">instanceof实现原理 #68</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/mHeartbeats/notes/issues/69">在JS中什么是变量提升？什么是暂时性死区？ #69</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/mHeartbeats/notes/issues/70">JavaScript中对象的枚举/遍历（enumeration） #70</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/mHeartbeats/notes/issues/72">JavaScript双感叹号”!!”的作用 #72</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/mHeartbeats/notes/issues/74">JavaScript新特性 #74</a><h3 id="java"><a href="#java" class="headerlink" title="java"></a>java</h3></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/mHeartbeats/notes/issues/2">java异常处理</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/mHeartbeats/notes/issues/25">ibatis获取主键方法</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/mHeartbeats/notes/issues/78">Java项目开发常见错误</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/mHeartbeats/notes/issues/42">Spring-Boot工程打成war包</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/pokerLife/wiki/issues/99">SpringBoot 中 Mybatis 打印 sql</a><h3 id="html"><a href="#html" class="headerlink" title="html"></a>html</h3></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/pokerLife/notes/blob/master/Html5%E6%A0%87%E7%AD%BE%E7%94%A8%E6%B3%95%E6%80%BB%E7%BB%93">Html5常用标签用法总结</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/mHeartbeats/notes/issues/34">移动端常用meta标签</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/mHeartbeats/notes/issues/59">HTML5 DOM #59</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/mHeartbeats/notes/issues/59">网页适配 iPhoneX 初体验 #76</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/pokerLife/notes/issues/88">HTML5视频播放 video标签最佳实践 #88</a><h3 id="css-less-sass-postcss"><a href="#css-less-sass-postcss" class="headerlink" title="css/less/sass/postcss"></a>css/less/sass/postcss</h3></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/mHeartbeats/notes/issues/51">伪类 + transform 实现移动端1物理像素线</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/mHeartbeats/notes/issues/52">移动端图片保持宽高比采用padding-top 实现</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html">阮一峰 Flex 布局教程：语法篇</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="http://www.ruanyifeng.com/blog/2015/07/flex-examples.html">阮一峰 Flex 布局教程：实例篇</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.zhangxinxu.com/wordpress/2015/11/css3-border-radius-tips/">张鑫旭 CSS3 border-radius知多少？</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/mHeartbeats/notes/issues/60">css布局之box-sizing布局指南 #60</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/pokerLife/notes/issues/63">值得参考的CSS理论：OOCSS、 SMACSS、 BEM #63</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/pokerLife/notes/issues/75">解决 Android 浏览器下 line-height 垂直居中偏离问题 #75</a><h3 id="xml"><a href="#xml" class="headerlink" title="xml"></a>xml</h3></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/mHeartbeats/notes/issues/17">XML文档规则 — 特殊字符解决办法</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/mHeartbeats/notes/issues/18">XML命名空间</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/mHeartbeats/notes/issues/19">XPath语言</a><h3 id="前端UI框架"><a href="#前端UI框架" class="headerlink" title="前端UI框架"></a>前端UI框架</h3></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/mHeartbeats/notes/issues/61">layui使用技巧</a><h3 id="node-js"><a href="#node-js" class="headerlink" title="node.js"></a>node.js</h3></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/mHeartbeats/notes/issues/50">Express路由规则 #50</a><h3 id="vue相关整理"><a href="#vue相关整理" class="headerlink" title="vue相关整理"></a>vue相关整理</h3></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/pokerLife/notes/blob/master/vue-ui-components.md">vue组件以及插件等收集整理</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/pokerLife/notes/blob/master/vue-question.md">vue项目问题整理</a><h4 id="vue专题网站"><a href="#vue专题网站" class="headerlink" title="vue专题网站"></a>vue专题网站</h4></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.awesomes.cn/subject/vue#%E5%BA%94%E7%94%A8-%E6%A1%86%E6%9E%B6">awesomes关于vue的专题</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="http://elickzhao.github.io/2017/08/vue%E4%B8%80%E4%BA%9B%E7%89%B9%E5%88%AB%E6%9C%89%E7%94%A8%E7%9A%84%E6%8F%92%E4%BB%B6/">一些有用的vue插件</a><h3 id="ssm碰到的坑"><a href="#ssm碰到的坑" class="headerlink" title="ssm碰到的坑"></a>ssm碰到的坑</h3></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/mHeartbeats/notes/issues/35">springMvc web.xml报错:class path resource config/spring/springmvc.xml cannot be opened because it does</a><h3 id=""><a href="#" class="headerlink" title=""></a></h3></li>
+</ul>
+<h2 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h2><h3 id="Oracle"><a href="#Oracle" class="headerlink" title="Oracle"></a>Oracle</h3><ul>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/pokerLife/notes/blob/master/oracle.md">Oracle速查速记手册知识文档</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/pokerLife/notes/issues/3">Oracle查看某个用户序列及序列总数</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/pokerLife/notes/issues/15">解决ORA-01659：表空间不足的问题</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/pokerLife/notes/issues/16">oracle查询某个表空间下的所有序列并生成创建对应序列的sql</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/pokerLife/notes/issues/24">Oracle触发器学习笔记</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/pokerLife/notes/issues/43">oracle 用更高效的instr方法代替 LIKE 关键字的模糊查询</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/pokerLife/notes/issues/44">sql语句where 1=1和1=2的作用</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/pokerLife/notes/issues/45">Oracle 格式化日期 </a></li>
+</ul>
+<h3 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL"></a>MySQL</h3><ul>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/pokerLife/notes/issues/82">Mysql相关查询</a></li>
+</ul>
+<h3 id="数据库连接工具"><a href="#数据库连接工具" class="headerlink" title="数据库连接工具"></a>数据库连接工具</h3><ul>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/DoubleLabyrinth/navicat-keygen">Navicat 激活工具使用(版本12.1.12已通过) </a></li>
+</ul>
+<h3 id="MongoDB"><a href="#MongoDB" class="headerlink" title="MongoDB"></a>MongoDB</h3><ul>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/pokerLife/notes/issues/48">MongoDB 条件操作符</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/pokerLife/notes/issues/49">MongoDB 查询文档</a></li>
+</ul>
+<h3 id="plsqldev"><a href="#plsqldev" class="headerlink" title="plsqldev"></a>plsqldev</h3><ul>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/mHeartbeats/notes/issues/40">Oracle配置PL/SQL Developer连接数据库</a></li>
+</ul>
+<h2 id="操作系统"><a href="#操作系统" class="headerlink" title="操作系统"></a>操作系统</h2><h3 id="系统安装"><a href="#系统安装" class="headerlink" title="系统安装"></a>系统安装</h3><ul>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.jianshu.com/p/5ee2f83e83bf">UEFI+GPT+双硬盘下 搭建Windos10 和CentOS7 双系统</a></li>
+</ul>
+<h3 id="Windows"><a href="#Windows" class="headerlink" title="Windows"></a>Windows</h3><ul>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/mHeartbeats/notes/issues/14">批量提取文件夹内文件名</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/mHeartbeats/notes/issues/20">Win键+数字键（0~9）快速启动任务栏程序</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/mHeartbeats/notes/issues/80">Windows奇淫技巧 #80</a></li>
+</ul>
+<h3 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h3><ul>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/mHeartbeats/notes/issues/79">linux下软件安装教程 #79</a></li>
+</ul>
+<h2 id="项目构建管理"><a href="#项目构建管理" class="headerlink" title="项目构建管理"></a>项目构建管理</h2><h3 id="Maven"><a href="#Maven" class="headerlink" title="Maven"></a>Maven</h3><ul>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/mHeartbeats/notes/issues/29">maven阿里云中央仓库</a></li>
+</ul>
+<h1 id="系统架构、部署"><a href="#系统架构、部署" class="headerlink" title="系统架构、部署"></a>系统架构、部署</h1><ul>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="http://www.ruanyifeng.com/blog/2015/09/continuous-integration.html">持续集成/持续交付/持续部署</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/mHeartbeats/notes/issues/73">正向代理和反向代理 #73</a></li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:978252321@qq.com" rel="external nofollow noreferrer">传礼</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://iwangchuanli.github.io/posts/45740.html">https://iwangchuanli.github.io/posts/45740.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow noreferrer" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://iwangchuanli.github.io" target="_blank">传礼</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img12_dEurxP.jpeg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/posts/11626.html"><img class="prev-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img38_bzTtYG.jpeg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">临时网关的添加</div></div></a></div><div class="next-post pull-right"><a href="/posts/24393.html"><img class="next-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img11_QkUlco.jpeg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">常见安全算法（MD5、SHA1、Base64等等）总结</div></div></a></div></nav><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div><div id="comment-switch"><span class="first-comment">Valine</span><span class="switch-btn"></span><span class="second-comment">Gitalk</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div><div><div id="gitalk-container"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">Nice to meet you ~</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B7%A5%E5%85%B7%E6%8A%80%E5%B7%A7"><span class="toc-number">1.</span> <span class="toc-text">工具技巧</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#MyEclipse"><span class="toc-number">1.1.</span> <span class="toc-text">MyEclipse</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#IntelliJ-IDEA"><span class="toc-number">1.2.</span> <span class="toc-text">IntelliJ IDEA</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#VSCode"><span class="toc-number">1.3.</span> <span class="toc-text">VSCode</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8F%92%E4%BB%B6"><span class="toc-number">1.4.</span> <span class="toc-text">插件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E6%89%93%E5%8C%85%E5%8F%91%E5%B8%83"><span class="toc-number">1.5.</span> <span class="toc-text">项目打包发布</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA"><span class="toc-number">1.6.</span> <span class="toc-text">项目环境搭建</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83%E7%B1%BB%E6%8F%92%E4%BB%B6"><span class="toc-number">1.7.</span> <span class="toc-text">代码规范类插件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%A2%E9%98%9F%E5%8D%8F%E4%BD%9C"><span class="toc-number">1.8.</span> <span class="toc-text">团队协作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96"><span class="toc-number">1.9.</span> <span class="toc-text">数据可视化</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#echarts%E8%B8%A9%E5%9D%91"><span class="toc-number">1.9.1.</span> <span class="toc-text">echarts踩坑</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80"><span class="toc-number">2.</span> <span class="toc-text">编程语言</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#javaScript"><span class="toc-number">2.1.</span> <span class="toc-text">javaScript</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#java"><span class="toc-number">2.2.</span> <span class="toc-text">java</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#html"><span class="toc-number">2.3.</span> <span class="toc-text">html</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#css-less-sass-postcss"><span class="toc-number">2.4.</span> <span class="toc-text">css&#x2F;less&#x2F;sass&#x2F;postcss</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#xml"><span class="toc-number">2.5.</span> <span class="toc-text">xml</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%8D%E7%AB%AFUI%E6%A1%86%E6%9E%B6"><span class="toc-number">2.6.</span> <span class="toc-text">前端UI框架</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#node-js"><span class="toc-number">2.7.</span> <span class="toc-text">node.js</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#vue%E7%9B%B8%E5%85%B3%E6%95%B4%E7%90%86"><span class="toc-number">2.8.</span> <span class="toc-text">vue相关整理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#vue%E4%B8%93%E9%A2%98%E7%BD%91%E7%AB%99"><span class="toc-number">2.8.1.</span> <span class="toc-text">vue专题网站</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ssm%E7%A2%B0%E5%88%B0%E7%9A%84%E5%9D%91"><span class="toc-number">2.9.</span> <span class="toc-text">ssm碰到的坑</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-number">2.10.</span> <span class="toc-text"></span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-number">3.</span> <span class="toc-text">数据库</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Oracle"><span class="toc-number">3.1.</span> <span class="toc-text">Oracle</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#MySQL"><span class="toc-number">3.2.</span> <span class="toc-text">MySQL</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5%E5%B7%A5%E5%85%B7"><span class="toc-number">3.3.</span> <span class="toc-text">数据库连接工具</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#MongoDB"><span class="toc-number">3.4.</span> <span class="toc-text">MongoDB</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#plsqldev"><span class="toc-number">3.5.</span> <span class="toc-text">plsqldev</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F"><span class="toc-number">4.</span> <span class="toc-text">操作系统</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85"><span class="toc-number">4.1.</span> <span class="toc-text">系统安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Windows"><span class="toc-number">4.2.</span> <span class="toc-text">Windows</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Linux"><span class="toc-number">4.3.</span> <span class="toc-text">Linux</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E6%9E%84%E5%BB%BA%E7%AE%A1%E7%90%86"><span class="toc-number">5.</span> <span class="toc-text">项目构建管理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Maven"><span class="toc-number">5.1.</span> <span class="toc-text">Maven</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E3%80%81%E9%83%A8%E7%BD%B2"><span class="toc-number"></span> <span class="toc-text">系统架构、部署</span></a></div></div><div class="card-widget ads-wrap"><a target="_blank" href="https://www.aliyun.com/activity?userCode=dpj8p3hl" rel="external nofollow noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/aliyun_whuCuE.jpg" style="width:100%;height:100%;object-fit:cover;"></a></div></div></div></main><footer id="footer" style="background-image: url('https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img12_dEurxP.jpeg')"><div id="footer-wrap"><div class="copyright">&copy;2018 - 2022 By 传礼</div><div class="footer_custom_text"><p style="display:inline-flex">本网站由<a href="https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral" rel="external nofollow noreferrer" target="_blank"><img style="width:60px;height:35px;" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/11/又拍云_logo5_O9kNul.png" title="又拍云"/></a>提供CDN加速/云存储服务</p><p><a style="margin-inline:5px" target="_blank" href="https://hexo.io/" rel="external nofollow noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Frame-Hexo-blue?style=flat&logo=hexo" title="博客框架为Hexo"></a><a style="margin-inline:5px" target="_blank" href="https://butterfly.js.org/" rel="external nofollow noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Theme-Butterfly-6513df?style=flat&logo=bitdefender" title="主题采用butterfly"></a><a style="margin-inline:5px" target="_blank" href="https://www.jsdelivr.com/" rel="external nofollow noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/CDN-jsDelivr-orange?style=flat&logo=jsDelivr" title="本站使用JsDelivr为静态资源提供CDN加速"></a><a style="margin-inline:5px" target="_blank" href="https://github.com/" rel="external nofollow noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Source-Github-d021d6?style=flat&logo=GitHub" title="本站项目由Github托管"></a><a style="margin-inline:5px" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Copyright-BY--NC--SA%204.0-d42328?style=flat&logo=Claris" title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可"></a></p></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="chat_btn" type="button" title="聊天"><i class="fas fa-sms"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">本地搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script src="/js/search/local-search.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"><script>function loadValine () {
+  function initValine () {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: 'zHUfFgUbITfMSQGuSPgS2e3C-gzGzoHsz',
+      appKey: 'yPXpeKX8VJxdFRPEsDaqNgEY',
+      avatar: 'wavatar',
+      serverURLs: 'https://zhuffgub.lc-cn-n1-shared.com',
+      emojiMaps: "",
+      path: window.location.pathname,
+      visitor: true,
+      master: '447d56ab3606de5490a2109d3e441219,135d837ea1033c9787dd307e59884d36'.split(','),
+      friends: '5c?????bfe6rfc72a????e268ad3819c'.split(','),
+      tagMeta: '博主,小伙伴,访客'.split(',')
+        
+    }, {"placeholder":"请输入内容～"}))
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/gh/HCLonely/Valine@latest/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !true) {
+  if (true) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script><script>function addGitalkSource () {
+  const ele = document.createElement('link')
+  ele.rel = 'stylesheet'
+  ele.href= 'https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css'
+  document.getElementsByTagName('head')[0].appendChild(ele)
+}
+
+function loadGitalk () {
+  function initGitalk () {
+    var gitalk = new Gitalk(Object.assign({
+      clientID: '052d9d6486112e93fa50',
+      clientSecret: '6fea35bfb7a17521694a95f705683622976d2f53',
+      repo: 'gitalk',
+      owner: 'iwangchuanli',
+      admin: ['iwangchuanli'],
+      id: '73d01417c95a437b209216de7989acf0',
+      updateCountCallback: commentCount
+    },null))
+
+    gitalk.render('gitalk-container')
+  }
+
+  if (typeof Gitalk === 'function') initGitalk()
+  else {
+    addGitalkSource()
+    getScript('https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.js').then(initGitalk)
+  }
+}
+
+function commentCount(n){
+  let isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+  if (isCommentCount) {
+    isCommentCount.innerHTML= n
+  }
+}
+
+if ('Valine' === 'Gitalk' || !true) {
+  if (true) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+  else loadGitalk()
+} else {
+  function loadOtherComment () {
+    loadGitalk()
+  }
+}</script></div><div class="aplayer no-destroy" data-id="7355841544" data-server="netease" data-type="playlist" data-fixed="true" data-autoplay="false"> </div><script async src="/js/grayscale.js"></script><script async src="//at.alicdn.com/t/font_1885008_srfhrsykmk.js"></script><script>((window.gitter = {}).chat = {}).options = {
+  disableDefaultChat: true,
+};
+document.addEventListener('gitter-sidecar-ready', (e) => {
+  const GitterChat = e.detail.Chat
+  let chat
+
+  function initGitter () {
+    chat = new GitterChat({
+      room: 'wangchuangli-/community',
+      activationElement: '#chat_btn'
+    });
+  }
+
+  initGitter()
+
+  if (true) {
+    document.addEventListener('pjax:complete', () => {
+      chat.destroy()
+      initGitter()
+    })
+  }
+
+})</script><script src="https://sidecar.gitter.im/dist/sidecar.v1.js" async="async" defer="defer"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/meting@1.2.0/dist/Meting.min.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = ["title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"]):not([href="/music/"]):not([href="/no-pjax/"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.tocScrollFn && window.removeEventListener('scroll', window.tocScrollFn)
+  window.scrollCollect && window.removeEventListener('scroll', scrollCollect)
+
+  typeof preloader === 'object' && preloader.initLoading()
+  document.getElementById('rightside').style.cssText = "opacity: ''; transform: ''"
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+
+  typeof preloader === 'object' && preloader.endLoading()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><!-- hexo injector body_end start --><script data-pjax>
+  function butterfly_swiper_injector_config(){
+    var parent_div_git = document.getElementById('recent-posts');
+    var item_html = '<div class="recent-post-item" style="height: auto;width: 100%"><div class="blog-slider swiper-container-fade swiper-container-horizontal" id="swiper_container"><div class="blog-slider__wrp swiper-wrapper" style="transition-duration: 0ms;"><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" onclick="pjax.loadUrl(&quot;posts/4496.html&quot;);" href="javascript:void(0);" rel="external nofollow noreferrer" alt=""><img width="48" height="48" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img6_L358Nt.jpeg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2018-09-05</span><a class="blog-slider__title" onclick="pjax.loadUrl(&quot;posts/4496.html&quot;);" href="javascript:void(0);" rel="external nofollow noreferrer" alt="">编程系列书单推荐</a><div class="blog-slider__text">再怎么看我也不知道怎么描述它的啦！</div><a class="blog-slider__button" onclick="pjax.loadUrl(&quot;posts/4496.html&quot;);" href="javascript:void(0);" rel="external nofollow noreferrer" alt="">详情       </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" onclick="pjax.loadUrl(&quot;posts/35693.html&quot;);" href="javascript:void(0);" rel="external nofollow noreferrer" alt=""><img width="48" height="48" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img33_fnRUqR.jpeg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2018-11-26</span><a class="blog-slider__title" onclick="pjax.loadUrl(&quot;posts/35693.html&quot;);" href="javascript:void(0);" rel="external nofollow noreferrer" alt="">优秀科技博客订阅</a><div class="blog-slider__text">再怎么看我也不知道怎么描述它的啦！</div><a class="blog-slider__button" onclick="pjax.loadUrl(&quot;posts/35693.html&quot;);" href="javascript:void(0);" rel="external nofollow noreferrer" alt="">详情       </a></div></div></div><div class="blog-slider__pagination swiper-pagination-clickable swiper-pagination-bullets"></div></div></div>';
+    console.log('已挂载butterfly_swiper')
+    parent_div_git.insertAdjacentHTML("afterbegin",item_html)
+    }
+  var elist = 'undefined'.split(',');
+  var cpage = location.pathname;
+  var epage = 'all';
+  var flag = 0;
+
+  for (var i=0;i<elist.length;i++){
+    if (cpage.includes(elist[i])){
+      flag++;
+    }
+  }
+
+  if ((epage ==='all')&&(flag == 0)){
+    butterfly_swiper_injector_config();
+  }
+  else if (epage === cpage){
+    butterfly_swiper_injector_config();
+  }
+  </script><script defer src="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper.min.js"></script><script defer data-pjax src="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper_init.js"></script><!-- hexo injector body_end end --></body></html>

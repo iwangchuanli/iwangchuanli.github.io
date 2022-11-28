@@ -1,0 +1,394 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>10-AntD框架的upload组件上传图片时使用customRequest方法自定义上传行为 | 传礼</title><meta name="keywords" content="博客,blog,王传礼,java,python,大数据"><meta name="author" content="传礼,978252321@qq.com"><meta name="copyright" content="传礼"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="title: 10-AntD框架的upload组件上传图片时使用customRequest方法自定义上传行为publish: true  本次做后台管理系统，采用的是 AntD 框架。涉及到图片的上传，用的是AntD的 upload 组件。 我在上一篇文章《前端AntD框架的upload组件上传图片时遇到的一些坑》中讲到：AntD 的 upload 组件有很多坑，引起了很多人的关注。折腾过的人，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="10-AntD框架的upload组件上传图片时使用customRequest方法自定义上传行为">
+<meta property="og:url" content="https://iwangchuanli.github.io/posts/17167.html">
+<meta property="og:site_name" content="传礼">
+<meta property="og:description" content="title: 10-AntD框架的upload组件上传图片时使用customRequest方法自定义上传行为publish: true  本次做后台管理系统，采用的是 AntD 框架。涉及到图片的上传，用的是AntD的 upload 组件。 我在上一篇文章《前端AntD框架的upload组件上传图片时遇到的一些坑》中讲到：AntD 的 upload 组件有很多坑，引起了很多人的关注。折腾过的人，">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img5_XDxspW.jpeg">
+<meta property="article:published_time" content="2021-10-25T08:41:56.000Z">
+<meta property="article:modified_time" content="2022-04-18T09:19:58.000Z">
+<meta property="article:author" content="传礼">
+<meta property="article:tag" content="博客,blog,王传礼,java,python,大数据">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img5_XDxspW.jpeg"><link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/03/favicons_uH14Fb.gif"><link rel="canonical" href="https://iwangchuanli.github.io/posts/17167"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin=""/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta name="baidu-site-verification" content="qKvGNFZPF9"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?39bd6e37a6e70dc030e6a043a642784e";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: 传礼","link":"链接: ","source":"来源: 传礼","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#121212","position":"bottom-left"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: true,
+  islazyload: true,
+  isAnchor: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '10-AntD框架的upload组件上传图片时使用customRequest方法自定义上传行为',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-04-18 09:19:58'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/custom.css"  media="defer" onload="this.media='all'"><!-- hexo injector head_end start --><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiperstyle.css" media="print" onload="this.media='all'"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.1"><link rel="alternate" href="/atom.xml" title="传礼" type="application/atom+xml">
+</head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/03/photo_NZBQPu.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><div class="data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">511</div></a></div><div class="data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">50</div></a></div><div class="data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">22</div></a></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 归档</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-calendar"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 开发</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/Java"><i class="fa-fw fa fa-music"></i><span> Java</span></a></li><li><a class="site-page child" href="/categories/Python"><i class="fa-fw fa fa-music"></i><span> Python</span></a></li><li><a class="site-page child" href="/categories/VUE"><i class="fa-fw fa fa-music"></i><span> VUE</span></a></li><li><a class="site-page child" href="/categories/MySQL"><i class="fa-fw fa fa-music"></i><span> MySQL</span></a></li><li><a class="site-page child" href="/categories/Redis"><i class="fa-fw fa fa-music"></i><span> Redis</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 架构</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/Spring"><i class="fa-fw fa fa-music"></i><span> Spring</span></a></li><li><a class="site-page child" href="/categories/microServeices"><i class="fa-fw fa fa-music"></i><span> 微服务</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 运维</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/Docker"><i class="fa-fw fa fa-music"></i><span> Docker</span></a></li><li><a class="site-page child" href="/categories/Linux"><i class="fa-fw fa fa-music"></i><span> Linux</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 分享</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/tags/Tools"><i class="fa-fw fa fa-music"></i><span> 工具</span></a></li><li><a class="site-page child" href="/tags/guide"><i class="fa-fw fa fa-music"></i><span> 教程</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 项目</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/tags/Tools"><i class="fa-fw fa fa-music"></i><span> 工具</span></a></li><li><a class="site-page child" href="/tags/guide"><i class="fa-fw fa fa-music"></i><span> 教程</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-heartbeat"></i><span> 娱乐</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/gallery/"><i class="fa-fw fa fa-images"></i><span> 图库</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fa fa-film"></i><span> 电影</span></a></li><li><a class="site-page child" href="/books/"><i class="fa-fw fa fa-book"></i><span> 图书</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 我的</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/artitalk/"><i class="fa-fw fa fa-commenting"></i><span> 说说</span></a></li><li><a class="site-page child" href="/todo/"><i class="fa-fw fa fa-flag"></i><span> TODO</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img5_XDxspW.jpeg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">传礼</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 归档</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-calendar"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 开发</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/Java"><i class="fa-fw fa fa-music"></i><span> Java</span></a></li><li><a class="site-page child" href="/categories/Python"><i class="fa-fw fa fa-music"></i><span> Python</span></a></li><li><a class="site-page child" href="/categories/VUE"><i class="fa-fw fa fa-music"></i><span> VUE</span></a></li><li><a class="site-page child" href="/categories/MySQL"><i class="fa-fw fa fa-music"></i><span> MySQL</span></a></li><li><a class="site-page child" href="/categories/Redis"><i class="fa-fw fa fa-music"></i><span> Redis</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 架构</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/Spring"><i class="fa-fw fa fa-music"></i><span> Spring</span></a></li><li><a class="site-page child" href="/categories/microServeices"><i class="fa-fw fa fa-music"></i><span> 微服务</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 运维</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/Docker"><i class="fa-fw fa fa-music"></i><span> Docker</span></a></li><li><a class="site-page child" href="/categories/Linux"><i class="fa-fw fa fa-music"></i><span> Linux</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 分享</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/tags/Tools"><i class="fa-fw fa fa-music"></i><span> 工具</span></a></li><li><a class="site-page child" href="/tags/guide"><i class="fa-fw fa fa-music"></i><span> 教程</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 项目</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/tags/Tools"><i class="fa-fw fa fa-music"></i><span> 工具</span></a></li><li><a class="site-page child" href="/tags/guide"><i class="fa-fw fa fa-music"></i><span> 教程</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-heartbeat"></i><span> 娱乐</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/gallery/"><i class="fa-fw fa fa-images"></i><span> 图库</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fa fa-film"></i><span> 电影</span></a></li><li><a class="site-page child" href="/books/"><i class="fa-fw fa fa-book"></i><span> 图书</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 我的</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/artitalk/"><i class="fa-fw fa fa-commenting"></i><span> 说说</span></a></li><li><a class="site-page child" href="/todo/"><i class="fa-fw fa fa-flag"></i><span> TODO</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">10-AntD框架的upload组件上传图片时使用customRequest方法自定义上传行为</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-10-25T08:41:56.000Z" title="发表于 2021-10-25 08:41:56">2021-10-25</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-04-18T09:19:58.000Z" title="更新于 2022-04-18 09:19:58">2022-04-18</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">2.1k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>9分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="10-AntD框架的upload组件上传图片时使用customRequest方法自定义上传行为"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><hr>
+<p>title: 10-AntD框架的upload组件上传图片时使用customRequest方法自定义上传行为<br>publish: true</p>
+<hr>
+<p>本次做后台管理系统，采用的是 AntD 框架。涉及到图片的上传，用的是AntD的 <a target="_blank" rel="noopener external nofollow noreferrer" href="https://ant.design/components/upload-cn/">upload</a> 组件。</p>
+<p>我在上一篇文章《<a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/qianguyihao/p/10460834.html">前端AntD框架的upload组件上传图片时遇到的一些坑</a>》中讲到：AntD 的 upload 组件有很多坑，引起了很多人的关注。折腾过的人，自然明白其中的苦楚。</p>
+<p>今天这篇文章，我们继续来研究 AntD 的 upload 组件的另一个坑。</p>
+<p>备注：本文写于2020-06-11，使用的 antd 版本是 3.13.6。</p>
+<h2 id="使用-AntD-的-upload-组件做图片的上传，效果演示"><a href="#使用-AntD-的-upload-组件做图片的上传，效果演示" class="headerlink" title="使用 AntD 的 upload 组件做图片的上传，效果演示"></a>使用 AntD 的 upload 组件做图片的上传，效果演示</h2><p>因为需要上传多张图片，所以采用的是照片墙的形式。上传成功后的界面如下：</p>
+<p>（1）上传中：</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://img.smyhvae.com/20190302_1335.png"></p>
+<p>（2）上传成功：</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://img.smyhvae.com/20190302_1336.png"></p>
+<p>（3）图片预览：</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://img.smyhvae.com/20190302_1331.png"></p>
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><p>首先，你需要让后台同学提供好图片上传的接口。上一篇文章中，我们是把接口调用直接写在了 <code>&lt;Upload&gt;</code> 标签的 action 属性当中。但如果你在调接口的时候，动作很复杂（比如根据业务要求，需要连续调两个接口才能上传图片，或者在调接口时还要做其他的事情），这个 action 方法就无法满足需求了。那该怎么做呢？</p>
+<p>好在 AntD 的 upload 组件给我们提供了 <code>customRequest</code>这个方法：</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://img.smyhvae.com/20200611_1543.png"></p>
+<p>关于customRequest 这个方法， AntD 官方并没有给出示例，他们只是在 GitHub 上给出了这样一个简短的介绍：</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://img.smyhvae.com/20200611_1536.png"></p>
+<p>但这个方法怎么用呢？用的时候，会遇到什么问题呢？AntD 官方没有说。我在网上搜了半天，也没看到比较完整的、切实可行的 Demo。我天朝地大物博，网络资料浩如烟海，AntD 可是口口声声被人们号称是天朝最好用的管理后台的样式框架。可如今，却面临这样的局面。我看着你们，满怀羡慕。</p>
+<p>既然如此，那我就自己研究吧。折腾了一天，总算是把 customRequest 的坑踩得差不多了。</p>
+<p>啥也不说了，直接上代码。</p>
+<p>采用 AntD框架的 <a target="_blank" rel="noopener external nofollow noreferrer" href="https://ant.design/components/upload-cn/">upload</a> 组件的 customRequest 方法，自定义上传行为。核心代码如下：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">React</span>, &#123; <span class="title class_">PureComponent</span> &#125; <span class="keyword">from</span> <span class="string">&#x27;react&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; <span class="title class_">Button</span>, <span class="title class_">Card</span>, <span class="title class_">Form</span>, message, <span class="title class_">Upload</span>, <span class="title class_">Icon</span>, <span class="title class_">Modal</span>, <span class="title class_">Row</span>, <span class="title class_">Col</span> &#125; <span class="keyword">from</span> <span class="string">&#x27;antd&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; connect &#125; <span class="keyword">from</span> <span class="string">&#x27;dva&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; queryMyData, submitData &#125; <span class="keyword">from</span> <span class="string">&#x27;../api&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; uploadImage &#125; <span class="keyword">from</span> <span class="string">&#x27;../../utils/wq.img.upload&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> styles <span class="keyword">from</span> <span class="string">&#x27;../../utils/form.less&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title class_">FormItem</span> = <span class="title class_">Form</span>.<span class="property">Item</span>;</span><br><span class="line"></span><br><span class="line">@<span class="title class_">Form</span>.<span class="title function_">create</span>()</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">class</span> <span class="title class_">PicturesWall</span> <span class="keyword">extends</span> <span class="title class_ inherited__">PureComponent</span> &#123;</span><br><span class="line">  <span class="title function_">constructor</span>(<span class="params">props</span>) &#123;</span><br><span class="line">    <span class="variable language_">super</span>(props);</span><br><span class="line">    <span class="keyword">const</span> &#123; id &#125; = <span class="variable language_">this</span>.<span class="property">props</span>.<span class="property">match</span>.<span class="property">params</span>;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">state</span> = &#123;</span><br><span class="line">      id,</span><br><span class="line">      <span class="attr">img</span>: <span class="literal">undefined</span>, <span class="comment">// 从接口拿到的图片字段</span></span><br><span class="line">      <span class="attr">imgList</span>: [], <span class="comment">// 展示在 antd图片组件上的数据</span></span><br><span class="line">      <span class="attr">previewVisible</span>: <span class="literal">false</span>,</span><br><span class="line">      <span class="attr">previewImage</span>: <span class="string">&#x27;&#x27;</span>,</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="title function_">componentDidMount</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> &#123; id &#125; = <span class="variable language_">this</span>.<span class="property">state</span>;</span><br><span class="line">    id &amp;&amp; <span class="variable language_">this</span>.<span class="title function_">queryData</span>();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 调接口，查询已有的数据</span></span><br><span class="line">  <span class="title function_">queryData</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> &#123; id &#125; = <span class="variable language_">this</span>.<span class="property">state</span>;</span><br><span class="line">    <span class="title function_">queryMyData</span>(&#123;</span><br><span class="line">      id,</span><br><span class="line">    &#125;)</span><br><span class="line">      .<span class="title function_">then</span>(<span class="function">(<span class="params">&#123; ret, data &#125;</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (ret == <span class="number">0</span> &amp;&amp; data &amp;&amp; data.<span class="property">list</span> &amp;&amp; data.<span class="property">list</span>.<span class="property">length</span>) &#123;</span><br><span class="line">          <span class="keyword">const</span> item = data.<span class="property">list</span>[<span class="number">0</span>];</span><br><span class="line"></span><br><span class="line">          <span class="keyword">const</span> img = data.<span class="property">img</span>;</span><br><span class="line">          <span class="keyword">const</span> imgList = item.<span class="property">img</span></span><br><span class="line">            ? [</span><br><span class="line">              &#123;</span><br><span class="line">                <span class="attr">uid</span>: <span class="string">&#x27;1&#x27;</span>, <span class="comment">// 注意，这个uid一定不能少，否则展示失败</span></span><br><span class="line">                <span class="attr">name</span>: <span class="string">&#x27;hehe.png&#x27;</span>,</span><br><span class="line">                <span class="attr">status</span>: <span class="string">&#x27;done&#x27;</span>,</span><br><span class="line">                <span class="attr">url</span>: img,</span><br><span class="line">              &#125;,</span><br><span class="line">            ]</span><br><span class="line">            : [];</span><br><span class="line"></span><br><span class="line">          <span class="variable language_">this</span>.<span class="title function_">setState</span>(&#123;</span><br><span class="line">            img,</span><br><span class="line">            imgList,</span><br><span class="line">          &#125;);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">          <span class="keyword">return</span> <span class="title class_">Promise</span>.<span class="title function_">reject</span>();</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;)</span><br><span class="line">      .<span class="title function_">catch</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">        message.<span class="title function_">error</span>(<span class="string">&#x27;查询出错，请重试&#x27;</span>);</span><br><span class="line">      &#125;);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  handleCancel = <span class="function">() =&gt;</span> <span class="variable language_">this</span>.<span class="title function_">setState</span>(&#123; <span class="attr">previewVisible</span>: <span class="literal">false</span> &#125;);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 方法：图片预览</span></span><br><span class="line">  handlePreview = <span class="function">(<span class="params">file</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;smyhvae handlePreview:&#x27;</span> + <span class="title class_">JSON</span>.<span class="title function_">stringify</span>(file));</span><br><span class="line">    <span class="variable language_">this</span>.<span class="title function_">setState</span>(&#123;</span><br><span class="line">      <span class="attr">previewImage</span>: file.<span class="property">url</span> || file.<span class="property">thumbUrl</span>,</span><br><span class="line">      <span class="attr">previewVisible</span>: <span class="literal">true</span>,</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 参考链接：https://www.jianshu.com/p/f356f050b3c9</span></span><br><span class="line">  handleBeforeUpload = <span class="function">(<span class="params">file</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;smyhvae handleBeforeUpload file:&#x27;</span> + <span class="title class_">JSON</span>.<span class="title function_">stringify</span>(file));</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;smyhvae handleBeforeUpload file.file:&#x27;</span> + <span class="title class_">JSON</span>.<span class="title function_">stringify</span>(file.<span class="property">file</span>));</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;smyhvae handleBeforeUpload file type:&#x27;</span> + <span class="title class_">JSON</span>.<span class="title function_">stringify</span>(file.<span class="property">type</span>));</span><br><span class="line"></span><br><span class="line">    <span class="comment">//限制图片 格式、size、分辨率</span></span><br><span class="line">    <span class="keyword">const</span> isJPG = file.<span class="property">type</span> === <span class="string">&#x27;image/jpeg&#x27;</span>;</span><br><span class="line">    <span class="keyword">const</span> isJPEG = file.<span class="property">type</span> === <span class="string">&#x27;image/jpeg&#x27;</span>;</span><br><span class="line">    <span class="keyword">const</span> isGIF = file.<span class="property">type</span> === <span class="string">&#x27;image/gif&#x27;</span>;</span><br><span class="line">    <span class="keyword">const</span> isPNG = file.<span class="property">type</span> === <span class="string">&#x27;image/png&#x27;</span>;</span><br><span class="line">    <span class="keyword">const</span> isLt2M = file.<span class="property">size</span> / <span class="number">1024</span> / <span class="number">1024</span> &lt; <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">if</span> (!(isJPG || isJPEG || isPNG)) &#123;</span><br><span class="line">      <span class="title class_">Modal</span>.<span class="title function_">error</span>(&#123;</span><br><span class="line">        <span class="attr">title</span>: <span class="string">&#x27;只能上传JPG、JPEG、PNG格式的图片~&#x27;</span>,</span><br><span class="line">      &#125;);</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (!isLt2M) &#123;</span><br><span class="line">      <span class="title class_">Modal</span>.<span class="title function_">error</span>(&#123;</span><br><span class="line">        <span class="attr">title</span>: <span class="string">&#x27;图片超过1M限制，不允许上传~&#x27;</span>,</span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> (isJPG || isJPEG || isPNG) &amp;&amp; isLt2M;</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// checkImageWH  返回一个promise  检测通过返回resolve  失败返回reject阻止图片上传</span></span><br><span class="line">  <span class="title function_">checkImageWH</span>(<span class="params">file</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="keyword">function</span> (<span class="params">resolve, reject</span>) &#123;</span><br><span class="line">      <span class="keyword">let</span> filereader = <span class="keyword">new</span> <span class="title class_">FileReader</span>();</span><br><span class="line">      filereader.<span class="property">onload</span> = <span class="function">(<span class="params">e</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">let</span> src = e.<span class="property">target</span>.<span class="property">result</span>;</span><br><span class="line">        <span class="keyword">const</span> image = <span class="keyword">new</span> <span class="title class_">Image</span>();</span><br><span class="line">        image.<span class="property">onload</span> = <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">          <span class="comment">// 获取图片的宽高</span></span><br><span class="line">          file.<span class="property">width</span> = <span class="variable language_">this</span>.<span class="property">width</span>;</span><br><span class="line">          file.<span class="property">height</span> = <span class="variable language_">this</span>.<span class="property">height</span>;</span><br><span class="line">          <span class="title function_">resolve</span>();</span><br><span class="line">        &#125;;</span><br><span class="line">        image.<span class="property">onerror</span> = reject;</span><br><span class="line">        image.<span class="property">src</span> = src;</span><br><span class="line">      &#125;;</span><br><span class="line">      filereader.<span class="title function_">readAsDataURL</span>(file);</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 图片上传</span></span><br><span class="line">  doImgUpload = <span class="function">(<span class="params">options</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> &#123; onSuccess, onError, file, onProgress &#125; = options;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// start：进度条相关</span></span><br><span class="line">    <span class="comment">// 伪装成 handleChange里面的图片上传状态</span></span><br><span class="line">    <span class="keyword">const</span> imgItem = &#123;</span><br><span class="line">      <span class="attr">uid</span>: <span class="string">&#x27;1&#x27;</span>, <span class="comment">// 注意，这个uid一定不能少，否则上传失败</span></span><br><span class="line">      <span class="attr">name</span>: <span class="string">&#x27;hehe.png&#x27;</span>,</span><br><span class="line">      <span class="attr">status</span>: <span class="string">&#x27;uploading&#x27;</span>,</span><br><span class="line">      <span class="attr">url</span>: <span class="string">&#x27;&#x27;</span>,</span><br><span class="line">      <span class="attr">percent</span>: <span class="number">99</span>, <span class="comment">// 注意不要写100。100表示上传完成</span></span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    <span class="variable language_">this</span>.<span class="title function_">setState</span>(&#123;</span><br><span class="line">      <span class="attr">imgList</span>: [imgItem],</span><br><span class="line">    &#125;); <span class="comment">// 更新 imgList</span></span><br><span class="line">    <span class="comment">// end：进度条相关</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> reader = <span class="keyword">new</span> <span class="title class_">FileReader</span>();</span><br><span class="line">    reader.<span class="title function_">readAsDataURL</span>(file); <span class="comment">// 读取图片文件</span></span><br><span class="line"></span><br><span class="line">    reader.<span class="property">onload</span> = <span class="function">(<span class="params">file</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">const</span> params = &#123;</span><br><span class="line">        <span class="attr">myBase64</span>: file.<span class="property">target</span>.<span class="property">result</span>, <span class="comment">// 把 本地图片的base64编码传给后台，调接口，生成图片的url</span></span><br><span class="line">      &#125;;</span><br><span class="line"></span><br><span class="line">      <span class="comment">// 上传图片的base64编码，调接口后，返回 imageId</span></span><br><span class="line">      <span class="title function_">uploadImage</span>(params)</span><br><span class="line">        .<span class="title function_">then</span>(<span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">          <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;smyhvae doImgUpload:&#x27;</span> + <span class="title class_">JSON</span>.<span class="title function_">stringify</span>(res));</span><br><span class="line">          <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;smyhvae 图片上传成功：&#x27;</span> + res.<span class="property">imageUrl</span>);</span><br><span class="line"></span><br><span class="line">          <span class="keyword">const</span> imgItem = &#123;</span><br><span class="line">            <span class="attr">uid</span>: <span class="string">&#x27;1&#x27;</span>, <span class="comment">// 注意，这个uid一定不能少，否则上传失败</span></span><br><span class="line">            <span class="attr">name</span>: <span class="string">&#x27;hehe.png&#x27;</span>,</span><br><span class="line">            <span class="attr">status</span>: <span class="string">&#x27;done&#x27;</span>,</span><br><span class="line">            <span class="attr">url</span>: res.<span class="property">imageUrl</span>, <span class="comment">// url 是展示在页面上的绝对链接</span></span><br><span class="line">            <span class="attr">imgUrl</span>: res.<span class="property">imageUrl</span>, <span class="comment">// imgUrl 是存到 db 里的相对链接</span></span><br><span class="line">            <span class="comment">// response: &#x27;&#123;&quot;status&quot;: &quot;success&quot;&#125;&#x27;,</span></span><br><span class="line">          &#125;;</span><br><span class="line"></span><br><span class="line">          <span class="variable language_">this</span>.<span class="title function_">setState</span>(&#123;</span><br><span class="line">            <span class="attr">imgList</span>: [imgItem],</span><br><span class="line">          &#125;); <span class="comment">// 更新 imgList</span></span><br><span class="line">        &#125;)</span><br><span class="line">        .<span class="title function_">catch</span>(<span class="function">(<span class="params">e</span>) =&gt;</span> &#123;</span><br><span class="line">          <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;smyhvae 图片上传失败:&#x27;</span> + <span class="title class_">JSON</span>.<span class="title function_">stringify</span>(e || <span class="string">&#x27;&#x27;</span>));</span><br><span class="line">          message.<span class="title function_">error</span>(<span class="string">&#x27;图片上传失败，请重试&#x27;</span>);</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  handleChange = <span class="function">(<span class="params">&#123; file, fileList &#125;</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;smyhvae handleChange file:&#x27;</span> + <span class="title class_">JSON</span>.<span class="title function_">stringify</span>(file));</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;smyhvae handleChange fileList:&#x27;</span> + <span class="title class_">JSON</span>.<span class="title function_">stringify</span>(fileList));</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (file.<span class="property">status</span> == <span class="string">&#x27;removed&#x27;</span>) &#123;</span><br><span class="line">      <span class="variable language_">this</span>.<span class="title function_">setState</span>(&#123;</span><br><span class="line">        <span class="attr">imgList</span>: [],</span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  submit = <span class="function">(<span class="params">e</span>) =&gt;</span> &#123;</span><br><span class="line">    e.<span class="title function_">preventDefault</span>();</span><br><span class="line"></span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">props</span>.<span class="property">form</span>.<span class="title function_">validateFields</span>(<span class="function">(<span class="params">err, fieldsValue</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">if</span> (err) &#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">const</span> &#123; id, imgList &#125; = <span class="variable language_">this</span>.<span class="property">state</span>;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">const</span> tempImgList = imgList.<span class="title function_">filter</span>(<span class="function">(<span class="params">item</span>) =&gt;</span> item.<span class="property">status</span> == <span class="string">&#x27;done&#x27;</span>); <span class="comment">// 筛选出 status = done 的图片</span></span><br><span class="line">      <span class="keyword">const</span> imgArr = [];</span><br><span class="line">      tempImgList.<span class="title function_">forEach</span>(<span class="function">(<span class="params">item</span>) =&gt;</span> &#123;</span><br><span class="line">        imgArr.<span class="title function_">push</span>(item.<span class="property">imgUrl</span>);</span><br><span class="line">        <span class="comment">// imgArr.push(item.url);</span></span><br><span class="line">      &#125;);</span><br><span class="line"></span><br><span class="line">      <span class="title function_">submitData</span>(&#123;</span><br><span class="line">        id,</span><br><span class="line">        <span class="attr">img</span>: imgArr[<span class="number">0</span>] || <span class="string">&#x27;&#x27;</span>, <span class="comment">// 1、暂时只传一张图片给后台。如果传多张图片，那么，upload组件需要进一步完善，比较麻烦，以后有需求再优化。2、如果图片字段是选填，那就用空字符串兜底</span></span><br><span class="line">      &#125;)</span><br><span class="line">        .<span class="title function_">then</span>(<span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">          <span class="keyword">if</span> (res.<span class="property">ret</span> == <span class="number">0</span>) &#123;</span><br><span class="line">            message.<span class="title function_">success</span>(<span class="string">`<span class="subst">$&#123;id ? <span class="string">&#x27;修改&#x27;</span> : <span class="string">&#x27;新增&#x27;</span>&#125;</span>成功，自动跳转中...`</span>);</span><br><span class="line"></span><br><span class="line">          &#125; <span class="keyword">else</span> <span class="keyword">if</span> (res.<span class="property">ret</span> == <span class="number">201</span> || res.<span class="property">ret</span> == <span class="number">202</span> || res.<span class="property">ret</span> == <span class="number">203</span> || res.<span class="property">ret</span> == <span class="number">6</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="title class_">Promise</span>.<span class="title function_">reject</span>(res.<span class="property">msg</span>);</span><br><span class="line">          &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="title class_">Promise</span>.<span class="title function_">reject</span>();</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">        .<span class="title function_">catch</span>(<span class="function">(<span class="params">e</span>) =&gt;</span> &#123;</span><br><span class="line">          message.<span class="title function_">error</span>(e || <span class="string">&#x27;提交失败，请重试&#x27;</span>);</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  <span class="title function_">render</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> &#123; id, imgList &#125; = <span class="variable language_">this</span>.<span class="property">state</span>;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;smyhvae render imgList:&#x27;</span> + <span class="title class_">JSON</span>.<span class="title function_">stringify</span>(imgList));</span><br><span class="line">    <span class="keyword">const</span> &#123; getFieldDecorator &#125; = <span class="variable language_">this</span>.<span class="property">props</span>.<span class="property">form</span>;</span><br><span class="line">    <span class="keyword">const</span> formItemLayout = &#123;</span><br><span class="line">      <span class="attr">labelCol</span>: &#123; <span class="attr">span</span>: <span class="number">3</span> &#125;,</span><br><span class="line">      <span class="attr">wrapperCol</span>: &#123; <span class="attr">span</span>: <span class="number">10</span> &#125;,</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="keyword">const</span> buttonItemLayout = &#123;</span><br><span class="line">      <span class="attr">wrapperCol</span>: &#123; <span class="attr">span</span>: <span class="number">10</span>, <span class="attr">offset</span>: <span class="number">3</span> &#125;,</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> uploadButton = (</span><br><span class="line">      <span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;<span class="name">Icon</span> <span class="attr">type</span>=<span class="string">&quot;plus&quot;</span> /&gt;</span></span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">className</span>=<span class="string">&quot;ant-upload-text&quot;</span>&gt;</span>Upload<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">    );</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      <span class="language-xml"><span class="tag">&lt;<span class="name">Card</span> <span class="attr">title</span>=<span class="string">&#123;id</span> ? &#x27;修改信息&#x27; <span class="attr">:</span> &#x27;新增信息&#x27;&#125;&gt;</span></span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;<span class="name">Form</span> <span class="attr">onSubmit</span>=<span class="string">&#123;this.submit&#125;</span> <span class="attr">layout</span>=<span class="string">&quot;horizontal&quot;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml"></span></span><br><span class="line"><span class="language-xml">          &#123;/* 新建图片、编辑图片 */&#125;</span></span><br><span class="line"><span class="language-xml">          <span class="tag">&lt;<span class="name">FormItem</span> <span class="attr">label</span>=<span class="string">&quot;图片&quot;</span> &#123;<span class="attr">...formItemLayout</span>&#125;&gt;</span></span></span><br><span class="line"><span class="language-xml">            &#123;getFieldDecorator(&#x27;img&#x27;, &#123;</span></span><br><span class="line"><span class="language-xml">              rules: [&#123; required: false, message: &#x27;请上传图片&#x27; &#125;],</span></span><br><span class="line"><span class="language-xml">            &#125;)(</span></span><br><span class="line"><span class="language-xml">              <span class="tag">&lt;<span class="name">Upload</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">                <span class="attr">action</span>=<span class="string">&quot;2&quot;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">                <span class="attr">customRequest</span>=<span class="string">&#123;this.doImgUpload&#125;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">                <span class="attr">listType</span>=<span class="string">&quot;picture-card&quot;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">                <span class="attr">fileList</span>=<span class="string">&#123;imgList&#125;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">                <span class="attr">onPreview</span>=<span class="string">&#123;this.handlePreview&#125;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">                <span class="attr">beforeUpload</span>=<span class="string">&#123;this.handleBeforeUpload&#125;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">                <span class="attr">onChange</span>=<span class="string">&#123;this.handleChange&#125;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">              &gt;</span></span></span><br><span class="line"><span class="language-xml">                &#123;imgList.length &gt;= 1 ? null : uploadButton&#125;</span></span><br><span class="line"><span class="language-xml">              <span class="tag">&lt;/<span class="name">Upload</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">            )&#125;</span></span><br><span class="line"><span class="language-xml">          <span class="tag">&lt;/<span class="name">FormItem</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">          <span class="tag">&lt;<span class="name">Row</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">            <span class="tag">&lt;<span class="name">Col</span> <span class="attr">span</span>=<span class="string">&#123;3&#125;</span> /&gt;</span></span></span><br><span class="line"><span class="language-xml">            <span class="tag">&lt;<span class="name">Col</span> <span class="attr">span</span>=<span class="string">&#123;18&#125;</span> <span class="attr">className</span>=<span class="string">&#123;styles.graytext&#125;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">              注：图片支持JPG、JPEG、PNG格式，小于1M，最多上传1张</span></span><br><span class="line"><span class="language-xml">            <span class="tag">&lt;/<span class="name">Col</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">          <span class="tag">&lt;/<span class="name">Row</span>&gt;</span></span></span><br><span class="line"><span class="language-xml"></span></span><br><span class="line"><span class="language-xml">          <span class="tag">&lt;<span class="name">FormItem</span> &#123;<span class="attr">...buttonItemLayout</span>&#125;&gt;</span></span></span><br><span class="line"><span class="language-xml">            <span class="tag">&lt;<span class="name">Button</span> <span class="attr">type</span>=<span class="string">&quot;primary&quot;</span> <span class="attr">htmlType</span>=<span class="string">&quot;submit&quot;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">              提交</span></span><br><span class="line"><span class="language-xml">            <span class="tag">&lt;/<span class="name">Button</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">          <span class="tag">&lt;/<span class="name">FormItem</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;/<span class="name">Form</span>&gt;</span></span></span><br><span class="line"><span class="language-xml"></span></span><br><span class="line"><span class="language-xml">        &#123;/* 图片点开预览 */&#125;</span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;<span class="name">Modal</span> <span class="attr">visible</span>=<span class="string">&#123;this.state.previewVisible&#125;</span> <span class="attr">footer</span>=<span class="string">&#123;null&#125;</span> <span class="attr">onCancel</span>=<span class="string">&#123;this.handleCancel&#125;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">          <span class="tag">&lt;<span class="name">img</span> <span class="attr">alt</span>=<span class="string">&quot;example&quot;</span> <span class="attr">style</span>=<span class="string">&#123;&#123;</span> <span class="attr">width:</span> &#x27;<span class="attr">100</span>%&#x27; &#125;&#125; <span class="attr">src</span>=<span class="string">&#123;this.state.previewImage&#125;</span> /&gt;</span></span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;/<span class="name">Modal</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;/<span class="name">Card</span>&gt;</span></span></span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p>注意file的格式：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.lmonkey.com/t/oREQA5XE1">https://www.lmonkey.com/t/oREQA5XE1</a></p>
+<p>Demo在线演示：</p>
+<ul>
+<li><p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://stackoverflow.com/questions/58128062/using-customrequest-in-ant-design-file-upload">https://stackoverflow.com/questions/58128062/using-customrequest-in-ant-design-file-upload</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://stackblitz.com/edit/so-58128062-upload-progress">https://stackblitz.com/edit/so-58128062-upload-progress</a></p>
+</li>
+</ul>
+<p>fileList 格式在线演示：</p>
+<ul>
+<li><p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://stackoverflow.com/questions/51514757/action-function-is-required-with-antd-upload-control-but-i-dont-need-it">https://stackoverflow.com/questions/51514757/action-function-is-required-with-antd-upload-control-but-i-dont-need-it</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://codesandbox.io/s/rl7ooo544q">https://codesandbox.io/s/rl7ooo544q</a></p>
+</li>
+</ul>
+<p>ant design Upload组件的使用总结：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.jianshu.com/p/0aa4612af987">https://www.jianshu.com/p/0aa4612af987</a></p>
+<p>antd上传功能的CustomRequest：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://mlog.club/article/3832743">https://mlog.club/article/3832743</a></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:978252321@qq.com" rel="external nofollow noreferrer">传礼</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://iwangchuanli.github.io/posts/17167.html">https://iwangchuanli.github.io/posts/17167.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow noreferrer" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://iwangchuanli.github.io" target="_blank">传礼</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img5_XDxspW.jpeg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/posts/12542.html"><img class="prev-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img13_CspVvh.jpeg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">09-AntD框架的upload组件上传图片时遇到的一些坑</div></div></a></div><div class="next-post pull-right"><a href="/posts/38295.html"><img class="next-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img2_qWI50v.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">11-React Navive初识</div></div></a></div></nav><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div><div id="comment-switch"><span class="first-comment">Valine</span><span class="switch-btn"></span><span class="second-comment">Gitalk</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div><div><div id="gitalk-container"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">Nice to meet you ~</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-AntD-%E7%9A%84-upload-%E7%BB%84%E4%BB%B6%E5%81%9A%E5%9B%BE%E7%89%87%E7%9A%84%E4%B8%8A%E4%BC%A0%EF%BC%8C%E6%95%88%E6%9E%9C%E6%BC%94%E7%A4%BA"><span class="toc-number">1.</span> <span class="toc-text">使用 AntD 的 upload 组件做图片的上传，效果演示</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0"><span class="toc-number">2.</span> <span class="toc-text">代码实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E9%93%BE%E6%8E%A5"><span class="toc-number">3.</span> <span class="toc-text">参考链接</span></a></li></ol></div></div><div class="card-widget ads-wrap"><a target="_blank" href="https://www.aliyun.com/activity?userCode=dpj8p3hl" rel="external nofollow noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/aliyun_whuCuE.jpg" style="width:100%;height:100%;object-fit:cover;"></a></div></div></div></main><footer id="footer" style="background-image: url('https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img5_XDxspW.jpeg')"><div id="footer-wrap"><div class="copyright">&copy;2018 - 2022 By 传礼</div><div class="footer_custom_text"><p style="display:inline-flex">本网站由<a href="https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral" rel="external nofollow noreferrer" target="_blank"><img style="width:60px;height:35px;" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/11/又拍云_logo5_O9kNul.png" title="又拍云"/></a>提供CDN加速/云存储服务</p><p><a style="margin-inline:5px" target="_blank" href="https://hexo.io/" rel="external nofollow noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Frame-Hexo-blue?style=flat&logo=hexo" title="博客框架为Hexo"></a><a style="margin-inline:5px" target="_blank" href="https://butterfly.js.org/" rel="external nofollow noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Theme-Butterfly-6513df?style=flat&logo=bitdefender" title="主题采用butterfly"></a><a style="margin-inline:5px" target="_blank" href="https://www.jsdelivr.com/" rel="external nofollow noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/CDN-jsDelivr-orange?style=flat&logo=jsDelivr" title="本站使用JsDelivr为静态资源提供CDN加速"></a><a style="margin-inline:5px" target="_blank" href="https://github.com/" rel="external nofollow noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Source-Github-d021d6?style=flat&logo=GitHub" title="本站项目由Github托管"></a><a style="margin-inline:5px" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Copyright-BY--NC--SA%204.0-d42328?style=flat&logo=Claris" title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可"></a></p></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="chat_btn" type="button" title="聊天"><i class="fas fa-sms"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">本地搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script src="/js/search/local-search.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"><script>function loadValine () {
+  function initValine () {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: 'zHUfFgUbITfMSQGuSPgS2e3C-gzGzoHsz',
+      appKey: 'yPXpeKX8VJxdFRPEsDaqNgEY',
+      avatar: 'wavatar',
+      serverURLs: 'https://zhuffgub.lc-cn-n1-shared.com',
+      emojiMaps: "",
+      path: window.location.pathname,
+      visitor: true,
+      master: '447d56ab3606de5490a2109d3e441219,135d837ea1033c9787dd307e59884d36'.split(','),
+      friends: '5c?????bfe6rfc72a????e268ad3819c'.split(','),
+      tagMeta: '博主,小伙伴,访客'.split(',')
+        
+    }, {"placeholder":"请输入内容～"}))
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/gh/HCLonely/Valine@latest/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !true) {
+  if (true) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script><script>function addGitalkSource () {
+  const ele = document.createElement('link')
+  ele.rel = 'stylesheet'
+  ele.href= 'https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css'
+  document.getElementsByTagName('head')[0].appendChild(ele)
+}
+
+function loadGitalk () {
+  function initGitalk () {
+    var gitalk = new Gitalk(Object.assign({
+      clientID: '052d9d6486112e93fa50',
+      clientSecret: '6fea35bfb7a17521694a95f705683622976d2f53',
+      repo: 'gitalk',
+      owner: 'iwangchuanli',
+      admin: ['iwangchuanli'],
+      id: 'cf1f0d9e05df873faddfea5fdef6dfc9',
+      updateCountCallback: commentCount
+    },null))
+
+    gitalk.render('gitalk-container')
+  }
+
+  if (typeof Gitalk === 'function') initGitalk()
+  else {
+    addGitalkSource()
+    getScript('https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.js').then(initGitalk)
+  }
+}
+
+function commentCount(n){
+  let isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+  if (isCommentCount) {
+    isCommentCount.innerHTML= n
+  }
+}
+
+if ('Valine' === 'Gitalk' || !true) {
+  if (true) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+  else loadGitalk()
+} else {
+  function loadOtherComment () {
+    loadGitalk()
+  }
+}</script></div><div class="aplayer no-destroy" data-id="7355841544" data-server="netease" data-type="playlist" data-fixed="true" data-autoplay="false"> </div><script async src="/js/grayscale.js"></script><script async src="//at.alicdn.com/t/font_1885008_srfhrsykmk.js"></script><script>((window.gitter = {}).chat = {}).options = {
+  disableDefaultChat: true,
+};
+document.addEventListener('gitter-sidecar-ready', (e) => {
+  const GitterChat = e.detail.Chat
+  let chat
+
+  function initGitter () {
+    chat = new GitterChat({
+      room: 'wangchuangli-/community',
+      activationElement: '#chat_btn'
+    });
+  }
+
+  initGitter()
+
+  if (true) {
+    document.addEventListener('pjax:complete', () => {
+      chat.destroy()
+      initGitter()
+    })
+  }
+
+})</script><script src="https://sidecar.gitter.im/dist/sidecar.v1.js" async="async" defer="defer"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/meting@1.2.0/dist/Meting.min.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = ["title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"]):not([href="/music/"]):not([href="/no-pjax/"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.tocScrollFn && window.removeEventListener('scroll', window.tocScrollFn)
+  window.scrollCollect && window.removeEventListener('scroll', scrollCollect)
+
+  typeof preloader === 'object' && preloader.initLoading()
+  document.getElementById('rightside').style.cssText = "opacity: ''; transform: ''"
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+
+  typeof preloader === 'object' && preloader.endLoading()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><!-- hexo injector body_end start --><script data-pjax>
+  function butterfly_swiper_injector_config(){
+    var parent_div_git = document.getElementById('recent-posts');
+    var item_html = '<div class="recent-post-item" style="height: auto;width: 100%"><div class="blog-slider swiper-container-fade swiper-container-horizontal" id="swiper_container"><div class="blog-slider__wrp swiper-wrapper" style="transition-duration: 0ms;"><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" onclick="pjax.loadUrl(&quot;posts/4496.html&quot;);" href="javascript:void(0);" rel="external nofollow noreferrer" alt=""><img width="48" height="48" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img6_L358Nt.jpeg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2018-09-05</span><a class="blog-slider__title" onclick="pjax.loadUrl(&quot;posts/4496.html&quot;);" href="javascript:void(0);" rel="external nofollow noreferrer" alt="">编程系列书单推荐</a><div class="blog-slider__text">再怎么看我也不知道怎么描述它的啦！</div><a class="blog-slider__button" onclick="pjax.loadUrl(&quot;posts/4496.html&quot;);" href="javascript:void(0);" rel="external nofollow noreferrer" alt="">详情       </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" onclick="pjax.loadUrl(&quot;posts/35693.html&quot;);" href="javascript:void(0);" rel="external nofollow noreferrer" alt=""><img width="48" height="48" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img33_fnRUqR.jpeg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2018-11-26</span><a class="blog-slider__title" onclick="pjax.loadUrl(&quot;posts/35693.html&quot;);" href="javascript:void(0);" rel="external nofollow noreferrer" alt="">优秀科技博客订阅</a><div class="blog-slider__text">再怎么看我也不知道怎么描述它的啦！</div><a class="blog-slider__button" onclick="pjax.loadUrl(&quot;posts/35693.html&quot;);" href="javascript:void(0);" rel="external nofollow noreferrer" alt="">详情       </a></div></div></div><div class="blog-slider__pagination swiper-pagination-clickable swiper-pagination-bullets"></div></div></div>';
+    console.log('已挂载butterfly_swiper')
+    parent_div_git.insertAdjacentHTML("afterbegin",item_html)
+    }
+  var elist = 'undefined'.split(',');
+  var cpage = location.pathname;
+  var epage = 'all';
+  var flag = 0;
+
+  for (var i=0;i<elist.length;i++){
+    if (cpage.includes(elist[i])){
+      flag++;
+    }
+  }
+
+  if ((epage ==='all')&&(flag == 0)){
+    butterfly_swiper_injector_config();
+  }
+  else if (epage === cpage){
+    butterfly_swiper_injector_config();
+  }
+  </script><script defer src="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper.min.js"></script><script defer data-pjax src="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper_init.js"></script><!-- hexo injector body_end end --></body></html>

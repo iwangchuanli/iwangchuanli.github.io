@@ -1,0 +1,979 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>计算机网络 | 传礼</title><meta name="keywords" content="博客,blog,王传礼,java,python,大数据"><meta name="author" content="传礼,978252321@qq.com"><meta name="copyright" content="传礼"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="计算机网络太难？了解这一篇就够了计算机网络、计算机操作系统这两个“兄弟”是所有开发岗位都需要“结拜”的，不管你是 Java、C++还是测试。对于后端开发的童鞋来说，计算机网络的重要性不亚于语言基础，毕竟平时开发经常会和网络打交道，比如：抓个包等等。所以对这一块知识点的准备还是要抱着敬畏之心，不要放过任何一个漏网之题。下面分享下我的学习过程： 1. 看书：对于计算机比较基础的模块，我都是比较推荐找一">
+<meta property="og:type" content="article">
+<meta property="og:title" content="计算机网络">
+<meta property="og:url" content="https://iwangchuanli.github.io/posts/28759.html">
+<meta property="og:site_name" content="传礼">
+<meta property="og:description" content="计算机网络太难？了解这一篇就够了计算机网络、计算机操作系统这两个“兄弟”是所有开发岗位都需要“结拜”的，不管你是 Java、C++还是测试。对于后端开发的童鞋来说，计算机网络的重要性不亚于语言基础，毕竟平时开发经常会和网络打交道，比如：抓个包等等。所以对这一块知识点的准备还是要抱着敬畏之心，不要放过任何一个漏网之题。下面分享下我的学习过程： 1. 看书：对于计算机比较基础的模块，我都是比较推荐找一">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img15_wiXTy2.jpeg">
+<meta property="article:published_time" content="2022-11-28T07:04:49.749Z">
+<meta property="article:modified_time" content="2022-03-21T09:35:00.000Z">
+<meta property="article:author" content="传礼">
+<meta property="article:tag" content="博客,blog,王传礼,java,python,大数据">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img15_wiXTy2.jpeg"><link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/03/favicons_uH14Fb.gif"><link rel="canonical" href="https://iwangchuanli.github.io/posts/28759"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin=""/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta name="baidu-site-verification" content="qKvGNFZPF9"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?39bd6e37a6e70dc030e6a043a642784e";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: 传礼","link":"链接: ","source":"来源: 传礼","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#121212","position":"bottom-left"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: true,
+  islazyload: true,
+  isAnchor: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '计算机网络',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-03-21 09:35:00'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/custom.css"  media="defer" onload="this.media='all'"><!-- hexo injector head_end start --><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiperstyle.css" media="print" onload="this.media='all'"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.1"><link rel="alternate" href="/atom.xml" title="传礼" type="application/atom+xml">
+</head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/03/photo_NZBQPu.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><div class="data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">511</div></a></div><div class="data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">50</div></a></div><div class="data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">22</div></a></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 归档</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-calendar"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 开发</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/Java"><i class="fa-fw fa fa-music"></i><span> Java</span></a></li><li><a class="site-page child" href="/categories/Python"><i class="fa-fw fa fa-music"></i><span> Python</span></a></li><li><a class="site-page child" href="/categories/VUE"><i class="fa-fw fa fa-music"></i><span> VUE</span></a></li><li><a class="site-page child" href="/categories/MySQL"><i class="fa-fw fa fa-music"></i><span> MySQL</span></a></li><li><a class="site-page child" href="/categories/Redis"><i class="fa-fw fa fa-music"></i><span> Redis</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 架构</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/Spring"><i class="fa-fw fa fa-music"></i><span> Spring</span></a></li><li><a class="site-page child" href="/categories/microServeices"><i class="fa-fw fa fa-music"></i><span> 微服务</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 运维</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/Docker"><i class="fa-fw fa fa-music"></i><span> Docker</span></a></li><li><a class="site-page child" href="/categories/Linux"><i class="fa-fw fa fa-music"></i><span> Linux</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 分享</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/tags/Tools"><i class="fa-fw fa fa-music"></i><span> 工具</span></a></li><li><a class="site-page child" href="/tags/guide"><i class="fa-fw fa fa-music"></i><span> 教程</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 项目</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/tags/Tools"><i class="fa-fw fa fa-music"></i><span> 工具</span></a></li><li><a class="site-page child" href="/tags/guide"><i class="fa-fw fa fa-music"></i><span> 教程</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-heartbeat"></i><span> 娱乐</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/gallery/"><i class="fa-fw fa fa-images"></i><span> 图库</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fa fa-film"></i><span> 电影</span></a></li><li><a class="site-page child" href="/books/"><i class="fa-fw fa fa-book"></i><span> 图书</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 我的</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/artitalk/"><i class="fa-fw fa fa-commenting"></i><span> 说说</span></a></li><li><a class="site-page child" href="/todo/"><i class="fa-fw fa fa-flag"></i><span> TODO</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img15_wiXTy2.jpeg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">传礼</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 归档</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-calendar"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 开发</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/Java"><i class="fa-fw fa fa-music"></i><span> Java</span></a></li><li><a class="site-page child" href="/categories/Python"><i class="fa-fw fa fa-music"></i><span> Python</span></a></li><li><a class="site-page child" href="/categories/VUE"><i class="fa-fw fa fa-music"></i><span> VUE</span></a></li><li><a class="site-page child" href="/categories/MySQL"><i class="fa-fw fa fa-music"></i><span> MySQL</span></a></li><li><a class="site-page child" href="/categories/Redis"><i class="fa-fw fa fa-music"></i><span> Redis</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 架构</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/Spring"><i class="fa-fw fa fa-music"></i><span> Spring</span></a></li><li><a class="site-page child" href="/categories/microServeices"><i class="fa-fw fa fa-music"></i><span> 微服务</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 运维</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/Docker"><i class="fa-fw fa fa-music"></i><span> Docker</span></a></li><li><a class="site-page child" href="/categories/Linux"><i class="fa-fw fa fa-music"></i><span> Linux</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 分享</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/tags/Tools"><i class="fa-fw fa fa-music"></i><span> 工具</span></a></li><li><a class="site-page child" href="/tags/guide"><i class="fa-fw fa fa-music"></i><span> 教程</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 项目</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/tags/Tools"><i class="fa-fw fa fa-music"></i><span> 工具</span></a></li><li><a class="site-page child" href="/tags/guide"><i class="fa-fw fa fa-music"></i><span> 教程</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-heartbeat"></i><span> 娱乐</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/gallery/"><i class="fa-fw fa fa-images"></i><span> 图库</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fa fa-film"></i><span> 电影</span></a></li><li><a class="site-page child" href="/books/"><i class="fa-fw fa fa-book"></i><span> 图书</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa fa-tags"></i><span> 我的</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/artitalk/"><i class="fa-fw fa fa-commenting"></i><span> 说说</span></a></li><li><a class="site-page child" href="/todo/"><i class="fa-fw fa fa-flag"></i><span> TODO</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">计算机网络</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-11-28T07:04:49.749Z" title="发表于 2022-11-28 07:04:49">2022-11-28</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-03-21T09:35:00.000Z" title="更新于 2022-03-21 09:35:00">2022-03-21</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">16k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>50分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="计算机网络"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="计算机网络太难？了解这一篇就够了"><a href="#计算机网络太难？了解这一篇就够了" class="headerlink" title="计算机网络太难？了解这一篇就够了"></a>计算机网络太难？了解这一篇就够了</h1><p>计算机网络、计算机操作系统这两个“兄弟”是所有开发岗位都需要“结拜”的，不管你是 Java、C++还是测试。对于后端开发的童鞋来说，计算机网络的重要性不亚于语言基础，毕竟平时开发经常会和网络打交道，比如：抓个包等等。所以对这一块知识点的准备还是要抱着敬畏之心，不要放过任何一个漏网之题。下面分享下我的学习过程：</p>
+<p>1. 看书：对于计算机比较基础的模块，我都是比较推荐找一本经典的书籍来好好学习下，不可以只看面经就去面试了。我一共看了两本书：汤小丹的《计算机操作系统》和《图解HTTP》。《计算机操作系统》是教科书，所以知识点相对比较基础，覆盖范围也比较广，非科班的学生还是很有必要看一看的。《图解HTTP》这本书用很多插图将一些知识点讲的通俗易懂，看起来也很快，还是比较推荐的。</p>
+<p>2. 做笔记：计算机网络的知识点还是比较多的，需要看书的时候做好笔记，方便复习。而且做笔记的时候可以就这个知识点去百度下，看看有没有自己遗漏的点，再给补充进来。在这里说下，我为什么一直强调做笔记？好处 1：做笔记是第 1 次你对书中的知识点的回顾，加深记忆；好处 2：而且如果你是发表在公关社区的肯定要保证最大限度的正确性，就需要再去看看这个知识点，核对下自己是否有理解偏差和遗漏等，这样就完成了知识点的深挖；好处3：正在到面试复习的时候，你是不太可能重新看一本书的，那么笔记就显得很重要了，自己做的笔记，复习起来很快，而且最好在笔记里能有一些自己区别于面经的理解。</p>
+<p>3. 看面经：经常刷一刷牛客，看看对于计算机网络，面试官们都是怎么问的？很多问题你可能会，但是不懂面试官的问法，也会回答不上来；问到的题目自己是否准备了？而且对于计算机网络和计算机操作系统会因为公司和岗位的不同而有所侧重的，多看看面经就会发现还是有一点规律的，但是这都不是绝对的，最后还要看面你的面试官的喜好。</p>
+<h3 id="1、谈下你对五层网络协议体系结构的理解？"><a href="#1、谈下你对五层网络协议体系结构的理解？" class="headerlink" title="1、谈下你对五层网络协议体系结构的理解？"></a>1、谈下你对五层网络协议体系结构的理解？</h3><p>学习计算机网络时我们一般采用折中的办法，也就是中和 OSI 和 TCP/IP 的优点，采用一种只有五层协议的体系结构，这样既简洁又能将概念阐述清楚。</p>
+<ul>
+<li><strong>1. 应用层</strong></li>
+</ul>
+<p>应用层（application-layer）的任务是通过应用进程间的交互来完成特定网络应用。应用层协议定义的是应用进程（进程：主机中正在运行的程序）间的通信和交互的规则。对于不同的网络应用需要不同的应用层协议。在互联网中应用层协议很多，如域名系统 DNS，支持万维网应用的 HTTP 协议，支持电子邮件的 SMTP 协议等等。我们把应用层交互的数据单元称为报文。</p>
+<ul>
+<li><strong>2. 运输层</strong></li>
+</ul>
+<p>运输层（transport layer）的主要任务就是负责向两台主机进程之间的通信提供通用的数据传输服务。应用进程利用该服务传送应用层报文。“通用的”是指并不针对某一个特定的网络应用，而是多种应用可以使用同一个运输层服务。</p>
+<p>由于一台主机可同时运行多个线程，因此运输层有复用和分用的功能。所谓复用就是指多个应用层进程可同时使用下面运输层的服务，分用和复用相反，是运输层把收到的信息分别交付上面应用层中的相应进程。</p>
+<ul>
+<li><strong>3. 网络层</strong></li>
+</ul>
+<p>在计算机网络中进行通信的两个计算机之间可能会经过很多个数据链路，也可能还要经过很多通信子网。网络层的任务就是选择合适的网间路由和交换结点， 确保数据及时传送。在发送数据时，网络层把运输层产生的报文段或用户数据报封装成分组和包进行传送。在 TCP / IP 体系结构中，由于网络层使用 IP 协议，因此分组也叫 IP 数据报，简称数据报。</p>
+<ul>
+<li><strong>4. 数据链路层</strong></li>
+</ul>
+<p>数据链路层（data link layer）通常简称为链路层。两台主机之间的数据传输，总是在一段一段的链路上传送的，这就需要使用专门的链路层的协议。在两个相邻节点之间传送数据时，数据链路层将网络层交下来的 IP 数据报组装成帧，在两个相邻节点间的链路上传送帧。每一帧包括数据和必要的控制信息（如：同步信息，地址信息，差错控制等）。</p>
+<p>在接收数据时，控制信息使接收端能够知道一个帧从哪个比特开始和到哪个比特结束。这样，数据链路层在收到一个帧后，就可从中提出数据部分，上交给网络层。控制信息还使接收端能够检测到所收到的帧中有无差错。如果发现差错，数据链路层就简单地丢弃这个出了差错的帧，以避免继续在网络中传送下去白白浪费网络资源。如果需要改正数据在链路层传输时出现差错（这就是说，数据链路层不仅要检错，而且还要纠错），那么就要采用可靠性传输协议来纠正出现的差错。这种方法会使链路层的协议复杂些。</p>
+<ul>
+<li><strong>5. 物理层</strong></li>
+</ul>
+<p>在物理层上所传送的数据单位是比特。物理层（physical layer）的作用是实现相邻计算机节点之间比特流的透明传送，尽可能屏蔽掉具体传输介质和物理设备的差异。使其上面的数据链路层不必考虑网络的具体传输介质是什么。“透明传送比特流”表示经实际电路传送后的比特流没有发生变化，对传送的比特流来说，这个电路好像是看不见的。</p>
+<h3 id="2、简单说下每一层对应的网络协议有哪些？"><a href="#2、简单说下每一层对应的网络协议有哪些？" class="headerlink" title="2、简单说下每一层对应的网络协议有哪些？"></a>2、简单说下每一层对应的网络协议有哪些？</h3><p>计算机五层网络体系中涉及的协议非常多，下面就常用的做了列举：</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/16d61cdfcf43eedd_tplv-t2oaga2asx_9f878e43a08b4178b.webp"></p>
+<h3 id="3、ARP-协议的工作原理？"><a href="#3、ARP-协议的工作原理？" class="headerlink" title="3、ARP 协议的工作原理？"></a>3、ARP 协议的工作原理？</h3><p>网络层的 ARP 协议完成了 IP 地址与物理地址的映射。首先，每台主机都会在自己的 ARP 缓冲区中建立一个 ARP 列表，以表示 IP 地址和 MAC 地址的对应关系。当源主机需要将一个数据包要发送到目的主机时，会首先检查自己 ARP 列表中是否存在该 IP 地址对应的 MAC 地址：如果有，就直接将数据包发送到这个 MAC 地址；如果没有，就向本地网段发起一个 ARP 请求的广播包，查询此目的主机对应的 MAC 地址。</p>
+<p>此 ARP 请求数据包里包括源主机的 IP 地址、硬件地址、以及目的主机的 IP 地址。网络中所有的主机收到这个 ARP 请求后，会检查数据包中的目的 IP 是否和自己的 IP 地址一致。如果不相同就忽略此数据包；如果相同，该主机首先将发送端的 MAC 地址和 IP 地址添加到自己的 ARP 列表中，如果 ARP 表中已经存在该 IP 的信息，则将其覆盖，然后给源主机发送一个 ARP 响应数据包，告诉对方自己是它需要查找的 MAC 地址；源主机收到这个 ARP 响应数据包后，将得到的目的主机的 IP 地址和 MAC 地址添加到自己的 ARP 列表中，并利用此信息开始数据的传输。如果源主机一直没有收到 ARP 响应数据包，表示 ARP 查询失败。</p>
+<h3 id="4、谈下你对-IP-地址分类的理解？"><a href="#4、谈下你对-IP-地址分类的理解？" class="headerlink" title="4、谈下你对 IP 地址分类的理解？"></a>4、谈下你对 IP 地址分类的理解？</h3><p>IP 地址是指互联网协议地址，是 IP 协议提供的一种统一的地址格式，它为互联网上的每一个网络和每一台主机分配一个逻辑地址，以此来屏蔽物理地址的差异。IP 地址编址方案将 IP 地址空间划分为 A、B、C、D、E 五类，其中 A、B、C 是基本类，D、E 类作为多播和保留使用，为特殊地址。</p>
+<p>每个 IP 地址包括两个标识码（ID），即网络 ID 和主机 ID。同一个物理网络上的所有主机都使用同一个网络 ID，网络上的一个主机（包括网络上工作站，服务器和路由器等）有一个主机 ID 与其对应。A~E 类地址的特点如下：</p>
+<p>A 类地址：以 0 开头，第一个字节范围：0~127；</p>
+<p>B 类地址：以 10 开头，第一个字节范围：128~191；</p>
+<p>C 类地址：以 110 开头，第一个字节范围：192~223；</p>
+<p>D 类地址：以 1110 开头，第一个字节范围为 224~239；</p>
+<p>E 类地址：以 1111 开头，保留地址</p>
+<h3 id="5、TCP-的主要特点是什么？"><a href="#5、TCP-的主要特点是什么？" class="headerlink" title="5、TCP 的主要特点是什么？"></a>5、TCP 的主要特点是什么？</h3><p>1. TCP 是面向连接的。（就好像打电话一样，通话前需要先拨号建立连接，通话结束后要挂机释放连接）；</p>
+<p>2. 每一条 TCP 连接只能有两个端点，每一条 TCP 连接只能是点对点的（一对一）；</p>
+<p>3. TCP 提供可靠交付的服务。通过 TCP 连接传送的数据，无差错、不丢失、不重复、并且按序到达；</p>
+<p>4. TCP 提供全双工通信。TCP 允许通信双方的应用进程在任何时候都能发送数据。TCP 连接的两端都设有发送缓存和接收缓存，用来临时存放双方通信的数据；</p>
+<p>5. 面向字节流。TCP 中的“流”（Stream）指的是流入进程或从进程流出的字节序列。“面向字节流”的含义是：虽然应用程序和 TCP 的交互是一次一个数据块（大小不等），但 TCP 把应用程序交下来的数据仅仅看成是一连串的无结构的字节流。</p>
+<h3 id="6、UDP-的主要特点是什么？"><a href="#6、UDP-的主要特点是什么？" class="headerlink" title="6、UDP 的主要特点是什么？"></a>6、UDP 的主要特点是什么？</h3><p>1. UDP 是无连接的；</p>
+<p>2. UDP 使用尽最大努力交付，即不保证可靠交付，因此主机不需要维持复杂的链接状态（这里面有许多参数）；</p>
+<p>3. UDP 是面向报文的；</p>
+<p>4. UDP 没有拥塞控制，因此网络出现拥塞不会使源主机的发送速率降低（对实时应用很有用，如 直播，实时视频会议等）；</p>
+<p>5. UDP 支持一对一、一对多、多对一和多对多的交互通信；</p>
+<p>6. UDP 的首部开销小，只有 8 个字节，比 TCP 的 20 个字节的首部要短。</p>
+<h3 id="7、TCP-和-UDP-的区别？"><a href="#7、TCP-和-UDP-的区别？" class="headerlink" title="7、TCP 和 UDP 的区别？"></a>7、TCP 和 UDP 的区别？</h3><p>TCP 提供面向连接的服务。在传送数据之前必须先建立连接，数据传送结束后要释放连接。TCP 不提供广播或多播服务。由于 TCP 要提供可靠的，面向连接的运输服务（TCP 的可靠体现在 TCP 在传递数据之前，会有三次握手来建立连接，而且在数据传递时，有确认、窗口、重传、拥塞控制机制，在数据传完后，还会断开连接用来节约系统资源），这难以避免增加了许多开销，如确认，流量控制，计时器以及连接管理等。这不仅使协议数据单元的首部增大很多，还要占用许多处理机资源。</p>
+<p>UDP 在传送数据之前不需要先建立连接，远地主机在收到 UDP 报文后，不需要给出任何确认。虽然 UDP 不提供可靠交付，但在某些情况下 UDP 确是一种最有效的工作方式（一般用于即时通信），比如：QQ 语音、 QQ 视频 、直播等等。</p>
+<h3 id="8、TCP-和-UDP-分别对应的常见应用层协议有哪些？"><a href="#8、TCP-和-UDP-分别对应的常见应用层协议有哪些？" class="headerlink" title="8、TCP 和 UDP 分别对应的常见应用层协议有哪些？"></a>8、TCP 和 UDP 分别对应的常见应用层协议有哪些？</h3><ul>
+<li><strong>1. TCP 对应的应用层协议</strong></li>
+</ul>
+<p>FTP：定义了文件传输协议，使用 21 端口。常说某某计算机开了 FTP 服务便是启动了文件传输服务。下载文件，上传主页，都要用到 FTP 服务。</p>
+<p>Telnet：它是一种用于远程登陆的端口，用户可以以自己的身份远程连接到计算机上，通过这种端口可以提供一种基于 DOS 模式下的通信服务。如以前的 BBS 是-纯字符界面的，支持 BBS 的服务器将 23 端口打开，对外提供服务。</p>
+<p>SMTP：定义了简单邮件传送协议，现在很多邮件服务器都用的是这个协议，用于发送邮件。如常见的免费邮件服务中用的就是这个邮件服务端口，所以在电子邮件设置-中常看到有这么 SMTP 端口设置这个栏，服务器开放的是 25 号端口。</p>
+<p>POP3：它是和 SMTP 对应，POP3 用于接收邮件。通常情况下，POP3 协议所用的是 110 端口。也是说，只要你有相应的使用 POP3 协议的程序（例如 Fo-xmail 或 Outlook），就可以不以 Web 方式登陆进邮箱界面，直接用邮件程序就可以收到邮件（如是163 邮箱就没有必要先进入网易网站，再进入自己的邮-箱来收信）。</p>
+<p>HTTP：从 Web 服务器传输超文本到本地浏览器的传送协议。</p>
+<ul>
+<li><strong>2. UDP 对应的应用层协议</strong></li>
+</ul>
+<p>DNS：用于域名解析服务，将域名地址转换为 IP 地址。DNS 用的是 53 号端口。</p>
+<p>SNMP：简单网络管理协议，使用 161 号端口，是用来管理网络设备的。由于网络设备很多，无连接的服务就体现出其优势。</p>
+<p>TFTP(Trival File Transfer Protocal)：简单文件传输协议，该协议在熟知端口 69 上使用 UDP 服务。</p>
+<h3 id="9、详细说下-TCP-三次握手的过程？"><a href="#9、详细说下-TCP-三次握手的过程？" class="headerlink" title="9、详细说下 TCP 三次握手的过程？"></a>9、详细说下 TCP 三次握手的过程？</h3><ul>
+<li><strong>1. 三次握手</strong></li>
+</ul>
+<p>TCP 建立连接的过程叫做握手，握手需要在客户和服务器之间交换三个 TCP 报文段。</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/6844903951335178248_fdf1864ee6354265950f5405af76a1.htm"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/16d61cbcef672eb5_tplv-t2oaga2asx_79a187c54d2a4f54b.webp"></p>
+<p>最初客户端和服务端都处于 CLOSED(关闭) 状态。本例中 A（Client） 主动打开连接，B（Server） 被动打开连接。</p>
+<p>一开始，B 的 TCP 服务器进程首先创建传输控制块TCB，准备接受客户端进程的连接请求。然后服务端进程就处于 LISTEN(监听) 状态，等待客户端的连接请求。如有，立即作出响应。</p>
+<p>第一次握手：A 的 TCP 客户端进程也是首先创建传输控制块 TCB。然后，在打算建立 TCP 连接时，向 B 发出连接请求报文段，这时首部中的同步位 SYN=1，同时选择一个初始序号 seq = x。TCP 规定，SYN 报文段（即 SYN = 1 的报文段）不能携带数据，但要消耗掉一个序号。这时，TCP 客户进程进入 SYN-SENT（同步已发送）状态。</p>
+<p>第二次握手：B 收到连接请求报文后，如果同意建立连接，则向 A 发送确认。在确认报文段中应把 SYN 位和 ACK 位都置 1，确认号是 ack = x + 1，同时也为自己选择一个初始序号 seq = y。请注意，这个报文段也不能携带数据，但同样要消耗掉一个序号。这时 TCP 服务端进程进入 SYN-RCVD（同步收到）状态。</p>
+<p>第三次握手：TCP 客户进程收到 B 的确认后，还要向 B 给出确认。确认报文段的 ACK 置 1，确认号 ack = y + 1，而自己的序号 seq = x + 1。这时 ACK 报文段可以携带数据。但如果不携带数据则不消耗序号，这种情况下，下一个数据报文段的序号仍是 seq = x + 1。这时，TCP 连接已经建立，A 进入 ESTABLISHED（已建立连接）状态。</p>
+<h3 id="10、为什么两次握手不可以呢？"><a href="#10、为什么两次握手不可以呢？" class="headerlink" title="10、为什么两次握手不可以呢？"></a>10、为什么两次握手不可以呢？</h3><p>为了防止已经失效的连接请求报文段突然又传送到了 B，因而产生错误。比如下面这种情况：A 发出的第一个连接请求报文段并没有丢失，而是在网路结点长时间滞留了，以致于延误到连接释放以后的某个时间段才到达 B。本来这是一个早已失效的报文段。但是 B 收到此失效的链接请求报文段后，就误认为 A 又发出一次新的连接请求。于是就向 A 发出确认报文段，同意建立连接。</p>
+<p>对于上面这种情况，如果不进行第三次握手，B 发出确认后就认为新的运输连接已经建立了，并一直等待 A 发来数据。B 的许多资源就这样白白浪费了。</p>
+<p>如果采用了三次握手，由于 A 实际上并没有发出建立连接请求，所以不会理睬 B 的确认，也不会向 B 发送数据。B 由于收不到确认，就知道 A 并没有要求建立连接。</p>
+<h3 id="11、为什么不需要四次握手？"><a href="#11、为什么不需要四次握手？" class="headerlink" title="11、为什么不需要四次握手？"></a>11、为什么不需要四次握手？</h3><p>有人可能会说 A 发出第三次握手的信息后在没有接收到 B 的请求就已经进入了连接状态，那如果 A 的这个确认包丢失或者滞留了怎么办？</p>
+<p>我们需要明白一点，完全可靠的通信协议是不存在的。在经过三次握手之后，客户端和服务端已经可以确认之前的通信状况，都收到了确认信息。所以即便再增加握手次数也不能保证后面的通信完全可靠，所以是没有必要的。</p>
+<h3 id="12、Server-端收到-Client-端的-SYN-后，为什么还要传回-SYN？"><a href="#12、Server-端收到-Client-端的-SYN-后，为什么还要传回-SYN？" class="headerlink" title="12、Server 端收到 Client 端的 SYN 后，为什么还要传回 SYN？"></a>12、Server 端收到 Client 端的 SYN 后，为什么还要传回 SYN？</h3><p>接收端传回发送端所发送的 SYN 是为了告诉发送端，我接收到的信息确实就是你所发送的信号了。</p>
+<p>SYN 是 TCP / IP 建立连接时使用的握手信号。在客户机和服务器之间建立正常的 TCP 网络连接时，客户机首先发出一个 SYN 消息，服务器使用 SYN-ACK 应答表示接收到了这个消息，最后客户机再以 ACK(Acknowledgement[汉译：确认字符，在数据通信传输中，接收站发给发送站的一种传输控制字符。它表示确认发来的数据已经接受无误]）消息响应。这样在客户机和服务器之间才能建立起可靠的 TCP 连接，数据才可以在客户机和服务器之间传递。</p>
+<h3 id="13、传了-SYN，为什么还要传-ACK？"><a href="#13、传了-SYN，为什么还要传-ACK？" class="headerlink" title="13、传了 SYN，为什么还要传 ACK？"></a>13、传了 SYN，为什么还要传 ACK？</h3><p>双方通信无误必须是两者互相发送信息都无误。传了 SYN，证明发送方到接收方的通道没有问题，但是接收方到发送方的通道还需要 ACK 信号来进行验证。</p>
+<h3 id="14、详细说下-TCP-四次挥手的过程？"><a href="#14、详细说下-TCP-四次挥手的过程？" class="headerlink" title="14、详细说下 TCP 四次挥手的过程？"></a>14、详细说下 TCP 四次挥手的过程？</h3><p>据传输结束后，通信的双方都可以释放连接。现在 A 和 B 都处于 ESTABLISHED 状态。</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/16d61cb0506aea3f_tplv-t2oaga2asx_79067d93caa747eb9.webp"></p>
+<p>第一次挥手：A 的应用进程先向其 TCP 发出连接释放报文段，并停止再发送数据，主动关闭 TCP 连接。A 把连接释放报文段首部的终止控制位 FIN 置 1，其序号 seq = u（等于前面已传送过的数据的最后一个字节的序号加 1），这时 A 进入 FIN-WAIT-1（终止等待1）状态，等待 B 的确认。请注意：TCP 规定，FIN 报文段即使不携带数据，也将消耗掉一个序号。</p>
+<p>第二次挥手：B 收到连接释放报文段后立即发出确认，确认号是 ack = u + 1，而这个报文段自己的序号是 v（等于 B 前面已经传送过的数据的最后一个字节的序号加1），然后 B 就进入 CLOSE-WAIT（关闭等待）状态。TCP 服务端进程这时应通知高层应用进程，因而从 A 到 B 这个方向的连接就释放了，这时的 TCP 连接处于半关闭（half-close）状态，即 A 已经没有数据要发送了，但 B 若发送数据，A 仍要接收。也就是说，从 B 到 A 这个方向的连接并未关闭，这个状态可能会持续一段时间。A 收到来自 B 的确认后，就进入 FIN-WAIT-2(终止等待2)状态，等待 B 发出的连接释放报文段。</p>
+<p>第三次挥手：若 B 已经没有要向 A 发送的数据，其应用进程就通知 TCP 释放连接。这时 B 发出的连接释放报文段必须使 FIN = 1。假定 B 的序号为 w（在半关闭状态，B 可能又发送了一些数据）。B 还必须重复上次已发送过的确认号 ack = u + 1。这时 B 就进入 LAST-ACK(最后确认)状态，等待 A 的确认。</p>
+<p>第四次挥手：A 在收到 B 的连接释放报文后，必须对此发出确认。在确认报文段中把 ACK 置 1，确认号 ack = w + 1，而自己的序号 seq = u + 1（前面发送的 FIN 报文段要消耗一个序号）。然后进入 TIME-WAIT(时间等待) 状态。请注意，现在 TCP 连接还没有释放掉。必须经过时间等待计时器设置的时间 2MSL（MSL：最长报文段寿命）后，A 才能进入到 CLOSED 状态，然后撤销传输控制块，结束这次 TCP 连接。当然如果 B 一收到 A 的确认就进入 CLOSED 状态，然后撤销传输控制块。所以在释放连接时，B 结束 TCP 连接的时间要早于 A。</p>
+<h3 id="15、为什么-TIME-WAIT-状态必须等待-2MSL-的时间呢？"><a href="#15、为什么-TIME-WAIT-状态必须等待-2MSL-的时间呢？" class="headerlink" title="15、为什么 TIME-WAIT 状态必须等待 2MSL 的时间呢？"></a>15、为什么 TIME-WAIT 状态必须等待 2MSL 的时间呢？</h3><p>1. 为了保证 A 发送的最后一个 ACK 报文段能够到达 B。这个 ACK 报文段有可能丢失，因而使处在 LAST-ACK 状态的 B 收不到对已发送的 FIN + ACK 报文段的确认。B 会超时重传这个 FIN+ACK 报文段，而 A 就能在 2MSL 时间内（超时 + 1MSL 传输）收到这个重传的 FIN+ACK 报文段。接着 A 重传一次确认，重新启动 2MSL 计时器。最后，A 和 B 都正常进入到 CLOSED 状态。如果 A 在 TIME-WAIT 状态不等待一段时间，而是在发送完 ACK 报文段后立即释放连接，那么就无法收到 B 重传的 FIN + ACK 报文段，因而也不会再发送一次确认报文段，这样，B 就无法按照正常步骤进入 CLOSED 状态。</p>
+<p>2. 防止已失效的连接请求报文段出现在本连接中。A 在发送完最后一个 ACK 报文段后，再经过时间 2MSL，就可以使本连接持续的时间内所产生的所有报文段都从网络中消失。这样就可以使下一个连接中不会出现这种旧的连接请求报文段。</p>
+<h3 id="16、为什么第二次跟第三次不能合并-第二次和第三次之间的等待是什么"><a href="#16、为什么第二次跟第三次不能合并-第二次和第三次之间的等待是什么" class="headerlink" title="16、为什么第二次跟第三次不能合并, 第二次和第三次之间的等待是什么?"></a>16、为什么第二次跟第三次不能合并, 第二次和第三次之间的等待是什么?</h3><p>当服务器执行第二次挥手之后, 此时证明客户端不会再向服务端请求任何数据, 但是服务端可能还正在给客户端发送数据（可能是客户端上一次请求的资源还没有发送完毕），所以此时服务端会等待把之前未传输完的数据传输完毕之后再发送关闭请求。</p>
+<h3 id="17、保活计时器的作用？"><a href="#17、保活计时器的作用？" class="headerlink" title="17、保活计时器的作用？"></a>17、保活计时器的作用？</h3><p>除时间等待计时器外，TCP 还有一个保活计时器（keepalive timer）。设想这样的场景：客户已主动与服务器建立了 TCP 连接。但后来客户端的主机突然发生故障。显然，服务器以后就不能再收到客户端发来的数据。因此，应当有措施使服务器不要再白白等待下去。这就需要使用保活计时器了。</p>
+<p>服务器每收到一次客户的数据，就重新设置保活计时器，时间的设置通常是两个小时。若两个小时都没有收到客户端的数据，服务端就发送一个探测报文段，以后则每隔 75 秒钟发送一次。若连续发送 10个 探测报文段后仍然无客户端的响应，服务端就认为客户端出了故障，接着就关闭这个连接。</p>
+<h3 id="18、TCP-协议是如何保证可靠传输的？"><a href="#18、TCP-协议是如何保证可靠传输的？" class="headerlink" title="18、TCP 协议是如何保证可靠传输的？"></a>18、TCP 协议是如何保证可靠传输的？</h3><p>1. 数据包校验：目的是检测数据在传输过程中的任何变化，若校验出包有错，则丢弃报文段并且不给出响应，这时 TCP 发送数据端超时后会重发数据；</p>
+<p>2. 对失序数据包重排序：既然 TCP 报文段作为 IP 数据报来传输，而 IP 数据报的到达可能会失序，因此 TCP 报文段的到达也可能会失序。TCP 将对失序数据进行重新排序，然后才交给应用层；</p>
+<p>3. 丢弃重复数据：对于重复数据，能够丢弃重复数据；</p>
+<p>4. 应答机制：当 TCP 收到发自 TCP 连接另一端的数据，它将发送一个确认。这个确认不是立即发送，通常将推迟几分之一秒；</p>
+<p>5. 超时重发：当 TCP 发出一个段后，它启动一个定时器，等待目的端确认收到这个报文段。如果不能及时收到一个确认，将重发这个报文段；</p>
+<p>6. 流量控制：TCP 连接的每一方都有固定大小的缓冲空间。TCP 的接收端只允许另一端发送接收端缓冲区所能接纳的数据，这可以防止较快主机致使较慢主机的缓冲区溢出，这就是流量控制。TCP 使用的流量控制协议是可变大小的滑动窗口协议。</p>
+<h3 id="19、谈谈你对停止等待协议的理解？"><a href="#19、谈谈你对停止等待协议的理解？" class="headerlink" title="19、谈谈你对停止等待协议的理解？"></a>19、谈谈你对停止等待协议的理解？</h3><p>停止等待协议是为了实现可靠传输的，它的基本原理就是每发完一个分组就停止发送，等待对方确认。在收到确认后再发下一个分组；在停止等待协议中，若接收方收到重复分组，就丢弃该分组，但同时还要发送确认。主要包括以下几种情况：无差错情况、出现差错情况（超时重传）、确认丢失和确认迟到、确认丢失和确认迟到。</p>
+<h3 id="20、谈谈你对-ARQ-协议的理解？"><a href="#20、谈谈你对-ARQ-协议的理解？" class="headerlink" title="20、谈谈你对 ARQ 协议的理解？"></a>20、谈谈你对 ARQ 协议的理解？</h3><ul>
+<li><strong>自动重传请求 ARQ 协议</strong></li>
+</ul>
+<p>停止等待协议中超时重传是指只要超过一段时间仍然没有收到确认，就重传前面发送过的分组（认为刚才发送过的分组丢失了）。因此每发送完一个分组需要设置一个超时计时器，其重传时间应比数据在分组传输的平均往返时间更长一些。这种自动重传方式常称为自动重传请求 ARQ。</p>
+<ul>
+<li><strong>连续 ARQ 协议</strong></li>
+</ul>
+<p>连续 ARQ 协议可提高信道利用率。发送方维持一个发送窗口，凡位于发送窗口内的分组可以连续发送出去，而不需要等待对方确认。接收方一般采用累计确认，对按序到达的最后一个分组发送确认，表明到这个分组为止的所有分组都已经正确收到了。</p>
+<h3 id="21、谈谈你对滑动窗口的了解？"><a href="#21、谈谈你对滑动窗口的了解？" class="headerlink" title="21、谈谈你对滑动窗口的了解？"></a>21、谈谈你对滑动窗口的了解？</h3><p>TCP 利用滑动窗口实现流量控制的机制。滑动窗口（Sliding window）是一种流量控制技术。早期的网络通信中，通信双方不会考虑网络的拥挤情况直接发送数据。由于大家不知道网络拥塞状况，同时发送数据，导致中间节点阻塞掉包，谁也发不了数据，所以就有了滑动窗口机制来解决此问题。</p>
+<p>TCP 中采用滑动窗口来进行传输控制，滑动窗口的大小意味着接收方还有多大的缓冲区可以用于接收数据。发送方可以通过滑动窗口的大小来确定应该发送多少字节的数据。当滑动窗口为 0 时，发送方一般不能再发送数据报，但有两种情况除外，一种情况是可以发送紧急数据，例如，允许用户终止在远端机上的运行进程。另一种情况是发送方可以发送一个 1 字节的数据报来通知接收方重新声明它希望接收的下一字节及发送方的滑动窗口大小。</p>
+<h3 id="22、谈下你对流量控制的理解？"><a href="#22、谈下你对流量控制的理解？" class="headerlink" title="22、谈下你对流量控制的理解？"></a>22、谈下你对流量控制的理解？</h3><p>TCP 利用滑动窗口实现流量控制。流量控制是为了控制发送方发送速率，保证接收方来得及接收。接收方发送的确认报文中的窗口字段可以用来控制发送方窗口大小，从而影响发送方的发送速率。将窗口字段设置为 0，则发送方不能发送数据。</p>
+<h3 id="23、谈下你对-TCP-拥塞控制的理解？使用了哪些算法？"><a href="#23、谈下你对-TCP-拥塞控制的理解？使用了哪些算法？" class="headerlink" title="23、谈下你对 TCP 拥塞控制的理解？使用了哪些算法？"></a>23、谈下你对 TCP 拥塞控制的理解？使用了哪些算法？</h3><p>拥塞控制和流量控制不同，前者是一个全局性的过程，而后者指点对点通信量的控制。在某段时间，若对网络中某一资源的需求超过了该资源所能提供的可用部分，网络的性能就要变坏。这种情况就叫拥塞。</p>
+<p>拥塞控制就是为了防止过多的数据注入到网络中，这样就可以使网络中的路由器或链路不致于过载。拥塞控制所要做的都有一个前提，就是网络能够承受现有的网络负荷。拥塞控制是一个全局性的过程，涉及到所有的主机，所有的路由器，以及与降低网络传输性能有关的所有因素。相反，流量控制往往是点对点通信量的控制，是个端到端的问题。流量控制所要做到的就是抑制发送端发送数据的速率，以便使接收端来得及接收。</p>
+<p>为了进行拥塞控制，TCP 发送方要维持一个拥塞窗口(cwnd) 的状态变量。拥塞控制窗口的大小取决于网络的拥塞程度，并且动态变化。发送方让自己的发送窗口取为拥塞窗口和接收方的接受窗口中较小的一个。</p>
+<p>TCP 的拥塞控制采用了四种算法，即：慢开始、拥塞避免、快重传和快恢复。在网络层也可以使路由器采用适当的分组丢弃策略（如：主动队列管理 AQM），以减少网络拥塞的发生。</p>
+<ul>
+<li><strong>慢开始：</strong></li>
+</ul>
+<p>慢开始算法的思路是当主机开始发送数据时，如果立即把大量数据字节注入到网络，那么可能会引起网络阻塞，因为现在还不知道网络的符合情况。经验表明，较好的方法是先探测一下，即由小到大逐渐增大发送窗口，也就是由小到大逐渐增大拥塞窗口数值。cwnd 初始值为 1，每经过一个传播轮次，cwnd 加倍。</p>
+<ul>
+<li><strong>拥塞避免：</strong></li>
+</ul>
+<p>拥塞避免算法的思路是让拥塞窗口 cwnd 缓慢增大，即每经过一个往返时间 RTT 就把发送方的 cwnd 加 1。</p>
+<ul>
+<li><strong>快重传与快恢复：</strong></li>
+</ul>
+<p>在 TCP/IP 中，快速重传和快恢复（fast retransmit and recovery，FRR）是一种拥塞控制算法，它能快速恢复丢失的数据包。</p>
+<p>没有 FRR，如果数据包丢失了，TCP 将会使用定时器来要求传输暂停。在暂停的这段时间内，没有新的或复制的数据包被发送。有了 FRR，如果接收机接收到一个不按顺序的数据段，它会立即给发送机发送一个重复确认。如果发送机接收到三个重复确认，它会假定确认件指出的数据段丢失了，并立即重传这些丢失的数据段。</p>
+<p>有了 FRR，就不会因为重传时要求的暂停被耽误。当有单独的数据包丢失时，快速重传和快恢复（FRR）能最有效地工作。当有多个数据信息包在某一段很短的时间内丢失时，它则不能很有效地工作。</p>
+<h3 id="24、什么是粘包？"><a href="#24、什么是粘包？" class="headerlink" title="24、什么是粘包？"></a>24、什么是粘包？</h3><p>在进行 Java NIO 学习时，可能会发现：如果客户端连续不断的向服务端发送数据包时，服务端接收的数据会出现两个数据包粘在一起的情况。</p>
+<p>1. TCP 是基于字节流的，虽然应用层和 TCP 传输层之间的数据交互是大小不等的数据块，但是 TCP 把这些数据块仅仅看成一连串无结构的字节流，没有边界；</p>
+<p>2. 从 TCP 的帧结构也可以看出，在 TCP 的首部没有表示数据长度的字段。</p>
+<p>基于上面两点，在使用 TCP 传输数据时，才有粘包或者拆包现象发生的可能。一个数据包中包含了发送端发送的两个数据包的信息，这种现象即为粘包。</p>
+<p>接收端收到了两个数据包，但是这两个数据包要么是不完整的，要么就是多出来一块，这种情况即发生了拆包和粘包。拆包和粘包的问题导致接收端在处理的时候会非常困难，因为无法区分一个完整的数据包。</p>
+<h3 id="25、TCP-黏包是怎么产生的？"><a href="#25、TCP-黏包是怎么产生的？" class="headerlink" title="25、TCP 黏包是怎么产生的？"></a>25、TCP 黏包是怎么产生的？</h3><ul>
+<li><strong>发送方产生粘包</strong></li>
+</ul>
+<p>采用 TCP 协议传输数据的客户端与服务器经常是保持一个长连接的状态（一次连接发一次数据不存在粘包），双方在连接不断开的情况下，可以一直传输数据。但当发送的数据包过于的小时，那么 TCP 协议默认的会启用 Nagle 算法，将这些较小的数据包进行合并发送（缓冲区数据发送是一个堆压的过程）；这个合并过程就是在发送缓冲区中进行的，也就是说数据发送出来它已经是粘包的状态了。</p>
+<ul>
+<li><strong>接收方产生粘包</strong></li>
+</ul>
+<p>接收方采用 TCP 协议接收数据时的过程是这样的：数据到接收方，从网络模型的下方传递至传输层，传输层的 TCP 协议处理是将其放置接收缓冲区，然后由应用层来主动获取（C 语言用 recv、read 等函数）；这时会出现一个问题，就是我们在程序中调用的读取数据函数不能及时的把缓冲区中的数据拿出来，而下一个数据又到来并有一部分放入的缓冲区末尾，等我们读取数据时就是一个粘包。（放数据的速度 &gt; 应用层拿数据速度）</p>
+<h3 id="26、怎么解决拆包和粘包？"><a href="#26、怎么解决拆包和粘包？" class="headerlink" title="26、怎么解决拆包和粘包？"></a>26、怎么解决拆包和粘包？</h3><p>分包机制一般有两个通用的解决方法：</p>
+<p>1. 特殊字符控制；</p>
+<p>2. 在包头首都添加数据包的长度。</p>
+<p>如果使用 netty 的话，就有专门的编码器和解码器解决拆包和粘包问题了。</p>
+<p>tips：UDP 没有粘包问题，但是有丢包和乱序。不完整的包是不会有的，收到的都是完全正确的包。传送的数据单位协议是 UDP 报文或用户数据报，发送的时候既不合并，也不拆分。</p>
+<h3 id="27、你对-HTTP-状态码有了解吗？"><a href="#27、你对-HTTP-状态码有了解吗？" class="headerlink" title="27、你对 HTTP 状态码有了解吗？"></a>27、你对 HTTP 状态码有了解吗？</h3><ul>
+<li><strong>1XX 信息</strong></li>
+</ul>
+<p>1. 100 Continue ：表明到目前为止都很正常，客户端可以继续发送请求或者忽略这个响应。</p>
+<ul>
+<li><strong>2XX 成功</strong></li>
+</ul>
+<p>1. 200 OK</p>
+<p>2. 204 No Content ：请求已经成功处理，但是返回的响应报文不包含实体的主体部分。一般在只需要从客户端往服务器发送信息，而不需要返回数据时使用。</p>
+<p>3. 206 Partial Content ：表示客户端进行了范围请求，响应报文包含由 Content-Range 指定范围的实体内容。</p>
+<ul>
+<li><strong>3XX 重定向</strong></li>
+</ul>
+<p>1. 301 Moved Permanently ：永久性重定向；</p>
+<p>2. 302 Found ：临时性重定向；</p>
+<p>3. 303 See Other ：和 302 有着相同的功能，但是 303 明确要求客户端应该采用 GET 方法获取资源。</p>
+<p>4. 304 Not Modified ：如果请求报文首部包含一些条件，例如：If-Match，If-Modified-Since，If-None-Match，If-Range，If-Unmodified-Since，如果不满足条件，则服务器会返回 304 状态码。</p>
+<p>5. 307 Temporary Redirect ：临时重定向，与 302 的含义类似，但是 307 要求浏览器不会把重定向请求的 POST 方法改成 GET 方法。</p>
+<ul>
+<li><strong>4XX 客户端错误</strong></li>
+</ul>
+<p>1. 400 Bad Request ：请求报文中存在语法错误。</p>
+<p>2. 401 Unauthorized ：该状态码表示发送的请求需要有认证信息（BASIC 认证、DIGEST 认证）。如果之前已进行过一次请求，则表示用户认证失败。</p>
+<p>3. 403 Forbidden ：请求被拒绝。</p>
+<p>4. 404 Not Found</p>
+<ul>
+<li><strong>5XX 服务器错误</strong></li>
+</ul>
+<p>1. 500 Internal Server Error ：服务器正在执行请求时发生错误；</p>
+<p>2. 503 Service Unavailable ：服务器暂时处于超负载或正在进行停机维护，现在无法处理请求。</p>
+<h3 id="28、HTTP-状态码-301-和-302-代表的是什么？有什么区别？"><a href="#28、HTTP-状态码-301-和-302-代表的是什么？有什么区别？" class="headerlink" title="28、HTTP 状态码 301 和 302 代表的是什么？有什么区别？"></a>28、HTTP 状态码 301 和 302 代表的是什么？有什么区别？</h3><p>301，302 都是 HTTP 状态的编码，都代表着某个 URL 发生了转移。</p>
+<ul>
+<li><strong>区别：</strong></li>
+</ul>
+<p>301 redirect: 301 代表永久性转移（Permanently Moved）</p>
+<p>302 redirect: 302 代表暂时性转移（Temporarily Moved）</p>
+<h3 id="29、forward-和-redirect-的区别？"><a href="#29、forward-和-redirect-的区别？" class="headerlink" title="29、forward 和 redirect 的区别？"></a>29、forward 和 redirect 的区别？</h3><p>Forward 和 Redirect 代表了两种请求转发方式：直接转发和间接转发。</p>
+<p>直接转发方式（Forward）：客户端和浏览器只发出一次请求，Servlet、HTML、JSP 或其它信息资源，由第二个信息资源响应该请求，在请求对象 request 中，保存的对象对于每个信息资源是共享的。</p>
+<p>间接转发方式（Redirect）：实际是两次 HTTP 请求，服务器端在响应第一次请求的时候，让浏览器再向另外一个 URL 发出请求，从而达到转发的目的。</p>
+<ul>
+<li>举个通俗的例子：　</li>
+</ul>
+<p>直接转发就相当于：“A 找 B 借钱，B 说没有，B 去找 C 借，借到借不到都会把消息传递给 A”；</p>
+<p>间接转发就相当于：”A 找 B 借钱，B 说没有，让 A 去找 C 借”。</p>
+<h3 id="30、HTTP-方法有哪些？"><a href="#30、HTTP-方法有哪些？" class="headerlink" title="30、HTTP 方法有哪些？"></a>30、HTTP 方法有哪些？</h3><p>客户端发送的 请求报文 第一行为请求行，包含了方法字段。</p>
+<p>1. GET：获取资源，当前网络中绝大部分使用的都是 GET；</p>
+<p>2. HEAD：获取报文首部，和 GET 方法类似，但是不返回报文实体主体部分；</p>
+<p>3. POST：传输实体主体</p>
+<p>4. PUT：上传文件，由于自身不带验证机制，任何人都可以上传文件，因此存在安全性问题，一般不使用该方法。</p>
+<p>5. PATCH：对资源进行部分修改。PUT 也可以用于修改资源，但是只能完全替代原始资源，PATCH 允许部分修改。</p>
+<p>6. OPTIONS：查询指定的 URL 支持的方法；</p>
+<p>7. CONNECT：要求在与代理服务器通信时建立隧道。使用 SSL（Secure Sockets Layer，安全套接层）和 TLS（Transport Layer Security，传输层安全）协议把通信内容加密后经网络隧道传输。</p>
+<p>8. TRACE：追踪路径。服务器会将通信路径返回给客户端。发送请求时，在 Max-Forwards 首部字段中填入数值，每经过一个服务器就会减 1，当数值为 0 时就停止传输。通常不会使用 TRACE，并且它容易受到 XST 攻击（Cross-Site Tracing，跨站追踪）。</p>
+<h3 id="31、说下-GET-和-POST-的区别？"><a href="#31、说下-GET-和-POST-的区别？" class="headerlink" title="31、说下 GET 和 POST 的区别？"></a>31、说下 GET 和 POST 的区别？</h3><p>GET 和 POST 本质都是 HTTP 请求，只不过对它们的作用做了界定和适配，并且让他们适应各自的场景。</p>
+<p>本质区别：GET 只是一次 HTTP请求，POST 先发请求头再发请求体，实际上是两次请求。</p>
+<p>1. 从功能上讲，GET 一般用来从服务器上获取资源，POST 一般用来更新服务器上的资源；</p>
+<p>2. 从 REST 服务角度上说，GET 是幂等的，即读取同一个资源，总是得到相同的数据，而 POST 不是幂等的，因为每次请求对资源的改变并不是相同的；进一步地，GET 不会改变服务器上的资源，而 POST 会对服务器资源进行改变；</p>
+<p>3. 从请求参数形式上看，GET 请求的数据会附在 URL 之后，即将请求数据放置在 HTTP 报文的 请求头 中，以 ? 分割 URL 和传输数据，参数之间以 &amp; 相连。特别地，如果数据是英文字母/数字，原样发送；否则，会将其编码为 application/x-www-form-urlencoded MIME 字符串(如果是空格，转换为+，如果是中文/其他字符，则直接把字符串用 BASE64 加密，得出如：%E4%BD%A0%E5%A5%BD，其中 ％XX 中的 XX 为该符号以 16 进制表示的 ASCII)；而 POST 请求会把提交的数据则放置在是 HTTP 请求报文的 请求体 中；</p>
+<p>4. 就安全性而言，POST 的安全性要比 GET 的安全性高，因为 GET 请求提交的数据将明文出现在 URL 上，而且 POST 请求参数则被包装到请求体中，相对更安全；</p>
+<p>5. 从请求的大小看，GET 请求的长度受限于浏览器或服务器对 URL 长度的限制，允许发送的数据量比较小，而 POST 请求则是没有大小限制的。</p>
+<h3 id="32、在浏览器中输入-URL-地址到显示主页的过程？"><a href="#32、在浏览器中输入-URL-地址到显示主页的过程？" class="headerlink" title="32、在浏览器中输入 URL 地址到显示主页的过程？"></a>32、在浏览器中输入 URL 地址到显示主页的过程？</h3><p>1. DNS 解析：浏览器查询 DNS，获取域名对应的 IP 地址：具体过程包括浏览器搜索自身的 DNS 缓存、搜索操作系统的 DNS 缓存、读取本地的 Host 文件和向本地 DNS 服务器进行查询等。对于向本地 DNS 服务器进行查询，如果要查询的域名包含在本地配置区域资源中，则返回解析结果给客户机，完成域名解析(此解析具有权威性)；如果要查询的域名不由本地 DNS 服务器区域解析，但该服务器已缓存了此网址映射关系，则调用这个 IP 地址映射，完成域名解析（此解析不具有权威性）。如果本地域名服务器并未缓存该网址映射关系，那么将根据其设置发起递归查询或者迭代查询；</p>
+<p>2. TCP 连接：浏览器获得域名对应的 IP 地址以后，浏览器向服务器请求建立链接，发起三次握手；</p>
+<p>3. 发送 HTTP 请求：TCP 连接建立起来后，浏览器向服务器发送 HTTP 请求；</p>
+<p>4. 服务器处理请求并返回 HTTP 报文：服务器接收到这个请求，并根据路径参数映射到特定的请求处理器进行处理，并将处理结果及相应的视图返回给浏览器；</p>
+<p>5. 浏览器解析渲染页面：浏览器解析并渲染视图，若遇到对 js 文件、css 文件及图片等静态资源的引用，则重复上述步骤并向服务器请求这些资源；浏览器根据其请求到的资源、数据渲染页面，最终向用户呈现一个完整的页面。</p>
+<p>6. 连接结束。</p>
+<h3 id="33、DNS-的解析过程？"><a href="#33、DNS-的解析过程？" class="headerlink" title="33、DNS 的解析过程？"></a>33、DNS 的解析过程？</h3><p>1. 主机向本地域名服务器的查询一般都是采用递归查询。所谓递归查询就是：如果主机所询问的本地域名服务器不知道被查询的域名的 IP 地址，那么本地域名服务器就以 DNS 客户的身份，向根域名服务器继续发出查询请求报文(即替主机继续查询)，而不是让主机自己进行下一步查询。因此，递归查询返回的查询结果或者是所要查询的 IP 地址，或者是报错，表示无法查询到所需的 IP 地址。</p>
+<p>2. 本地域名服务器向根域名服务器的查询的迭代查询。迭代查询的特点：当根域名服务器收到本地域名服务器发出的迭代查询请求报文时，要么给出所要查询的 IP 地址，要么告诉本地服务器：“你下一步应当向哪一个域名服务器进行查询”。然后让本地服务器进行后续的查询。根域名服务器通常是把自己知道的顶级域名服务器的 IP 地址告诉本地域名服务器，让本地域名服务器再向顶级域名服务器查询。顶级域名服务器在收到本地域名服务器的查询请求后，要么给出所要查询的 IP 地址，要么告诉本地服务器下一步应当向哪一个权限域名服务器进行查询。最后，本地域名服务器得到了所要解析的 IP 地址或报错，然后把这个结果返回给发起查询的主机。</p>
+<h3 id="34、谈谈你对域名缓存的了解？"><a href="#34、谈谈你对域名缓存的了解？" class="headerlink" title="34、谈谈你对域名缓存的了解？"></a>34、谈谈你对域名缓存的了解？</h3><p>为了提高 DNS 查询效率，并减轻服务器的负荷和减少因特网上的 DNS 查询报文数量，在域名服务器中广泛使用了高速缓存，用来存放最近查询过的域名以及从何处获得域名映射信息的记录。</p>
+<p>由于名字到地址的绑定并不经常改变，为保持高速缓存中的内容正确，域名服务器应为每项内容设置计时器并处理超过合理时间的项（例如：每个项目两天）。当域名服务器已从缓存中删去某项信息后又被请求查询该项信息，就必须重新到授权管理该项的域名服务器绑定信息。当权限服务器回答一个查询请求时，在响应中都指明绑定有效存在的时间值。增加此时间值可减少网络开销，而减少此时间值可提高域名解析的正确性。</p>
+<p>不仅在本地域名服务器中需要高速缓存，在主机中也需要。许多主机在启动时从本地服务器下载名字和地址的全部数据库，维护存放自己最近使用的域名的高速缓存，并且只在从缓存中找不到名字时才使用域名服务器。维护本地域名服务器数据库的主机应当定期地检查域名服务器以获取新的映射信息，而且主机必须从缓存中删除无效的项。由于域名改动并不频繁，大多数网点不需花精力就能维护数据库的一致性。</p>
+<h3 id="35、谈下你对-HTTP-长连接和短连接的理解？分别应用于哪些场景？"><a href="#35、谈下你对-HTTP-长连接和短连接的理解？分别应用于哪些场景？" class="headerlink" title="35、谈下你对 HTTP 长连接和短连接的理解？分别应用于哪些场景？"></a>35、谈下你对 HTTP 长连接和短连接的理解？分别应用于哪些场景？</h3><p>在 HTTP/1.0 中默认使用短连接。也就是说，客户端和服务器每进行一次 HTTP 操作，就建立一次连接，任务结束就中断连接。当客户端浏览器访问的某个 HTML 或其他类型的 Web 页中包含有其他的 Web 资源（如：JavaScript 文件、图像文件、CSS 文件等），每遇到这样一个 Web 资源，浏览器就会重新建立一个 HTTP 会话。</p>
+<p>而从 HTTP/1.1 起，默认使用长连接，用以保持连接特性。使用长连接的 HTTP 协议，会在响应头加入这行代码</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Connection:keep-alive复制代码</span><br></pre></td></tr></table></figure>
+
+<p>在使用长连接的情况下，当一个网页打开完成后，客户端和服务器之间用于传输 HTTP 数据的 TCP 连接不会关闭，客户端再次访问这个服务器时，会继续使用这一条已经建立的连接。</p>
+<p>Keep-Alive 不会永久保持连接，它有一个保持时间，可以在不同的服务器软件（如：Apache）中设定这个时间。实现长连接需要客户端和服务端都支持长连接。</p>
+<h3 id="36、谈下-HTTP-1-0-和-1-1、1-2-的主要变化？"><a href="#36、谈下-HTTP-1-0-和-1-1、1-2-的主要变化？" class="headerlink" title="36、谈下 HTTP 1.0 和 1.1、1.2 的主要变化？"></a>36、谈下 HTTP 1.0 和 1.1、1.2 的主要变化？</h3><ul>
+<li><strong>HTTP1.1 的主要变化：</strong></li>
+</ul>
+<p>1. HTTP1.0 经过多年发展，在 1.1 提出了改进。首先是提出了长连接，HTTP 可以在一次 TCP 连接中不断发送请求。</p>
+<p>2. 然后 HTTP1.1 支持只发送 header 而不发送 body。原因是先用 header 判断能否成功，再发数据，节约带宽，事实上，post 请求默认就是这样做的。</p>
+<p>3. HTTP1.1 的 host 字段。由于虚拟主机可以支持多个域名，所以一般将域名解析后得到 host。</p>
+<ul>
+<li><strong>HTTP2.0 的主要变化：</strong></li>
+</ul>
+<p>1. HTTP2.0 支持多路复用，同一个连接可以并发处理多个请求，方法是把 HTTP数据包拆为多个帧，并发有序的发送，根据序号在另一端进行重组，而不需要一个个 HTTP请求顺序到达；</p>
+<p>2. HTTP2.0 支持服务端推送，就是服务端在 HTTP 请求到达后，除了返回数据之外，还推送了额外的内容给客户端；</p>
+<p>3. HTTP2.0 压缩了请求头，同时基本单位是二进制帧流，这样的数据占用空间更少；</p>
+<p>4. HTTP2.0 适用于 HTTPS 场景，因为其在 HTTP和 TCP 中间加了一层 SSL 层。</p>
+<h3 id="37、HTTPS-的工作过程？"><a href="#37、HTTPS-的工作过程？" class="headerlink" title="37、HTTPS 的工作过程？"></a>37、HTTPS 的工作过程？</h3><p>1. 客户端发送自己支持的加密规则给服务器，代表告诉服务器要进行连接了；</p>
+<p>2. 服务器从中选出一套加密算法和 hash 算法以及自己的身份信息（地址等）以证书的形式发送给浏览器，证书中包含服务器信息，加密公钥，证书的办法机构；</p>
+<p>3. 客户端收到网站的证书之后要做下面的事情：</p>
+<ul>
+<li>3.1 验证证书的合法性；</li>
+<li>3.2 果验证通过证书，浏览器会生成一串随机数，并用证书中的公钥进行加密；</li>
+<li>3.3 用约定好的 hash 算法计算握手消息，然后用生成的密钥进行加密，然后一起发送给服务器。</li>
+</ul>
+<p>4. 服务器接收到客户端传送来的信息，要做下面的事情：</p>
+<ul>
+<li>4.1 用私钥解析出密码，用密码解析握手消息，验证 hash 值是否和浏览器发来的一致；</li>
+<li>4.2 使用密钥加密消息；</li>
+</ul>
+<p>5. 如果计算法 hash 值一致，握手成功。</p>
+<h3 id="38、HTTP-和-HTTPS-的区别？"><a href="#38、HTTP-和-HTTPS-的区别？" class="headerlink" title="38、HTTP 和 HTTPS 的区别？"></a>38、HTTP 和 HTTPS 的区别？</h3><p>1. 开销：HTTPS 协议需要到 CA 申请证书，一般免费证书很少，需要交费；</p>
+<p>2. 资源消耗：HTTP 是超文本传输协议，信息是明文传输，HTTPS 则是具有安全性的 ssl 加密传输协议，需要消耗更多的 CPU 和内存资源；</p>
+<p>3. 端口不同：HTTP 和 HTTPS 使用的是完全不同的连接方式，用的端口也不一样，前者是 80，后者是 443；</p>
+<p>4. 安全性：HTTP 的连接很简单，是无状态的；HTTPS 协议是由 TSL+HTTP 协议构建的可进行加密传输、身份认证的网络协议，比 HTTP 协议安全。</p>
+<h3 id="39、HTTPS-的优缺点？"><a href="#39、HTTPS-的优缺点？" class="headerlink" title="39、HTTPS 的优缺点？"></a>39、HTTPS 的优缺点？</h3><ul>
+<li><strong>优点：</strong></li>
+</ul>
+<p>1. 使用 HTTPS 协议可认证用户和服务器，确保数据发送到正确的客户机和服务器；</p>
+<p>2. HTTPS 协议是由 SSL + HTTP 协议构建的可进行加密传输、身份认证的网络协议，要比 HTTP 协议安全，可防止数据在传输过程中不被窃取、改变，确保数据的完整性；</p>
+<p>3. HTTPS 是现行架构下最安全的解决方案，虽然不是绝对安全，但它大幅增加了中间人攻击的成本。</p>
+<ul>
+<li><strong>缺点：</strong></li>
+</ul>
+<p>1. HTTPS 协议握手阶段比较费时，会使页面的加载时间延长近 50%，增加 10% 到 20% 的耗电；</p>
+<p>2. HTTPS 连接缓存不如 HTTP 高效，会增加数据开销和功耗，甚至已有的安全措施也会因此而受到影响；</p>
+<p>3. SSL 证书需要钱，功能越强大的证书费用越高，个人网站、小网站没有必要一般不会用；</p>
+<p>4. SSL 证书通常需要绑定 IP，不能在同一 IP 上绑定多个域名，IPv4 资源不可能支撑这个消耗；</p>
+<p>5. HTTPS 协议的加密范围也比较有限，在黑客攻击、拒绝服务攻击、服务器劫持等方面几乎起不到什么作用。最关键的，SSL 证书的信用链体系并不安全，特别是在某些国家可以控制 CA 根证书的情况下，中间人攻击一样可行。</p>
+<h3 id="40、什么是数字签名？"><a href="#40、什么是数字签名？" class="headerlink" title="40、什么是数字签名？"></a>40、什么是数字签名？</h3><p>为了避免数据在传输过程中被替换，比如黑客修改了你的报文内容，但是你并不知道，所以我们让发送端做一个数字签名，把数据的摘要消息进行一个加密，比如 MD5，得到一个签名，和数据一起发送。然后接收端把数据摘要进行 MD5 加密，如果和签名一样，则说明数据确实是真的。</p>
+<h3 id="41、什么是数字证书？"><a href="#41、什么是数字证书？" class="headerlink" title="41、什么是数字证书？"></a>41、什么是数字证书？</h3><p>对称加密中，双方使用公钥进行解密。虽然数字签名可以保证数据不被替换，但是数据是由公钥加密的，如果公钥也被替换，则仍然可以伪造数据，因为用户不知道对方提供的公钥其实是假的。所以为了保证发送方的公钥是真的，CA 证书机构会负责颁发一个证书，里面的公钥保证是真的，用户请求服务器时，服务器将证书发给用户，这个证书是经由系统内置证书的备案的。</p>
+<h3 id="42、什么是对称加密和非对称加密？"><a href="#42、什么是对称加密和非对称加密？" class="headerlink" title="42、什么是对称加密和非对称加密？"></a>42、什么是对称加密和非对称加密？</h3><p>对称密钥加密是指加密和解密使用同一个密钥的方式，这种方式存在的最大问题就是密钥发送问题，即如何安全地将密钥发给对方。</p>
+<p>非对称加密指使用一对非对称密钥，即：公钥和私钥，公钥可以随意发布，但私钥只有自己知道。发送密文的一方使用对方的公钥进行加密处理，对方接收到加密信息后，使用自己的私钥进行解密。</p>
+<p>由于非对称加密的方式不需要发送用来解密的私钥，所以可以保证安全性。但是和对称加密比起来，它非常的慢，所以我们还是要用对称加密来传送消息，但对称加密所使用的密钥我们可以通过非对称加密的方式发送出去。</p>
+<p>分类：</p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/backend">后端</a></p>
+<p>标签：</p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/tag/Java">Java</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/extension/?utm_source=standalone&utm_medium=post&utm_campaign=extension_promotion">安装掘金浏览器插件</a></p>
+<p>多内容聚合浏览、多引擎快捷搜索、多工具便捷提效、多模式随心畅享，你想要的，这里都有！</p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/extension/?utm_source=standalone&utm_medium=post&utm_campaign=extension_promotion">前往安装</a></p>
+<p>评论</p>
+<img width="40" height="40" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/282ac486461dbb0915d52611c497656b_44b47324df4f44eeb.png"/>
+
+<p>热门评论</p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/676954891359246"><img width="40" height="40" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/282ac486461dbb0915d52611c497656b_44b47324df4f44eeb.png"/></a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/676954891359246">大绵羊</a></p>
+<p>码农 @ 科技公司 2年前</p>
+<p>OSI参考模型不是7层吗，你咋理解成了5层？具体实例TCP/IP协议是4层结构，也不是5层啊。</p>
+<p>点赞</p>
+<p>3</p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/1538972007279086"><img width="24" height="24" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/282ac486461dbb0915d52611c497656b_44b47324df4f44eeb.png"/></a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/1538972007279086">Jimmy2Angel</a></p>
+<p>2年前</p>
+<p>4层 5层 7层都可以说</p>
+<p>点赞</p>
+<p>回复</p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/676954891359246"><img width="24" height="24" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/282ac486461dbb0915d52611c497656b_44b47324df4f44eeb.png"/></a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/676954891359246">大绵羊</a></p>
+<p>回复</p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/1538972007279086">Jimmy2Angel</a></p>
+<p>2年前</p>
+<p>好吧<img width="20" height="20" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/1f603.svg_tplv-t2oaga2asx-image_6be7e622bfd5464583.svg"/></p>
+<p>“</p>
+<p>4层 5层 7层都可以说</p>
+<p>”</p>
+<p>点赞</p>
+<p>回复</p>
+<p>查看更多回复</p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/3597257775000509"><img width="40" height="40" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/282ac486461dbb0915d52611c497656b_44b47324df4f44eeb.png"/></a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/3597257775000509">3只小猪</a></p>
+<p>Java 2年前</p>
+<p>面向面试学习<img width="20" height="20" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/1f601.svg_tplv-t2oaga2asx-image_f52969ae7d7c4b4396.svg"/></p>
+<p>3</p>
+<p>回复</p>
+<p>全部评论 41</p>
+<p>最新</p>
+<p>最热</p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/2727260623478631"><img width="40" height="40" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/282ac486461dbb0915d52611c497656b_44b47324df4f44eeb.png"/></a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/2727260623478631">努力更文的小白 <img width="21" height="13" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/f597b88d22ce5370bd94495780459040_20401d9f56f14686a.svg"/></a> </p>
+<p>Java后端开发 14天前</p>
+<p>作者有对应的学习视频推荐吗？</p>
+<p>点赞</p>
+<p>回复</p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/4089838988180477"><img width="40" height="40" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/282ac486461dbb0915d52611c497656b_44b47324df4f44eeb.png"/></a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/4089838988180477">阿彬。 <img width="21" height="13" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/636691cd590f92898cfcda37357472b8_2ea2d03db45b43768.svg"/></a> </p>
+<p>4月前</p>
+<p>mark</p>
+<p>点赞</p>
+<p>回复</p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/3421335915599454"><img width="40" height="40" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/282ac486461dbb0915d52611c497656b_44b47324df4f44eeb.png"/></a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/3421335915599454">程序员中凑数的</a></p>
+<p>后端开发 7月前</p>
+<p>大佬牛逼</p>
+<p>点赞</p>
+<p>回复</p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/2700056290658989"><img width="40" height="40" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/282ac486461dbb0915d52611c497656b_44b47324df4f44eeb.png"/></a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/2700056290658989">人家人 <img width="21" height="13" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/636691cd590f92898cfcda37357472b8_2ea2d03db45b43768.svg"/></a> </p>
+<p>10月前</p>
+<p>mark</p>
+<p>点赞</p>
+<p>回复</p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/4441682708532078"><img width="40" height="40" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/282ac486461dbb0915d52611c497656b_44b47324df4f44eeb.png"/></a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/4441682708532078">小雨清晨1 <img width="21" height="13" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/636691cd590f92898cfcda37357472b8_2ea2d03db45b43768.svg"/></a> </p>
+<p>1年前</p>
+<p>知识点巩固</p>
+<p>点赞</p>
+<p>回复</p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/1195898543016487"><img width="40" height="40" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/282ac486461dbb0915d52611c497656b_44b47324df4f44eeb.png"/></a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/1195898543016487">user4838128816266</a></p>
+<p>1年前</p>
+<p>mark</p>
+<p>点赞</p>
+<p>回复</p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/3861140569077950"><img width="40" height="40" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/282ac486461dbb0915d52611c497656b_44b47324df4f44eeb.png"/></a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/3861140569077950">sensFeng <img width="21" height="13" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/f597b88d22ce5370bd94495780459040_20401d9f56f14686a.svg"/></a> </p>
+<p>前端工程师 1年前</p>
+<p>掘金没有举报功能吗？完完全全复制粘贴，跟签名真对应。图啥呢</p>
+<p>点赞</p>
+<p>1</p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/3447687337479815"><img width="24" height="24" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/282ac486461dbb0915d52611c497656b_44b47324df4f44eeb.png"/></a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/3447687337479815">又菜又懒 <img width="21" height="13" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/636691cd590f92898cfcda37357472b8_2ea2d03db45b43768.svg"/></a> </p>
+<p>1年前</p>
+<p>你倒是发个原文链接</p>
+<p>点赞</p>
+<p>回复</p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/1538972009901261"><img width="40" height="40" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/282ac486461dbb0915d52611c497656b_44b47324df4f44eeb.png"/></a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/1538972009901261">zhangbxsh <img width="21" height="13" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/636691cd590f92898cfcda37357472b8_2ea2d03db45b43768.svg"/></a> </p>
+<p>2年前</p>
+<p>看了一眼，就觉得牛逼</p>
+<p>点赞</p>
+<p>回复</p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/712139267646951"><img width="40" height="40" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/282ac486461dbb0915d52611c497656b_44b47324df4f44eeb.png"/></a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/712139267646951">平常心在掘金</a></p>
+<p>2年前</p>
+<p>mark</p>
+<p>点赞</p>
+<p>回复</p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/2295436008495192"><img width="40" height="40" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/282ac486461dbb0915d52611c497656b_44b47324df4f44eeb.png"/></a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/2295436008495192">lryong <img width="21" height="13" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/636691cd590f92898cfcda37357472b8_2ea2d03db45b43768.svg"/></a> </p>
+<p>. 2年前</p>
+<p>大佬牛批<img width="20" height="20" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/1f44d.svg_tplv-t2oaga2asx-image_a9a4adf5deec4a63ba.svg"/></p>
+<p>点赞</p>
+<p>回复</p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/1310273591057959"><img width="40" height="40" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/282ac486461dbb0915d52611c497656b_44b47324df4f44eeb.png"/></a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/1310273591057959">洋同学57425</a></p>
+<p>开发工程师 @ Pkfare 2年前</p>
+<p>mark</p>
+<p>点赞</p>
+<p>回复</p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/254742428135661"><img width="40" height="40" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/282ac486461dbb0915d52611c497656b_44b47324df4f44eeb.png"/></a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/254742428135661">JerryZhu60730 <img width="21" height="13" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/636691cd590f92898cfcda37357472b8_2ea2d03db45b43768.svg"/></a> </p>
+<p>Java工程师 2年前</p>
+<p>有点意思</p>
+<p>点赞</p>
+<p>回复</p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/1961184471814456"><img width="40" height="40" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/282ac486461dbb0915d52611c497656b_44b47324df4f44eeb.png"/></a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/1961184471814456">guanhui077 <img width="21" height="13" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/636691cd590f92898cfcda37357472b8_2ea2d03db45b43768.svg"/></a> </p>
+<p>php高级工程师 @ 开发 2年前</p>
+<p>好文</p>
+<p>点赞</p>
+<p>回复</p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/835284566548024"><img width="40" height="40" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/282ac486461dbb0915d52611c497656b_44b47324df4f44eeb.png"/></a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/835284566548024">徐小鹏在掘金</a></p>
+<p>后端 @ 家里蹲 2年前</p>
+<p>mark中午看</p>
+<p>点赞</p>
+<p>回复</p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/1380642336543191"><img width="40" height="40" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/282ac486461dbb0915d52611c497656b_44b47324df4f44eeb.png"/></a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/1380642336543191">大前端a <img width="21" height="13" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/636691cd590f92898cfcda37357472b8_2ea2d03db45b43768.svg"/></a> </p>
+<p>前端开发 2年前</p>
+<p>就当再巩固一遍</p>
+<p>点赞</p>
+<p>回复</p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/342703359409581"><img width="40" height="40" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/282ac486461dbb0915d52611c497656b_44b47324df4f44eeb.png"/></a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/342703359409581">Lushu</a></p>
+<p>大四 2年前</p>
+<p>mark<img width="20" height="20" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/1f525.svg_tplv-t2oaga2asx-image_4fcb8b90b399433ea3.svg"/></p>
+<p>点赞</p>
+<p>回复</p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/782508011291278"><img width="40" height="40" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/282ac486461dbb0915d52611c497656b_44b47324df4f44eeb.png"/></a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/782508011291278">lovehhf</a></p>
+<p>2年前</p>
+<p>mk</p>
+<p>点赞</p>
+<p>回复</p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/4212984289955431"><img width="40" height="40" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/282ac486461dbb0915d52611c497656b_44b47324df4f44eeb.png"/></a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/4212984289955431">万骨枯</a></p>
+<p>2年前</p>
+<p>Mark</p>
+<p>点赞</p>
+<p>回复</p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/4248168661257719"><img width="40" height="40" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/282ac486461dbb0915d52611c497656b_44b47324df4f44eeb.png"/></a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/4248168661257719">调包侠ne</a></p>
+<p>JAVA服务器 2年前</p>
+<p>mark</p>
+<p>点赞</p>
+<p>回复</p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/2031553217055566"><img width="40" height="40" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/282ac486461dbb0915d52611c497656b_44b47324df4f44eeb.png"/></a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/2031553217055566">yangrd <img width="21" height="13" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/636691cd590f92898cfcda37357472b8_2ea2d03db45b43768.svg"/></a> </p>
+<p>java 高级工程师 2年前</p>
+<p>运输层<img width="20" height="20" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/1f602.svg_tplv-t2oaga2asx-image_c6fbcaded3414268b9.svg"/></p>
+<p>点赞</p>
+<p>回复</p>
+<p>查看全部 41 条回复</p>
+<p>相关推荐</p>
+<ul>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/2084329777010894">程序员乔戈里</a>  2年前  <a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/tag/Java">Java</a>  <a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/post/6844904036873814023" title="美团面试官问我一个字符的String.length()是多少，我说是1，面试官说你回去好好学一下吧">美团面试官问我一个字符的String.length()是多少，我说是1，面试官说你回去好好学一下吧</a><ul>
+<li>3.3w</li>
+<li>196</li>
+<li>57</li>
+</ul>
+</li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/2101921964109880">程序员cxuan</a>  5月前  <a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/tag/%E5%90%8E%E7%AB%AF">后端</a> <a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/tag/%E5%89%8D%E7%AB%AF">前端</a>  <a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/post/6985415092230144030" title="《计算机网络 PDF》炸了！！！">《计算机网络 PDF》炸了！！！</a><ul>
+<li>2108</li>
+<li>41</li>
+<li>5</li>
+</ul>
+</li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/4406498333825357">敖丙</a>  6月前  <a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/tag/Java">Java</a> <a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/tag/%E9%9D%A2%E8%AF%95">面试</a>  <a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/post/6981608167041925134" title="B站五面面经（附过程、答案）">B站五面面经（附过程、答案）</a><ul>
+<li>2.9w</li>
+<li>404</li>
+<li>73</li>
+</ul>
+</li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/2612095359650712">快狗打车前端团队</a>  2年前  <a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/tag/GraphQL">GraphQL</a>  <a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/post/6844903811006332935" title="前端er了解GraphQL，看这篇就够了">前端er了解GraphQL，看这篇就够了</a><ul>
+<li>1.1w</li>
+<li>149</li>
+<li>12</li>
+</ul>
+</li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/782508007625389">楼下小黑哥</a>  1年前  <a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/tag/Java">Java</a>  <a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/post/6844904154113146894" title="求求你了，不要再自己实现这些逻辑了，开源工具类不香吗？">求求你了，不要再自己实现这些逻辑了，开源工具类不香吗？</a><ul>
+<li>3.5w</li>
+<li>514</li>
+<li>66</li>
+</ul>
+</li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/3702810893364350">why技术</a>  2月前  <a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/tag/Java">Java</a> <a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/tag/%E5%89%8D%E7%AB%AF">前端</a> <a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/tag/%E5%90%8E%E7%AB%AF">后端</a>  <a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/post/7020249317319376927" title="我带的实习生，转正了！">我带的实习生，转正了！</a><ul>
+<li>3.1w</li>
+<li>347</li>
+<li>98</li>
+</ul>
+</li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/1697301652584670">鸿洋</a>  2月前  <a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/tag/Android">Android</a>  <a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/post/7017412501310537742" title="Android 开发太难了，这异常竟然捕获不到？">Android 开发太难了，这异常竟然捕获不到？</a><ul>
+<li>4181</li>
+<li>110</li>
+<li>16</li>
+</ul>
+</li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/1187128287435517">孟思行</a>  1年前  <a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/tag/JavaScript">JavaScript</a>  <a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/post/6845166891393089544" title="前端登录，这一篇就够了">前端登录，这一篇就够了</a><ul>
+<li>2.1w</li>
+<li>629</li>
+<li>46</li>
+</ul>
+</li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/2242659450368119">zhangferry</a>  1年前  <a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/tag/iOS">iOS</a> <a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/tag/%E9%9D%A2%E8%AF%95">面试</a>  <a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/post/6844904202523639822" title="iOS面试备战-网络篇">iOS面试备战-网络篇</a><ul>
+<li>8461</li>
+<li>84</li>
+<li>7</li>
+</ul>
+</li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/4300945218344904">假不理</a>  3年前  <a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/tag/CSS">CSS</a> <a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/tag/%E9%9D%A2%E8%AF%95">面试</a> <a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/tag/Java">Java</a>  <a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/post/6844903693028950023" title="入职三天，公司给了100块钱叫我走人| 掘金技术征文">入职三天，公司给了100块钱叫我走人| 掘金技术征文</a><ul>
+<li>2.9w</li>
+<li>482</li>
+<li>192</li>
+</ul>
+</li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/1451011080727639">捡田螺的小男孩</a>  7月前  <a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/tag/%E5%90%8E%E7%AB%AF">后端</a> <a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/tag/Java">Java</a>  <a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/post/6964531365643550751" title="美团二面：Redis与MySQL双写一致性如何保证？">美团二面：Redis与MySQL双写一致性如何保证？</a><ul>
+<li>3.4w</li>
+<li>478</li>
+<li>101</li>
+</ul>
+</li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/2101921964109880">程序员cxuan</a>  6月前  <a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/tag/%E5%89%8D%E7%AB%AF">前端</a> <a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/tag/%E5%90%8E%E7%AB%AF">后端</a>  <a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/post/6978655816635301925" title="计算机网络的 89 个核心概念">计算机网络的 89 个核心概念</a><ul>
+<li>2923</li>
+<li>50</li>
+<li>3</li>
+</ul>
+</li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/2101921964109880">程序员cxuan</a>  1年前  <a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/tag/%E5%89%8D%E7%AB%AF">前端</a> <a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/tag/%E5%90%8E%E7%AB%AF">后端</a>  <a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/post/6913718622372233229" title="我画了 40 张图就是为了让你搞懂计算机网络层">我画了 40 张图就是为了让你搞懂计算机网络层</a><ul>
+<li>1.0w</li>
+<li>214</li>
+<li>6</li>
+</ul>
+</li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/2119514117904295">小姐姐味道</a>  4月前  <a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/tag/Java">Java</a> <a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/tag/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96">性能优化</a> <a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/tag/%E6%9E%B6%E6%9E%84">架构</a>  <a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/post/6997944097155579934" title="5秒到1秒，记一次效果“非常”显著的性能优化">5秒到1秒，记一次效果“非常”显著的性能优化</a><ul>
+<li>3.3w</li>
+<li>462</li>
+<li>44</li>
+</ul>
+</li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/1327865774742830">黄小虫</a>  2年前  <a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/tag/JavaScript">JavaScript</a>  <a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/post/6844904031240863758" title="2020年了,再不会webpack敲得代码就不香了(近万字实战)">2020年了,再不会webpack敲得代码就不香了(近万字实战)</a><ul>
+<li>15.5w</li>
+<li>4176</li>
+<li>356</li>
+</ul>
+</li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/2101921964109880">程序员cxuan</a>  1年前  <a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/tag/%E5%90%8E%E7%AB%AF">后端</a> <a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/tag/Java">Java</a>  <a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/post/6864324335654404104" title="学会反射后，我被录取了（干货） ">学会反射后，我被录取了（干货）</a><ul>
+<li>2.8w</li>
+<li>492</li>
+<li>29</li>
+</ul>
+</li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/1609340751719127">程序员联盟</a>  4年前  <a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/tag/Mac">Mac</a> <a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/tag/Windows">Windows</a> <a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/tag/Linux">Linux</a>  <a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/post/6844903497071067143" title="为什么程序员应该有一台Mac个人电脑">为什么程序员应该有一台Mac个人电脑</a><ul>
+<li>5.4w</li>
+<li>171</li>
+<li>109</li>
+</ul>
+</li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/993614241478200">hudingyu</a>  3年前  <a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/tag/%E5%89%8D%E7%AB%AF">前端</a>  <a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/post/6844903746804137991" title="深入Babel，这一篇就够了">深入Babel，这一篇就够了</a><ul>
+<li>3.1w</li>
+<li>969</li>
+<li>40</li>
+</ul>
+</li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/96412752684744">孟祥_成都</a>  1年前  <a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/tag/JavaScript">JavaScript</a>  <a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/post/6844904079974465544" title="💗前端需要了解的计算机网络知识， 这一篇就够了！(图文并茂，万字长文，点赞收藏哦！)">💗前端需要了解的计算机网络知识， 这一篇就够了！(图文并茂，万字长文，点赞收藏哦！)</a><ul>
+<li>4.9w</li>
+<li>1728</li>
+<li>96</li>
+</ul>
+</li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/2893570335058184">lyowish</a>  3年前  <a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/tag/Netty">Netty</a> <a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/tag/%E6%9C%8D%E5%8A%A1%E5%99%A8">服务器</a> <a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/tag/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F">操作系统</a>  <a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/post/6844903703183360008" title="彻底理解Netty，这一篇文章就够了">彻底理解Netty，这一篇文章就够了</a><ul>
+<li>5.8w</li>
+<li>261</li>
+<li>17</li>
+</ul>
+</li>
+</ul>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/3773179634917533"><img width="48" height="48" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/5069731a09052526f41247db28ca17cc_5ded0b183c8c4586b.jpg"/></a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/3773179634917533"></a><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/user/3773179634917533">爱Rap篮球写代码的蔡徐 <img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/e108c685147dfe1fb03d4a37257fb417_6d5d144ba12a44c1a.svg" alt="lv-3"></a> </p>
+<p>复制粘贴工程师</p>
+<p>获得点赞2,236</p>
+<p>文章被阅读256,302</p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/app"><img width="50" height="50" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../_resources/article.acd26aa_421cada8b19b4ed18502991a8b82b327.png"/><br>下载稀土掘金APP<br>一个帮助开发者成长的社区</a></p>
+<p>相关文章</p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/post/6844904079974465544" title="💗前端需要了解的计算机网络知识， 这一篇就够了！(图文并茂，万字长文，点赞收藏哦！)">💗前端需要了解的计算机网络知识， 这一篇就够了！(图文并茂，万字长文，点赞收藏哦！)<br>1728点赞<br> · <br>96评论</a><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/post/6844903592965439501" title="面试带你飞：这是一份全面的 计算机网络基础 总结攻略">面试带你飞：这是一份全面的 计算机网络基础 总结攻略<br>1531点赞<br> · <br>21评论</a><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/post/6844903520441729037" title="学习Less-看这篇就够了">学习Less-看这篇就够了<br>925点赞<br> · <br>47评论</a><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/post/6885468617580904455" title="计算机网络基础知识总结">计算机网络基础知识总结<br>638点赞<br> · <br>35评论</a><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/post/6844903648896483335" title="搞定计算机网络面试，看这篇就够了">搞定计算机网络面试，看这篇就够了<br>499点赞<br> · <br>14评论</a></p>
+<p>目录</p>
+<ul>
+<li><a href="#heading-0" title="1、谈下你对五层网络协议体系结构的理解？">1、谈下你对五层网络协议体系结构的理解？</a></li>
+<li><a href="#heading-1" title="2、简单说下每一层对应的网络协议有哪些？">2、简单说下每一层对应的网络协议有哪些？</a></li>
+<li><a href="#heading-2" title="3、ARP 协议的工作原理？">3、ARP 协议的工作原理？</a></li>
+<li><a href="#heading-3" title="4、谈下你对 IP 地址分类的理解？">4、谈下你对 IP 地址分类的理解？</a></li>
+<li><a href="#heading-4" title="5、TCP 的主要特点是什么？">5、TCP 的主要特点是什么？</a></li>
+<li><a href="#heading-5" title="6、UDP 的主要特点是什么？">6、UDP 的主要特点是什么？</a></li>
+<li><a href="#heading-6" title="7、TCP 和 UDP 的区别？">7、TCP 和 UDP 的区别？</a></li>
+<li><a href="#heading-7" title="8、TCP 和 UDP 分别对应的常见应用层协议有哪些？">8、TCP 和 UDP 分别对应的常见应用层协议有哪些？</a></li>
+<li><a href="#heading-8" title="9、详细说下 TCP 三次握手的过程？">9、详细说下 TCP 三次握手的过程？</a></li>
+<li><a href="#heading-9" title="10、为什么两次握手不可以呢？">10、为什么两次握手不可以呢？</a></li>
+<li><a href="#heading-10" title="11、为什么不需要四次握手？">11、为什么不需要四次握手？</a></li>
+<li><a href="#heading-11" title="12、Server 端收到 Client 端的 SYN 后，为什么还要传回 SYN？">12、Server 端收到 Client 端的 SYN 后，为什么还要传回 SYN？</a></li>
+<li><a href="#heading-12" title="13、传了 SYN，为什么还要传 ACK？">13、传了 SYN，为什么还要传 ACK？</a></li>
+<li><a href="#heading-13" title="14、详细说下 TCP 四次挥手的过程？">14、详细说下 TCP 四次挥手的过程？</a></li>
+<li><a href="#heading-14" title="15、为什么 TIME-WAIT 状态必须等待 2MSL 的时间呢？">15、为什么 TIME-WAIT 状态必须等待 2MSL 的时间呢？</a></li>
+<li><a href="#heading-15" title="16、为什么第二次跟第三次不能合并, 第二次和第三次之间的等待是什么?">16、为什么第二次跟第三次不能合并, 第二次和第三次之间的等待是什么?</a></li>
+<li><a href="#heading-16" title="17、保活计时器的作用？">17、保活计时器的作用？</a></li>
+<li><a href="#heading-17" title="18、TCP 协议是如何保证可靠传输的？">18、TCP 协议是如何保证可靠传输的？</a></li>
+<li><a href="#heading-18" title="19、谈谈你对停止等待协议的理解？">19、谈谈你对停止等待协议的理解？</a></li>
+<li><a href="#heading-19" title="20、谈谈你对 ARQ 协议的理解？">20、谈谈你对 ARQ 协议的理解？</a></li>
+<li><a href="#heading-20" title="21、谈谈你对滑动窗口的了解？">21、谈谈你对滑动窗口的了解？</a></li>
+<li><a href="#heading-21" title="22、谈下你对流量控制的理解？">22、谈下你对流量控制的理解？</a></li>
+<li><a href="#heading-22" title="23、谈下你对 TCP 拥塞控制的理解？使用了哪些算法？">23、谈下你对 TCP 拥塞控制的理解？使用了哪些算法？</a></li>
+<li><a href="#heading-23" title="24、什么是粘包？">24、什么是粘包？</a></li>
+<li><a href="#heading-24" title="25、TCP 黏包是怎么产生的？">25、TCP 黏包是怎么产生的？</a></li>
+<li><a href="#heading-25" title="26、怎么解决拆包和粘包？">26、怎么解决拆包和粘包？</a></li>
+<li><a href="#heading-26" title="27、你对 HTTP 状态码有了解吗？">27、你对 HTTP 状态码有了解吗？</a></li>
+<li><a href="#heading-27" title="28、HTTP 状态码 301 和 302 代表的是什么？有什么区别？">28、HTTP 状态码 301 和 302 代表的是什么？有什么区别？</a></li>
+<li><a href="#heading-28" title="29、forward 和 redirect 的区别？">29、forward 和 redirect 的区别？</a></li>
+<li><a href="#heading-29" title="30、HTTP 方法有哪些？">30、HTTP 方法有哪些？</a></li>
+<li><a href="#heading-30" title="31、说下 GET 和 POST 的区别？">31、说下 GET 和 POST 的区别？</a></li>
+<li><a href="#heading-31" title="32、在浏览器中输入 URL 地址到显示主页的过程？">32、在浏览器中输入 URL 地址到显示主页的过程？</a></li>
+<li><a href="#heading-32" title="33、DNS 的解析过程？">33、DNS 的解析过程？</a></li>
+<li><a href="#heading-33" title="34、谈谈你对域名缓存的了解？">34、谈谈你对域名缓存的了解？</a></li>
+<li><a href="#heading-34" title="35、谈下你对 HTTP 长连接和短连接的理解？分别应用于哪些场景？">35、谈下你对 HTTP 长连接和短连接的理解？分别应用于哪些场景？</a></li>
+<li><a href="#heading-35" title="36、谈下 HTTP 1.0 和 1.1、1.2 的主要变化？">36、谈下 HTTP 1.0 和 1.1、1.2 的主要变化？</a></li>
+<li><a href="#heading-36" title="37、HTTPS 的工作过程？">37、HTTPS 的工作过程？</a></li>
+<li><a href="#heading-37" title="38、HTTP 和 HTTPS 的区别？">38、HTTP 和 HTTPS 的区别？</a></li>
+<li><a href="#heading-38" title="39、HTTPS 的优缺点？">39、HTTPS 的优缺点？</a></li>
+<li><a href="#heading-39" title="40、什么是数字签名？">40、什么是数字签名？</a></li>
+<li><a href="#heading-40" title="41、什么是数字证书？">41、什么是数字证书？</a></li>
+<li><a href="#heading-41" title="42、什么是对称加密和非对称加密？">42、什么是对称加密和非对称加密？</a></li>
+</ul>
+<p>稀土掘金浏览器插件——你的一站式工作台</p>
+<p>多内容聚合浏览、多引擎快捷搜索、多工具便捷提效、多模式随心畅享，你想要的，这里都有。</p>
+<p><a id="fatkun-drop-panel-close-btn"></a>×</p>
+<p>拖拽到此处</p>
+<p>图片将完成下载</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:978252321@qq.com" rel="external nofollow noreferrer">传礼</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://iwangchuanli.github.io/posts/28759.html">https://iwangchuanli.github.io/posts/28759.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow noreferrer" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://iwangchuanli.github.io" target="_blank">传礼</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img15_wiXTy2.jpeg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/posts/28758.html"><img class="prev-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img5_XDxspW.jpeg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">计算机网络</div></div></a></div><div class="next-post pull-right"><a href="/posts/44924.html"><img class="next-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img12_dEurxP.jpeg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">记一次sshd启动报错，Failed to start OpenSSH server daemon. - 许爱琪 - 博客园</div></div></a></div></nav><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div><div id="comment-switch"><span class="first-comment">Valine</span><span class="switch-btn"></span><span class="second-comment">Gitalk</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div><div><div id="gitalk-container"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">Nice to meet you ~</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%A4%AA%E9%9A%BE%EF%BC%9F%E4%BA%86%E8%A7%A3%E8%BF%99%E4%B8%80%E7%AF%87%E5%B0%B1%E5%A4%9F%E4%BA%86"><span class="toc-number">1.</span> <span class="toc-text">计算机网络太难？了解这一篇就够了</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81%E8%B0%88%E4%B8%8B%E4%BD%A0%E5%AF%B9%E4%BA%94%E5%B1%82%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84%E7%9A%84%E7%90%86%E8%A7%A3%EF%BC%9F"><span class="toc-number">1.0.1.</span> <span class="toc-text">1、谈下你对五层网络协议体系结构的理解？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81%E7%AE%80%E5%8D%95%E8%AF%B4%E4%B8%8B%E6%AF%8F%E4%B8%80%E5%B1%82%E5%AF%B9%E5%BA%94%E7%9A%84%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE%E6%9C%89%E5%93%AA%E4%BA%9B%EF%BC%9F"><span class="toc-number">1.0.2.</span> <span class="toc-text">2、简单说下每一层对应的网络协议有哪些？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E3%80%81ARP-%E5%8D%8F%E8%AE%AE%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%EF%BC%9F"><span class="toc-number">1.0.3.</span> <span class="toc-text">3、ARP 协议的工作原理？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4%E3%80%81%E8%B0%88%E4%B8%8B%E4%BD%A0%E5%AF%B9-IP-%E5%9C%B0%E5%9D%80%E5%88%86%E7%B1%BB%E7%9A%84%E7%90%86%E8%A7%A3%EF%BC%9F"><span class="toc-number">1.0.4.</span> <span class="toc-text">4、谈下你对 IP 地址分类的理解？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5%E3%80%81TCP-%E7%9A%84%E4%B8%BB%E8%A6%81%E7%89%B9%E7%82%B9%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-number">1.0.5.</span> <span class="toc-text">5、TCP 的主要特点是什么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6%E3%80%81UDP-%E7%9A%84%E4%B8%BB%E8%A6%81%E7%89%B9%E7%82%B9%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-number">1.0.6.</span> <span class="toc-text">6、UDP 的主要特点是什么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7%E3%80%81TCP-%E5%92%8C-UDP-%E7%9A%84%E5%8C%BA%E5%88%AB%EF%BC%9F"><span class="toc-number">1.0.7.</span> <span class="toc-text">7、TCP 和 UDP 的区别？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8%E3%80%81TCP-%E5%92%8C-UDP-%E5%88%86%E5%88%AB%E5%AF%B9%E5%BA%94%E7%9A%84%E5%B8%B8%E8%A7%81%E5%BA%94%E7%94%A8%E5%B1%82%E5%8D%8F%E8%AE%AE%E6%9C%89%E5%93%AA%E4%BA%9B%EF%BC%9F"><span class="toc-number">1.0.8.</span> <span class="toc-text">8、TCP 和 UDP 分别对应的常见应用层协议有哪些？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9%E3%80%81%E8%AF%A6%E7%BB%86%E8%AF%B4%E4%B8%8B-TCP-%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B%E7%9A%84%E8%BF%87%E7%A8%8B%EF%BC%9F"><span class="toc-number">1.0.9.</span> <span class="toc-text">9、详细说下 TCP 三次握手的过程？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10%E3%80%81%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%A4%E6%AC%A1%E6%8F%A1%E6%89%8B%E4%B8%8D%E5%8F%AF%E4%BB%A5%E5%91%A2%EF%BC%9F"><span class="toc-number">1.0.10.</span> <span class="toc-text">10、为什么两次握手不可以呢？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#11%E3%80%81%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%8D%E9%9C%80%E8%A6%81%E5%9B%9B%E6%AC%A1%E6%8F%A1%E6%89%8B%EF%BC%9F"><span class="toc-number">1.0.11.</span> <span class="toc-text">11、为什么不需要四次握手？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#12%E3%80%81Server-%E7%AB%AF%E6%94%B6%E5%88%B0-Client-%E7%AB%AF%E7%9A%84-SYN-%E5%90%8E%EF%BC%8C%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BF%98%E8%A6%81%E4%BC%A0%E5%9B%9E-SYN%EF%BC%9F"><span class="toc-number">1.0.12.</span> <span class="toc-text">12、Server 端收到 Client 端的 SYN 后，为什么还要传回 SYN？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#13%E3%80%81%E4%BC%A0%E4%BA%86-SYN%EF%BC%8C%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BF%98%E8%A6%81%E4%BC%A0-ACK%EF%BC%9F"><span class="toc-number">1.0.13.</span> <span class="toc-text">13、传了 SYN，为什么还要传 ACK？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#14%E3%80%81%E8%AF%A6%E7%BB%86%E8%AF%B4%E4%B8%8B-TCP-%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B%E7%9A%84%E8%BF%87%E7%A8%8B%EF%BC%9F"><span class="toc-number">1.0.14.</span> <span class="toc-text">14、详细说下 TCP 四次挥手的过程？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#15%E3%80%81%E4%B8%BA%E4%BB%80%E4%B9%88-TIME-WAIT-%E7%8A%B6%E6%80%81%E5%BF%85%E9%A1%BB%E7%AD%89%E5%BE%85-2MSL-%E7%9A%84%E6%97%B6%E9%97%B4%E5%91%A2%EF%BC%9F"><span class="toc-number">1.0.15.</span> <span class="toc-text">15、为什么 TIME-WAIT 状态必须等待 2MSL 的时间呢？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#16%E3%80%81%E4%B8%BA%E4%BB%80%E4%B9%88%E7%AC%AC%E4%BA%8C%E6%AC%A1%E8%B7%9F%E7%AC%AC%E4%B8%89%E6%AC%A1%E4%B8%8D%E8%83%BD%E5%90%88%E5%B9%B6-%E7%AC%AC%E4%BA%8C%E6%AC%A1%E5%92%8C%E7%AC%AC%E4%B8%89%E6%AC%A1%E4%B9%8B%E9%97%B4%E7%9A%84%E7%AD%89%E5%BE%85%E6%98%AF%E4%BB%80%E4%B9%88"><span class="toc-number">1.0.16.</span> <span class="toc-text">16、为什么第二次跟第三次不能合并, 第二次和第三次之间的等待是什么?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#17%E3%80%81%E4%BF%9D%E6%B4%BB%E8%AE%A1%E6%97%B6%E5%99%A8%E7%9A%84%E4%BD%9C%E7%94%A8%EF%BC%9F"><span class="toc-number">1.0.17.</span> <span class="toc-text">17、保活计时器的作用？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#18%E3%80%81TCP-%E5%8D%8F%E8%AE%AE%E6%98%AF%E5%A6%82%E4%BD%95%E4%BF%9D%E8%AF%81%E5%8F%AF%E9%9D%A0%E4%BC%A0%E8%BE%93%E7%9A%84%EF%BC%9F"><span class="toc-number">1.0.18.</span> <span class="toc-text">18、TCP 协议是如何保证可靠传输的？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#19%E3%80%81%E8%B0%88%E8%B0%88%E4%BD%A0%E5%AF%B9%E5%81%9C%E6%AD%A2%E7%AD%89%E5%BE%85%E5%8D%8F%E8%AE%AE%E7%9A%84%E7%90%86%E8%A7%A3%EF%BC%9F"><span class="toc-number">1.0.19.</span> <span class="toc-text">19、谈谈你对停止等待协议的理解？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#20%E3%80%81%E8%B0%88%E8%B0%88%E4%BD%A0%E5%AF%B9-ARQ-%E5%8D%8F%E8%AE%AE%E7%9A%84%E7%90%86%E8%A7%A3%EF%BC%9F"><span class="toc-number">1.0.20.</span> <span class="toc-text">20、谈谈你对 ARQ 协议的理解？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#21%E3%80%81%E8%B0%88%E8%B0%88%E4%BD%A0%E5%AF%B9%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3%E7%9A%84%E4%BA%86%E8%A7%A3%EF%BC%9F"><span class="toc-number">1.0.21.</span> <span class="toc-text">21、谈谈你对滑动窗口的了解？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#22%E3%80%81%E8%B0%88%E4%B8%8B%E4%BD%A0%E5%AF%B9%E6%B5%81%E9%87%8F%E6%8E%A7%E5%88%B6%E7%9A%84%E7%90%86%E8%A7%A3%EF%BC%9F"><span class="toc-number">1.0.22.</span> <span class="toc-text">22、谈下你对流量控制的理解？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#23%E3%80%81%E8%B0%88%E4%B8%8B%E4%BD%A0%E5%AF%B9-TCP-%E6%8B%A5%E5%A1%9E%E6%8E%A7%E5%88%B6%E7%9A%84%E7%90%86%E8%A7%A3%EF%BC%9F%E4%BD%BF%E7%94%A8%E4%BA%86%E5%93%AA%E4%BA%9B%E7%AE%97%E6%B3%95%EF%BC%9F"><span class="toc-number">1.0.23.</span> <span class="toc-text">23、谈下你对 TCP 拥塞控制的理解？使用了哪些算法？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#24%E3%80%81%E4%BB%80%E4%B9%88%E6%98%AF%E7%B2%98%E5%8C%85%EF%BC%9F"><span class="toc-number">1.0.24.</span> <span class="toc-text">24、什么是粘包？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#25%E3%80%81TCP-%E9%BB%8F%E5%8C%85%E6%98%AF%E6%80%8E%E4%B9%88%E4%BA%A7%E7%94%9F%E7%9A%84%EF%BC%9F"><span class="toc-number">1.0.25.</span> <span class="toc-text">25、TCP 黏包是怎么产生的？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#26%E3%80%81%E6%80%8E%E4%B9%88%E8%A7%A3%E5%86%B3%E6%8B%86%E5%8C%85%E5%92%8C%E7%B2%98%E5%8C%85%EF%BC%9F"><span class="toc-number">1.0.26.</span> <span class="toc-text">26、怎么解决拆包和粘包？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#27%E3%80%81%E4%BD%A0%E5%AF%B9-HTTP-%E7%8A%B6%E6%80%81%E7%A0%81%E6%9C%89%E4%BA%86%E8%A7%A3%E5%90%97%EF%BC%9F"><span class="toc-number">1.0.27.</span> <span class="toc-text">27、你对 HTTP 状态码有了解吗？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#28%E3%80%81HTTP-%E7%8A%B6%E6%80%81%E7%A0%81-301-%E5%92%8C-302-%E4%BB%A3%E8%A1%A8%E7%9A%84%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB%EF%BC%9F"><span class="toc-number">1.0.28.</span> <span class="toc-text">28、HTTP 状态码 301 和 302 代表的是什么？有什么区别？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#29%E3%80%81forward-%E5%92%8C-redirect-%E7%9A%84%E5%8C%BA%E5%88%AB%EF%BC%9F"><span class="toc-number">1.0.29.</span> <span class="toc-text">29、forward 和 redirect 的区别？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#30%E3%80%81HTTP-%E6%96%B9%E6%B3%95%E6%9C%89%E5%93%AA%E4%BA%9B%EF%BC%9F"><span class="toc-number">1.0.30.</span> <span class="toc-text">30、HTTP 方法有哪些？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#31%E3%80%81%E8%AF%B4%E4%B8%8B-GET-%E5%92%8C-POST-%E7%9A%84%E5%8C%BA%E5%88%AB%EF%BC%9F"><span class="toc-number">1.0.31.</span> <span class="toc-text">31、说下 GET 和 POST 的区别？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#32%E3%80%81%E5%9C%A8%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B8%AD%E8%BE%93%E5%85%A5-URL-%E5%9C%B0%E5%9D%80%E5%88%B0%E6%98%BE%E7%A4%BA%E4%B8%BB%E9%A1%B5%E7%9A%84%E8%BF%87%E7%A8%8B%EF%BC%9F"><span class="toc-number">1.0.32.</span> <span class="toc-text">32、在浏览器中输入 URL 地址到显示主页的过程？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#33%E3%80%81DNS-%E7%9A%84%E8%A7%A3%E6%9E%90%E8%BF%87%E7%A8%8B%EF%BC%9F"><span class="toc-number">1.0.33.</span> <span class="toc-text">33、DNS 的解析过程？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#34%E3%80%81%E8%B0%88%E8%B0%88%E4%BD%A0%E5%AF%B9%E5%9F%9F%E5%90%8D%E7%BC%93%E5%AD%98%E7%9A%84%E4%BA%86%E8%A7%A3%EF%BC%9F"><span class="toc-number">1.0.34.</span> <span class="toc-text">34、谈谈你对域名缓存的了解？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#35%E3%80%81%E8%B0%88%E4%B8%8B%E4%BD%A0%E5%AF%B9-HTTP-%E9%95%BF%E8%BF%9E%E6%8E%A5%E5%92%8C%E7%9F%AD%E8%BF%9E%E6%8E%A5%E7%9A%84%E7%90%86%E8%A7%A3%EF%BC%9F%E5%88%86%E5%88%AB%E5%BA%94%E7%94%A8%E4%BA%8E%E5%93%AA%E4%BA%9B%E5%9C%BA%E6%99%AF%EF%BC%9F"><span class="toc-number">1.0.35.</span> <span class="toc-text">35、谈下你对 HTTP 长连接和短连接的理解？分别应用于哪些场景？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#36%E3%80%81%E8%B0%88%E4%B8%8B-HTTP-1-0-%E5%92%8C-1-1%E3%80%811-2-%E7%9A%84%E4%B8%BB%E8%A6%81%E5%8F%98%E5%8C%96%EF%BC%9F"><span class="toc-number">1.0.36.</span> <span class="toc-text">36、谈下 HTTP 1.0 和 1.1、1.2 的主要变化？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#37%E3%80%81HTTPS-%E7%9A%84%E5%B7%A5%E4%BD%9C%E8%BF%87%E7%A8%8B%EF%BC%9F"><span class="toc-number">1.0.37.</span> <span class="toc-text">37、HTTPS 的工作过程？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#38%E3%80%81HTTP-%E5%92%8C-HTTPS-%E7%9A%84%E5%8C%BA%E5%88%AB%EF%BC%9F"><span class="toc-number">1.0.38.</span> <span class="toc-text">38、HTTP 和 HTTPS 的区别？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#39%E3%80%81HTTPS-%E7%9A%84%E4%BC%98%E7%BC%BA%E7%82%B9%EF%BC%9F"><span class="toc-number">1.0.39.</span> <span class="toc-text">39、HTTPS 的优缺点？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#40%E3%80%81%E4%BB%80%E4%B9%88%E6%98%AF%E6%95%B0%E5%AD%97%E7%AD%BE%E5%90%8D%EF%BC%9F"><span class="toc-number">1.0.40.</span> <span class="toc-text">40、什么是数字签名？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#41%E3%80%81%E4%BB%80%E4%B9%88%E6%98%AF%E6%95%B0%E5%AD%97%E8%AF%81%E4%B9%A6%EF%BC%9F"><span class="toc-number">1.0.41.</span> <span class="toc-text">41、什么是数字证书？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#42%E3%80%81%E4%BB%80%E4%B9%88%E6%98%AF%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%86%E5%92%8C%E9%9D%9E%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%86%EF%BC%9F"><span class="toc-number">1.0.42.</span> <span class="toc-text">42、什么是对称加密和非对称加密？</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget ads-wrap"><a target="_blank" href="https://www.aliyun.com/activity?userCode=dpj8p3hl" rel="external nofollow noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/aliyun_whuCuE.jpg" style="width:100%;height:100%;object-fit:cover;"></a></div></div></div></main><footer id="footer" style="background-image: url('https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img15_wiXTy2.jpeg')"><div id="footer-wrap"><div class="copyright">&copy;2018 - 2022 By 传礼</div><div class="footer_custom_text"><p style="display:inline-flex">本网站由<a href="https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral" rel="external nofollow noreferrer" target="_blank"><img style="width:60px;height:35px;" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/11/又拍云_logo5_O9kNul.png" title="又拍云"/></a>提供CDN加速/云存储服务</p><p><a style="margin-inline:5px" target="_blank" href="https://hexo.io/" rel="external nofollow noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Frame-Hexo-blue?style=flat&logo=hexo" title="博客框架为Hexo"></a><a style="margin-inline:5px" target="_blank" href="https://butterfly.js.org/" rel="external nofollow noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Theme-Butterfly-6513df?style=flat&logo=bitdefender" title="主题采用butterfly"></a><a style="margin-inline:5px" target="_blank" href="https://www.jsdelivr.com/" rel="external nofollow noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/CDN-jsDelivr-orange?style=flat&logo=jsDelivr" title="本站使用JsDelivr为静态资源提供CDN加速"></a><a style="margin-inline:5px" target="_blank" href="https://github.com/" rel="external nofollow noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Source-Github-d021d6?style=flat&logo=GitHub" title="本站项目由Github托管"></a><a style="margin-inline:5px" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Copyright-BY--NC--SA%204.0-d42328?style=flat&logo=Claris" title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可"></a></p></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="chat_btn" type="button" title="聊天"><i class="fas fa-sms"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">本地搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script src="/js/search/local-search.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"><script>function loadValine () {
+  function initValine () {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: 'zHUfFgUbITfMSQGuSPgS2e3C-gzGzoHsz',
+      appKey: 'yPXpeKX8VJxdFRPEsDaqNgEY',
+      avatar: 'wavatar',
+      serverURLs: 'https://zhuffgub.lc-cn-n1-shared.com',
+      emojiMaps: "",
+      path: window.location.pathname,
+      visitor: true,
+      master: '447d56ab3606de5490a2109d3e441219,135d837ea1033c9787dd307e59884d36'.split(','),
+      friends: '5c?????bfe6rfc72a????e268ad3819c'.split(','),
+      tagMeta: '博主,小伙伴,访客'.split(',')
+        
+    }, {"placeholder":"请输入内容～"}))
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/gh/HCLonely/Valine@latest/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !true) {
+  if (true) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script><script>function addGitalkSource () {
+  const ele = document.createElement('link')
+  ele.rel = 'stylesheet'
+  ele.href= 'https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css'
+  document.getElementsByTagName('head')[0].appendChild(ele)
+}
+
+function loadGitalk () {
+  function initGitalk () {
+    var gitalk = new Gitalk(Object.assign({
+      clientID: '052d9d6486112e93fa50',
+      clientSecret: '6fea35bfb7a17521694a95f705683622976d2f53',
+      repo: 'gitalk',
+      owner: 'iwangchuanli',
+      admin: ['iwangchuanli'],
+      id: 'f62665f92d0e4616cac0115eae2579c3',
+      updateCountCallback: commentCount
+    },null))
+
+    gitalk.render('gitalk-container')
+  }
+
+  if (typeof Gitalk === 'function') initGitalk()
+  else {
+    addGitalkSource()
+    getScript('https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.js').then(initGitalk)
+  }
+}
+
+function commentCount(n){
+  let isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+  if (isCommentCount) {
+    isCommentCount.innerHTML= n
+  }
+}
+
+if ('Valine' === 'Gitalk' || !true) {
+  if (true) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+  else loadGitalk()
+} else {
+  function loadOtherComment () {
+    loadGitalk()
+  }
+}</script></div><div class="aplayer no-destroy" data-id="7355841544" data-server="netease" data-type="playlist" data-fixed="true" data-autoplay="false"> </div><script async src="/js/grayscale.js"></script><script async src="//at.alicdn.com/t/font_1885008_srfhrsykmk.js"></script><script>((window.gitter = {}).chat = {}).options = {
+  disableDefaultChat: true,
+};
+document.addEventListener('gitter-sidecar-ready', (e) => {
+  const GitterChat = e.detail.Chat
+  let chat
+
+  function initGitter () {
+    chat = new GitterChat({
+      room: 'wangchuangli-/community',
+      activationElement: '#chat_btn'
+    });
+  }
+
+  initGitter()
+
+  if (true) {
+    document.addEventListener('pjax:complete', () => {
+      chat.destroy()
+      initGitter()
+    })
+  }
+
+})</script><script src="https://sidecar.gitter.im/dist/sidecar.v1.js" async="async" defer="defer"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/meting@1.2.0/dist/Meting.min.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = ["title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"]):not([href="/music/"]):not([href="/no-pjax/"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.tocScrollFn && window.removeEventListener('scroll', window.tocScrollFn)
+  window.scrollCollect && window.removeEventListener('scroll', scrollCollect)
+
+  typeof preloader === 'object' && preloader.initLoading()
+  document.getElementById('rightside').style.cssText = "opacity: ''; transform: ''"
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+
+  typeof preloader === 'object' && preloader.endLoading()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><!-- hexo injector body_end start --><script data-pjax>
+  function butterfly_swiper_injector_config(){
+    var parent_div_git = document.getElementById('recent-posts');
+    var item_html = '<div class="recent-post-item" style="height: auto;width: 100%"><div class="blog-slider swiper-container-fade swiper-container-horizontal" id="swiper_container"><div class="blog-slider__wrp swiper-wrapper" style="transition-duration: 0ms;"><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" onclick="pjax.loadUrl(&quot;posts/4496.html&quot;);" href="javascript:void(0);" rel="external nofollow noreferrer" alt=""><img width="48" height="48" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img6_L358Nt.jpeg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2018-09-05</span><a class="blog-slider__title" onclick="pjax.loadUrl(&quot;posts/4496.html&quot;);" href="javascript:void(0);" rel="external nofollow noreferrer" alt="">编程系列书单推荐</a><div class="blog-slider__text">再怎么看我也不知道怎么描述它的啦！</div><a class="blog-slider__button" onclick="pjax.loadUrl(&quot;posts/4496.html&quot;);" href="javascript:void(0);" rel="external nofollow noreferrer" alt="">详情       </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" onclick="pjax.loadUrl(&quot;posts/35693.html&quot;);" href="javascript:void(0);" rel="external nofollow noreferrer" alt=""><img width="48" height="48" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/iwangchuanli/cdn@master/image/2022/04/img33_fnRUqR.jpeg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2018-11-26</span><a class="blog-slider__title" onclick="pjax.loadUrl(&quot;posts/35693.html&quot;);" href="javascript:void(0);" rel="external nofollow noreferrer" alt="">优秀科技博客订阅</a><div class="blog-slider__text">再怎么看我也不知道怎么描述它的啦！</div><a class="blog-slider__button" onclick="pjax.loadUrl(&quot;posts/35693.html&quot;);" href="javascript:void(0);" rel="external nofollow noreferrer" alt="">详情       </a></div></div></div><div class="blog-slider__pagination swiper-pagination-clickable swiper-pagination-bullets"></div></div></div>';
+    console.log('已挂载butterfly_swiper')
+    parent_div_git.insertAdjacentHTML("afterbegin",item_html)
+    }
+  var elist = 'undefined'.split(',');
+  var cpage = location.pathname;
+  var epage = 'all';
+  var flag = 0;
+
+  for (var i=0;i<elist.length;i++){
+    if (cpage.includes(elist[i])){
+      flag++;
+    }
+  }
+
+  if ((epage ==='all')&&(flag == 0)){
+    butterfly_swiper_injector_config();
+  }
+  else if (epage === cpage){
+    butterfly_swiper_injector_config();
+  }
+  </script><script defer src="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper.min.js"></script><script defer data-pjax src="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper_init.js"></script><!-- hexo injector body_end end --></body></html>
